@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a8f3b0f0791d774995a45ab5316b7a3, type: 3}
+  m_Name: SettingsInstaller
+  m_EditorClassIdentifier: 
+  settingsManager:
+    classicFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    dyslexicFont: {fileID: 12800000, guid: ec11d4c8418df3149936abf57da69f7a, type: 3}
+    dyslexicTextEnabled: 0
+    textSize: 28
+    gameSpeed: 100
+    subtitlesEnabled: 0
+    subtitleTextSize: 42
+    subtitleBackgroundEnabled: 1
+    subtitleColorEnabled: 1
+    autoAimEnabled: 0
+    autoAimStrength: 100
+    fullscreenEnabled: 0
+    inputSensitivity: 5
+    rumbleEnabled: 1
+    rumbleSensitivity: 100

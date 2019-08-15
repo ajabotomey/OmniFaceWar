@@ -44,8 +44,6 @@ public class NoisemakerComponent : MonoBehaviour
         RaycastHit2D initialHit = Physics2D.Raycast(mousePos, Vector2.zero, maxDistance, obstacleMask);
         RaycastHit2D obstructionHit = Physics2D.Raycast(transform.position, transform.up, distance, obstacleMask);
 
-        Debug.Log(distance);
-
         if (!initialHit && !obstructionHit) {
             if (launchNoise) {
                 Fire(distance, mousePos);
@@ -57,7 +55,7 @@ public class NoisemakerComponent : MonoBehaviour
 
     void Fire(float distance, Vector3 mousePos)
     {
-        // If it is a small distance, we might as well drop it at the position as opposed to throwing it
+        // TODO: If it is a small distance, we might as well drop it at the position as opposed to throwing it
         //if (distance <= 3.0f) {
         //    Noisemaker noise = Instantiate(noisemaker, mousePos, Quaternion.identity).GetComponent<Noisemaker>();
         //    noise.Landed();

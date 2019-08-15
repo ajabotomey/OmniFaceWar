@@ -18,6 +18,10 @@ public interface IInputController
     bool UICancel();
     bool Pause();
     bool TakeScreenshot();
+    bool SelectGun();
+    bool SelectNoise();
+    bool SelectMask();
+    float ScrollWeapons();
 }
 
 public class InputController : IInputController
@@ -137,5 +141,25 @@ public class InputController : IInputController
     public bool TakeScreenshot()
     {
         return player.GetButtonDown("Screenshot");
+    }
+
+    public bool SelectGun()
+    {
+        return player.GetButtonDown("SelectGun");
+    }
+
+    public bool SelectNoise()
+    {
+        return player.GetButtonDown("SelectNoise");
+    }
+
+    public bool SelectMask()
+    {
+        return player.GetButtonDown("SelectMask");
+    }
+
+    public float ScrollWeapons()
+    {
+        return player.GetAxis("ScrollWeapons");
     }
 }
