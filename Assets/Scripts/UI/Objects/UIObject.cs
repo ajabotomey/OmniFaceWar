@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Zenject;
 
 public class UIObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] protected string tooltipText;
+
+    [Inject] private InputController inputController;
 
     // Figure out how to trigger this with a controller
     public void OnPointerEnter(PointerEventData eventData)
@@ -35,7 +38,7 @@ public class UIObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Vector3[] v = new Vector3[4];
         rect.GetWorldCorners(v);
 
-        if (InputController.instance.IsControllerActive())
+        if (inputController.IsControllerActive())
             UITooltip.instance.ShowTooltipController(v[3], tooltipText); //V[3] is the bottom right corner
     }
 }

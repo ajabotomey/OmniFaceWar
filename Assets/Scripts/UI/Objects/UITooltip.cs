@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class UITooltip : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class UITooltip : MonoBehaviour
 
     [SerializeField] private Camera uiCamera;
 
+    [Inject] private InputController inputController;
+
     void Awake()
     {
         instance = this;
@@ -24,7 +27,7 @@ public class UITooltip : MonoBehaviour
 
     void Update()
     {
-        if (!InputController.instance.IsControllerActive()) {
+        if (!inputController.IsControllerActive()) {
             Vector2 localPoint;
             RectTransform parentTransform = transform.parent.GetComponent<RectTransform>();
             RectTransformUtility.ScreenPointToLocalPointInRectangle(parentTransform, Input.mousePosition, uiCamera, out localPoint);
