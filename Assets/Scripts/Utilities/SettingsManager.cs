@@ -9,7 +9,7 @@ public class SettingsManager {
     [Header("Text")]
     [SerializeField] private Font classicFont;
     [SerializeField] private Font dyslexicFont;
-    [SerializeField] private bool dyslexicTextEnabled;
+    [SerializeField] private bool dyslexicTextEnabled = false;
     [SerializeField] [Range(28, 100)] private int textSize = 28;
     private int TEXT_SIZE_MIN = 28;
     private int TEXT_SIZE_MAX = 100;
