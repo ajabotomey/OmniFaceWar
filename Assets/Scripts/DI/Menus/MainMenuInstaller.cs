@@ -7,7 +7,6 @@ public class MainMenuInstaller : MonoInstaller<MainMenuInstaller>
 
     public override void InstallBindings()
     {
-        //Container.BindInstance(menuSettings);
         Container.Bind<MenuController>().AsSingle().WithArguments(menuSettings);
     }
 }
