@@ -23,6 +23,7 @@ public class MenuController
 
     public void SwapToSettingsMenu()
     {
+        Logger.Debug("Hello World!");
         _settings.settingsMenu.gameObject.SetActive(true);
         _settings.mainMenu.gameObject.SetActive(false);
         _settings.controlMapperWindow.SetActive(false);
