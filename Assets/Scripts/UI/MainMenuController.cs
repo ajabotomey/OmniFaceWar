@@ -8,6 +8,7 @@ public class MainMenuController : MonoBehaviour
 
     [Inject] private SettingsManager settingsManager;
     [Inject] private SceneController sceneController;
+    [Inject] private MenuController menuController;
 
     [SerializeField] private Button startGameButton;
     [SerializeField] private Button loadGameButton;
@@ -33,7 +34,7 @@ public class MainMenuController : MonoBehaviour
 
     public void SettingsMenu()
     {
-        //MenuController.instance.SwapToSettingsMenu();
+        menuController.SwapToSettingsMenu();
     }
 
     public void QuitGame()

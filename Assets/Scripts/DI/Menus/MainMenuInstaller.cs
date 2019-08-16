@@ -3,9 +3,11 @@ using Zenject;
 
 public class MainMenuInstaller : MonoInstaller<MainMenuInstaller>
 {
+    public MenuController.Settings menuSettings;
+
     public override void InstallBindings()
     {
-        //Container.Bind<IMenuController>().To<MenuController>().AsSingle().NonLazy();
-        Container.Bind<MenuController>().AsSingle().NonLazy();
+        //Container.BindInstance(menuSettings);
+        Container.Bind<MenuController>().AsSingle().WithArguments(menuSettings);
     }
 }

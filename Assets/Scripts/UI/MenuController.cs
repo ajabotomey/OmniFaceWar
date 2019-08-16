@@ -2,41 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuController : MonoBehaviour
+public class MenuController
 {
-    [SerializeField] private MainMenuController mainMenu;
-    //[SerializeField] private SettingsMenu settingsMenu;
-    [SerializeField] private GameObject controlMapperWindow;
-    
-    void Awake()
+    readonly Settings _settings;
+
+    public MenuController(Settings settings)
     {
-        mainMenu.gameObject.SetActive(true);
-        //settingsMenu.gameObject.SetActive(false);
-        controlMapperWindow.SetActive(false);
+        _settings = settings;
+
+        _settings.mainMenu.gameObject.SetActive(true);
+        _settings.settingsMenu.gameObject.SetActive(false);
+        _settings.controlMapperWindow.SetActive(false);
     }
 
     public void SwapToMainMenu()
     {
-        mainMenu.gameObject.SetActive(true);
-        //settingsMenu.gameObject.SetActive(false);
+        _settings.mainMenu.gameObject.SetActive(true);
+        _settings.settingsMenu.gameObject.SetActive(false);
     }
 
     public void SwapToSettingsMenu()
     {
-        //settingsMenu.gameObject.SetActive(true);
-        mainMenu.gameObject.SetActive(false);
-        controlMapperWindow.SetActive(false);
+        _settings.settingsMenu.gameObject.SetActive(true);
+        _settings.mainMenu.gameObject.SetActive(false);
+        _settings.controlMapperWindow.SetActive(false);
     }
 
     public void SwapToControlMapper()
     {
-        //settingsMenu.gameObject.SetActive(false);
-        controlMapperWindow.SetActive(true);
+        _settings.settingsMenu.gameObject.SetActive(false);
+        _settings.controlMapperWindow.SetActive(true);
     }
 
     public void ReturnFromControlMapper()
     {
         SwapToSettingsMenu();
-        //settingsMenu.GetComponent<SettingsMenu>().ReturnFromControlMapper();
+        _settings.settingsMenu.GetComponent<SettingsMenuController>().ReturnFromControlMapper();
+    }
+
+    [System.Serializable]
+    public class Settings
+    {
+        public MainMenuController mainMenu;
+        public SettingsMenuController settingsMenu;
+        public GameObject controlMapperWindow;
     }
 }

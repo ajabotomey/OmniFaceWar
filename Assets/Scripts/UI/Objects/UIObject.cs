@@ -9,7 +9,7 @@ public class UIObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] protected string tooltipText;
 
-    [Inject] private InputController inputController;
+    [Inject] private IInputController inputController;
 
     // Figure out how to trigger this with a controller
     public void OnPointerEnter(PointerEventData eventData)

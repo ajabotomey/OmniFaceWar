@@ -15,7 +15,7 @@ public class UITooltip : MonoBehaviour
 
     [SerializeField] private Camera uiCamera;
 
-    [Inject] private InputController inputController;
+    [Inject] private IInputController inputController;
 
     void Awake()
     {

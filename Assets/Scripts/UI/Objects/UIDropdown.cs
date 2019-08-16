@@ -7,6 +7,14 @@ public class UIDropdown : UIObject
     [SerializeField] private Dropdown dropdown;
     private string currentValue;
 
+    [SerializeField] private Text value;
+    [SerializeField] private string fieldName;
+
+    void Awake()
+    {
+        value.text = fieldName;
+    }
+
     public void SetOptions(List<string> options)
     {
         dropdown.ClearOptions();

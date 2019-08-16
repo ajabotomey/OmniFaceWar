@@ -43,7 +43,7 @@ public class SettingsMenuController : MonoBehaviour
 
     [Inject] private SettingsManager settingsManager;
     [Inject] private MenuController menuController;
-    [Inject] private InputController inputController;
+    [Inject] private IInputController inputController;
     [Inject] private SceneController sceneController;
 
     void Start()
@@ -71,9 +71,9 @@ public class SettingsMenuController : MonoBehaviour
         // Sound
 
         // Input
-        inputSensitivitySlider.SetValue(inputSensitivity);
-        rumbleEnabledToggle.SetValue(rumbleEnabled);
-        rumbleSensitivitySlider.SetValue(rumbleSensitivity);
+        //inputSensitivitySlider.SetValue(inputSensitivity);
+        //rumbleEnabledToggle.SetValue(rumbleEnabled);
+        //rumbleSensitivitySlider.SetValue(rumbleSensitivity);
 
         backNav = backToMainMenuButton.navigation;
         applyNav = applyChangesButton.navigation;
@@ -137,6 +137,16 @@ public class SettingsMenuController : MonoBehaviour
         }
 
         settingsManager.AutoAimToggle();
+    }
+
+    public void DyslexicToggle()
+    {
+        settingsManager.DyslexicToggle();
+    }
+
+    public void FullscreenToggle()
+    {
+        settingsManager.FullScreenToggle();
     }
 
     public void RumbleToggle(bool value)

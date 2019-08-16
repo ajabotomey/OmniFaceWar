@@ -5,6 +5,6 @@ public class GameInstaller : MonoInstaller<GameInstaller>
 {
     public override void InstallBindings()
     {
-        Container.Bind<IInputController>().To<InputController>().AsSingle().NonLazy();
+        Container.Bind<IInputController>().To<InputController>().AsSingle().CopyIntoAllSubContainers().NonLazy();
     }
 }

@@ -68,6 +68,19 @@ public class SettingsManager {
 
     public List<string> ResolutionsSupported()
     {
+        if (resolutionsSupported.Count == 0) {
+            resolutions = Screen.resolutions;
+            resolutionsSupported = new List<string>();
+
+            for (int i = 3; i < resolutions.Length; i++) {
+
+                var s = resolutions[i].ToString();
+                var delimiter = s.IndexOf(" @");
+
+                resolutionsSupported.Add(s.Substring(0, delimiter));
+            }
+        }
+
         return resolutionsSupported;
     }
 
