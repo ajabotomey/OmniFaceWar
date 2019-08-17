@@ -81,7 +81,7 @@ public class WeaponController : MonoBehaviour, IWeaponController
         if (index == 0) {
             SelectGun();
         } else if (index == 1) {
-            Debug.Log("Selected Grenade");
+            Logger.Debug("Selected Grenade");
         } else if (index == 2) {
             SelectNoise();
         } else if (index == 3) {
@@ -91,7 +91,7 @@ public class WeaponController : MonoBehaviour, IWeaponController
 
     public void SelectGun()
     {
-        Debug.Log("Return to Gun");
+        Logger.Debug("Return to Gun");
         Cursor.visible = false;
         CurrentWeapon = WeaponState.GUN;
     }
@@ -99,14 +99,14 @@ public class WeaponController : MonoBehaviour, IWeaponController
     public void SelectNoise()
     {
         Cursor.visible = true;
-        Debug.Log("Swap to Noisemaker");
+        Logger.Debug("Swap to Noisemaker");
         Cursor.SetCursor(noisemaker, new Vector3(0, 0, -1), CursorMode.Auto);
         CurrentWeapon = WeaponState.NOISE;
     }
 
     public void SelectMask()
     {
-        Debug.Log("Put on / take off SmartMask");
+        Logger.Debug("Put on / take off SmartMask");
         Cursor.visible = false;
         CurrentWeapon = WeaponState.MASK;
     }

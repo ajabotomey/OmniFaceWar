@@ -32,13 +32,21 @@ namespace Rewired.UI.ControlMapper {
             int selectableCount;
 
 #if UNITY_2019_PLUS
+            
             // Resize array as needed to fit all Selectables
             if (Selectable.allSelectableCount > s_reusableAllSelectables.Length) {
                 s_reusableAllSelectables = new Selectable[Selectable.allSelectableCount];
             }
+
+            // Unity made a breaking API change in 2019.1.5 that removed the ref keyword. There is no clean way to catch it.
+#if UNITY_2019_1_0 || UNITY_2019_1_1 || UNITY_2019_1_2 || UNITY_2019_1_3 || UNITY_2019_1_4 // 2019.1 up to 2019.1.4
+            selectableCount = Selectable.AllSelectablesNoAlloc(ref s_reusableAllSelectables);
+            allSelectables = s_reusableAllSelectables;
+#else // all future versions
             selectableCount = Selectable.AllSelectablesNoAlloc(s_reusableAllSelectables);
             allSelectables = s_reusableAllSelectables;
-#else
+#endif
+#else // pre-2019 versions
             allSelectables = Selectable.allSelectables;
             selectableCount = allSelectables.Count;
 #endif

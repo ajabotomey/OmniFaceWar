@@ -1,8 +1,59 @@
+1.1.27.3:
+    
+    - Rebuild due to Windows Standalone IL2CPP issues in Unity 2018 branch.
+
+1.1.27.2:
+
+    Controller Definitions:
+      - Added D-Pad buttons to Apple TV Siri Remote definition.
+      
+    Bug Fixes:
+      - Fixed gamepads not working on PS4 platform due to change in 1.1.27.0.
+      - Unity 2018.3+ (new prefab workflow): Changes are no longer lost after importing data from json or compacting ids from the Rewired Editor -> Tools menu when in "prefab edit mode" and then exiting "prefab edit mode."
+
+1.1.27.1:
+    
+    Bug Fixes:
+      - Unity 2018.3+ (new prefab workflow): Pressing "Play" in the editor immediately after changing values in the Rewired Editor while editing a prefab will no longer cause the changes to be lost.
+    
+
+1.1.27.0:
+    
+    Changes:
+      - Windows, Raw Input / Direct Input, Native Keyboard Handling: Changed system for correcting UK and German key mappings due to issue it caused with French layout.
+      - UserDataStore_PlayerPrefs: Added support for loading Controller Maps for recognized Joysticks that are not currently connected.
+      - PS4: Changed value returned by Controller.name from "Gamepad" to "Controller" for gamepad controllers.
+
+    API Changes:
+    - Added ReInput.MappingHelper.GetControllerMapInstance(ControllerIdentifier controllerIdentifier...) overloads.
+    - Added ReInput.MappingHelper.GetJoystickMapInstance(ControllerIdentifier controllerIdentifier...) overloads.
+    - Added ReInput.MappingHelper.GetCustomControllerMapInstance(ControllerIdentifier controllerIdentifier...) overloads.
+    - Added ReInput.MappingHelper.GetControllerMapInstanceSavedOrDefault(int playerId, Controller controller, string mapCategoryName, string layoutName) overload.
+    - Added ReInput.MappingHelper.GetControllerMapInstanceSavedOrDefault(int playerId, ControllerIdentifier controllerIdentifier, string mapCategoryName, string layoutName) overload.
+    - Added ReInput.MappingHelper.GetJoystickMapInstanceSavedOrDefault(int playerId, Joystick joystick, string mapCategoryName, string layoutName) overload.
+    - Added ReInput.MappingHelper.GetJoystickMapInstanceSavedOrDefault(int playerId, ControllerIdentifier controllerIdentifier, string mapCategoryName, string layoutName) overload.
+    - Added ReInput.MappingHelper.GetCustomControllerMapInstanceSavedOrDefault(int playerId, CustomController customController, string mapCategoryName, string layoutName) overload.
+    - Added ReInput.MappingHelper.GetCustomControllerMapInstanceSavedOrDefault(int playerId, ControllerIdentifier controllerIdentifier, string mapCategoryName, string layoutName) overload.
+    - Added ReInput.MappingHelper.GetKeyboardMapInstanceSavedOrDefault(int playerId, string mapCategoryName, string layoutName) overload.
+    - Added ReInput.MappingHelper.GetMouseMapInstanceSavedOrDefault(int playerId, int mapCategoryId, int layoutId) overload.
+    - Added ControllerIdentifier.Blank property.
+    
+    Bug Fixes:
+      - Windows, Raw Input / Direct Input, Native Keyboard Handling: 4 key on French keyboard layout now returns the correct key code.
+      - Rewired Editor: Controller Map "Copy Map" dialog now shows the "Cancel" option when copying over an existing Controller Map.
+
+1.1.26.1:
+    
+    Changes:
+      - Reverted change made in 1.1.25 due to breakage of editor stepping input support: Unity Editor, Windows Standalone, Native Keyboard Handling and/or Native Mouse Handling: Pausing runtime Play mode in the Unity Editor now clears keyboard and mouse input queue and blocks further input from being queued while paused.
+      - Changed Control Mapper UISelectionUtility.cs for breaking API change in Unity 2019.1.5f1.
+      - OSX, Native: Device with location id of 0 are no longer filtered out to allow support for virtual HID devices. This change may affect some multi-controller adapters such as Gamecube adapters negatively because these devices expose additional invalid HID devices with location ids of 0 which will no longer be filtered out.
+
 1.1.26.0:
 
     Changes:
       - Button down events are no longer enqueued for Fixed Update when Time.timeScale is 0 to work around issues when unpausing Time.timeScale when using Fixed Update for input.
-      - Changed installer model dialogs to work around an extremely rare issue where installation dialog boxes will be spammed with "Cancel" requests repeatedly and infintely by Unity or some other software installed causing the "Get More Information" action to be called repeatedly which opens browser windows until the system crashes. The new behavior when this issue occurs will be that the modal box will be cancelled and skipped and the user will never even see it. This is not a bug in Rewired code that caused this issue and it could not be "fixed" and will never work properly in the rare circumstance that the user's system is behaving this way. Something outside Rewired (Unity or some other software installed) is trying to force close the modal box in the Unity Editor every frame. It's a choice between a system crash or auto-skipping the installation modal. This change is simply a cludge to at least prevent the system from crashing.
+      - Changed installer modal dialogs to work around an extremely rare issue where installation dialog boxes will be spammed with "Cancel" requests repeatedly and infintely by Unity or some other software installed causing the "Get More Information" action to be called repeatedly which opens browser windows until the system crashes. The new behavior when this issue occurs will be that the modal box will be cancelled and skipped and the user will never even see it. This is not a bug in Rewired code that caused this issue and it could not be "fixed" and will never work properly in the rare circumstance that the user's system is behaving this way. Something outside Rewired (Unity or some other software installed) is trying to force close the modal box in the Unity Editor every frame. It's a choice between a system crash or auto-skipping the installation modal. This change is simply a cludge to at least prevent the system from crashing.
       - Improved performance of inspector Debug Information tool after changes made in 1.1.25.0 to remember previously open items.
       
     API Changes:

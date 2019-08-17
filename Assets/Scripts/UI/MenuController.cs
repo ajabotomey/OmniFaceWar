@@ -23,7 +23,6 @@ public class MenuController
 
     public void SwapToSettingsMenu()
     {
-        Logger.Debug("Hello World!");
         _settings.settingsMenu.gameObject.SetActive(true);
         _settings.mainMenu.gameObject.SetActive(false);
         _settings.controlMapperWindow.SetActive(false);
@@ -33,12 +32,6 @@ public class MenuController
     {
         _settings.settingsMenu.gameObject.SetActive(false);
         _settings.controlMapperWindow.SetActive(true);
-    }
-
-    public void ReturnFromControlMapper()
-    {
-        SwapToSettingsMenu();
-        _settings.settingsMenu.GetComponent<SettingsMenuController>().ReturnFromControlMapper();
     }
 
     [System.Serializable]

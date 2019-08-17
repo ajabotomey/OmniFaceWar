@@ -68,6 +68,8 @@ public class SettingsMenuController : MonoBehaviour
         resolutionDropdown.SetOptions(supportedResolutions);
         fullscreenToggle.SetValue(fullscreenEnabled);
 
+        settingsManager.UpdateFont();
+
         // Sound
 
         // Input
@@ -243,11 +245,26 @@ public class SettingsMenuController : MonoBehaviour
 
     #endregion
 
+    #region Menu Swapping
+    public void SwapToControlMapper()
+    {
+        menuController.SwapToControlMapper();
+    }
+
     public void ReturnFromControlMapper()
     {
+        Logger.Debug("Should be swapping back here");
+        menuController.SwapToSettingsMenu();
         SwapToInput();
 
         inputButton.Select();
         inputButton.OnSelect(null);
     }
+
+    public void BackToMainMenu()
+    {
+        menuController.SwapToMainMenu();
+    }
+
+    #endregion
 }
