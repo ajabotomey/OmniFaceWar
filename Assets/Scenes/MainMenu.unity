@@ -643,6 +643,11 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5989910764154326053, guid: e3e68ea004d531649a48614eb26aa022,
+        type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 859780113320064893, guid: e3e68ea004d531649a48614eb26aa022,
         type: 3}
       propertyPath: tooltipText
@@ -652,6 +657,11 @@ PrefabInstance:
         type: 3}
       propertyPath: fieldName
       value: Dyslexic Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740200029050421524, guid: e3e68ea004d531649a48614eb26aa022,
+        type: 3}
+      propertyPath: m_Name
+      value: DyslexicText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3e68ea004d531649a48614eb26aa022, type: 3}

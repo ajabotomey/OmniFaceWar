@@ -15,7 +15,7 @@ MonoBehaviour:
   settingsManager:
     classicFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     dyslexicFont: {fileID: 12800000, guid: ec11d4c8418df3149936abf57da69f7a, type: 3}
-    dyslexicTextEnabled: 1
+    dyslexicTextEnabled: 0
     textSize: 28
     gameSpeed: 100
     subtitlesEnabled: 0

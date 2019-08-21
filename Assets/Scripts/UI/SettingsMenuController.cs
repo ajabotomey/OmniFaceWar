@@ -68,8 +68,6 @@ public class SettingsMenuController : MonoBehaviour
         resolutionDropdown.SetOptions(supportedResolutions);
         fullscreenToggle.SetValue(fullscreenEnabled);
 
-        settingsManager.UpdateFont();
-
         // Sound
 
         // Input
@@ -94,8 +92,6 @@ public class SettingsMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        settingsManager.UpdateFont();
-
         if (inputController.UICancel()) {
             // If settings have changed
             // Show dialog box asking to save changes
@@ -144,6 +140,7 @@ public class SettingsMenuController : MonoBehaviour
     public void DyslexicToggle()
     {
         settingsManager.DyslexicToggle();
+        settingsManager.UpdateFont();
     }
 
     public void FullscreenToggle()
