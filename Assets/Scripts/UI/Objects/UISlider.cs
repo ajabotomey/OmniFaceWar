@@ -9,26 +9,36 @@ public class UISlider : UIObject
     [SerializeField] private int minimumValue;
     [SerializeField] private int maximumValue;
 
-    private void Awake()
+    private bool initialized = false;
+    void Awake()
+    {
+        Initialize();
+    }
+
+    private void Initialize()
     {
         if (minimumValue == maximumValue) {
             Logger.Error("Minimum value for " + gameObject.name + " cannot be the same as the maximum value. Please change these values.");
             return;
         }
-            
+
         slider.minValue = minimumValue;
         slider.maxValue = maximumValue;
+
+        initialized = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        var sliderValue = Mathf.RoundToInt((slider.value / slider.maxValue) * 100);
-        value.text = fieldName + ": " + sliderValue;
+        value.text = fieldName + ": " + slider.value;
     }
 
     public void SetValue(int value)
     {
+        if (!initialized)
+            Initialize();
+
         slider.value = value;
     }
 

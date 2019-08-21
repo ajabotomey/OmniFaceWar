@@ -16,6 +16,11 @@ public class UIToggle : UIObject
 
     public void SetValue(bool value)
     {
+        toggle.isOn = value;
+    }
+
+    public void SetValueWithoutNotify(bool value)
+    {
         toggle.SetIsOnWithoutNotify(value);
     }
 

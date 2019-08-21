@@ -25,6 +25,7 @@ public class SettingsMenuController : MonoBehaviour
 
     [Header("Video UI Widgets")]
     [SerializeField] private UIToggle dyslexicTextToggle;
+    [SerializeField] private UISlider textSizeSlider;
     [SerializeField] private UIDropdown resolutionDropdown;
     [SerializeField] private UIToggle fullscreenToggle;
 
@@ -50,6 +51,7 @@ public class SettingsMenuController : MonoBehaviour
     {
         var gameSpeed = settingsManager.CurrentGameSpeed();
         var dyslexicText = settingsManager.IsDyslexicTextEnabled();
+        var textSize = settingsManager.CurrentTextSize();
         var supportedResolutions = settingsManager.ResolutionsSupported();
         var fullscreenEnabled = settingsManager.IsFullscreenEnabled();
         var autoAimEnabled = settingsManager.IsAutoAimEnabled();
@@ -61,22 +63,27 @@ public class SettingsMenuController : MonoBehaviour
         // General
         gameSpeedSlider.SetValue((int)gameSpeed);
         autoAimToggle.SetValue(autoAimEnabled);
+        //AutoAimToggle(autoAimEnabled);
         autoAimStrengthSlider.SetValue(autoAimStrength);
 
         // Video
-        dyslexicTextToggle.SetValue(dyslexicText);
+        dyslexicTextToggle.SetValueWithoutNotify(dyslexicText);
+        textSizeSlider.SetValue(textSize);
         resolutionDropdown.SetOptions(supportedResolutions);
         fullscreenToggle.SetValue(fullscreenEnabled);
 
         // Sound
 
         // Input
-        //inputSensitivitySlider.SetValue(inputSensitivity);
-        //rumbleEnabledToggle.SetValue(rumbleEnabled);
-        //rumbleSensitivitySlider.SetValue(rumbleSensitivity);
+        inputSensitivitySlider.SetValue(inputSensitivity);
+        rumbleEnabledToggle.SetValue(rumbleEnabled);
+        rumbleSensitivitySlider.SetValue(rumbleSensitivity);
 
+        // Setup navigation for bottom buttons
         backNav = backToMainMenuButton.navigation;
         applyNav = applyChangesButton.navigation;
+
+        settingsManager.LoadSettings();
 
         SwapToGeneral();
     }
@@ -109,13 +116,21 @@ public class SettingsMenuController : MonoBehaviour
         }
     }
 
-    public void ApplyChanges()
+    public void ConfirmChanges()
     {
-        // Throw up a dialog box asking if you wish to save those changes
-
-        settingsManager.SetResolution(resolutionDropdown.GetValue());
+        UIDialogBox.Instance.ShowPopUp("Would you like to save those changes?", ApplyChanges, UIDialogBox.Instance.HidePopUp);
     }
 
+    public void ApplyChanges()
+    {
+        settingsManager.SaveSettings();
+
+        settingsManager.SetResolution(resolutionDropdown.GetValue());
+
+        UIDialogBox.Instance.HidePopUp();
+    }
+
+    #region Change Value methods
     public void AutoAimToggle(bool value)
     {
         var toggle = autoAimToggle.GetObject();
@@ -167,6 +182,33 @@ public class SettingsMenuController : MonoBehaviour
 
         settingsManager.RumbleToggle();
     }
+
+    public void SetGameSpeed(float value)
+    {
+        settingsManager.SetGameSpeed((int)value);
+    }
+
+    public void SetAutoAimStrength(float value)
+    {
+        settingsManager.SetAutoAimStrength((int)value);
+    }
+
+    public void SetTextSize(float value)
+    {
+        settingsManager.SetTextSize((int)value);
+    }
+
+    public void SetInputSensitivity(float value)
+    {
+        settingsManager.SetInputSensitivity((int)value);
+    }
+
+    public void SetRumbleSensitivity(float value)
+    {
+        settingsManager.SetRumbleSensitivity((int)value);
+    }
+
+    #endregion
 
     #region Panel Switch Methods
 

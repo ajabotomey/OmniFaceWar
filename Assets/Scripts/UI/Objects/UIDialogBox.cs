@@ -19,13 +19,46 @@ public class UIDialogBox : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void ShowDialogBox(string dialogText)
+    public void ShowPopUp(string popupText)
     {
-
+        ShowPopUp(popupText, HidePopUp, null);
     }
 
-    public void ShowDialogBox(string dialogText, Action onConfirm, Action onCancel)
+    public void ShowPopUp(string popupText, Action onConfirm, Action onCancel)
     {
+        if (!gameObject.activeSelf) {
+            if (onCancel == null) {
+                ConfirmButton.gameObject.SetActive(false);
+                CancelButton.gameObject.SetActive(false);
+                OkButton.gameObject.SetActive(true);
+            } else {
+                ConfirmButton.gameObject.SetActive(true);
+                CancelButton.gameObject.SetActive(true);
+                OkButton.gameObject.SetActive(false);
+                onClickCancel = onCancel;
+            }
 
+            dialogText.text = popupText;
+            onClickConfirm = onConfirm;
+            gameObject.SetActive(true);
+        } else {
+            Debug.LogWarning("There is already pop up window on scene!\nWith text: " + dialogText.text);
+        }
+    }
+
+    public void HidePopUp()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void OnClickConfirmButton()
+    {
+        onClickConfirm();
+    }
+
+    public void OnClickCancelButton()
+    {
+        onClickCancel();
+        gameObject.SetActive(false);
     }
 }

@@ -49,11 +49,18 @@ public class SettingsManager {
     private int RUMBLE_SENSITIVITY_MIN = 1;
     private int RUMBLE_SENSITIVITY_MAX = 100;
 
+    public ModifiedSettings settings;
+
     #region Accessor Methods
 
     public bool IsDyslexicTextEnabled()
     {
         return dyslexicTextEnabled;
+    }
+
+    public int CurrentTextSize()
+    {
+        return textSize;
     }
 
     public bool IsFullscreenEnabled()
@@ -143,10 +150,10 @@ public class SettingsManager {
 
     #region Mutator Methods
 
-    public void GameSpeedToggle(int value)
+    public void SetGameSpeed(int value)
     {
         if (value >= GAME_SPEED_MIN && value <= GAME_SPEED_MAX)
-            gameSpeed = value;
+            settings.gameSpeed = value;
     }
 
     public void DyslexicToggle()
@@ -157,7 +164,7 @@ public class SettingsManager {
     public void SetTextSize(int value)
     {
         if (value >= TEXT_SIZE_MIN && value <= TEXT_SIZE_MAX)
-            textSize = value;
+            settings.textSize = value;
     }
 
     public void SetResolution(string value)
@@ -165,8 +172,8 @@ public class SettingsManager {
         var resolutionString = value;
         string[] values = resolutionString.Split(new string[] { " x " }, StringSplitOptions.RemoveEmptyEntries);
 
-        screenWidth = Int32.Parse(values[0]);
-        screenHeight = Int32.Parse(values[1]);
+        settings.screenWidth = Int32.Parse(values[0]);
+        settings.screenHeight = Int32.Parse(values[1]);
 
         Screen.SetResolution(screenWidth, screenHeight, fullscreenEnabled);
     }
@@ -178,51 +185,51 @@ public class SettingsManager {
 
     public void FullScreenToggle()
     {
-        fullscreenEnabled = !fullscreenEnabled;
+        settings.fullscreenEnabled = !settings.fullscreenEnabled;
     }
 
     public void AutoAimToggle()
     {
-        autoAimEnabled = !autoAimEnabled;
+        settings.autoAimEnabled = !settings.autoAimEnabled;
     }
 
     public void SetAutoAimStrength(int value)
     {
         if (value >= AUTOAIM_STRENGTH_MIN && value <= AUTOAIM_STRENGTH_MAX)
-            autoAimStrength = value;
+            settings.autoAimStrength = value;
     }
 
     public void SubtitlesToggle()
     {
-        subtitlesEnabled = !subtitlesEnabled;
+        settings.subtitlesEnabled = !settings.subtitlesEnabled;
     }
 
     public void SubtitleBackgroundToggle()
     {
-        subtitleBackgroundEnabled = !subtitleBackgroundEnabled;
+        settings.subtitleBackgroundEnabled = !settings.subtitleBackgroundEnabled;
     }
 
     public void SetSubtitleText(int value)
     {
         if (value >= SUBTITLE_MIN_SIZE && value <= SUBTITLE_MAX_SIZE)
-            subtitleTextSize = value;
+            settings.subtitleTextSize = value;
     }
 
     public void SetInputSensitivity(int value)
     {
         if (value >= INPUT_SENSITIVITY_MIN && value <= INPUT_SENSITIVITY_MAX)
-            inputSensitivity = value;
+            settings.inputSensitivity = value;
     }
 
     public void RumbleToggle()
     {
-        rumbleEnabled = !rumbleEnabled;
+        settings.rumbleEnabled = !settings.rumbleEnabled;
     }
 
     public void SetRumbleSensitivity(int value)
     {
         if (value >= RUMBLE_SENSITIVITY_MIN && value <= RUMBLE_SENSITIVITY_MAX)
-            rumbleSensitivity = value;
+            settings.rumbleSensitivity = value;
     }
 
     #endregion
@@ -240,5 +247,60 @@ public class SettingsManager {
                     component.font = classicFont;
             }
         }
+    }
+
+    public void LoadSettings()
+    {
+        settings.gameSpeed = gameSpeed;
+        settings.autoAimEnabled = autoAimEnabled;
+        settings.autoAimStrength = autoAimStrength;
+
+        settings.textSize = textSize;
+        settings.fullscreenEnabled = fullscreenEnabled;
+
+        settings.inputSensitivity = inputSensitivity;
+        settings.rumbleEnabled = rumbleEnabled;
+        settings.rumbleSensitivity = rumbleSensitivity;
+    }
+
+    public void SaveSettings()
+    {
+        gameSpeed = settings.gameSpeed;
+        autoAimEnabled = settings.autoAimEnabled;
+        autoAimStrength = settings.autoAimStrength;
+
+        textSize = settings.textSize;
+        fullscreenEnabled = settings.fullscreenEnabled;
+
+        inputSensitivity = settings.inputSensitivity;
+        rumbleEnabled = settings.rumbleEnabled;
+        rumbleSensitivity = settings.rumbleSensitivity;
+    }
+
+    [Serializable]
+    public class ModifiedSettings
+    {
+        // General
+        public float gameSpeed = 100;
+        public bool autoAimEnabled = false;
+        public int autoAimStrength = 100;
+
+        // Video
+        public int textSize = 28;
+        public bool fullscreenEnabled = false;
+        private Resolution[] resolutions;
+        private int currentResolutionIndex;
+        private List<string> resolutionsSupported;
+        public int screenWidth, screenHeight;
+
+        public bool subtitlesEnabled = false;
+        public int subtitleTextSize = 42;
+        public bool subtitleBackgroundEnabled = true;
+        public bool subtitleColorEnabled = true;
+
+        // Input
+        public int inputSensitivity = 5;
+        public bool rumbleEnabled = true;
+        public int rumbleSensitivity = 100;
     }
 }
