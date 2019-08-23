@@ -15,7 +15,7 @@ public class UnityBuild
     private static readonly bool IsDevelopmentBuild = true;
     private static readonly Dictionary<BuildTarget, PlatformBuilds> PlatformToBuild = new Dictionary<BuildTarget, PlatformBuilds>() {
         { BuildTarget.StandaloneWindows64,      new PlatformBuilds(BuildWindows, true) },
-        { BuildTarget.StandaloneLinuxUniversal, new PlatformBuilds(BuildLinux,   false) },
+        { BuildTarget.StandaloneLinux64,        new PlatformBuilds(BuildLinux,   false) },
         { BuildTarget.StandaloneOSX,            new PlatformBuilds(BuildMacOS,   false) },
         { BuildTarget.Android,                  new PlatformBuilds(BuildAndroid, false) },
         { BuildTarget.iOS,                      new PlatformBuilds(BuildiOS,     false) },
@@ -25,7 +25,8 @@ public class UnityBuild
     private static readonly Dictionary<BuildTarget, PlatformSpecificBuildOptions> PlatformBuildOptions = new Dictionary<BuildTarget, PlatformSpecificBuildOptions>()
 {
         { BuildTarget.StandaloneWindows64,        new PlatformSpecificBuildOptions(BuildOptions.Development | BuildOptions.CompressWithLz4,                                 BuildOptions.CompressWithLz4HC) },
-        { BuildTarget.StandaloneLinuxUniversal,   new PlatformSpecificBuildOptions(BuildOptions.Development | BuildOptions.CompressWithLz4,                                 BuildOptions.CompressWithLz4HC) },
+        { BuildTarget.StandaloneLinux64,          new PlatformSpecificBuildOptions(BuildOptions.Development | BuildOptions.CompressWithLz4, 
+          BuildOptions.CompressWithLz4HC) },
         { BuildTarget.StandaloneOSX,              new PlatformSpecificBuildOptions(BuildOptions.Development | BuildOptions.CompressWithLz4,                                 BuildOptions.CompressWithLz4HC) },
         { BuildTarget.Android,                    new PlatformSpecificBuildOptions(BuildOptions.Development | BuildOptions.CompressWithLz4,                                 BuildOptions.CompressWithLz4HC) },
         { BuildTarget.iOS,                        new PlatformSpecificBuildOptions(BuildOptions.Development | BuildOptions.CompressWithLz4 | BuildOptions.SymlinkLibraries, BuildOptions.CompressWithLz4HC) },
