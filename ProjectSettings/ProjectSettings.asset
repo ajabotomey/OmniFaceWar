@@ -613,10 +613,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 1ef54135-ddd7-458e-a18f-fbabd11dddae
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: OmniFaceWar
+  organizationId: killerbyte-workshop
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
