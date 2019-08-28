@@ -13,6 +13,10 @@ public class PlayerControl : MonoBehaviour
 
     private IInputController _inputController;
 
+    private bool hasGun = false;
+
+    [SerializeField] private SpriteController spriteController;
+
     [Inject]
     public void Construct(IInputController inputController)
     {
@@ -21,48 +25,45 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        RotateCharacter();
-        HandleMovement();
-    }
-
-    void RotateCharacter()
-    {
-        if (_inputController.IsControllerActive()) {
-            var angle = _inputController.Rotation();
-
-            if (angle == 0) {
-                _rb.MoveRotation(0);
-            } else {
-                var angleWithOffset = angle - _offset;
-                _rb.MoveRotation(angleWithOffset);
-            }
-        } else {
-            Vector3 difference = Camera.main.ScreenToWorldPoint(_inputController.MousePosition()) - transform.position;
-            difference.Normalize();
-            float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-
-            float rotationWithOffset = rotation_z + _offset;
-
-            _rb.MoveRotation(rotationWithOffset);
-        }
-    }
-
-    void HandleMovement()
-    {
         float moveHorizontal = _inputController.Horizontal();
         float moveVertical = _inputController.Vertical();
 
-        float posX = transform.position.x + moveHorizontal * _speed * Time.fixedDeltaTime;
-        float posY = transform.position.y + moveVertical * _speed * Time.fixedDeltaTime;
+        Logger.Debug("horizontal: " + moveHorizontal + " vertical: " + moveVertical);
 
-        _rb.MovePosition(new Vector2(posX, posY));
+        RotateCharacter(moveHorizontal, moveVertical);
+        HandleMovement(moveHorizontal, moveVertical);
     }
 
-    public void RotateTowardsTarget(Transform target)
+    void RotateCharacter(float horizontal, float vertical)
     {
-        var dir = target.position - transform.position;
-        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        var angleWithOffset = angle - _offset;
-        _rb.MoveRotation(angleWithOffset);
+        //// Original rotation
+        //if (_inputController.IsControllerActive()) {
+        //    var angle = _inputController.Rotation();
+
+        //    if (angle == 0) {
+        //        _rb.MoveRotation(0);
+        //    } else {
+        //        var angleWithOffset = angle - _offset;
+        //        _rb.MoveRotation(angleWithOffset);
+        //    }
+        //} else {
+        //    Vector3 difference = Camera.main.ScreenToWorldPoint(_inputController.MousePosition()) - transform.position;
+        //    difference.Normalize();
+        //    float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+        //    float rotationWithOffset = rotation_z + _offset;
+
+        //    _rb.MoveRotation(rotationWithOffset);
+        //}
+
+        spriteController.RotateSprite(horizontal, vertical);
+    }
+
+    void HandleMovement(float horizontal, float vertical)
+    {
+        float posX = transform.position.x + horizontal * _speed * Time.fixedDeltaTime;
+        float posY = transform.position.y + vertical * _speed * Time.fixedDeltaTime;
+
+        _rb.MovePosition(new Vector2(posX, posY));
     }
 }
