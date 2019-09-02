@@ -22,6 +22,8 @@ public interface IInputController
     bool SelectNoise();
     bool SelectMask();
     float ScrollWeapons();
+
+    bool TalkToNPC();
 }
 
 public class InputController : IInputController
@@ -30,9 +32,6 @@ public class InputController : IInputController
     private Player player;
 
     // Controller Maps
-    private ControllerMap mouseMap;
-    private ControllerMap keyboardMap;
-    private ControllerMap joystickMap;
     private Mouse mouse;
     private Joystick joystick;
 
@@ -161,5 +160,10 @@ public class InputController : IInputController
     public float ScrollWeapons()
     {
         return player.GetAxis("ScrollWeapons");
+    }
+
+    public bool TalkToNPC()
+    {
+        return player.GetButtonDown("TalkToNPC");
     }
 }

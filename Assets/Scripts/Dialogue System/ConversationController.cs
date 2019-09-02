@@ -40,10 +40,16 @@ public class ConversationController : MonoBehaviour
         speakerUI.Hide();
     }
 
+    public bool IsConversationActive()
+    {
+        return conversationStarted;
+    }
+
     private void Initialize()
     {
         conversationStarted = true;
         activeLineIndex = 0;
+        speakerUI.Show();
     }
 
     private void AdvanceLine()

@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &567531183683130156
 Transform:
   m_ObjectHideFlags: 0
@@ -49,6 +49,26 @@ MonoBehaviour:
   - {fileID: 567531183683130162}
   _installerPrefabs: []
   _autoRun: 1
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   _parentNewObjectsUnderSceneContext: 0
   _contractNames: []
   _parentContractNames: []
@@ -64,7 +84,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b29f65a2eaa0b41be585a073c61caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerControl: {fileID: 0}
   BulletPrefab: {fileID: 5694263181565850176, guid: 4dfbc14b03354ca43a81f38563a1060b,
     type: 3}
   NoisemakerPrefab: {fileID: 3755039382291745955, guid: 78c32ce02fad12d40968057565b356a8,
     type: 3}
+  gameUIController: {fileID: 0}

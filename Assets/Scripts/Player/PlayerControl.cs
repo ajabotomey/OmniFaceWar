@@ -28,8 +28,6 @@ public class PlayerControl : MonoBehaviour
         float moveHorizontal = _inputController.Horizontal();
         float moveVertical = _inputController.Vertical();
 
-        Logger.Debug("horizontal: " + moveHorizontal + " vertical: " + moveVertical);
-
         RotateCharacter(moveHorizontal, moveVertical);
         HandleMovement(moveHorizontal, moveVertical);
     }
