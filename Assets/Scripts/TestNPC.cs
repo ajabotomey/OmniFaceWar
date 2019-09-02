@@ -21,17 +21,17 @@ public class TestNPC : MonoBehaviour
     //}
 
     private bool canTalk = false;
-    private bool isTalking;
+    private bool isTalking = false;
 
     private void Update()
     {
-        isTalking = gameUIController.IsConversationActive();
-
         if (canTalk && inputController.TalkToNPC() && !isTalking) {
             Logger.Debug("Talk to NPC!");
 
             gameUIController.StartConversation(conversation);
         }
+
+        isTalking = gameUIController.IsConversationActive();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
