@@ -31,7 +31,7 @@ public class NodeBasedEditor : EditorWindow
     private UpgradeTree upgradeTree;
 
     // Dictionary with the skills in our skilltree
-    private Dictionary<SafeInt, Upgrade> upgradeDictionary;
+    private Dictionary<int, Upgrade> upgradeDictionary;
 
     [MenuItem("Window/Upgrade Tree Editor")]
     private static void OpenWindow()
@@ -42,6 +42,8 @@ public class NodeBasedEditor : EditorWindow
 
     private void OnEnable()
     {
+        upgradeTree = new UpgradeTree();
+
         nodeStyle = new GUIStyle();
         nodeStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node1.png") as Texture2D;
         nodeStyle.border = new RectOffset(12, 12, 12, 12);
@@ -307,7 +309,7 @@ public class NodeBasedEditor : EditorWindow
         nodeCount = 0;
         if (nodes != null && nodes.Count > 0) {
             Node node;
-            while (nodes.Count > 9) {
+            while (nodes.Count > 0) {
                 node = nodes[0];
                 OnClickRemoveNode(node);
             }
@@ -320,8 +322,8 @@ public class NodeBasedEditor : EditorWindow
         if (nodes.Count > 0) {
             // We fill with as many skills as nodes we have
             upgradeTree.upgradeTree = new Upgrade[nodes.Count];
-            SafeInt[] dependencies;
-            List<SafeInt> dependenciesList = new List<SafeInt>();
+            int[] dependencies;
+            List<int> dependenciesList = new List<int>();
 
             // Iterate over all of the nodes. Populating the skills with the node info
             for (int i = 0; i < nodes.Count; ++i) {
@@ -362,6 +364,8 @@ public class NodeBasedEditor : EditorWindow
             }
 
             UnityEditor.AssetDatabase.Refresh();
+
+            SaveNodes();
         }
     }
 
@@ -377,7 +381,7 @@ public class NodeBasedEditor : EditorWindow
         }
 
         string json = JsonUtility.ToJson(nodeData);
-        string path = "Assets/Data/skillTreeNodeData.json";
+        string path = "Assets/Data/upgradeTreeNodeData.json";
 
         using (FileStream fs = new FileStream(path, FileMode.Create)) {
             using (StreamWriter writer = new StreamWriter(fs)) {
@@ -397,10 +401,15 @@ public class NodeBasedEditor : EditorWindow
         NodeDataCollection loadedData;
 
         if (File.Exists(dataPath)) {
+
+            dataAsJson = File.ReadAllText(dataPath);
+
+            loadedData = JsonUtility.FromJson<NodeDataCollection>(dataAsJson);
+
             Upgrade[] _upgradeTree;
             List<Upgrade> originNode = new List<Upgrade>();
-            upgradeDictionary = new Dictionary<SafeInt, Upgrade>();
-            string path = "Assets/Data/skilltree.json";
+            upgradeDictionary = new Dictionary<int, Upgrade>();
+            string path = "Assets/Data/upgradeTree.json";
             Vector2 pos = Vector2.zero;
 
             if (File.Exists(path)) {
@@ -416,18 +425,14 @@ public class NodeBasedEditor : EditorWindow
 
                 // Create Nodes
                 for (int i = 0; i < _upgradeTree.Length; ++i) {
-                    if (nodes == null) {
-                        nodes = new List<Node>();
-                    }
 
-                    // Convert from SafeInt array to int array for node creation
-                    int[] dependencies = new int[_upgradeTree[i].upgradeDependencies.Length];
-                    for (int j = 0; j < dependencies.Length; j++) {
-                        dependencies[j] = _upgradeTree[i].upgradeDependencies[j].GetValue();
+                    for (int j = 0; j < loadedData.nodeDataCollection.Length; ++j) {
+                        if (loadedData.nodeDataCollection[j].nodeID == _upgradeTree[i].upgradeID) {
+                            pos = loadedData.nodeDataCollection[j].position;
+                            break;
+                        }
                     }
-
-                    nodes.Add(new Node(Vector2.zero, 300, 200, nodeStyle, selectedNodeStyle, inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode, _upgradeTree[i].upgradeID, _upgradeTree[i].unlocked, _upgradeTree[i].cost, dependencies));
-                    ++nodeCount;
+                    LoadSkillCreateNode(_upgradeTree[i], pos);
 
                     if (_upgradeTree[i].upgradeDependencies.Length == 0) {
                         originNode.Add(_upgradeTree[i]);

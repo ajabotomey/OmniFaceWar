@@ -9,7 +9,7 @@ public class UpgradeTreeReader : MonoBehaviour
     private Upgrade[] _upgradeTree;
 
     // Dictionary with all upgrades in upgrade tree
-    private Dictionary<SafeInt, Upgrade> _upgrades;
+    private Dictionary<int, Upgrade> _upgrades;
 
     // variable for caching the currently being inspected skill
     private Upgrade _upgradeInspected;
@@ -23,7 +23,7 @@ public class UpgradeTreeReader : MonoBehaviour
 
     private void SetUpUpgradeTree()
     {
-        _upgrades = new Dictionary<SafeInt, Upgrade>();
+        _upgrades = new Dictionary<int, Upgrade>();
 
         LoadUpgradeTree();
     }
@@ -68,7 +68,7 @@ public class UpgradeTreeReader : MonoBehaviour
         if (_upgrades.TryGetValue(skillID, out _upgradeInspected)) {
             // Enough points available
             if (_upgradeInspected.cost == availablePoints) {
-                SafeInt[] dependencies = _upgradeInspected.upgradeDependencies;
+                int[] dependencies = _upgradeInspected.upgradeDependencies;
                 for (int i = 0; i < dependencies.Length; i++) {
                     if (_upgrades.TryGetValue(dependencies[i], out _upgradeInspected)) {
                         if (!_upgradeInspected.unlocked) {

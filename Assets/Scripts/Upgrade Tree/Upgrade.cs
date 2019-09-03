@@ -3,10 +3,10 @@
 [System.Serializable]
 public class Upgrade
 {
-    public SafeInt upgradeID;
+    public int upgradeID;
     public string upgradeName;
-    public SafeInt[] upgradeDependencies;
+    public int[] upgradeDependencies;
     public bool unlocked;
-    public SafeInt cost;
+    public int cost;
     public string upgradeDescription;
 }

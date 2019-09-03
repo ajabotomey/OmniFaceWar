@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Text;
-public class Node : MonoBehaviour
+public class Node
 {
     public Rect rect;
     public string title;
@@ -53,36 +53,6 @@ public class Node : MonoBehaviour
     private StringBuilder nodeTitle;
 
     public Node(Vector2 position, float width, float height, GUIStyle nodeStyle, GUIStyle selectedStyle, GUIStyle inPointStyle, GUIStyle outPointStyle, Action<ConnectionPoint> OnClickInPoint, Action<ConnectionPoint> OnClickOutPoint, Action<Node> OnClickRemoveNode, int id, bool unlocked, int cost, int[] dependencies)
-    {
-        rect = new Rect(position.x, position.y, width, height);
-        style = nodeStyle;
-
-        inPoint = new ConnectionPoint(this, ConnectionPointType.In, inPointStyle, OnClickInPoint);
-        outPoint = new ConnectionPoint(this, ConnectionPointType.Out, outPointStyle, OnClickOutPoint);
-
-        defaultNodeStyle = nodeStyle;
-        selectedNodeStyle = selectedStyle;
-        OnRemoveNode = OnClickRemoveNode;
-
-        // Create new Rect and GUIStyle for our title and custom fields
-        SetUpNodeRect(position, width, height);
-
-        this.unlocked = unlocked;
-
-        // We create the skill with the current node info
-        upgrade = new Upgrade();
-        upgrade.upgradeID = id;
-        upgrade.unlocked = unlocked;
-        upgrade.cost = cost;
-        upgrade.upgradeDependencies = SafeInt.CopyArray(dependencies);
-
-        // Create string with ID info
-        nodeTitle = new StringBuilder();
-        nodeTitle.Append("ID: ");
-        nodeTitle.Append(id);
-    }
-
-    public Node(Vector2 position, float width, float height, GUIStyle nodeStyle, GUIStyle selectedStyle, GUIStyle inPointStyle, GUIStyle outPointStyle, Action<ConnectionPoint> OnClickInPoint, Action<ConnectionPoint> OnClickOutPoint, Action<Node> OnClickRemoveNode, int id, bool unlocked, int cost, SafeInt[] dependencies)
     {
         rect = new Rect(position.x, position.y, width, height);
         style = nodeStyle;
@@ -229,6 +199,7 @@ public class Node : MonoBehaviour
 
         // Print the cost field
         GUI.Label(rectCostLabel, "Cost: ", styleField);
+        int upgradeCost = int.Parse(upgrade.cost.ToString());
         upgrade.cost = int.Parse(GUI.TextField(rectCost, upgrade.cost.ToString()));
     }
 
