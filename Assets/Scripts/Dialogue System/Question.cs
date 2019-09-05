@@ -7,6 +7,7 @@ public struct Choice
 {
     [TextArea(2, 5)] public string text;
     public Conversation conversation;
+    public VoidEvent gameUIEvent;
 }
 
 [CreateAssetMenu(fileName = "New Question", menuName = "Dialogue System/New Question")]

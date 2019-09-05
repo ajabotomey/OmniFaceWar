@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using Zenject;
 
 [System.Serializable]
 public class ConversationChangeEvent : UnityEvent<Conversation> { }
@@ -10,9 +11,12 @@ public class ChoiceController : MonoBehaviour
     [SerializeField] private Choice choice;
     [SerializeField] ConversationChangeEvent conversationChangeEvent;
 
+    [Inject]
+    private GameUIController gameUI;
+
     public static ChoiceController AddChoiceButton(Button choiceButtonTemplate, Choice choice, int index)
     {
-        int buttonSpacing = 65;
+        int buttonSpacing = 85;
         Button button = Instantiate(choiceButtonTemplate);
 
         button.transform.SetParent(choiceButtonTemplate.transform.parent);
@@ -31,11 +35,14 @@ public class ChoiceController : MonoBehaviour
         if (conversationChangeEvent == null)
             conversationChangeEvent = new ConversationChangeEvent();
 
-        GetComponent<Button>().GetComponentInChildren<Text>().text = choice.text;
+        GetComponent<Button>().GetComponentInChildren<TMPro.TMP_Text>().text = choice.text;
     }
 
     public void MakeChoice()
     {
-        conversationChangeEvent.Invoke(choice.conversation);
+        if (choice.conversation)
+            conversationChangeEvent.Invoke(choice.conversation);
+        else
+            choice.gameUIEvent.Raise();
     }
 }

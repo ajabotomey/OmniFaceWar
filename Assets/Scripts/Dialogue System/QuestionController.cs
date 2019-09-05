@@ -24,6 +24,12 @@ public class QuestionController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void Hide()
+    {
+        RemoveChoices();
+        gameObject.SetActive(false);
+    }
+
     private void RemoveChoices()
     {
         foreach (ChoiceController c in choiceControllers) {

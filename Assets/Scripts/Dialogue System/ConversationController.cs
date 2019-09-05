@@ -33,7 +33,7 @@ public class ConversationController : MonoBehaviour
         }
     }
 
-    private void EndConversation()
+    public void EndConversation()
     {
         conversation = null;
         conversationStarted = false;
@@ -97,7 +97,7 @@ public class ConversationController : MonoBehaviour
 
     private void ClearSpeakerUI()
     {
-        speakerUI.Speaker = null;
+        //speakerUI.Speaker = null;
         speakerUI.Dialog = "";
     }
 }

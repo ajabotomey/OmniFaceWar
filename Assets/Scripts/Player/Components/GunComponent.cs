@@ -17,12 +17,14 @@ public class GunComponent : MonoBehaviour
 
     private IInputController _inputController;
     private Bullet.Factory _bulletFactory;
+    private PlayerControl _player;
 
     [Inject]
-    public void Construct(IInputController inputController, Bullet.Factory bulletFactory)
+    public void Construct(IInputController inputController, Bullet.Factory bulletFactory, PlayerControl playerControl)
     {
         _inputController = inputController;
         _bulletFactory = bulletFactory;
+        _player = playerControl;
     }
 
     // Start is called before the first frame update
