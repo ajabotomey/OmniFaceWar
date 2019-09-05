@@ -15,7 +15,8 @@ public class PlayerControl : MonoBehaviour
 
     private bool hasGun = false;
 
-    [SerializeField] private SpriteController spriteController;
+    //[SerializeField] private SpriteController spriteController;
+    [SerializeField] private Animator animator;
 
     [Inject]
     public void Construct(IInputController inputController)
@@ -54,7 +55,13 @@ public class PlayerControl : MonoBehaviour
         //    _rb.MoveRotation(rotationWithOffset);
         //}
 
-        spriteController.RotateSprite(horizontal, vertical);
+        //spriteController.RotateSprite(horizontal, vertical);
+
+        animator.SetFloat("Horizontal", horizontal);
+        animator.SetFloat("Vertical", vertical);
+
+        Vector2 movement = new Vector2(horizontal, vertical);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
     void HandleMovement(float horizontal, float vertical)
