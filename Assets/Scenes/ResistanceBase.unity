@@ -531,31 +531,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &600401153 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8679208305793354806, guid: 238c9c12b57ad7b4c95dab29741414c2,
-    type: 3}
-  m_PrefabInstance: {fileID: 1127578266}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &600401156
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600401153}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 353c3a04584bd5d40a901d967ce4a741, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &666493827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1292,27 +1267,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8679208305817274397, guid: 238c9c12b57ad7b4c95dab29741414c2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8679208305793354800, guid: 238c9c12b57ad7b4c95dab29741414c2,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 365265458182383343, guid: 2ece7f5466a003449963d82ef270976e,
-        type: 3}
-    - target: {fileID: 8679208305793354800, guid: 238c9c12b57ad7b4c95dab29741414c2,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 8679208305793354800, guid: 238c9c12b57ad7b4c95dab29741414c2,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.33
-      objectReference: {fileID: 0}
     - target: {fileID: 8679208305817274398, guid: 238c9c12b57ad7b4c95dab29741414c2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1367,53 +1321,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8679208305793354807, guid: 238c9c12b57ad7b4c95dab29741414c2,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8679208305793354807, guid: 238c9c12b57ad7b4c95dab29741414c2,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8679208305552068837, guid: 238c9c12b57ad7b4c95dab29741414c2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5450199256063547291, guid: 238c9c12b57ad7b4c95dab29741414c2,
-        type: 3}
-      propertyPath: _speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5450199256063547291, guid: 238c9c12b57ad7b4c95dab29741414c2,
-        type: 3}
-      propertyPath: SpriteController
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5450199256063547291, guid: 238c9c12b57ad7b4c95dab29741414c2,
-        type: 3}
-      propertyPath: spriteController
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5450199256063547291, guid: 238c9c12b57ad7b4c95dab29741414c2,
-        type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 600401156}
-    - target: {fileID: 2086320810, guid: 238c9c12b57ad7b4c95dab29741414c2, type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086320810, guid: 238c9c12b57ad7b4c95dab29741414c2, type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086320810, guid: 238c9c12b57ad7b4c95dab29741414c2, type: 3}
-      propertyPath: m_UseFullKinematicContacts
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 238c9c12b57ad7b4c95dab29741414c2, type: 3}

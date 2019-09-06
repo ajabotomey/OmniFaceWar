@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private float _speed = 1.0f;
+    [SerializeField] private GameObject gunObj;
 
     private float _offset = -90.0f;
 
@@ -17,6 +18,8 @@ public class PlayerControl : MonoBehaviour
 
     //[SerializeField] private SpriteController spriteController;
     [SerializeField] private Animator animator;
+
+    private bool isInConversation;
 
     [Inject]
     public void Construct(IInputController inputController)
@@ -37,13 +40,13 @@ public class PlayerControl : MonoBehaviour
     {
         //// Original rotation
         //if (_inputController.IsControllerActive()) {
-        //    var angle = _inputController.Rotation();
+        //    var angle = _inputController.RotationAtan();
 
         //    if (angle == 0) {
-        //        _rb.MoveRotation(0);
+        //        //_rb.MoveRotation(0);
         //    } else {
         //        var angleWithOffset = angle - _offset;
-        //        _rb.MoveRotation(angleWithOffset);
+        //        //_rb.MoveRotation(angleWithOffset);
         //    }
         //} else {
         //    Vector3 difference = Camera.main.ScreenToWorldPoint(_inputController.MousePosition()) - transform.position;
@@ -52,10 +55,9 @@ public class PlayerControl : MonoBehaviour
 
         //    float rotationWithOffset = rotation_z + _offset;
 
+        //    //gunObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotationWithOffset));
         //    _rb.MoveRotation(rotationWithOffset);
         //}
-
-        //spriteController.RotateSprite(horizontal, vertical);
 
         animator.SetFloat("Horizontal", horizontal);
         animator.SetFloat("Vertical", vertical);

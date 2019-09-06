@@ -9,7 +9,8 @@ public interface IInputController
     Vector2 MousePosition();
     float Horizontal();
     float Vertical();
-    float Rotation();
+    Vector2 Rotation();
+    float RotationAtan();
     bool FireWeapon();
     bool SmokeBomb();
     bool SelectWeapon();
@@ -96,7 +97,14 @@ public class InputController : IInputController
         return player.GetButton("UseSmokebomb");
     }
 
-    public float Rotation()
+    public Vector2 Rotation()
+    {
+        Vector2 rotateRaw = new Vector2(player.GetAxis("RotateHorizontal"), player.GetAxis("RotateVertical"));
+        rotateRaw.Normalize();
+        return rotateRaw;
+    }
+
+    public float RotationAtan()
     {
         Vector2 rotateRaw = new Vector2(player.GetAxis("RotateVertical"), player.GetAxis("RotateHorizontal"));
         rotateRaw.Normalize();
