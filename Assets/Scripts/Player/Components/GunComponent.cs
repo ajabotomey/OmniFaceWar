@@ -74,7 +74,7 @@ public class GunComponent : MonoBehaviour
                 Bullet firedBullet = _bulletFactory.Create();
                 firedBullet.transform.position = bulletSpawnPoint.position;
                 firedBullet.transform.rotation = Quaternion.identity;
-                firedBullet.GetComponent<Rigidbody2D>().velocity = aim * 3.0f;
+                firedBullet.GetComponent<Rigidbody2D>().velocity = aim * 50.0f;
                 firedBullet.transform.Rotate(0, 0, Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg);
 
                 elapsedTime = 0.0f;
