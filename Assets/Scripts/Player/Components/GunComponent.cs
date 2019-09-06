@@ -20,21 +20,24 @@ public class GunComponent : MonoBehaviour
     private IInputController _inputController;
     private Bullet.Factory _bulletFactory;
     private GameUIController _gameUI;
+    private WeaponController _weaponControl;
 
     private float _offset = -90.0f;
 
     [Inject]
-    public void Construct(IInputController inputController, Bullet.Factory bulletFactory, GameUIController gameUI)
+    public void Construct(IInputController inputController, Bullet.Factory bulletFactory, GameUIController gameUI, WeaponController weaponControl)
     {
         _inputController = inputController;
         _bulletFactory = bulletFactory;
         _gameUI = gameUI;
+        _weaponControl = weaponControl;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         elapsedTime = 0.0f;
+        _weaponControl.SelectPistol();
     }
 
     // Update is called once per frame
@@ -45,7 +48,7 @@ public class GunComponent : MonoBehaviour
         bool fireBullet = _inputController.FireWeapon();
 
         if (!_gameUI.IsConversationActive()) {
-            if (fireBullet && elapsedTime >= fireRate) {
+            if (fireBullet) {
                 Fire();
             }
         }
@@ -55,13 +58,20 @@ public class GunComponent : MonoBehaviour
 
     void Fire()
     {
-        //GameObject firedBullet = Instantiate(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-        Bullet firedBullet = _bulletFactory.Create();
-        firedBullet.transform.position = bulletSpawnPoint.position;
-        firedBullet.transform.rotation = bulletSpawnPoint.rotation;
-        firedBullet.GetComponent<Rigidbody2D>().AddForce(rb.transform.up * 500f);
+        // Retrieve current weapon
+        Weapon currentWeapon = _weaponControl.GetCurrentWeapon();
+        if (currentWeapon == null)
+            return;
 
-        elapsedTime = 0.0f;
+        // Check fire rate
+        if (elapsedTime >= currentWeapon.GetFireRate()) {
+            Bullet firedBullet = _bulletFactory.Create();
+            firedBullet.transform.position = bulletSpawnPoint.position;
+            firedBullet.transform.rotation = bulletSpawnPoint.rotation;
+            firedBullet.GetComponent<Rigidbody2D>().AddForce(rb.transform.up * 500f);
+
+            elapsedTime = 0.0f;
+        }
     }
 
     void RotateComponent()

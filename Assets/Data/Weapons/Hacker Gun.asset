@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa84680a0d619384399db50b47947864, type: 3}
-  m_Name: Pistol
+  m_Script: {fileID: 11500000, guid: 688639c4e005e5d49a5ee8ff98a99baa, type: 3}
+  m_Name: Hacker Gun
   m_EditorClassIdentifier: 
-  fireRate: 3
-  energyCapacity: 100
-  energyCost: 5
-  rechargeRate: 2.5
-  damage: 5
-  hasSilencer: 0
-  hasExplosiveRounds: 0
+  fireRate: 0
+  energy: 0
+  rechargeRate: 0
+  hackChance: 0
+  hackDuration: 0
+  abilityChance: 0
+  tempAlly: 0
+  goBerserk: 0
