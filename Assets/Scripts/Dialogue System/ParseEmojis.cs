@@ -1,4 +1,6 @@
-﻿public static class ParseEmojis
+﻿using GEmojiSharp;
+
+public static class ParseEmojis
 {
     public static string Parse(string text)
     {
@@ -9,9 +11,13 @@
 
         // Find all chunks that start with \\
         for (int i = 0; i < textChunks.Length; i++) {
-            if (textChunks[i].Contains("\\")) {
-                string emoji = ConvertToUnicode(textChunks[i]);
-                textChunks[i] = emoji;
+            //if (textChunks[i].Contains("\\")) {
+            //    //string emoji = ConvertToUnicode(textChunks[i]);
+            //    //textChunks[i] = emoji;
+            //    //textChunks[i] = Parser.ParseEmoji(textChunks[i].Substring(1));
+            //}
+            if (textChunks[i].Contains(":")) {
+                textChunks[i] = Emoji.Get(textChunks[i]).Raw;
             }
         }
 

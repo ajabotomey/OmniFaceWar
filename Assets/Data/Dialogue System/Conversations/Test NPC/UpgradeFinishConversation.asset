@@ -16,6 +16,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1b64efd43c5d75542ba9e66b486cb54c, type: 2}
   lines:
   - character: {fileID: 11400000, guid: 1b64efd43c5d75542ba9e66b486cb54c, type: 2}
-    text: Thanks for dropping by. Have a nice day!
+    text: Thanks for dropping by. You got this! [:sunglasses:]
   question: {fileID: 0}
   nextConversation: {fileID: 0}

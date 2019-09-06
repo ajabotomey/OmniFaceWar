@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
     private float _offset = -90.0f;
 
     private IInputController _inputController;
+    private GameUIController _gameUI;
 
     private bool hasGun = false;
 
@@ -25,9 +26,10 @@ public class PlayerControl : MonoBehaviour
     Vector3 aim;
 
     [Inject]
-    public void Construct(IInputController inputController)
+    public void Construct(IInputController inputController, GameUIController gameUI)
     {
         _inputController = inputController;
+        _gameUI = gameUI;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -35,7 +37,15 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        MoveCrosshair();
+        if (_gameUI.IsConversationActive()) {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            crosshair.SetActive(false);
+        } else {
+            MoveCrosshair();
+        }
+        
     }
 
     void FixedUpdate()
@@ -69,6 +79,11 @@ public class PlayerControl : MonoBehaviour
     // Mouse only for the moment
     void MoveCrosshair()
     {
+        if (Cursor.visible) {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
         Vector3 mouseMovement = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
         aim += mouseMovement;
 
