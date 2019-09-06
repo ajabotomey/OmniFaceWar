@@ -13,7 +13,8 @@ public class GunComponent : MonoBehaviour
     [SerializeField] private LayerMask obstacleMask;
     [SerializeField] private LayerMask targetMask;
 
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private GameObject gunObj;
+    [SerializeField] private GameObject crosshair;
 
     private float elapsedTime;
 
@@ -43,9 +44,9 @@ public class GunComponent : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        RotateComponent();
-
         bool fireBullet = _inputController.FireWeapon();
+
+        RotateComponent();
 
         if (!_gameUI.IsConversationActive()) {
             if (fireBullet) {
@@ -58,42 +59,39 @@ public class GunComponent : MonoBehaviour
 
     void Fire()
     {
+        //Get Direction
+        Vector2 aim = _inputController.GetAim();
+
         // Retrieve current weapon
         Weapon currentWeapon = _weaponControl.GetCurrentWeapon();
         if (currentWeapon == null)
             return;
 
-        // Check fire rate
-        if (elapsedTime >= currentWeapon.GetFireRate()) {
-            Bullet firedBullet = _bulletFactory.Create();
-            firedBullet.transform.position = bulletSpawnPoint.position;
-            firedBullet.transform.rotation = bulletSpawnPoint.rotation;
-            firedBullet.GetComponent<Rigidbody2D>().AddForce(rb.transform.up * 500f);
+        // Make sure we are actually aiming first
+        if (aim.magnitude > 0.0f) {
+            // Check fire rate
+            if (elapsedTime >= currentWeapon.GetFireRate()) {
+                Bullet firedBullet = _bulletFactory.Create();
+                firedBullet.transform.position = bulletSpawnPoint.position;
+                firedBullet.transform.rotation = Quaternion.identity;
+                firedBullet.GetComponent<Rigidbody2D>().velocity = aim * 3.0f;
+                firedBullet.transform.Rotate(0, 0, Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg);
 
-            elapsedTime = 0.0f;
+                elapsedTime = 0.0f;
+            }
         }
     }
 
+    // Mouse only for the moment
     void RotateComponent()
     {
-        if (_inputController.IsControllerActive()) {
-            var angle = _inputController.RotationAtan();
+        Vector2 target = crosshair.transform.position;
+        Vector2 gunPos = gunObj.transform.position;
+        target.x = target.x - gunPos.x;
+        target.y = target.y - gunPos.y;
 
-            if (angle == 0) {
-                rb.MoveRotation(0);
-            } else {
-                var angleWithOffset = angle - _offset;
-                rb.MoveRotation(angleWithOffset);
-            }
-        } else {
-            Vector3 difference = Camera.main.ScreenToWorldPoint(_inputController.MousePosition()) - transform.position;
-            difference.Normalize();
-            float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-
-            float rotationWithOffset = rotation_z + _offset;
-
-            //gunObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotationWithOffset));
-            rb.MoveRotation(rotationWithOffset);
-        }
+        float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
+        angle -= 90;
+        gunObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 }

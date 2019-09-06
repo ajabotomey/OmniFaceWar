@@ -7,9 +7,11 @@ public interface IInputController
 {
     bool IsControllerActive();
     Vector2 MousePosition();
+    Vector3 MouseMovement();
     float Horizontal();
     float Vertical();
     Vector2 Rotation();
+    Vector3 Rotation3Raw();
     float RotationAtan();
     bool FireWeapon();
     bool SmokeBomb();
@@ -25,6 +27,9 @@ public interface IInputController
     float ScrollWeapons();
 
     bool TalkToNPC();
+
+    void SetAim(Vector2 _aim);
+    Vector2 GetAim();
 }
 
 public class InputController : IInputController
@@ -35,6 +40,8 @@ public class InputController : IInputController
     // Controller Maps
     private Mouse mouse;
     private Joystick joystick;
+
+    Vector2 aim;
 
     public InputController()
     {
@@ -77,6 +84,11 @@ public class InputController : IInputController
         return mouse.screenPosition;
     }
 
+    public Vector3 MouseMovement()
+    {
+        return new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
+    }
+
     public float Horizontal()
     {
         return player.GetAxis("Horizontal");
@@ -101,6 +113,12 @@ public class InputController : IInputController
     {
         Vector2 rotateRaw = new Vector2(player.GetAxis("RotateHorizontal"), player.GetAxis("RotateVertical"));
         rotateRaw.Normalize();
+        return rotateRaw;
+    }
+
+    public Vector3 Rotation3Raw()
+    {
+        Vector3 rotateRaw = new Vector3(player.GetAxis("RotateHorizontal"), player.GetAxis("RotateVertical"), 0.0f);
         return rotateRaw;
     }
 
@@ -173,5 +191,15 @@ public class InputController : IInputController
     public bool TalkToNPC()
     {
         return player.GetButtonDown("TalkToNPC");
+    }
+
+    public void SetAim(Vector2 _aim)
+    {
+        aim = _aim;
+    }
+
+    public Vector2 GetAim()
+    {
+        return aim;
     }
 }

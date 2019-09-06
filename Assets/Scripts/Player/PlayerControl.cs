@@ -8,7 +8,6 @@ public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private float _speed = 1.0f;
-    [SerializeField] private GameObject gunObj;
 
     private float _offset = -90.0f;
 
@@ -21,10 +20,22 @@ public class PlayerControl : MonoBehaviour
 
     private bool isInConversation;
 
+    [SerializeField] private GameObject crosshair;
+
+    Vector3 aim;
+
     [Inject]
     public void Construct(IInputController inputController)
     {
         _inputController = inputController;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    void Update()
+    {
+        MoveCrosshair();
     }
 
     void FixedUpdate()
@@ -38,27 +49,7 @@ public class PlayerControl : MonoBehaviour
 
     void RotateCharacter(float horizontal, float vertical)
     {
-        //// Original rotation
-        //if (_inputController.IsControllerActive()) {
-        //    var angle = _inputController.RotationAtan();
-
-        //    if (angle == 0) {
-        //        //_rb.MoveRotation(0);
-        //    } else {
-        //        var angleWithOffset = angle - _offset;
-        //        //_rb.MoveRotation(angleWithOffset);
-        //    }
-        //} else {
-        //    Vector3 difference = Camera.main.ScreenToWorldPoint(_inputController.MousePosition()) - transform.position;
-        //    difference.Normalize();
-        //    float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-
-        //    float rotationWithOffset = rotation_z + _offset;
-
-        //    //gunObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotationWithOffset));
-        //    _rb.MoveRotation(rotationWithOffset);
-        //}
-
+        Logger.Debug("Rotating Character");
         animator.SetFloat("Horizontal", horizontal);
         animator.SetFloat("Vertical", vertical);
 
@@ -68,9 +59,30 @@ public class PlayerControl : MonoBehaviour
 
     void HandleMovement(float horizontal, float vertical)
     {
+        Logger.Debug("Moving Character");
         float posX = transform.position.x + horizontal * _speed * Time.fixedDeltaTime;
         float posY = transform.position.y + vertical * _speed * Time.fixedDeltaTime;
 
         _rb.MovePosition(new Vector2(posX, posY));
+    }
+
+    // Mouse only for the moment
+    void MoveCrosshair()
+    {
+        Vector3 mouseMovement = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
+        aim += mouseMovement;
+
+        if (aim.magnitude > 1.0f) {
+            aim.Normalize();
+        }
+
+        if (aim.magnitude > 0.0f) {
+            crosshair.transform.localPosition = aim * 2;
+            crosshair.SetActive(true);
+        } else {
+            crosshair.SetActive(false);
+        }
+
+        _inputController.SetAim(aim);
     }
 }
