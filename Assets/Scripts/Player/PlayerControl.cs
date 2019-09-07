@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
 
     private IInputController _inputController;
     private GameUIController _gameUI;
+    private HeatmapController _heatmap;
 
     private bool hasGun = false;
 
@@ -26,10 +27,11 @@ public class PlayerControl : MonoBehaviour
     Vector3 aim;
 
     [Inject]
-    public void Construct(IInputController inputController, GameUIController gameUI)
+    public void Construct(IInputController inputController, GameUIController gameUI, HeatmapController heatmap)
     {
         _inputController = inputController;
         _gameUI = gameUI;
+        _heatmap = heatmap;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -55,11 +57,12 @@ public class PlayerControl : MonoBehaviour
 
         RotateCharacter(moveHorizontal, moveVertical);
         HandleMovement(moveHorizontal, moveVertical);
+
+        _heatmap.AddPosition(transform.position);
     }
 
     void RotateCharacter(float horizontal, float vertical)
     {
-        Logger.Debug("Rotating Character");
         animator.SetFloat("Horizontal", horizontal);
         animator.SetFloat("Vertical", vertical);
 
@@ -69,7 +72,6 @@ public class PlayerControl : MonoBehaviour
 
     void HandleMovement(float horizontal, float vertical)
     {
-        Logger.Debug("Moving Character");
         float posX = transform.position.x + horizontal * _speed * Time.fixedDeltaTime;
         float posY = transform.position.y + vertical * _speed * Time.fixedDeltaTime;
 

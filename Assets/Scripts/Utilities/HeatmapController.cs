@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -10,6 +11,12 @@ public class HeatmapController : MonoBehaviour
 
     private string filePath = "";
     private string url = "https://killerbyteworkshop.com/heatmapupload.php";
+    private string fileName = "";
+
+    public HeatmapController()
+    {
+        positionList = new List<Vector2>();
+    }
 
     public void AddPosition(Vector2 position)
     {
@@ -18,17 +25,49 @@ public class HeatmapController : MonoBehaviour
 
     public void SendFilesToServer()
     {
+        Logger.Debug("Sending files now!");
+        // Take list and write to file
+        WriteListToFile();
 
+        StartCoroutine(WWWRequest());
+    }
+
+    private void WriteListToFile()
+    {
+        fileName = DateTime.UtcNow.ToString("yyyyMMdd_hhmmss") + ".txt";
+        filePath = Application.dataPath + "/" + fileName;
+
+        //if (!File.Exists(filePath)) {
+        //    File.WriteAllText(filePath, "");
+        //}
+
+        using (FileStream fs = new FileStream(filePath, FileMode.Create)) {
+            using (StreamWriter writer = new StreamWriter(fs)) {
+                foreach (Vector2 position in positionList) {
+                    writer.WriteLine(position.ToString());
+                }
+
+                writer.Close();
+            }
+
+            fs.Close();
+        }
+
+        positionList.Clear();
     }
 
     IEnumerator WWWRequest()
     {
-        UnityWebRequest file = new UnityWebRequest();
+        Logger.Debug("Uploading to server now");
+
+        byte[] txtFile = File.ReadAllBytes(filePath);
+
+        //UnityWebRequest file = new UnityWebRequest();
         WWWForm form = new WWWForm();
 
-        file = UnityWebRequest.Get(filePath);
-        yield return file.SendWebRequest();
-        form.AddBinaryData("file", file.downloadHandler.data, Path.GetFileName(filePath));
+        //file = UnityWebRequest.Get(filePath);
+        //yield return file.SendWebRequest();
+        form.AddBinaryData("userFile", txtFile, fileName);
 
         UnityWebRequest req = UnityWebRequest.Post(url, form);
         yield return req.SendWebRequest();
@@ -39,6 +78,7 @@ public class HeatmapController : MonoBehaviour
             Logger.Debug("Uploaded successfully");
         }
 
-        yield return false;
+        // Now delete the file afterwards
+        File.Delete(filePath);
     }
 }

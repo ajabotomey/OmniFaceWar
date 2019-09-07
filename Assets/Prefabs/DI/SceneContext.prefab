@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 567531183683130156}
   - component: {fileID: 567531183683130157}
   - component: {fileID: 567531183683130162}
+  - component: {fileID: 8931046048770337337}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -91,3 +92,16 @@ MonoBehaviour:
   NoisemakerPrefab: {fileID: 3755039382291745955, guid: 78c32ce02fad12d40968057565b356a8,
     type: 3}
   gameUIController: {fileID: 0}
+  heatmap: {fileID: 8931046048770337337}
+--- !u!114 &8931046048770337337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567531183683130163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f9d5eae20106d4283239c0bad6405e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

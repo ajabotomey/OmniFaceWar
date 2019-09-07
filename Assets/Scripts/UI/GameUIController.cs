@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 [System.Serializable]
 public class GameUIEvent : UnityEvent<GameUIController> { }
@@ -11,17 +12,27 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private ConversationController conversationController;
     [SerializeField] private GameObject upgradeWindow;
 
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-        
-    //}
+    [Inject] private HeatmapController heatmap;
 
-    //// Update is called once per frame
-    //void Update()
-    //{
-        
-    //}
+    private float elapsedTime;
+    private float refreshTime = 10.0f;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        elapsedTime = 0.0f;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (elapsedTime > refreshTime) {
+            elapsedTime = 0.0f;
+            heatmap.SendFilesToServer();
+        }
+
+        elapsedTime += Time.deltaTime;
+    }
 
     public void StartConversation(Conversation conversation)
     {
@@ -38,4 +49,9 @@ public class GameUIController : MonoBehaviour
         upgradeWindow.SetActive(true);
         conversationController.EndConversation();
     }
+
+    //private void OnApplicationQuit()
+    //{
+    //    heatmap.SendFilesToServer();
+    //}
 }
