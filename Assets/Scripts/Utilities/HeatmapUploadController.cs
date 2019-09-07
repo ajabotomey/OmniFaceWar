@@ -5,31 +5,26 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class HeatmapController : MonoBehaviour
+public class HeatmapUploadController : MonoBehaviour
 {
-    private List<Vector2> positionList;
+    private List<Vector2> positionList = new List<Vector2>();
 
     private string filePath = "";
-    private string url = "https://killerbyteworkshop.com/heatmapupload.php";
+    private string uploadURL = "https://killerbyteworkshop.com/heatmapupload.php";
+    
     private string fileName = "";
-
-    public HeatmapController()
-    {
-        positionList = new List<Vector2>();
-    }
 
     public void AddPosition(Vector2 position)
     {
         positionList.Add(position);
     }
 
-    public void SendFilesToServer()
+    public void SaveLocationsToFile()
     {
-        Logger.Debug("Sending files now!");
         // Take list and write to file
         WriteListToFile();
 
-        StartCoroutine(WWWRequest());
+        StartCoroutine(SendFileToServer());
     }
 
     private void WriteListToFile()
@@ -56,7 +51,7 @@ public class HeatmapController : MonoBehaviour
         positionList.Clear();
     }
 
-    IEnumerator WWWRequest()
+    IEnumerator SendFileToServer()
     {
         Logger.Debug("Uploading to server now");
 
@@ -69,11 +64,11 @@ public class HeatmapController : MonoBehaviour
         //yield return file.SendWebRequest();
         form.AddBinaryData("userFile", txtFile, fileName);
 
-        UnityWebRequest req = UnityWebRequest.Post(url, form);
+        UnityWebRequest req = UnityWebRequest.Post(uploadURL, form);
         yield return req.SendWebRequest();
 
         if (req.isHttpError || req.isNetworkError) {
-            Logger.Debug(req.error);
+            Logger.Error(req.error);
         } else {
             Logger.Debug("Uploaded successfully");
         }

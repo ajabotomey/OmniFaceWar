@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
 
@@ -12,10 +10,10 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private ConversationController conversationController;
     [SerializeField] private GameObject upgradeWindow;
 
-    [Inject] private HeatmapController heatmap;
+    [Inject] private HeatmapUploadController heatmap;
 
     private float elapsedTime;
-    private float refreshTime = 10.0f;
+    private float refreshTime = 3.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +26,7 @@ public class GameUIController : MonoBehaviour
     {
         if (elapsedTime > refreshTime) {
             elapsedTime = 0.0f;
-            heatmap.SendFilesToServer();
+            heatmap.SaveLocationsToFile();
         }
 
         elapsedTime += Time.deltaTime;

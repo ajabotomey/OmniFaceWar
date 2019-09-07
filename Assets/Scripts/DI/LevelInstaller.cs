@@ -12,12 +12,12 @@ public class LevelInstaller : MonoInstaller
     [SerializeField] private GameUIController gameUIController;
 
     [Header("Heatmap")]
-    [SerializeField] private HeatmapController heatmap;
+    [SerializeField] private HeatmapUploadController heatmap;
 
     public override void InstallBindings()
     {
         // Bind Heatmap controller
-        Container.Bind<HeatmapController>().FromInstance(heatmap).AsSingle().NonLazy();
+        Container.Bind<HeatmapUploadController>().FromInstance(heatmap).AsSingle().NonLazy();
 
         // Bind UI
         Container.Bind<GameUIController>().FromInstance(gameUIController).AsSingle();

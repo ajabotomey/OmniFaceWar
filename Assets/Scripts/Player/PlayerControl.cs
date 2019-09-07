@@ -13,7 +13,7 @@ public class PlayerControl : MonoBehaviour
 
     private IInputController _inputController;
     private GameUIController _gameUI;
-    private HeatmapController _heatmap;
+    private HeatmapUploadController _heatmap;
 
     private bool hasGun = false;
 
@@ -27,7 +27,7 @@ public class PlayerControl : MonoBehaviour
     Vector3 aim;
 
     [Inject]
-    public void Construct(IInputController inputController, GameUIController gameUI, HeatmapController heatmap)
+    public void Construct(IInputController inputController, GameUIController gameUI, HeatmapUploadController heatmap)
     {
         _inputController = inputController;
         _gameUI = gameUI;
