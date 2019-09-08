@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using log4net;
 
+[ExecuteAlways]
 public static class Logger
 {
     private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);

@@ -12,7 +12,7 @@ public class HeatmapDownloadControllerEditor : Editor
 
         HeatmapDownloadController heatmapData = (HeatmapDownloadController)target;
 
-        if (GUILayout.Button("Retrieve Data")) {
+        if (GUILayout.Button("Process Data")) {
             heatmapData.RetrieveData();
         }
     }

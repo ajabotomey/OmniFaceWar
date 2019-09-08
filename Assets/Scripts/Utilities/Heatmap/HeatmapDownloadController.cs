@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEditor;
 
+[ExecuteInEditMode]
 public class HeatmapDownloadController : MonoBehaviour
 {
     private static string downloadURL = "https://killerbyteworkshop.com/heatmapdownload.php";
@@ -23,8 +24,9 @@ public class HeatmapDownloadController : MonoBehaviour
 
         if (www.isNetworkError || www.isHttpError)
             Logger.Error(www.error);
-        else
+        else {
             Logger.Debug(www.downloadHandler.text);
+        }
 
         EditorApplication.update -= EditorUpdate;
     }
@@ -33,5 +35,18 @@ public class HeatmapDownloadController : MonoBehaviour
     {
         Request();
         EditorApplication.update += EditorUpdate;
+    }
+
+    public string GetData()
+    {
+        if (www == null) {
+            Logger.Debug("Need to retrieve data from server first");
+            return "";
+        }
+
+        if (www.isNetworkError || www.isHttpError)
+            return "";
+
+        return www.downloadHandler.text;
     }
 }
