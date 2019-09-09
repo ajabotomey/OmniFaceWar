@@ -24,6 +24,9 @@ public class PlayerControl : MonoBehaviour
 
     [SerializeField] private GameObject crosshair;
 
+    private float refreshRate = 10.0f;
+    private float elapsedTime;
+
     Vector3 aim;
 
     [Inject]
@@ -35,6 +38,8 @@ public class PlayerControl : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        elapsedTime = 0.0f;
     }
 
     void Update()
@@ -48,6 +53,11 @@ public class PlayerControl : MonoBehaviour
             MoveCrosshair();
         }
         
+        // Update heatmap position
+        if (elapsedTime >= refreshRate) {
+            _heatmap.AddPosition(transform.position);
+            elapsedTime = 0.0f;
+        }
     }
 
     void FixedUpdate()
@@ -58,7 +68,7 @@ public class PlayerControl : MonoBehaviour
         RotateCharacter(moveHorizontal, moveVertical);
         HandleMovement(moveHorizontal, moveVertical);
 
-        _heatmap.AddPosition(transform.position);
+        
     }
 
     void RotateCharacter(float horizontal, float vertical)
@@ -86,11 +96,17 @@ public class PlayerControl : MonoBehaviour
             Cursor.visible = false;
         }
 
-        Vector3 mouseMovement = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
-        aim += mouseMovement;
-
-        if (aim.magnitude > 1.0f) {
+        if (_inputController.IsControllerActive()) {
+            aim = _inputController.Rotation3Raw();
             aim.Normalize();
+            aim = -aim;
+        } else {
+            Vector3 mouseMovement = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
+            aim += mouseMovement;
+
+            if (aim.magnitude > 1.0f) {
+                aim.Normalize();
+            }
         }
 
         if (aim.magnitude > 0.0f) {

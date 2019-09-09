@@ -15,5 +15,9 @@ public class HeatmapDrawerEditor : Editor
         if (GUILayout.Button("Draw Heatmap")) {
             drawer.DrawHeatmap();
         }
+
+        if (GUILayout.Button("Clear Heatmap")) {
+            drawer.ClearHeatmap();
+        }
     }
 }

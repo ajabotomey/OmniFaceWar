@@ -82,7 +82,6 @@ public class GunComponent : MonoBehaviour
         }
     }
 
-    // Mouse only for the moment
     void RotateComponent()
     {
         Vector2 target = crosshair.transform.position;

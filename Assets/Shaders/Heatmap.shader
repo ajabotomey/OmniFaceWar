@@ -36,7 +36,7 @@ Shader "Custom/Heatmap"
 
 			uniform int _Points_Length = 0;
 			uniform float3 _Points[500];
-			uniform float2 _Properties[500];
+			uniform int2 _Properties[500];
 			sampler2D _HeatTex;
 
 			half4 frag(vertOutput output) : COLOR{
