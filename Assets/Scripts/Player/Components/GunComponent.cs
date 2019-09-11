@@ -63,7 +63,7 @@ public class GunComponent : MonoBehaviour
             }
         }
 
-        if (!_gameUI.IsConversationActive()) {
+        if (!_gameUI.IsInteractingWithUI()) {
             if (fireBullet) {
                 Fire();
             }

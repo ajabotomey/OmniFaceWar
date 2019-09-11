@@ -46,7 +46,7 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        if (_gameUI.IsConversationActive()) {
+        if (_gameUI.IsInteractingWithUI()) {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
@@ -110,7 +110,6 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        Debug.Log(aim);
         _inputController.SetAim(aim);
         aimTarget = null;
     }

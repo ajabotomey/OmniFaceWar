@@ -2,43 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuController
+public class MenuController : MonoBehaviour
 {
-    readonly Settings _settings;
+    [SerializeField] private MainMenuController mainMenu;
+    [SerializeField] SettingsMenuController settingsMenu;
+    [SerializeField] GameObject controlMapperWindow;
 
-    public MenuController(Settings settings)
+    void Start()
     {
-        _settings = settings;
-
-        _settings.mainMenu.gameObject.SetActive(true);
-        _settings.settingsMenu.gameObject.SetActive(false);
-        _settings.controlMapperWindow.SetActive(false);
+        mainMenu.gameObject.SetActive(true);
+        settingsMenu.gameObject.SetActive(false);
+        controlMapperWindow.SetActive(false);
     }
 
     public void SwapToMainMenu()
     {
-        _settings.mainMenu.gameObject.SetActive(true);
-        _settings.settingsMenu.gameObject.SetActive(false);
+        mainMenu.gameObject.SetActive(true);
+        settingsMenu.gameObject.SetActive(false);
     }
 
     public void SwapToSettingsMenu()
     {
-        _settings.settingsMenu.gameObject.SetActive(true);
-        _settings.mainMenu.gameObject.SetActive(false);
-        _settings.controlMapperWindow.SetActive(false);
+        settingsMenu.gameObject.SetActive(true);
+        mainMenu.gameObject.SetActive(false);
+        controlMapperWindow.SetActive(false);
     }
 
     public void SwapToControlMapper()
     {
-        _settings.settingsMenu.gameObject.SetActive(false);
-        _settings.controlMapperWindow.SetActive(true);
-    }
-
-    [System.Serializable]
-    public class Settings
-    {
-        public MainMenuController mainMenu;
-        public SettingsMenuController settingsMenu;
-        public GameObject controlMapperWindow;
+        settingsMenu.gameObject.SetActive(false);
+        controlMapperWindow.SetActive(true);
     }
 }

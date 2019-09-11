@@ -8,12 +8,13 @@ public class MainMenuController : MonoBehaviour
 
     [Inject] private SettingsManager settingsManager;
     [Inject] private SceneController sceneController;
-    [Inject] private MenuController menuController;
 
     [SerializeField] private Button startGameButton;
     [SerializeField] private Button loadGameButton;
     [SerializeField] private Button settingsButton;
     [SerializeField] private Button quitGameButton;
+
+    [SerializeField] private VoidEvent settingsMenuEvent;
 
     void OnEnable()
     {
@@ -34,7 +35,7 @@ public class MainMenuController : MonoBehaviour
 
     public void SettingsMenu()
     {
-        menuController.SwapToSettingsMenu();
+        settingsMenuEvent.Raise();
     }
 
     public void QuitGame()

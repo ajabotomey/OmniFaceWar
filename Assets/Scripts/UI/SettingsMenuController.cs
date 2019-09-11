@@ -39,11 +39,15 @@ public class SettingsMenuController : MonoBehaviour
     [SerializeField] private Button backToMainMenuButton;
     [SerializeField] private Button applyChangesButton;
 
+    [Header("Game Events")]
+    [SerializeField] private VoidEvent originalMenuEvent;
+    [SerializeField] private VoidEvent controlMapperEvent;
+    [SerializeField] private VoidEvent settingsMenuEvent;
+
     private Navigation backNav;
     private Navigation applyNav;
 
     [Inject] private SettingsManager settingsManager;
-    [Inject] private MenuController menuController;
     [Inject] private IInputController inputController;
     [Inject] private SceneController sceneController;
 
@@ -111,7 +115,7 @@ public class SettingsMenuController : MonoBehaviour
             if (sceneController.IsInGame()) {
 
             } else {
-                menuController.SwapToMainMenu();
+                originalMenuEvent.Raise();
             }
         }
     }
@@ -287,13 +291,14 @@ public class SettingsMenuController : MonoBehaviour
     #region Menu Swapping
     public void SwapToControlMapper()
     {
-        menuController.SwapToControlMapper();
+        //menuController.SwapToControlMapper();
+        controlMapperEvent.Raise();
     }
 
     public void ReturnFromControlMapper()
     {
         Logger.Debug("Should be swapping back here");
-        menuController.SwapToSettingsMenu();
+        settingsMenuEvent.Raise();
         SwapToInput();
 
         inputButton.Select();
@@ -302,7 +307,7 @@ public class SettingsMenuController : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        menuController.SwapToMainMenu();
+        originalMenuEvent.Raise();
     }
 
     #endregion

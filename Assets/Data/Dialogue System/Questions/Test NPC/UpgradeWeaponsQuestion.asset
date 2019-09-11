@@ -16,7 +16,7 @@ MonoBehaviour:
   choices:
   - text: Cancel
     conversation: {fileID: 11400000, guid: 7dac70cb6b4960747ba22ea1a5655e25, type: 2}
-    gameUIEvent: {fileID: 11400000, guid: ed041e50967b7e446a4733d40624bbc6, type: 2}
+    gameUIEvent: {fileID: 0}
   - text: Upgrade
     conversation: {fileID: 0}
     gameUIEvent: {fileID: 11400000, guid: ed041e50967b7e446a4733d40624bbc6, type: 2}

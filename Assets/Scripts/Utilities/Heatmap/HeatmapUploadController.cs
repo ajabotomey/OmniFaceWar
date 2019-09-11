@@ -32,10 +32,6 @@ public class HeatmapUploadController : MonoBehaviour
         fileName = DateTime.UtcNow.ToString("yyyyMMdd_hhmmss") + ".txt";
         filePath = Application.dataPath + "/" + fileName;
 
-        //if (!File.Exists(filePath)) {
-        //    File.WriteAllText(filePath, "");
-        //}
-
         using (FileStream fs = new FileStream(filePath, FileMode.Create)) {
             using (StreamWriter writer = new StreamWriter(fs)) {
                 foreach (Vector2 position in positionList) {
@@ -57,11 +53,7 @@ public class HeatmapUploadController : MonoBehaviour
 
         byte[] txtFile = File.ReadAllBytes(filePath);
 
-        //UnityWebRequest file = new UnityWebRequest();
         WWWForm form = new WWWForm();
-
-        //file = UnityWebRequest.Get(filePath);
-        //yield return file.SendWebRequest();
         form.AddBinaryData("userFile", txtFile, fileName);
 
         UnityWebRequest req = UnityWebRequest.Post(uploadURL, form);
