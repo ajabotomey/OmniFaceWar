@@ -22,16 +22,20 @@ public class GunComponent : MonoBehaviour
     private Bullet.Factory _bulletFactory;
     private GameUIController _gameUI;
     private WeaponController _weaponControl;
+    private SettingsManager _settings;
+    private PlayerControl _player;
 
     private float _offset = -90.0f;
 
     [Inject]
-    public void Construct(IInputController inputController, Bullet.Factory bulletFactory, GameUIController gameUI, WeaponController weaponControl)
+    public void Construct(IInputController inputController, Bullet.Factory bulletFactory, GameUIController gameUI, WeaponController weaponControl, SettingsManager settings, PlayerControl player)
     {
         _inputController = inputController;
         _bulletFactory = bulletFactory;
         _gameUI = gameUI;
         _weaponControl = weaponControl;
+        _settings = settings;
+        _player = player;
     }
 
     // Start is called before the first frame update
@@ -47,6 +51,17 @@ public class GunComponent : MonoBehaviour
         bool fireBullet = _inputController.FireWeapon();
 
         RotateComponent();
+
+        if (_settings.IsAutoAimEnabled()) {
+            var autoAimStrength = _settings.GetAutoAimStrength();
+            var direction = gunObj.transform.rotation * Vector2.up;
+            var target = LookForEnemyWithThickRaycast(bulletSpawnPoint.position, direction, autoAimStrength);
+
+            // Snap crosshair to target
+            if (target) {
+                _player.SetAimTarget(target);
+            }
+        }
 
         if (!_gameUI.IsConversationActive()) {
             if (fireBullet) {
@@ -84,13 +99,65 @@ public class GunComponent : MonoBehaviour
 
     void RotateComponent()
     {
-        Vector2 target = crosshair.transform.position;
-        Vector2 gunPos = gunObj.transform.position;
-        target.x = target.x - gunPos.x;
-        target.y = target.y - gunPos.y;
+        RotateTowardsTarget(crosshair.transform);
+    }
 
-        float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
+    public void RotateTowardsTarget(Transform target)
+    {
+        Vector2 targetPos = target.position;
+        Vector2 gunPos = gunObj.transform.position;
+        targetPos.x = targetPos.x - gunPos.x;
+        targetPos.y = targetPos.y - gunPos.y;
+
+        float angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
         angle -= 90;
         gunObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+    }
+
+    public Transform LookForEnemyWithThickRaycast(Vector2 startWorldPos, Vector2 direction, float visibilityThickness)
+    {
+        if (visibilityThickness == 0) return null; //aim assist disabled
+
+        int[] castOrder = { 2, 1, 3, 0, 4 };
+        //int[] castOrder = { 2, 1, 0 };
+        int numberOfRays = castOrder.Length;
+
+        // TODO: Add these values to Settings so players can customise
+        const float minDistanceAway = 2.5f; //don't find results closer than this
+        const float castDistance = 10f;
+        const float flareOutAngle = 15f;
+
+        Transform target = null;
+        foreach (int i in castOrder) {
+            Vector2 perpDirection = Vector2.Perpendicular(direction);
+            float perpDistance = (-visibilityThickness * 0.5f + i * visibilityThickness / (numberOfRays - 1)) / 64;
+            Vector2 startPos = perpDirection * perpDistance + startWorldPos;
+
+            float angleOffset = -flareOutAngle * 0.5f + i * flareOutAngle / (numberOfRays - 1);
+            Vector2 flaredDirection = direction.Rotate(angleOffset);
+
+            RaycastHit2D hit = Physics2D.Raycast(startPos, flaredDirection, castDistance, targetMask);
+            Debug.DrawRay(startPos, flaredDirection * castDistance, Color.yellow, Time.deltaTime);
+            if (hit) {
+                if (IsInTargetLayer(hit.collider.gameObject.layer)) {
+                    //make sure it's in range
+                    float distanceAwaySqr = (hit.transform.position.toVector2() - startWorldPos).sqrMagnitude;
+                    if (distanceAwaySqr > minDistanceAway * minDistanceAway) {
+                        Debug.DrawRay(startPos, direction * castDistance, Color.red, Time.deltaTime);
+                        target = hit.transform;
+                        return target;
+                    }
+                }
+            }
+        }
+
+        return target;
+    }
+
+    private bool IsInTargetLayer(int layer)
+    {
+        var targetLayer = (int)Mathf.Log(targetMask.value, 2);
+
+        return layer == targetLayer;
     }
 }

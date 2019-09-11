@@ -29,6 +29,8 @@ public class PlayerControl : MonoBehaviour
 
     Vector3 aim;
 
+    private Transform aimTarget = null;
+
     [Inject]
     public void Construct(IInputController inputController, GameUIController gameUI, HeatmapUploadController heatmap)
     {
@@ -50,6 +52,7 @@ public class PlayerControl : MonoBehaviour
 
             crosshair.SetActive(false);
         } else {
+            SetAim();
             MoveCrosshair();
         }
         
@@ -66,9 +69,7 @@ public class PlayerControl : MonoBehaviour
         float moveVertical = _inputController.Vertical();
 
         RotateCharacter(moveHorizontal, moveVertical);
-        HandleMovement(moveHorizontal, moveVertical);
-
-        
+        HandleMovement(moveHorizontal, moveVertical);      
     }
 
     void RotateCharacter(float horizontal, float vertical)
@@ -88,15 +89,15 @@ public class PlayerControl : MonoBehaviour
         _rb.MovePosition(new Vector2(posX, posY));
     }
 
-    // Mouse only for the moment
-    void MoveCrosshair()
+    void SetAim()
     {
-        if (Cursor.visible) {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+        if (aimTarget) {
+            // TODO: Might add a timer for the auto aim so it only snaps every few seconds perhaps
 
-        if (_inputController.IsControllerActive()) {
+            var temp = aimTarget.position - transform.position;
+            temp.Normalize();
+            aim = temp;
+        } else if (_inputController.IsControllerActive()) {
             aim = _inputController.Rotation3Raw();
             aim.Normalize();
             aim = -aim;
@@ -109,13 +110,32 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
+        Debug.Log(aim);
+        _inputController.SetAim(aim);
+        aimTarget = null;
+    }
+
+    void MoveCrosshair()
+    {
+        if (Cursor.visible) {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
         if (aim.magnitude > 0.0f) {
             crosshair.transform.localPosition = aim * 2;
             crosshair.SetActive(true);
         } else {
             crosshair.SetActive(false);
         }
+    }
 
-        _inputController.SetAim(aim);
+    public void SetAimTarget(Transform target = null)
+    {
+        if (target == null) {
+            aimTarget = null;
+        } else {
+            aimTarget = target;
+        }
     }
 }

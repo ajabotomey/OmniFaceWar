@@ -26,7 +26,9 @@ public class GameUIController : MonoBehaviour
     {
         if (elapsedTime > refreshTime) {
             elapsedTime = 0.0f;
-            heatmap.SaveLocationsToFile();
+
+            if (heatmap.gameObject.activeInHierarchy)
+                heatmap.SaveLocationsToFile();
         }
 
         elapsedTime += Time.deltaTime;

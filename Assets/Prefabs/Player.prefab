@@ -349,10 +349,10 @@ MonoBehaviour:
   bullet: {fileID: 5694263181565850176, guid: 4dfbc14b03354ca43a81f38563a1060b, type: 3}
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   gunObj: {fileID: 8679208305552068837}
   crosshair: {fileID: 371571859}
 --- !u!114 &7100063126590692241
