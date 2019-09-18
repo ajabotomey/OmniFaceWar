@@ -277,6 +277,12 @@ public class SettingsManager {
         rumbleSensitivity = settings.rumbleSensitivity;
     }
 
+    // TODO: Get settings and translate to analytics
+    public void UpdateAnalytics()
+    {
+
+    }
+
     [Serializable]
     public class ModifiedSettings
     {

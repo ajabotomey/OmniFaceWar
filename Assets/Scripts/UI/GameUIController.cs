@@ -72,17 +72,24 @@ public class GameUIController : MonoBehaviour
     private void CheckIfPaused()
     {
         if (inputController.Pause()) {
-            // Show the cursor
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            
-            // Pause time
-            Time.timeScale = 0.0f;
 
-            // Open menu
-            pauseMenu.Show();
+            if (!paused) {
+                // Show the cursor
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
 
-            paused = true;
+                // Pause time
+                Time.timeScale = 0.0f;
+
+                // Open menu
+                pauseMenu.Show();
+
+                paused = true;
+            } else {
+                StopPause();
+            }
+
+
         }
     }
 
