@@ -1,12 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public class PauseMenu : MonoBehaviour
 {
     [Inject]
     private SceneController _sceneController;
+
+    [SerializeField] private Button resumeGameButton;
+
+    private void OnEnable()
+    {
+        resumeGameButton.Select();
+        resumeGameButton.OnSelect(null);
+    }
 
     public void Show()
     {

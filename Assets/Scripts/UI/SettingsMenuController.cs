@@ -46,6 +46,10 @@ public class SettingsMenuController : MonoBehaviour
 
     private Navigation backNav;
     private Navigation applyNav;
+    private Navigation generalNav;
+    private Navigation videoNav;
+    private Navigation soundNav;
+    private Navigation inputNav;
 
     [Inject] private SettingsManager settingsManager;
     [Inject] private IInputController inputController;
@@ -83,9 +87,13 @@ public class SettingsMenuController : MonoBehaviour
         rumbleEnabledToggle.SetValue(rumbleEnabled);
         rumbleSensitivitySlider.SetValue(rumbleSensitivity);
 
-        // Setup navigation for bottom buttons
+        // Setup navigation for menu buttons
         backNav = backToMainMenuButton.navigation;
         applyNav = applyChangesButton.navigation;
+        generalNav = generalButton.navigation;
+        videoNav = videoButton.navigation;
+        soundNav = soundButton.navigation;
+        inputNav = inputButton.navigation;
 
         settingsManager.LoadSettings();
 
@@ -224,6 +232,12 @@ public class SettingsMenuController : MonoBehaviour
         soundPanel.SetActive(false);
         inputPanel.SetActive(false);
 
+        // Modify navigation for menu buttons
+        generalNav.selectOnDown = gameSpeedSlider.GetObject();
+        videoNav.selectOnDown = gameSpeedSlider.GetObject();
+        soundNav.selectOnDown = gameSpeedSlider.GetObject();
+        inputNav.selectOnDown = gameSpeedSlider.GetObject();
+
         // Modify Navigation for back and apply buttons
         var autoAimEnabled = settingsManager.IsAutoAimEnabled();
         if (autoAimEnabled) {
@@ -236,6 +250,10 @@ public class SettingsMenuController : MonoBehaviour
 
         backToMainMenuButton.navigation = backNav;
         applyChangesButton.navigation = applyNav;
+        generalButton.navigation = generalNav;
+        videoButton.navigation = videoNav;
+        soundButton.navigation = soundNav;
+        inputButton.navigation = inputNav;
     }
 
     public void SwapToVideo()
@@ -246,12 +264,22 @@ public class SettingsMenuController : MonoBehaviour
         soundPanel.SetActive(false);
         inputPanel.SetActive(false);
 
+        // Modify navigation for menu buttons
+        generalNav.selectOnDown = dyslexicTextToggle.GetObject();
+        videoNav.selectOnDown = dyslexicTextToggle.GetObject();
+        soundNav.selectOnDown = dyslexicTextToggle.GetObject();
+        inputNav.selectOnDown = dyslexicTextToggle.GetObject();
+
         // Modify Navigation for back and apply buttons
         backNav.selectOnUp = fullscreenToggle.GetObject();
         applyNav.selectOnUp = fullscreenToggle.GetObject();
 
         backToMainMenuButton.navigation = backNav;
         applyChangesButton.navigation = applyNav;
+        generalButton.navigation = generalNav;
+        videoButton.navigation = videoNav;
+        soundButton.navigation = soundNav;
+        inputButton.navigation = inputNav;
     }
 
     public void SwapToSound()
@@ -262,12 +290,18 @@ public class SettingsMenuController : MonoBehaviour
         soundPanel.SetActive(true);
         inputPanel.SetActive(false);
 
+        // Modify navigation for menu buttons
+
         // Modify Navigation for back and apply buttons
         backNav.selectOnUp = soundButton;
         applyNav.selectOnUp = soundButton;
 
         backToMainMenuButton.navigation = backNav;
         applyChangesButton.navigation = applyNav;
+        generalButton.navigation = generalNav;
+        videoButton.navigation = videoNav;
+        soundButton.navigation = soundNav;
+        inputButton.navigation = inputNav;
     }
 
     public void SwapToInput()
@@ -278,12 +312,22 @@ public class SettingsMenuController : MonoBehaviour
         soundPanel.SetActive(false);
         inputPanel.SetActive(true);
 
+        // Modify navigation for menu buttons
+        generalNav.selectOnDown = inputSensitivitySlider.GetObject();
+        videoNav.selectOnDown = inputSensitivitySlider.GetObject();
+        soundNav.selectOnDown = inputSensitivitySlider.GetObject();
+        inputNav.selectOnDown = inputSensitivitySlider.GetObject();
+
         // Modify Navigation for back and apply buttons
         backNav.selectOnUp = rebindControlsButton;
         applyNav.selectOnUp = rebindControlsButton;
 
         backToMainMenuButton.navigation = backNav;
         applyChangesButton.navigation = applyNav;
+        generalButton.navigation = generalNav;
+        videoButton.navigation = videoNav;
+        soundButton.navigation = soundNav;
+        inputButton.navigation = inputNav;
     }
 
     #endregion

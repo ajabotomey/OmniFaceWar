@@ -1568,7 +1568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2069267580
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1703,6 +1703,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PopUpPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349058038735396011, guid: 185a7ac2a04c41e41abae6c3b9c1cc19,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2730842468740629546, guid: 185a7ac2a04c41e41abae6c3b9c1cc19,
         type: 3}
@@ -1898,6 +1903,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 8415529385503555149, guid: 633e239309cb5f34e96ecceaa942cdc7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8415529385503555148, guid: 633e239309cb5f34e96ecceaa942cdc7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2021,15 +2031,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 9421ca7889013f74495d8925fd1f733c,
         type: 2}
-    - target: {fileID: 3140774503536379214, guid: 633e239309cb5f34e96ecceaa942cdc7,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 99894940630009443, guid: 633e239309cb5f34e96ecceaa942cdc7,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140774503536379214, guid: 633e239309cb5f34e96ecceaa942cdc7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 633e239309cb5f34e96ecceaa942cdc7, type: 3}
