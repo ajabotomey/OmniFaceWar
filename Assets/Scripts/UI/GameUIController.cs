@@ -20,6 +20,10 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private SettingsMenuController settingsMenu;
     [SerializeField] private GameObject controlMapperWindow;
 
+    [Header("Notification System")]
+    [SerializeField] private NotificationQueue queue;
+    [SerializeField] private NotificationWindow window;
+
     [Inject] private HeatmapUploadController heatmap;
     [Inject] private IInputController inputController;
 
@@ -42,6 +46,7 @@ public class GameUIController : MonoBehaviour
     void Update()
     {
         CheckIfPaused();
+        CheckNotificationWindow();
 
         if (elapsedTime > refreshTime) {
             elapsedTime = 0.0f;
@@ -74,17 +79,10 @@ public class GameUIController : MonoBehaviour
         if (inputController.Pause()) {
 
             if (!paused) {
-                // Show the cursor
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-
-                // Pause time
-                Time.timeScale = 0.0f;
+                PauseGame();
 
                 // Open menu
                 pauseMenu.Show();
-
-                paused = true;
             } else {
                 StopPause();
             }
@@ -100,10 +98,7 @@ public class GameUIController : MonoBehaviour
 
     public void StopPause()
     {
-        paused = false;
-        Time.timeScale = 1.0f;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        UnpauseGame();
         pauseMenu.Hide();
     }
 
@@ -135,4 +130,44 @@ public class GameUIController : MonoBehaviour
     //{
     //    heatmap.SendFilesToServer();
     //}
+
+    private void PauseGame()
+    {
+        // Show the cursor
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        // Pause time
+        Time.timeScale = 0.0f;
+
+        paused = true;
+    }
+
+    private void UnpauseGame()
+    {
+        paused = false;
+        Time.timeScale = 1.0f;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void CheckNotificationWindow()
+    {
+        bool open = inputController.OpenNotificationWindow();
+
+        // If window is already open, return
+        if (window.gameObject.activeSelf)
+            return;
+
+        if (open) {
+            PauseGame();
+            window.gameObject.SetActive(true);
+        }
+    }
+
+    public void HideNotificationWindow()
+    {
+        window.gameObject.SetActive(false);
+        UnpauseGame();
+    }
 }

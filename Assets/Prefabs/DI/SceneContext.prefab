@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 567531183683130156}
   - component: {fileID: 567531183683130157}
   - component: {fileID: 567531183683130162}
+  - component: {fileID: 162501483}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers:
   - {fileID: 11400000, guid: d8dbd8e000362dd4fbef614e75eaec15, type: 2}
+  - {fileID: 11400000, guid: e80acc48fad082341919c5b68d4eb54d, type: 2}
   _monoInstallers:
   - {fileID: 567531183683130162}
   _installerPrefabs: []
@@ -92,3 +94,22 @@ MonoBehaviour:
     type: 3}
   gameUIController: {fileID: 0}
   heatmap: {fileID: 0}
+--- !u!114 &162501483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567531183683130163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b9dc869540345c40a419b26a2b43d63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popup: {fileID: 7417607498648800202, guid: 34226629425393a488ed1e8ee3f51c53, type: 3}
+  popupImage: {fileID: 7993513557390103836, guid: 08b050d9d78242243a2004628cf6385f,
+    type: 3}
+  fullNotification: {fileID: 6501985135382989395, guid: 3bf14206d72c70741968f0a512518ced,
+    type: 3}
+  imageNotification: {fileID: 7813727028988966270, guid: 76ab8d4de587df0439f35b184bbf3d5c,
+    type: 3}

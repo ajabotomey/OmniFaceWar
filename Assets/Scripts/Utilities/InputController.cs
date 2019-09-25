@@ -27,8 +27,8 @@ public interface IInputController
     bool SelectNoise();
     bool SelectMask();
     float ScrollWeapons();
-
     bool TalkToNPC();
+    bool OpenNotificationWindow();
 
     void SetAim(Vector2 _aim);
     Vector2 GetAim();
@@ -248,5 +248,10 @@ public class InputController : IInputController
     public Vector2 GetAim()
     {
         return aim;
+    }
+
+    public bool OpenNotificationWindow()
+    {
+        return player.GetButtonDown("OpenNotificationWindow");
     }
 }
