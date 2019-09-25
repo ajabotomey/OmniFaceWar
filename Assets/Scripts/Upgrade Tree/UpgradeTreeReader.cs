@@ -14,7 +14,7 @@ public class UpgradeTreeReader : MonoBehaviour
     // variable for caching the currently being inspected skill
     private Upgrade _upgradeInspected;
 
-    public SafeInt availablePoints = new SafeInt(100);
+    public int availablePoints = 100;
 
     private void Awake()
     {
@@ -52,7 +52,7 @@ public class UpgradeTreeReader : MonoBehaviour
         }
     }
 
-    public bool IsUpgradeUnlocked(SafeInt skillID)
+    public bool IsUpgradeUnlocked(int skillID)
     {
         if (_upgrades.TryGetValue(skillID, out _upgradeInspected))
             return _upgradeInspected.unlocked;
@@ -60,7 +60,7 @@ public class UpgradeTreeReader : MonoBehaviour
         return false;
     }
 
-    public bool CanSkillBeUnlocked(SafeInt skillID)
+    public bool CanSkillBeUnlocked(int skillID)
     {
         bool canUnlock = true;
 
@@ -89,7 +89,7 @@ public class UpgradeTreeReader : MonoBehaviour
         return canUnlock;
     }
 
-    public bool UnlockSkill(SafeInt skillID)
+    public bool UnlockSkill(int skillID)
     {
         if (_upgrades.TryGetValue(skillID, out _upgradeInspected)) {
             if (_upgradeInspected.cost <= availablePoints) {
