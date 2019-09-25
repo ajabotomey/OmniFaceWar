@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Zenject;
 
 public class NotificationFull : MonoBehaviour
 {
-    [SerializeField] private Text textbox;
+    [SerializeField] private TMP_Text textbox;
 
     public void CreateNotification(string notificationText)
     {
-        textbox.text = notificationText;
+        string parsedText = ParseEmojis.Parse(notificationText);
+
+        textbox.text = parsedText;
     }
 
     public class Factory : PlaceholderFactory<NotificationFull> { }

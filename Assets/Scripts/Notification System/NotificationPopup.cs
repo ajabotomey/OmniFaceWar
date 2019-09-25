@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Zenject;
 
 public class NotificationPopup : MonoBehaviour
 {
-    [SerializeField] private Text text;
+    [SerializeField] private TMP_Text text;
     [SerializeField] private float speed;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private float popupUpTime;
@@ -41,7 +42,8 @@ public class NotificationPopup : MonoBehaviour
 
     public void ShowNotification(Notification notification)
     {
-        text.text = notification.AbbreviatedText;
+        string parsedText = ParseEmojis.Parse(notification.AbbreviatedText);
+        text.text = parsedText;
         notification.Push();
     }
 
