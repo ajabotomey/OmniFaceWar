@@ -40,6 +40,8 @@ public class GameUIController : MonoBehaviour
         controlMapperWindow.SetActive(false);
 
         elapsedTime = 0.0f;
+
+        PushTestNotification();
     }
 
     // Update is called once per frame
@@ -126,11 +128,6 @@ public class GameUIController : MonoBehaviour
         settingsMenu.gameObject.SetActive(true);
     }
 
-    //private void OnApplicationQuit()
-    //{
-    //    heatmap.SendFilesToServer();
-    //}
-
     private void PauseGame()
     {
         // Show the cursor
@@ -169,5 +166,10 @@ public class GameUIController : MonoBehaviour
     {
         window.gameObject.SetActive(false);
         UnpauseGame();
+    }
+
+    public void PushTestNotification()
+    {
+        queue.Push("Test Notification");
     }
 }

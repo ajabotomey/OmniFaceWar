@@ -10,27 +10,38 @@ public class NotificationEditor : Editor
 
     private const int MAX_ABBR_VALUE = 88;
 
+    SerializedProperty title;
+    SerializedProperty image;
+    SerializedProperty normalText;
+    SerializedProperty abbrvText;
+    SerializedProperty type;
+    SerializedProperty pushed;
+
+    void OnEnable()
+    {
+        title = serializedObject.FindProperty("title");
+        image = serializedObject.FindProperty("image");
+        normalText = serializedObject.FindProperty("normalText");
+        abbrvText = serializedObject.FindProperty("abbreviatedText");
+        type = serializedObject.FindProperty("type");
+        pushed = serializedObject.FindProperty("hasBeenPushed");
+    }
+
     public override void OnInspectorGUI()
     {
-        //base.OnInspectorGUI();
-
-        notification = (Notification)target;
-
-        GUIStyle guiStyle = EditorStyles.textArea;
-        guiStyle.wordWrap = true;
-
-        string abbreviatedText = TruncateAbbreviatedText(notification.NormalText);
+        string abbreviatedText = TruncateAbbreviatedText(normalText.stringValue);
+        abbrvText.stringValue = abbreviatedText;
 
         EditorGUI.BeginChangeCheck();
 
-        notification.Title = EditorGUILayout.TextField("Title: ", notification.Title);
-        notification.Image = (Sprite)EditorGUILayout.ObjectField("Sprite: ", notification.Image, typeof(Sprite), true);
-        EditorGUILayout.PrefixLabel("Normal Text: ");
-        notification.NormalText = EditorGUILayout.TextArea(notification.NormalText, GUILayout.MaxHeight(40));
-        EditorGUILayout.PrefixLabel("Abbreviated Text: ");
-        notification.AbbreviatedText = EditorGUILayout.TextArea(abbreviatedText, GUILayout.MaxHeight(40));
-        notification.Type = (NotificationType)EditorGUILayout.EnumPopup("Notification Type: ", notification.Type);
-        notification.Pushed = EditorGUILayout.Toggle("Pushed: ", notification.Pushed);
+        EditorGUILayout.PropertyField(title, new GUIContent("Title:"));
+        EditorGUILayout.PropertyField(image, new GUIContent("Image: "));
+        EditorGUILayout.PropertyField(normalText, new GUIContent("Normal Text: "), GUILayout.Height(80));
+        EditorGUILayout.PropertyField(abbrvText, new GUIContent("Abbreviated Text: "), GUILayout.Height(60));
+        EditorGUILayout.PropertyField(type, new GUIContent("Notification Type: "));
+        EditorGUILayout.PropertyField(pushed, new GUIContent("Pushed: "));
+
+        serializedObject.ApplyModifiedProperties();
 
         EditorGUI.EndChangeCheck();
     }

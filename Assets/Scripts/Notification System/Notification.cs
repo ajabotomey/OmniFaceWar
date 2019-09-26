@@ -45,11 +45,6 @@ public class Notification : ScriptableObject
         set { hasBeenPushed = value; }
     }
 
-    public void Push()
-    {
-        hasBeenPushed = true;
-    }
-
     public bool HasImage()
     {
         return image;

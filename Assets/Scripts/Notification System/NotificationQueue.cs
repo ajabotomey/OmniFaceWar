@@ -40,12 +40,6 @@ public class NotificationQueue : MonoBehaviour
         startPosition = offScreenSpot.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void Push(string title)
     {
         Notification n = _manager.PushNotification(title);

@@ -44,7 +44,7 @@ public class NotificationPopup : MonoBehaviour
     {
         string parsedText = ParseEmojis.Parse(notification.AbbreviatedText);
         text.text = parsedText;
-        notification.Push();
+        notification.Pushed = true;
     }
 
     public void Disappear()

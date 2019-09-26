@@ -150,7 +150,7 @@ public class UnityBuild
 
     private static void BuildLinux()
     {
-        BuildPlayerOptions playerOptions = CreatePlayerOptions($"{GameName}", BuildTarget.StandaloneLinuxUniversal);
+        BuildPlayerOptions playerOptions = CreatePlayerOptions($"{GameName}", BuildTarget.StandaloneLinux64);
         BuildPipeline.BuildPlayer(playerOptions);
     }
 
