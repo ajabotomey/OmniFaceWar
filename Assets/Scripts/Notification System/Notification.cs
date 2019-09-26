@@ -11,7 +11,7 @@ public class Notification : ScriptableObject
     [SerializeField] private string title;
     [SerializeField] private Sprite image;
     [SerializeField] [TextArea] private string normalText;
-    [SerializeField] private string abbreviatedText; // 88 Characters long (Dyslexic font)
+    [SerializeField] [TextArea] private string abbreviatedText; // 88 Characters long (Dyslexic font)
     [SerializeField] private NotificationType type;
     [SerializeField] private bool hasBeenPushed;
 

@@ -9,6 +9,7 @@ public class NotificationEditor : Editor
     private Notification notification;
 
     private const int MAX_ABBR_VALUE = 88;
+    private const int MAX_NORMAL_VALUE = 280;
 
     SerializedProperty title;
     SerializedProperty image;
@@ -29,6 +30,9 @@ public class NotificationEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        string normal = TruncateNormalText(normalText.stringValue);
+        normalText.stringValue = normal;
+
         string abbreviatedText = TruncateAbbreviatedText(normalText.stringValue);
         abbrvText.stringValue = abbreviatedText;
 
@@ -49,7 +53,17 @@ public class NotificationEditor : Editor
     private string TruncateAbbreviatedText(string text)
     {
         if (text.Length > MAX_ABBR_VALUE) {
-            text = text.Substring(0, MAX_ABBR_VALUE - 1);
+            text = text.Substring(0, MAX_ABBR_VALUE - 4);
+            text += "...";
+        }
+
+        return text;
+    }
+
+    private string TruncateNormalText(string text)
+    {
+        if (text.Length > MAX_NORMAL_VALUE) {
+            text = text.Substring(0, MAX_NORMAL_VALUE - 1);
         }
 
         return text;
