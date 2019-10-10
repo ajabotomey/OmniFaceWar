@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Test Notification
   image: {fileID: 0}
-  normalText: Testing 123
-  abbreviatedText: Testing 123
+  normalText: '[:sunglasses:]'
+  abbreviatedText: '[:sunglasses:]'
   type: 0
   hasBeenPushed: 0

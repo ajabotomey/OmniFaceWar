@@ -18,6 +18,8 @@ public class NotificationEditor : Editor
     SerializedProperty type;
     SerializedProperty pushed;
 
+    private int characterCount;
+
     void OnEnable()
     {
         title = serializedObject.FindProperty("title");
@@ -33,7 +35,7 @@ public class NotificationEditor : Editor
         string normal = TruncateNormalText(normalText.stringValue);
         normalText.stringValue = normal;
 
-        string abbreviatedText = TruncateAbbreviatedText(normalText.stringValue);
+        string abbreviatedText = TruncateAbbreviatedText(normal);
         abbrvText.stringValue = abbreviatedText;
 
         EditorGUI.BeginChangeCheck();
@@ -52,8 +54,10 @@ public class NotificationEditor : Editor
 
     private string TruncateAbbreviatedText(string text)
     {
-        if (text.Length > MAX_ABBR_VALUE) {
-            text = text.Substring(0, MAX_ABBR_VALUE - 4);
+        int maxLength = CheckEmojis(text, MAX_ABBR_VALUE);
+
+        if (text.Length > maxLength) {
+            text = text.Substring(0, maxLength - 4);
             text += "...";
         }
 
@@ -62,10 +66,28 @@ public class NotificationEditor : Editor
 
     private string TruncateNormalText(string text)
     {
-        if (text.Length > MAX_NORMAL_VALUE) {
-            text = text.Substring(0, MAX_NORMAL_VALUE - 1);
+        int maxLength = CheckEmojis(text, MAX_NORMAL_VALUE);
+
+        if (text.Length > maxLength) {
+            text = text.Substring(0, maxLength - 1);
         }
 
         return text;
+    }
+
+    private int CheckEmojis(string text, int maxLength)
+    {
+        char[] separators = { '[', ']' };
+
+        // Go through and detect parenthesis and make substrings
+        string[] textChunks = text.Split(separators);
+
+        for (int i = 0; i < textChunks.Length; i++) {
+            if (textChunks[i].Contains(":")) {
+                maxLength += (textChunks[i].Length + 2); // Account for the square parentheses
+            }
+        }
+
+        return maxLength;
     }
 }
