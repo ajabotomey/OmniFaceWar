@@ -29,7 +29,6 @@ public interface IInputController
     float ScrollWeapons();
     bool TalkToNPC();
     bool OpenNotificationWindow();
-
     void SetAim(Vector2 _aim);
     Vector2 GetAim();
 }
@@ -87,6 +86,9 @@ public class InputController : IInputController
             player.controllers.Keyboard.enabled = true;
             player.controllers.Mouse.enabled = true;
         }
+
+        ReInput.ControllerConnectedEvent += OnControllerConnected;
+        ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
     }
 
     public bool IsControllerActive()
@@ -253,5 +255,17 @@ public class InputController : IInputController
     public bool OpenNotificationWindow()
     {
         return player.GetButtonDown("OpenNotificationWindow");
+    }
+
+    private void OnControllerConnected(ControllerStatusChangedEventArgs args)
+    {
+        player.controllers.Keyboard.enabled = false;
+        player.controllers.Mouse.enabled = false;
+    }
+
+    private void OnControllerDisconnected(ControllerStatusChangedEventArgs args)
+    {
+        player.controllers.Keyboard.enabled = true;
+        player.controllers.Mouse.enabled = true;
     }
 }
