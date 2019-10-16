@@ -7,13 +7,13 @@ public partial class AIContext
     public AIAgent Agent { get; }
     public AISenses Senses { get; }
     public AICharacter Enemy { get; }
+    public EntityHealth Health { get; }
 
     public float Time { get; set; }
     public float DeltaTime { get; set; }
     public float GenericTimer { get; set; }
 
     // TODO: Add accessor and mutator
-    private EntityHealth health;
     private bool recentlyAttacked = false;
 
     public AICharacter CurrentEnemy { get; set; }
@@ -29,20 +29,20 @@ public partial class AIContext
     /// </summary>
     public bool CanSense { get; set; }
 
-    public AIContext(AIAgent agent, AISenses senses)
+    public AIContext(AIAgent agent, AISenses senses, EntityHealth health)
     {
         Agent = agent;
         Senses = senses;
         Enemy = agent.GetComponent<AICharacter>();
         Enemy.Init(this);
         CanSense = true;
-
+        Health = health;
         base.Init();
     }
 
     public void TakeDamage(int damage)
     {
-        health.ApplyDamage(damage);
+        Health.ApplyDamage(damage);
         recentlyAttacked = true;
     }
 

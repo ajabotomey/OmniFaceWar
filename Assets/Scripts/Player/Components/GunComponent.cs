@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
-using UniRx;
 
 public class GunComponent : MonoBehaviour
 {
@@ -69,7 +66,9 @@ public class GunComponent : MonoBehaviour
             }
         }
 
-        elapsedTime += Time.deltaTime;
+        _weaponControl.RechargeGuns();
+
+        elapsedTime += Time.fixedDeltaTime;
     }
 
     void Fire()
@@ -86,13 +85,18 @@ public class GunComponent : MonoBehaviour
         if (aim.magnitude > 0.0f) {
             // Check fire rate
             if (elapsedTime >= currentWeapon.GetFireRate()) {
-                Bullet firedBullet = _bulletFactory.Create();
-                firedBullet.transform.position = bulletSpawnPoint.position;
-                firedBullet.transform.rotation = Quaternion.identity;
-                firedBullet.GetComponent<Rigidbody2D>().velocity = aim * 50.0f;
-                firedBullet.transform.Rotate(0, 0, Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg);
+                // Check if gun has enough energy
+                if (currentWeapon.CanWeaponFire()) {
+                    Bullet firedBullet = _bulletFactory.Create();
+                    firedBullet.transform.position = bulletSpawnPoint.position;
+                    firedBullet.transform.rotation = Quaternion.identity;
+                    firedBullet.GetComponent<Rigidbody2D>().velocity = aim * 50.0f;
+                    firedBullet.transform.Rotate(0, 0, Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg);
 
-                elapsedTime = 0.0f;
+                    currentWeapon.Fire();
+
+                    elapsedTime = 0.0f;
+                }
             }
         }
     }

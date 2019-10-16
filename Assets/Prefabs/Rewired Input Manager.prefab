@@ -132,7 +132,7 @@ MonoBehaviour:
       force4WayHats: 0
       throttleCalibrationMode: 0
       activateActionButtonsOnNegativeValue: 0
-      deferControllerConnectedEventsOnStart: 0
+      deferControllerConnectedEventsOnStart: 1
       logLevel: 7
       editorSettings:
         exportConsts_useParentClass: 0

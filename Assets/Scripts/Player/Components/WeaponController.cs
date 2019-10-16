@@ -22,10 +22,22 @@ public class WeaponController
     [SerializeField] private InternetGun internetGun;
 
     private WeaponSelect currentWeapon;
-    //private string CurrentWeapon()
-    //{
-    //    return currentWeapon.ToString();
-    //}
+
+    public WeaponController()
+    {
+        pistol.Initialize();
+        submachineGun.Initialize();
+        hackerGun.Initialize();
+        internetGun.Initialize();
+    }
+
+    public void RechargeGuns()
+    {
+        pistol.RechargeWeapon();
+        submachineGun.RechargeWeapon();
+        hackerGun.RechargeWeapon();
+        internetGun.RechargeWeapon();
+    }
 
     public void SelectPistol()
     {

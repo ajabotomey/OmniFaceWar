@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityHealth
+public class EntityHealth : MonoBehaviour
 {
-    private int health;
+    [SerializeField] private int health;
+    [SerializeField] private EntityHealthBar healthBar;
     private int maxHealth;
 
-    private void Initialize(int _health)
+    void Awake()
     {
-        health = _health;
-        maxHealth = _health;
+        if (healthBar) {
+            healthBar.Init(health);
+        }
+
+        maxHealth = health;
     }
 
     public void ApplyDamage(int damage)
@@ -19,6 +23,27 @@ public class EntityHealth
             return;
 
         health -= damage;
+
+        if (healthBar) {
+            healthBar.TakeDamage(damage);
+        }
+    }
+
+    public void SetHealth(int healthValue, int maxHealth)
+    {
+        health = healthValue;
+        if (healthBar)
+            healthBar.Init(healthValue, maxHealth);
+    }
+
+    public int GetHealth()
+    {
+        return health;
+    }
+
+    public int GetMaxHealth()
+    {
+        return maxHealth;
     }
 
     public bool IsDead()

@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private float _speed = 1.0f;
+    [SerializeField] private EntityHealth health;
 
     private float _offset = -90.0f;
 
@@ -40,6 +41,8 @@ public class PlayerControl : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        //healthController = new EntityHealth(health);
 
         elapsedTime = 0.0f;
     }

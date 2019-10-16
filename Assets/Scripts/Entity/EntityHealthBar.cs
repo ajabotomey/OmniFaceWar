@@ -1,18 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EntityHealthBar : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Transform foreground;
+    private int health;
+    private int maxHealth;
+    private float maxWidth;
+    private float height;
+
+    public void Init(int health)
     {
-        
+        this.health = health;
+        this.maxHealth = health;
+        maxWidth = foreground.localScale.x;
+        height = foreground.localScale.y;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Init(int health, int maxHealth)
     {
-        
+        this.health = health;
+        this.maxHealth = maxHealth;
+        maxWidth = foreground.localScale.x;
+        height = foreground.localScale.y;
+
+        var damage = maxHealth - health;
+        TakeDamage(damage);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        float percent = (float)health / (float)maxHealth;
+        var width = percent * maxWidth;
+        foreground.localScale = new Vector2(width, height);
     }
 }

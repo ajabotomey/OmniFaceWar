@@ -442,6 +442,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Cinemachine.CinemachineBrain+VcamActivatedEvent, Cinemachine, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &231078360 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 231078360, guid: e91f16d6dc3d7fd42a8dbb5906431344,
+    type: 3}
+  m_PrefabInstance: {fileID: 1976648654}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032b07a9a56dcd54485eab77e8d4fa8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &259412479
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +975,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &865627830 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8679208305817274397, guid: 238c9c12b57ad7b4c95dab29741414c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 529542888}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &865627836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865627830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4e5ce25345647408005713e885db21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  healthBar: {fileID: 231078360}
 --- !u!1 &1008447502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,7 +1147,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 529542888}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 865627830}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8807e3cb7498f5049a3f3293c55e2f9a, type: 3}
