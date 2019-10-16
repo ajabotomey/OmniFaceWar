@@ -16,14 +16,18 @@ public enum WeaponSelect
 [System.Serializable]
 public class WeaponController
 {
+    [Header("Weapons")]
     [SerializeField] private Pistol pistol;
     [SerializeField] private SubmachineGun submachineGun;
     [SerializeField] private HackerGun hackerGun;
     [SerializeField] private InternetGun internetGun;
 
+    [Header("Events")]
+    [SerializeField] private FloatEvent initializeEvent;
+
     private WeaponSelect currentWeapon;
 
-    public WeaponController()
+    public void Initialize()
     {
         pistol.Initialize();
         submachineGun.Initialize();
@@ -42,6 +46,9 @@ public class WeaponController
     public void SelectPistol()
     {
         currentWeapon = WeaponSelect.PISTOL;
+        pistol.MakeCurrentWeapon(true);
+        // TODO: Make other weapons false
+        initializeEvent.Raise(pistol.GetEnergyCapacity());
     }
 
     public Weapon GetCurrentWeapon()

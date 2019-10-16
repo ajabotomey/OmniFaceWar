@@ -15,7 +15,11 @@ MonoBehaviour:
   fireRate: 3
   energyCapacity: 100
   energyCost: 5
-  rechargeRate: 2.5
+  rechargeRate: 2
+  isCurrentWeapon: 1
+  currentEnergy: 100
+  fireEvent: {fileID: 11400000, guid: 36f3e9fabe6ed304faf825b558535f93, type: 2}
+  rechargeEvent: {fileID: 11400000, guid: b602e77055ac64641a18c52112931578, type: 2}
   damage: 5
   hasSilencer: 0
   hasExplosiveRounds: 0

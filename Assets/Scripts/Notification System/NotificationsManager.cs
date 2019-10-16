@@ -10,7 +10,7 @@ public class NotificationsManager : ScriptableObject
 
     public Notification PushNotification(string title)
     {
-        Notification notification = new Notification();
+        Notification notification = ScriptableObject.CreateInstance<Notification>();
 
         // Check if title is in notification array and if so, has it been pushed
         foreach (Notification n in notifications) {

@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b35958f5c0fe9b34bb5e248492c72430, type: 3}
-  m_Name: Testing
+  m_Script: {fileID: 11500000, guid: 10e46d8f15e4aff4897b9b71207feed2, type: 3}
+  m_Name: InitializeSystem
   m_EditorClassIdentifier: 
-  title: Test Notification
-  image: {fileID: 0}
-  normalText: '[:sunglasses:]'
-  abbreviatedText: '[:sunglasses:]'
-  type: 0
-  hasBeenPushed: 1

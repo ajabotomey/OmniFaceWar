@@ -8,5 +8,6 @@ public class WeaponInstaller : ScriptableObjectInstaller<WeaponInstaller>
     public override void InstallBindings()
     {
         Container.BindInterfacesAndSelfTo<WeaponController>().FromInstance(weaponController).AsSingle();
+        weaponController.Initialize();
     }
 }

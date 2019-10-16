@@ -17,3 +17,4 @@ MonoBehaviour:
     submachineGun: {fileID: 11400000, guid: 7f53f03867f6bec499aadcd9e8274c3f, type: 2}
     hackerGun: {fileID: 11400000, guid: 903d2fffbe1dfa54eafe66978f33869a, type: 2}
     internetGun: {fileID: 11400000, guid: cf6764c8c1fe31646855af1a2f089fc5, type: 2}
+    initializeEvent: {fileID: 11400000, guid: 47782b4e6c42e5246a7fcc36a8d1ace6, type: 2}

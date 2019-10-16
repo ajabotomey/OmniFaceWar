@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Submachine Gun
   m_EditorClassIdentifier: 
   fireRate: 0
-  energy: 0
+  energyCapacity: 0
+  energyCost: 0
   rechargeRate: 0
+  currentEnergy: 0
+  fireEvent: {fileID: 11400000, guid: 36f3e9fabe6ed304faf825b558535f93, type: 2}
+  rechargeEvent: {fileID: 11400000, guid: b602e77055ac64641a18c52112931578, type: 2}
   damage: 0
   incendiaryRounds: 0

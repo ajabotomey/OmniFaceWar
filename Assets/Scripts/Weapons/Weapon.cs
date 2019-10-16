@@ -9,9 +9,14 @@ public class Weapon : ScriptableObject
     [SerializeField] private float energyCapacity;
     [SerializeField] private float energyCost;
     [SerializeField] private float rechargeRate;
+    [SerializeField] private bool isCurrentWeapon;
 
     [Header("Debug")]
     [SerializeField] private float currentEnergy;
+
+    [Header("Event")]
+    [SerializeField] private FloatEvent fireEvent;
+    [SerializeField] private FloatEvent rechargeEvent;
 
     public void Initialize()
     {
@@ -26,14 +31,19 @@ public class Weapon : ScriptableObject
     public void Fire()
     {
         currentEnergy -= energyCost;
+        fireEvent.Raise(currentEnergy);
     }
 
     public void RechargeWeapon()
     {
-        currentEnergy += (rechargeRate * Time.fixedDeltaTime);
+        currentEnergy += rechargeRate * Time.fixedDeltaTime;
 
         if (currentEnergy > energyCapacity)
             currentEnergy = energyCapacity;
+
+        // Check if current weapon
+        if (isCurrentWeapon)
+            rechargeEvent.Raise(currentEnergy);
     }
 
     public float GetCurrentEnergy()
@@ -41,8 +51,18 @@ public class Weapon : ScriptableObject
         return currentEnergy;
     }
 
+    public float GetEnergyCapacity()
+    {
+        return energyCapacity;
+    }
+
     public bool CanWeaponFire()
     {
         return currentEnergy > energyCost;
+    }
+
+    public void MakeCurrentWeapon(bool value)
+    {
+        isCurrentWeapon = value;
     }
 }

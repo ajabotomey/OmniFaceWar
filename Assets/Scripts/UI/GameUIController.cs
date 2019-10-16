@@ -24,6 +24,9 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private NotificationQueue queue;
     [SerializeField] private NotificationWindow window;
 
+    [Header("HUD Elements")]
+    [SerializeField] private EnergyBar energyBar;
+
     [Inject] private HeatmapUploadController heatmap;
     [Inject] private IInputController inputController;
 
