@@ -96,6 +96,8 @@ public class GunComponent : MonoBehaviour
                     currentWeapon.Fire();
 
                     elapsedTime = 0.0f;
+                } else {
+                    // Energy Bar outline should flash red briefly
                 }
             }
         }
