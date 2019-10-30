@@ -495,7 +495,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 207841480}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 0
@@ -851,6 +851,18 @@ PrefabInstance:
     - target: {fileID: 8679208305817274398, guid: 238c9c12b57ad7b4c95dab29741414c2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371571861, guid: 238c9c12b57ad7b4c95dab29741414c2, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 371571861, guid: 238c9c12b57ad7b4c95dab29741414c2, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371571861, guid: 238c9c12b57ad7b4c95dab29741414c2, type: 3}
+      propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1691,7 +1703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2141754048}
   - component: {fileID: 2141754047}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Global Post Processing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
