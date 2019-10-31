@@ -588,6 +588,9 @@ MonoBehaviour:
   m_Script: {fileID: 282231395}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_FocusTracksTarget: 0
+  m_FocusOffset: 0
+  m_Profile: {fileID: 0}
 --- !u!115 &282231395
 MonoScript:
   m_ObjectHideFlags: 0
@@ -4631,7 +4634,7 @@ PrefabInstance:
     - target: {fileID: 5567816428608361324, guid: e91f16d6dc3d7fd42a8dbb5906431344,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5567816428608361323, guid: e91f16d6dc3d7fd42a8dbb5906431344,
         type: 3}
@@ -4817,6 +4820,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50288e5be4e90674885ff616a6be5912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2003221798 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 382541328, guid: e91f16d6dc3d7fd42a8dbb5906431344,
+    type: 3}
+  m_PrefabInstance: {fileID: 1976648654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2003221799 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 382541330, guid: e91f16d6dc3d7fd42a8dbb5906431344,
+    type: 3}
+  m_PrefabInstance: {fileID: 1976648654}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003221798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d558ba7aa70314541910dc3c85a4d5ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2003221801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003221798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a36950ac10a62f4b86b6bdb3f2ffc2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 115a4df9bede25a419fd169bb645f211, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2003221799}
+        m_MethodName: NotificationPushed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityVoidEvent, OmniFaceWar, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &2141754046
 GameObject:
   m_ObjectHideFlags: 0

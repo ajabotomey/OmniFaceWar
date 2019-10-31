@@ -328,9 +328,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 44648976646143816}
-  speed: 20
+  speed: 1000
   canvasGroup: {fileID: 7811212307322419091}
   popupUpTime: 10
+  rect: {fileID: 7908952182640043629}
+  NotificationPushed: {fileID: 11400000, guid: 115a4df9bede25a419fd169bb645f211, type: 2}
 --- !u!225 &7811212307322419091
 CanvasGroup:
   m_ObjectHideFlags: 0

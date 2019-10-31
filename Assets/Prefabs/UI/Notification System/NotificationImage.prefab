@@ -404,9 +404,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 7403714985920519687}
-  speed: 20
+  speed: 1000
   canvasGroup: {fileID: 7659913562498998825}
   popupUpTime: 10
+  rect: {fileID: 7775540500049753047}
+  NotificationPushed: {fileID: 0}
   image: {fileID: 7917532322253947972}
 --- !u!225 &7659913562498998825
 CanvasGroup:

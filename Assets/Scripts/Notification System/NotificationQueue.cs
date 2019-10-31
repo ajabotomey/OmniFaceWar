@@ -23,6 +23,8 @@ public class NotificationQueue : MonoBehaviour
     private NotificationPopup.Factory _popupFactory;
     private NotificationPopupImage.Factory _imageFactory;
 
+    private bool isPushing = false;
+
     [Inject]
     public void Construct(NotificationsManager manager, NotificationPopup.Factory popupFactory, NotificationPopupImage.Factory imageFactory)
     {
@@ -34,10 +36,10 @@ public class NotificationQueue : MonoBehaviour
     void Start()
     {
         notificationList = new List<NotificationPopup>();
-        firstPosition = firstSpot.position;
-        secondPosition = secondSpot.position;
-        thirdPosition = thirdSpot.position;
-        startPosition = offScreenSpot.position;
+        firstPosition = firstSpot.localPosition;
+        secondPosition = secondSpot.localPosition;
+        thirdPosition = thirdSpot.localPosition;
+        startPosition = offScreenSpot.localPosition;
     }
 
     public void Push(string title)
@@ -50,7 +52,8 @@ public class NotificationQueue : MonoBehaviour
         if (n.Pushed)
             return;
 
-        PushNotification(n);
+        //PushNotification(n);
+        StartCoroutine(PushNotification(n));
     }
 
     public void Push(Notification n)
@@ -58,11 +61,53 @@ public class NotificationQueue : MonoBehaviour
         bool result = _manager.CheckNotification(n);
 
         if (result)
-            PushNotification(n);
+            StartCoroutine(PushNotification(n));
     }
 
-    private void PushNotification(Notification notification)
+    // Turn into a coroutine
+    //private void PushNotification(Notification notification)
+    //{
+    //    // Check the number of notifications
+    //    if (notificationList.Count > 0) {
+    //        // OK, we have some work to do before adding anything
+
+    //        if (notificationList.Count == 3) {
+    //            // Remove the oldest popup
+    //            notificationList[0].Disappear();
+    //            notificationList.RemoveAt(0);
+    //        }
+
+    //        // Now move the notifications
+    //        if (notificationList.Count == 2) { // If we now have 2 notifications
+    //            notificationList[1].SetPosition(secondPosition);
+    //            notificationList[0].SetPosition(thirdPosition);
+    //        } else {
+    //            notificationList[0].SetPosition(secondPosition);
+    //        }
+    //    }
+
+    //    // Check if a notification is in the middle of pushing
+    //    if (isPushing) {
+    //        // Wait until no longer pushing?
+    //    }
+
+    //    // Now we can add the new notification
+    //    if (notification.HasImage()) {
+    //        NotificationPopupImage popup = _imageFactory.Create();
+    //        SetupNotification(popup, notification);
+    //    } else {
+    //        NotificationPopup popup = _popupFactory.Create();
+    //        SetupNotification(popup, notification);
+    //    }
+    //}
+
+    private IEnumerator PushNotification(Notification notification)
     {
+        // Check if a notification is in the middle of pushing
+        while (isPushing) {
+            yield return new WaitForEndOfFrame();
+        }
+
         // Check the number of notifications
         if (notificationList.Count > 0) {
             // OK, we have some work to do before adding anything
@@ -85,20 +130,30 @@ public class NotificationQueue : MonoBehaviour
         // Now we can add the new notification
         if (notification.HasImage()) {
             NotificationPopupImage popup = _imageFactory.Create();
-            popup.transform.SetParent(transform);
-            popup.transform.localScale = Vector3.one;
-            popup.transform.position = startPosition;
-            popup.SetPosition(firstPosition);
-            popup.ShowNotification(notification);
-            notificationList.Add(popup);
+            SetupNotification(popup, notification);
         } else {
             NotificationPopup popup = _popupFactory.Create();
-            popup.transform.SetParent(transform);
-            popup.transform.localScale = Vector3.one;
-            popup.transform.position = startPosition;
-            popup.SetPosition(firstPosition);
-            popup.ShowNotification(notification);
-            notificationList.Add(popup);
+            SetupNotification(popup, notification);
         }
+
+        yield return new WaitForEndOfFrame();
+    }
+
+    private void SetupNotification(NotificationPopup n, Notification notification)
+    {
+        RectTransform rect = GetComponent<RectTransform>();
+        RectTransform popupRect = n.GetComponent<RectTransform>();
+        popupRect.SetParent(rect);
+        popupRect.localScale = Vector3.one;
+        popupRect.localPosition = startPosition;
+        n.SetPosition(firstPosition);
+        n.ShowNotification(notification);
+        notificationList.Add(n);
+        isPushing = true;
+    }
+
+    public void NotificationPushed()
+    {
+        isPushing = false;
     }
 }

@@ -11,6 +11,10 @@ public class NotificationPopup : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private float popupUpTime;
+    [SerializeField] private RectTransform rect;
+
+    [Header("Game Events")]
+    [SerializeField] private VoidEvent NotificationPushed;
 
     private Vector2 position = Vector2.zero;
     private float elapsedTime;
@@ -25,10 +29,13 @@ public class NotificationPopup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.toVector2() != position) {
+        if (rect.localPosition.toVector2() != position) {
             // Move to new position
             float step = speed * Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, position, step);
+            rect.localPosition = Vector2.MoveTowards(rect.localPosition, position, step);
+        } else {
+            // Raise event here
+            NotificationPushed.Raise();
         }
 
         if (elapsedTime > popupUpTime) {

@@ -44,6 +44,7 @@ public class GameUIController : MonoBehaviour
 
         elapsedTime = 0.0f;
 
+        PushFirstNotification();
         PushTestNotification();
     }
 
@@ -174,5 +175,10 @@ public class GameUIController : MonoBehaviour
     public void PushTestNotification()
     {
         queue.Push("Test Notification");
+    }
+
+    public void PushFirstNotification()
+    {
+        queue.Push("First Notification");
     }
 }
