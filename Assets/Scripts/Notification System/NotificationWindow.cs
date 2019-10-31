@@ -14,18 +14,20 @@ public class NotificationWindow : MonoBehaviour
     [SerializeField] private Toggle complianceToggle;
     [SerializeField] private Toggle emergencyToggle;
 
-    [SerializeField] private Transform scrollView;
+    [SerializeField] private RectTransform scrollView;
 
     private NotificationsManager _manager;
     private NotificationFull.Factory _factory;
     private NotificationFullImage.Factory _imageFactory;
+    private IInputController _inputController;
 
     [Inject]
-    public void Construct(NotificationsManager manager, NotificationFull.Factory factory, NotificationFullImage.Factory imageFactory)
+    public void Construct(NotificationsManager manager, NotificationFull.Factory factory, NotificationFullImage.Factory imageFactory, IInputController inputController)
     {
         _manager = manager;
         _factory = factory;
         _imageFactory = imageFactory;
+        _inputController = inputController;
     }
 
     // Start is called before the first frame update
@@ -43,6 +45,11 @@ public class NotificationWindow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check if escape or b button is used to exit the window
+        if (_inputController.UICancel()) {
+            GameUIController.Instance.HideNotificationWindow();
+        }
+
         // Do checks on toggles separately
         if (tutorialToggle.isOn) {
             FilterTutorial();
@@ -62,14 +69,16 @@ public class NotificationWindow : MonoBehaviour
     {
         if (n.Image) {
             NotificationFullImage notification = _imageFactory.Create();
+            RectTransform rect = notification.GetComponent<RectTransform>();
             notification.CreateNotification(n.Image, n.NormalText);
-            notification.transform.SetParent(scrollView);
-            notification.transform.localScale = Vector3.one;
+            rect.SetParent(scrollView);
+            rect.localScale = Vector3.one;
         } else {
             NotificationFull notification = _factory.Create();
+            RectTransform rect = notification.GetComponent<RectTransform>();
             notification.CreateNotification(n.NormalText);
-            notification.transform.SetParent(scrollView);
-            notification.transform.localScale = Vector3.one;
+            rect.SetParent(scrollView);
+            rect.localScale = Vector3.one;
         }
 
         // Check if image
