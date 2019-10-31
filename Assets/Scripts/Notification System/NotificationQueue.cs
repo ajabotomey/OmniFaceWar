@@ -33,7 +33,7 @@ public class NotificationQueue : MonoBehaviour
         _imageFactory = imageFactory;
     }
 
-    void Start()
+    void Awake()
     {
         notificationList = new List<NotificationPopup>();
         firstPosition = firstSpot.localPosition;

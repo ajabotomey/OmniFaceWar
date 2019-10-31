@@ -17,4 +17,4 @@ MonoBehaviour:
   normalText: '[:sunglasses:]'
   abbreviatedText: '[:sunglasses:]'
   type: 0
-  hasBeenPushed: 1
+  hasBeenPushed: 0

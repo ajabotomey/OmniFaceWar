@@ -35,8 +35,10 @@ public class GameUIController : MonoBehaviour
 
     private bool paused = false;
 
+    public static GameUIController Instance = null;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         pauseMenu.gameObject.SetActive(false);
         settingsMenu.gameObject.SetActive(false);
@@ -44,8 +46,10 @@ public class GameUIController : MonoBehaviour
 
         elapsedTime = 0.0f;
 
-        PushFirstNotification();
-        PushTestNotification();
+        Instance = this;
+
+        //PushFirstNotification();
+        //PushTestNotification();
     }
 
     // Update is called once per frame
@@ -92,8 +96,6 @@ public class GameUIController : MonoBehaviour
             } else {
                 StopPause();
             }
-
-
         }
     }
 
@@ -177,8 +179,8 @@ public class GameUIController : MonoBehaviour
         queue.Push("Test Notification");
     }
 
-    public void PushFirstNotification()
+    public void PushNotification(Notification n)
     {
-        queue.Push("First Notification");
+        queue.Push(n);
     }
 }
