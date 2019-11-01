@@ -7,13 +7,10 @@ public class ShowControllerButtonUI : MonoBehaviour
     [SerializeField] private ControllerActionButton action;
     [SerializeField] private Image image;
 
-    [Inject]
-    private IInputController inputController;
-
     // Update is called once per frame
     void Update()
     {
-        DeviceType deviceType = inputController.GetControllerType();
+        DeviceType deviceType = DeviceDictionary.GetControllerType();
 
         switch (deviceType) {
             case DeviceType.PC:

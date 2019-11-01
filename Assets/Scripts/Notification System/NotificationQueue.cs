@@ -64,43 +64,6 @@ public class NotificationQueue : MonoBehaviour
             StartCoroutine(PushNotification(n));
     }
 
-    // Turn into a coroutine
-    //private void PushNotification(Notification notification)
-    //{
-    //    // Check the number of notifications
-    //    if (notificationList.Count > 0) {
-    //        // OK, we have some work to do before adding anything
-
-    //        if (notificationList.Count == 3) {
-    //            // Remove the oldest popup
-    //            notificationList[0].Disappear();
-    //            notificationList.RemoveAt(0);
-    //        }
-
-    //        // Now move the notifications
-    //        if (notificationList.Count == 2) { // If we now have 2 notifications
-    //            notificationList[1].SetPosition(secondPosition);
-    //            notificationList[0].SetPosition(thirdPosition);
-    //        } else {
-    //            notificationList[0].SetPosition(secondPosition);
-    //        }
-    //    }
-
-    //    // Check if a notification is in the middle of pushing
-    //    if (isPushing) {
-    //        // Wait until no longer pushing?
-    //    }
-
-    //    // Now we can add the new notification
-    //    if (notification.HasImage()) {
-    //        NotificationPopupImage popup = _imageFactory.Create();
-    //        SetupNotification(popup, notification);
-    //    } else {
-    //        NotificationPopup popup = _popupFactory.Create();
-    //        SetupNotification(popup, notification);
-    //    }
-    //}
-
     private IEnumerator PushNotification(Notification notification)
     {
         // Check if a notification is in the middle of pushing
@@ -131,9 +94,15 @@ public class NotificationQueue : MonoBehaviour
         if (notification.HasImage()) {
             NotificationPopupImage popup = _imageFactory.Create();
             SetupNotification(popup, notification);
+            popup.ShowNotification(notification);
+            notificationList.Add(popup);
+            isPushing = true;
         } else {
             NotificationPopup popup = _popupFactory.Create();
             SetupNotification(popup, notification);
+            popup.ShowNotification(notification);
+            notificationList.Add(popup);
+            isPushing = true;
         }
 
         yield return new WaitForEndOfFrame();
@@ -147,9 +116,7 @@ public class NotificationQueue : MonoBehaviour
         popupRect.localScale = Vector3.one;
         popupRect.localPosition = startPosition;
         n.SetPosition(firstPosition);
-        n.ShowNotification(notification);
-        notificationList.Add(n);
-        isPushing = true;
+
     }
 
     public void NotificationPushed()

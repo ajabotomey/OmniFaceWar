@@ -15,3 +15,6 @@ MonoBehaviour:
   notifications:
   - {fileID: 11400000, guid: 027e69f7b891ff1489efbd323b798bca, type: 2}
   - {fileID: 11400000, guid: ce478ca363a39164eae021ccacd5fbf1, type: 2}
+  - {fileID: 11400000, guid: 16a2ec999edd4e24e91d20457582245c, type: 2}
+  - {fileID: 11400000, guid: 0f00a246bedfb724c8dd0794942319c9, type: 2}
+  - {fileID: 11400000, guid: 49aaee5a4165bcd46a8722448c52edbe, type: 2}

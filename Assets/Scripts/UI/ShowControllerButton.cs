@@ -20,13 +20,10 @@ public class ShowControllerButton : MonoBehaviour
     [SerializeField] private ControllerActionButton action;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    [Inject]
-    private IInputController inputController;
-
     // Update is called once per frame
     void Update()
     {
-        DeviceType deviceType = inputController.GetControllerType();
+        DeviceType deviceType = DeviceDictionary.GetControllerType();
 
         switch (deviceType) {
             case DeviceType.PC:

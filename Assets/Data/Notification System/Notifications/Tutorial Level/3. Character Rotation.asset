@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b35958f5c0fe9b34bb5e248492c72430, type: 3}
-  m_Name: Testing
+  m_Name: 3. Character Rotation
   m_EditorClassIdentifier: 
-  title: Test Notification
+  title: Rotation
   image: {fileID: 0}
-  normalText: '[:sunglasses:]'
-  abbreviatedText: '[:sunglasses:]'
+  normalText: Rotate the character using the mouse
+  abbreviatedText: Rotate the character using the mouse
   type: 0
   hasBeenPushed: 0
-  rewiredAction: -1
+  rewiredAction: 4

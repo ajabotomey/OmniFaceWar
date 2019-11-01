@@ -27,7 +27,7 @@ public class NotificationPopup : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         if (rect.localPosition.toVector2() != position) {
             // Move to new position

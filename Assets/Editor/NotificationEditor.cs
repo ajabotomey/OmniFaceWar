@@ -17,6 +17,7 @@ public class NotificationEditor : Editor
     SerializedProperty abbrvText;
     SerializedProperty type;
     SerializedProperty pushed;
+    SerializedProperty action;
 
     private int characterCount;
 
@@ -28,6 +29,7 @@ public class NotificationEditor : Editor
         abbrvText = serializedObject.FindProperty("abbreviatedText");
         type = serializedObject.FindProperty("type");
         pushed = serializedObject.FindProperty("hasBeenPushed");
+        action = serializedObject.FindProperty("rewiredAction");
     }
 
     public override void OnInspectorGUI()
@@ -46,6 +48,7 @@ public class NotificationEditor : Editor
         EditorGUILayout.PropertyField(abbrvText, new GUIContent("Abbreviated Text: "), GUILayout.Height(60));
         EditorGUILayout.PropertyField(type, new GUIContent("Notification Type: "));
         EditorGUILayout.PropertyField(pushed, new GUIContent("Pushed: "));
+        EditorGUILayout.PropertyField(action, new GUIContent("Rewired Action: "));
 
         serializedObject.ApplyModifiedProperties();
 

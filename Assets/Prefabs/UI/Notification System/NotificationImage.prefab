@@ -408,7 +408,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 7659913562498998825}
   popupUpTime: 10
   rect: {fileID: 7775540500049753047}
-  NotificationPushed: {fileID: 0}
+  NotificationPushed: {fileID: 11400000, guid: 115a4df9bede25a419fd169bb645f211, type: 2}
   image: {fileID: 7917532322253947972}
 --- !u!225 &7659913562498998825
 CanvasGroup:

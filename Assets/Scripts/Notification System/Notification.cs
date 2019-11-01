@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Rewired;
 
 public enum NotificationType
 {
@@ -14,6 +15,9 @@ public class Notification : ScriptableObject
     [SerializeField] [TextArea] private string abbreviatedText; // 88 Characters long (Dyslexic font)
     [SerializeField] private NotificationType type;
     [SerializeField] private bool hasBeenPushed;
+    [SerializeField] [ActionIdProperty(typeof(RewiredConsts.Action))] public int rewiredAction;
+
+    private ControllerActionButton actionButton;
 
     public string Title {
         get { return title; }
@@ -43,6 +47,10 @@ public class Notification : ScriptableObject
     public bool Pushed {
         get { return hasBeenPushed; }
         set { hasBeenPushed = value; }
+    }
+
+    public int RewiredAction {
+        get { return rewiredAction; }
     }
 
     public bool HasImage()

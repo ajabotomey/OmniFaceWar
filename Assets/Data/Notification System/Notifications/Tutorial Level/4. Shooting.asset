@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b35958f5c0fe9b34bb5e248492c72430, type: 3}
-  m_Name: Testing
+  m_Name: 4. Shooting
   m_EditorClassIdentifier: 
-  title: Test Notification
+  title: Shooting
   image: {fileID: 0}
-  normalText: '[:sunglasses:]'
-  abbreviatedText: '[:sunglasses:]'
+  normalText: Left Mouse Click to shoot the current weapon
+  abbreviatedText: Left Mouse Click to shoot the current weapon
   type: 0
   hasBeenPushed: 0
-  rewiredAction: -1
+  rewiredAction: 2

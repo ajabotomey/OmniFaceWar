@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b35958f5c0fe9b34bb5e248492c72430, type: 3}
-  m_Name: Testing
+  m_Script: {fileID: 11500000, guid: a416b1d7795f14b448585472d3d1e7cc, type: 3}
+  m_Name: Rewired Action Manager Installer
   m_EditorClassIdentifier: 
-  title: Test Notification
-  image: {fileID: 0}
-  normalText: '[:sunglasses:]'
-  abbreviatedText: '[:sunglasses:]'
-  type: 0
-  hasBeenPushed: 0
-  rewiredAction: -1
+  manager: {fileID: 11400000, guid: 8dab484fd2e61b14fac9c27b1c6e4335, type: 2}
