@@ -17,5 +17,5 @@ MonoBehaviour:
   normalText: to move the character
   abbreviatedText: to move the character
   type: 0
-  hasBeenPushed: 0
+  hasBeenPushed: 1
   rewiredAction: 0

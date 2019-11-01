@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
+using TMPro;
 
 [System.Serializable]
 public class GameUIEvent : UnityEvent<GameUIController> { }
@@ -24,8 +26,13 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private NotificationQueue queue;
     [SerializeField] private NotificationWindow window;
 
+    [Header("Subtitle System")]
+    [SerializeField] private CanvasGroup subtitlePanel;
+    [SerializeField] private TMP_Text subtitleText;
+    [SerializeField] private AudioSource audioSource;
+
     [Header("HUD Elements")]
-    [SerializeField] private EnergyBar energyBar;
+    [SerializeField] private GameObject gameplayHUD;
 
     [Inject] private HeatmapUploadController heatmap;
     [Inject] private IInputController inputController;
@@ -93,8 +100,10 @@ public class GameUIController : MonoBehaviour
 
                 // Open menu
                 pauseMenu.Show();
+                gameplayHUD.SetActive(false);
             } else {
                 StopPause();
+                gameplayHUD.SetActive(true);
             }
         }
     }
@@ -182,5 +191,63 @@ public class GameUIController : MonoBehaviour
     public void PushNotification(Notification n)
     {
         queue.Push(n);
+    }
+
+    public void ShowSubtitles(SubtitleClip clip)
+    {
+        StartCoroutine(FadeInSubtitles(clip));
+    }
+
+    public void HideSubtitles()
+    {
+        if (subtitlePanel.alpha == 1)
+            StartCoroutine(FadeAfterAudio());
+    }
+
+    public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
+    {
+        float timeStartedLerping = Time.time;
+        float timeSinceStarted = Time.time - timeStartedLerping;
+        float percentageComplete = timeSinceStarted / lerpTime;
+
+        while (true) {
+            timeSinceStarted = Time.time - timeStartedLerping;
+            percentageComplete = timeSinceStarted / lerpTime;
+
+            float currentValue = Mathf.Lerp(start, end, percentageComplete);
+
+            cg.alpha = currentValue;
+
+            if (percentageComplete >= 1) break;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        //Destroy(this.gameObject);
+    }
+
+    private IEnumerator FadeInSubtitles(SubtitleClip clip)
+    {
+        subtitleText.text = clip.Subtitles;
+        if (subtitlePanel.alpha != 1) {
+            StartCoroutine(FadeCanvasGroup(subtitlePanel, 0, 1));
+        }
+        yield return new WaitForSeconds(1);
+        // This is working
+        audioSource.clip = clip.Audio;
+        audioSource.Play();
+
+        yield return new WaitForEndOfFrame();
+    }
+
+    private IEnumerator FadeAfterAudio()
+    {
+        while (audioSource.isPlaying) {
+            yield return new WaitForEndOfFrame();
+        }
+
+        StartCoroutine(FadeCanvasGroup(subtitlePanel, 1, 0));
+
+        yield return new WaitForEndOfFrame();
     }
 }
