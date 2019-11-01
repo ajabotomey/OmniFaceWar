@@ -86,8 +86,13 @@ public class GunComponent : MonoBehaviour
             // Check fire rate
             if (elapsedTime >= currentWeapon.GetFireRate()) {
                 // Check if gun has enough energy
-                if (currentWeapon.CanWeaponFire()) {
+                if (currentWeapon.CanWeaponFire() && !currentWeapon.IsHackTypeGun()) {
                     Bullet firedBullet = _bulletFactory.Create();
+
+                    //firedBullet.SetDamage(currentWeapon.Damage);
+                    int damage = ((BulletTypeGun)currentWeapon).Damage;
+                    firedBullet.SetDamage(damage);
+
                     firedBullet.transform.position = bulletSpawnPoint.position;
                     firedBullet.transform.rotation = Quaternion.identity;
                     firedBullet.GetComponent<Rigidbody2D>().velocity = aim * 50.0f;

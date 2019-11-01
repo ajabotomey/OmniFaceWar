@@ -5,11 +5,12 @@ using UnityEngine;
 public class Weapon : ScriptableObject
 {
     [Header("Base Attributes")]
-    [SerializeField] private int fireRate;
+    [SerializeField] private float fireRate;
     [SerializeField] private float energyCapacity;
     [SerializeField] private float energyCost;
     [SerializeField] private float rechargeRate;
     [SerializeField] private bool isCurrentWeapon;
+    [SerializeField] private bool isHackTypeGun;
 
     [Header("Debug")]
     [SerializeField] private float currentEnergy;
@@ -23,7 +24,7 @@ public class Weapon : ScriptableObject
         currentEnergy = energyCapacity;
     }
 
-    public int GetFireRate()
+    public float GetFireRate()
     {
         return fireRate;
     }
@@ -64,5 +65,10 @@ public class Weapon : ScriptableObject
     public void MakeCurrentWeapon(bool value)
     {
         isCurrentWeapon = value;
+    }
+
+    public bool IsHackTypeGun()
+    {
+        return isHackTypeGun;
     }
 }

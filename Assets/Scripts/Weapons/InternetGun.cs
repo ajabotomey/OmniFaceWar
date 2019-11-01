@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Internet Gun", menuName = "Weapons/New Internet Gun")]
-public class InternetGun : Weapon
+public class InternetGun : HackTypeGun
 {
-    [Header("Gun Specific Attributes")]
-    [SerializeField] private int hackChance;
-    [SerializeField] private int hackDuration;
-
     [Header("Abilities")]
     [SerializeField] private bool spamAds;
     [SerializeField] private bool internetDisconnect;

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Pistol", menuName = "Weapons/New Pistol")]
-public class Pistol : Weapon
+public class Pistol : BulletTypeGun
 {
-    [Header("Gun Specific Attributes")]
-    [SerializeField] private int damage;
+    [Header("Pistol Specific Attributes")]
     [SerializeField] private bool hasSilencer;
     [SerializeField] private bool hasExplosiveRounds;
 }

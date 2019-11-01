@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Submachine Gun", menuName = "Weapons/New Submachine Gun")]
-public class SubmachineGun : Weapon
+public class SubmachineGun : BulletTypeGun
 {
-    [Header("Gun Specific Attributes")]
-    [SerializeField] private int damage;
+    [Header("SMG Specific Attributes")]
     [SerializeField] private bool incendiaryRounds;
 }

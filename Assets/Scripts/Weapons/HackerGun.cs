@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Hacker Gun", menuName = "Weapons/New Hacker Gun")]
-public class HackerGun : Weapon
+public class HackerGun : HackTypeGun
 {
-    [Header("Gun Specific Attributes")]
-    [SerializeField] private int hackChance;
-    [SerializeField] private int hackDuration;
+    [Header("Hacker Gun Specific Attributes")]
     [SerializeField] private int abilityChance;
 
     [Header("Abilities")]

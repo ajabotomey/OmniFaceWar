@@ -6,7 +6,7 @@ using Zenject;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private int damage;
+    private int damage;
 
     private IInputController _inputController;
 
@@ -16,6 +16,11 @@ public class Bullet : MonoBehaviour
         _inputController = inputController;
     }
 
+    public void SetDamage(int damage)
+    {
+        this.damage = damage;
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         rb.velocity = Vector2.zero;
@@ -23,6 +28,11 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player") {
             //collision.gameObject.GetComponent<EntityHealth>().ApplyDamage(damage);
             _inputController.SetRumble(1.0f);
+        }
+
+        if (collision.gameObject.tag == "Destructible Object") {
+            collision.gameObject.GetComponent<DestructibleObject>().TakeDamage(damage);
+            _inputController.SetRumble(0.2f);
         }
 
         Destroy(gameObject);

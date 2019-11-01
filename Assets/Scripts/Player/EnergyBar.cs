@@ -30,8 +30,5 @@ public class EnergyBar : MonoBehaviour
         float percent = currentEnergy / energyCapacity;
         var width = percent * maxWidth;
         image.localScale = new Vector3(width, height, 1);
-        Debug.Log(maxWidth);
-        Debug.Log(width);
-        Debug.Log(image.localScale);
     }
 }

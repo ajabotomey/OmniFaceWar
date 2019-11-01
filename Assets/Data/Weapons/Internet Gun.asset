@@ -16,6 +16,8 @@ MonoBehaviour:
   energyCapacity: 0
   energyCost: 0
   rechargeRate: 0
+  isCurrentWeapon: 0
+  isHackTypeGun: 1
   currentEnergy: 0
   fireEvent: {fileID: 11400000, guid: 36f3e9fabe6ed304faf825b558535f93, type: 2}
   rechargeEvent: {fileID: 11400000, guid: b602e77055ac64641a18c52112931578, type: 2}

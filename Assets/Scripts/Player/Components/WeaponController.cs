@@ -66,4 +66,9 @@ public class WeaponController
 
         return null;
     }
+
+    public WeaponSelect GetCurrentWeaponType()
+    {
+        return currentWeapon;
+    }
 }

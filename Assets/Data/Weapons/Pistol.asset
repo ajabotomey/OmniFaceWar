@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa84680a0d619384399db50b47947864, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  fireRate: 3
+  fireRate: 1
   energyCapacity: 100
   energyCost: 5
-  rechargeRate: 2
+  rechargeRate: 3
   isCurrentWeapon: 1
-  currentEnergy: 100
+  isHackTypeGun: 0
+  currentEnergy: 98.47986
   fireEvent: {fileID: 11400000, guid: 36f3e9fabe6ed304faf825b558535f93, type: 2}
   rechargeEvent: {fileID: 11400000, guid: b602e77055ac64641a18c52112931578, type: 2}
   damage: 5
