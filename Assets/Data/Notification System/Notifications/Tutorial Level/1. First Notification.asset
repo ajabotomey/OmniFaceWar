@@ -20,5 +20,5 @@ MonoBehaviour:
   abbreviatedText: Citizen, your Social Media score is very low, and you are of negative
     utility to you...
   type: 1
-  hasBeenPushed: 1
+  hasBeenPushed: 0
   rewiredAction: -1
