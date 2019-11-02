@@ -35,8 +35,8 @@ MonoBehaviour:
       autoAimStrength: 100
       textSize: 28
       fullscreenEnabled: 1
-      screenWidth: 0
-      screenHeight: 0
+      screenWidth: 800
+      screenHeight: 600
       subtitlesEnabled: 0
       subtitleTextSize: 42
       subtitleBackgroundOpacity: 10

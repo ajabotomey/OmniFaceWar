@@ -28,9 +28,9 @@ public class SettingsMenuController : MonoBehaviour
     [SerializeField] private UISlider textSizeSlider;
     [SerializeField] private UIDropdown resolutionDropdown;
     [SerializeField] private UIToggle fullscreenToggle;
-    [SerializeField] private UIToggle subtitlesEnabled;
-    [SerializeField] private UISlider subtitleTextSize;
-    [SerializeField] private UISlider subtitleOpacity;
+    [SerializeField] private UIToggle subtitlesEnabledToggle;
+    [SerializeField] private UISlider subtitleTextSizeSlider;
+    [SerializeField] private UISlider subtitleOpacitySlider;
 
     [Header("Sound UI Widgets")]
     [SerializeField] private UISlider audioSoundVolume;
@@ -68,6 +68,9 @@ public class SettingsMenuController : MonoBehaviour
         var textSize = settingsManager.CurrentTextSize();
         var supportedResolutions = settingsManager.ResolutionsSupported();
         var fullscreenEnabled = settingsManager.IsFullscreenEnabled();
+        var subtitlesEnabled = settingsManager.IsSubtitlesEnabled();
+        var subtitleTextSize = settingsManager.GetSubtitleTextSize();
+        var subtitleOpacity = settingsManager.GetSubtitleOpacity();
         var autoAimEnabled = settingsManager.IsAutoAimEnabled();
         var autoAimStrength = settingsManager.GetAutoAimStrength();
         var inputSensitivity = settingsManager.GetInputSensitivity();
@@ -77,7 +80,6 @@ public class SettingsMenuController : MonoBehaviour
         // General
         gameSpeedSlider.SetValue((int)gameSpeed);
         autoAimToggle.SetValue(autoAimEnabled);
-        //AutoAimToggle(autoAimEnabled);
         autoAimStrengthSlider.SetValue(autoAimStrength);
 
         // Video
@@ -85,6 +87,9 @@ public class SettingsMenuController : MonoBehaviour
         textSizeSlider.SetValue(textSize);
         resolutionDropdown.SetOptions(supportedResolutions);
         fullscreenToggle.SetValue(fullscreenEnabled);
+        subtitlesEnabledToggle.SetValue(subtitlesEnabled);
+        subtitleTextSizeSlider.SetValue(subtitleTextSize);
+        subtitleOpacitySlider.SetValue(subtitleOpacity);
 
         // Sound
 
@@ -189,6 +194,46 @@ public class SettingsMenuController : MonoBehaviour
         settingsManager.FullScreenToggle();
     }
 
+    public void SubtitleToggle(bool value)
+    {
+        // Get Subtitle controls
+        var subtitleToggle = subtitlesEnabledToggle.GetObject();
+        var subTextSizeSlider = subtitleTextSizeSlider.GetObject();
+        var backgroundOpacitySlider = subtitleOpacitySlider.GetObject();
+
+        // Get other affected controls
+        var textSizeObj = textSizeSlider.GetObject();
+        var dropdownObj = resolutionDropdown.GetObject();
+
+        // Get the navigation objects to modify
+        Navigation toggleNav = subtitleToggle.navigation;
+        Navigation textSizeNav = textSizeObj.navigation;
+        Navigation dropdownNav = dropdownObj.navigation;
+
+        // Now to modify those objects
+        if (value) {
+            subtitleTextSizeSlider.gameObject.SetActive(true);
+            subtitleOpacitySlider.gameObject.SetActive(true);
+
+            toggleNav.selectOnDown = subTextSizeSlider;
+            textSizeNav.selectOnRight = subTextSizeSlider;
+            dropdownNav.selectOnRight = backgroundOpacitySlider;
+        } else {
+            subTextSizeSlider.gameObject.SetActive(false);
+            backgroundOpacitySlider.gameObject.SetActive(false);
+
+            toggleNav.selectOnDown = applyChangesButton;
+            textSizeNav.selectOnRight = null;
+            dropdownNav.selectOnRight = null;
+        }
+
+        subtitleToggle.navigation = toggleNav;
+        textSizeObj.navigation = textSizeNav;
+        dropdownObj.navigation = dropdownNav;
+
+        settingsManager.SubtitlesToggle();
+    }
+
     public void RumbleToggle(bool value)
     {
         var toggle = rumbleEnabledToggle.GetObject();
@@ -232,6 +277,16 @@ public class SettingsMenuController : MonoBehaviour
     public void SetRumbleSensitivity(float value)
     {
         settingsManager.SetRumbleSensitivity((int)value);
+    }
+
+    public void SetSubtitleTextSize(float value)
+    {
+        settingsManager.SetSubtitleTextSize((int)value);
+    }
+
+    public void SetSubtitleBackgroundOpacity(float value)
+    {
+        settingsManager.SetSubtitleBackgroundOpacity((int)value);
     }
 
     #endregion

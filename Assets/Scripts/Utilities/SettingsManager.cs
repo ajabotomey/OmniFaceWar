@@ -26,7 +26,7 @@ public class SettingsManager {
     [SerializeField] [Range(42, 100)] private int subtitleTextSize = 42;
     private int SUBTITLE_MIN_SIZE = 42;
     private int SUBTITLE_MAX_SIZE = 100;
-    [SerializeField] [Range(0, 10)] private float subtitleBackgroundOpacity = 10;
+    [SerializeField] [Range(0, 10)] private int subtitleBackgroundOpacity = 10;
     //[SerializeField] private bool subtitleBackgroundEnabled = true;
 
     [Header("Auto-aim")]
@@ -111,6 +111,11 @@ public class SettingsManager {
     public int GetSubtitleTextSize()
     {
         return subtitleTextSize;
+    }
+
+    public int GetSubtitleOpacity()
+    {
+        return subtitleBackgroundOpacity;
     }
 
     public int GetTextSize()
@@ -201,7 +206,7 @@ public class SettingsManager {
         settings.subtitlesEnabled = !settings.subtitlesEnabled;
     }
 
-    public void SetSubtitleText(int value)
+    public void SetSubtitleTextSize(int value)
     {
         if (value >= SUBTITLE_MIN_SIZE && value <= SUBTITLE_MAX_SIZE)
             settings.subtitleTextSize = value;
@@ -265,6 +270,9 @@ public class SettingsManager {
 
         settings.textSize = textSize;
         settings.fullscreenEnabled = fullscreenEnabled;
+        settings.subtitlesEnabled = subtitlesEnabled;
+        settings.subtitleTextSize = subtitleTextSize;
+        settings.subtitleBackgroundOpacity = subtitleBackgroundOpacity;
 
         settings.inputSensitivity = inputSensitivity;
         settings.rumbleEnabled = rumbleEnabled;
@@ -312,7 +320,7 @@ public class SettingsManager {
 
         public bool subtitlesEnabled = false;
         public int subtitleTextSize = 42;
-        public float subtitleBackgroundOpacity = 10;
+        public int subtitleBackgroundOpacity = 10;
 
         // Input
         public int inputSensitivity = 5;
