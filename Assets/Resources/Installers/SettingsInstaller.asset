@@ -15,16 +15,31 @@ MonoBehaviour:
   settingsManager:
     classicFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     dyslexicFont: {fileID: 12800000, guid: ec11d4c8418df3149936abf57da69f7a, type: 3}
+    classicTMPFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    dyslexicTMPFont: {fileID: 11400000, guid: 329869b2777f9594fad09188aea44070, type: 2}
     dyslexicTextEnabled: 0
     textSize: 28
     gameSpeed: 100
     subtitlesEnabled: 0
     subtitleTextSize: 42
-    subtitleBackgroundEnabled: 1
-    subtitleColorEnabled: 1
+    subtitleBackgroundOpacity: 10
     autoAimEnabled: 1
     autoAimStrength: 100
     fullscreenEnabled: 1
     inputSensitivity: 5
     rumbleEnabled: 1
     rumbleSensitivity: 100
+    settings:
+      gameSpeed: 100
+      autoAimEnabled: 1
+      autoAimStrength: 100
+      textSize: 28
+      fullscreenEnabled: 1
+      screenWidth: 0
+      screenHeight: 0
+      subtitlesEnabled: 0
+      subtitleTextSize: 42
+      subtitleBackgroundOpacity: 10
+      inputSensitivity: 5
+      rumbleEnabled: 1
+      rumbleSensitivity: 100

@@ -9,6 +9,8 @@ public class SettingsManager {
     [Header("Text")]
     [SerializeField] private Font classicFont;
     [SerializeField] private Font dyslexicFont;
+    [SerializeField] private TMPro.TMP_FontAsset classicTMPFont;
+    [SerializeField] private TMPro.TMP_FontAsset dyslexicTMPFont;
     [SerializeField] private bool dyslexicTextEnabled = false;
     [SerializeField] [Range(28, 100)] private int textSize = 28;
     private int TEXT_SIZE_MIN = 28;
@@ -234,14 +236,23 @@ public class SettingsManager {
     public void UpdateFont()
     {
         var textComponents = Component.FindObjectsOfType<Text>();
+        var tmpTextComponents = Component.FindObjectsOfType<TMPro.TMP_Text>();
 
         if (dyslexicTextEnabled) { // Change all text to use Dyslexic font
             foreach (var component in textComponents)
                 component.font = dyslexicFont;
+
+            foreach (var component in tmpTextComponents)
+                component.font = dyslexicTMPFont;
         } else { // Change back to Arial
             foreach (var component in textComponents) {
                 if (component.gameObject.name != "DyslexicText")
                     component.font = classicFont;
+            }
+
+            foreach (var component in tmpTextComponents) {
+                if (component.gameObject.name != "DyslexicText")
+                    component.font = classicTMPFont;
             }
         }
     }

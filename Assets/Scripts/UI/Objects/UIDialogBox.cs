@@ -31,11 +31,17 @@ public class UIDialogBox : MonoBehaviour
                 ConfirmButton.gameObject.SetActive(false);
                 CancelButton.gameObject.SetActive(false);
                 OkButton.gameObject.SetActive(true);
+
+                OkButton.Select();
+                OkButton.OnSelect(null);
             } else {
                 ConfirmButton.gameObject.SetActive(true);
                 CancelButton.gameObject.SetActive(true);
                 OkButton.gameObject.SetActive(false);
                 onClickCancel = onCancel;
+
+                ConfirmButton.Select();
+                ConfirmButton.OnSelect(null);
             }
 
             dialogText.text = popupText;

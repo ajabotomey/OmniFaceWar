@@ -32,6 +32,9 @@ public class SettingsMenuController : MonoBehaviour
     [SerializeField] private UISlider subtitleTextSize;
     [SerializeField] private UISlider subtitleOpacity;
 
+    [Header("Sound UI Widgets")]
+    [SerializeField] private UISlider audioSoundVolume;
+
     [Header("Input UI Widgets")]
     [SerializeField] private UISlider inputSensitivitySlider;
     [SerializeField] private UIToggle rumbleEnabledToggle;
@@ -133,7 +136,7 @@ public class SettingsMenuController : MonoBehaviour
 
     public void ConfirmChanges()
     {
-        UIDialogBox.Instance.ShowPopUp("Would you like to save those changes?", ApplyChanges, UIDialogBox.Instance.HidePopUp);
+        UIDialogBox.Instance.ShowPopUp("Would you like to save those changes?", ApplyChanges, HideDialogBox);
     }
 
     public void ApplyChanges()
@@ -142,7 +145,15 @@ public class SettingsMenuController : MonoBehaviour
 
         settingsManager.SetResolution(resolutionDropdown.GetValue());
 
+        HideDialogBox();
+    }
+
+    public void HideDialogBox()
+    {
         UIDialogBox.Instance.HidePopUp();
+
+        applyChangesButton.Select();
+        applyChangesButton.OnSelect(null);
     }
 
     #region Change Value methods
