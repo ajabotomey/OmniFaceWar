@@ -24,8 +24,8 @@ public class SettingsManager {
     [SerializeField] [Range(42, 100)] private int subtitleTextSize = 42;
     private int SUBTITLE_MIN_SIZE = 42;
     private int SUBTITLE_MAX_SIZE = 100;
-    [SerializeField] private bool subtitleBackgroundEnabled = true;
-    [SerializeField] private bool subtitleColorEnabled = true;
+    [SerializeField] [Range(0, 10)] private float subtitleBackgroundOpacity = 10;
+    //[SerializeField] private bool subtitleBackgroundEnabled = true;
 
     [Header("Auto-aim")]
     [SerializeField] private bool autoAimEnabled = false;
@@ -104,11 +104,6 @@ public class SettingsManager {
     public bool IsSubtitlesEnabled()
     {
         return subtitlesEnabled;
-    }
-
-    public bool IsSubtitleBackgroundEnabled()
-    {
-        return subtitleBackgroundEnabled;
     }
 
     public int GetSubtitleTextSize()
@@ -204,15 +199,17 @@ public class SettingsManager {
         settings.subtitlesEnabled = !settings.subtitlesEnabled;
     }
 
-    public void SubtitleBackgroundToggle()
-    {
-        settings.subtitleBackgroundEnabled = !settings.subtitleBackgroundEnabled;
-    }
-
     public void SetSubtitleText(int value)
     {
         if (value >= SUBTITLE_MIN_SIZE && value <= SUBTITLE_MAX_SIZE)
             settings.subtitleTextSize = value;
+    }
+
+    public void SetSubtitleBackgroundOpacity(int value)
+    {
+        if (value >= 0 && value <= 10) {
+            settings.subtitleBackgroundOpacity = value;
+        }
     }
 
     public void SetInputSensitivity(int value)
@@ -271,6 +268,9 @@ public class SettingsManager {
 
         textSize = settings.textSize;
         fullscreenEnabled = settings.fullscreenEnabled;
+        subtitlesEnabled = settings.subtitlesEnabled;
+        subtitleTextSize = settings.subtitleTextSize;
+        subtitleBackgroundOpacity = settings.subtitleBackgroundOpacity;
 
         inputSensitivity = settings.inputSensitivity;
         rumbleEnabled = settings.rumbleEnabled;
@@ -301,8 +301,7 @@ public class SettingsManager {
 
         public bool subtitlesEnabled = false;
         public int subtitleTextSize = 42;
-        public bool subtitleBackgroundEnabled = true;
-        public bool subtitleColorEnabled = true;
+        public float subtitleBackgroundOpacity = 10;
 
         // Input
         public int inputSensitivity = 5;

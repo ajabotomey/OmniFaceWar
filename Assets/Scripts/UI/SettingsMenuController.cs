@@ -28,6 +28,9 @@ public class SettingsMenuController : MonoBehaviour
     [SerializeField] private UISlider textSizeSlider;
     [SerializeField] private UIDropdown resolutionDropdown;
     [SerializeField] private UIToggle fullscreenToggle;
+    [SerializeField] private UIToggle subtitlesEnabled;
+    [SerializeField] private UISlider subtitleTextSize;
+    [SerializeField] private UISlider subtitleOpacity;
 
     [Header("Input UI Widgets")]
     [SerializeField] private UISlider inputSensitivitySlider;
