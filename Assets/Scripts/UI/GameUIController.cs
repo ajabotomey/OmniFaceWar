@@ -36,6 +36,7 @@ public class GameUIController : MonoBehaviour
 
     [Inject] private HeatmapUploadController heatmap;
     [Inject] private IInputController inputController;
+    [Inject] private SettingsManager settingsManager;
 
     private float elapsedTime;
     private float refreshTime = 3.0f;
@@ -158,7 +159,7 @@ public class GameUIController : MonoBehaviour
     private void UnpauseGame()
     {
         paused = false;
-        Time.timeScale = 1.0f;
+        Time.timeScale = settingsManager.CurrentGameSpeed() / 100f;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }

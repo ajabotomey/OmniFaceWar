@@ -14,7 +14,7 @@ public class SettingsManager {
     [SerializeField] private bool dyslexicTextEnabled = false;
     [SerializeField] [Range(28, 100)] private int textSize = 28;
     private int TEXT_SIZE_MIN = 28;
-    private int TEXT_SIZE_MAX = 100;
+    private int TEXT_SIZE_MAX = 42;
 
     [Header("Game Speed")]
     [SerializeField] [Range(10, 100)] private float gameSpeed = 100;
@@ -260,6 +260,30 @@ public class SettingsManager {
                     component.font = classicTMPFont;
             }
         }
+    }
+
+    public void UpdateTextSize()
+    {
+        //var textComponents = Component.FindObjectsOfType<Text>();
+        //var tmpTextComponents = Component.FindObjectsOfType<TMPro.TMP_Text>();
+
+        //if (dyslexicTextEnabled) { // Change all text to use Dyslexic font
+        //    foreach (var component in textComponents)
+        //        component.fontSize = textSize;
+
+        //    foreach (var component in tmpTextComponents)
+        //        component.font = dyslexicTMPFont;
+        //} else { // Change back to Arial
+        //    foreach (var component in textComponents) {
+        //        if (component.gameObject.name != "DyslexicText")
+        //            component.font = classicFont;
+        //    }
+
+        //    foreach (var component in tmpTextComponents) {
+        //        if (component.gameObject.name != "DyslexicText")
+        //            component.font = classicTMPFont;
+        //    }
+        //}
     }
 
     public void LoadSettings()
