@@ -2342,18 +2342,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &815839893 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7072174977982101718, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-    type: 3}
-  m_PrefabInstance: {fileID: 1976648654}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19584024c0db3924b8ab54a9116a1604, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &865627830 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8679208305817274397, guid: 238c9c12b57ad7b4c95dab29741414c2,
@@ -7165,71 +7153,6 @@ PrefabInstance:
       propertyPath: uiCamera
       value: 
       objectReference: {fileID: 207841479}
-    - target: {fileID: 7072174977982101716, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7072174979443224935, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8046109739162256751, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3532257754883871536, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RumbleToggle
-      objectReference: {fileID: 0}
-    - target: {fileID: 3532257755879724878, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FullscreenToggle
-      objectReference: {fileID: 0}
-    - target: {fileID: 3532257755879724878, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4430094022292390455, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1697429507363717402, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3532257755145800336, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3532257755145800336, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 815839893}
-    - target: {fileID: 3532257755145800336, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SubtitleToggle
-      objectReference: {fileID: 0}
-    - target: {fileID: 3532257755145800336, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3532257755145800336, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e91f16d6dc3d7fd42a8dbb5906431344, type: 3}
 --- !u!114 &1976648655 stripped

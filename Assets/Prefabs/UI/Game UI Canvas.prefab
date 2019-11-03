@@ -5383,11 +5383,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PopUpPanel
       objectReference: {fileID: 0}
-    - target: {fileID: 1349058038735396011, guid: 185a7ac2a04c41e41abae6c3b9c1cc19,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2730842468740629546, guid: 185a7ac2a04c41e41abae6c3b9c1cc19,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5923,11 +5918,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 8415529385503555149, guid: 633e239309cb5f34e96ecceaa942cdc7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8415529385503555148, guid: 633e239309cb5f34e96ecceaa942cdc7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6109,15 +6099,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ReturnToPauseMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 8415529386863097854, guid: 633e239309cb5f34e96ecceaa942cdc7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9162426204619093778, guid: 633e239309cb5f34e96ecceaa942cdc7,
         type: 3}
       propertyPath: tooltipText
-      value: Enables Dyslexic Text for all text components
+      value: Enables Dyslexic Text for all text components. Updates automatically
       objectReference: {fileID: 0}
     - target: {fileID: 9162426204619093778, guid: 633e239309cb5f34e96ecceaa942cdc7,
         type: 3}
@@ -6159,15 +6144,55 @@ PrefabInstance:
       propertyPath: m_Navigation.m_SelectOnRight
       value: 
       objectReference: {fileID: 3532257755145800336}
+    - target: {fileID: 2875978791582895178, guid: 633e239309cb5f34e96ecceaa942cdc7,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DyslexicToggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875978791582895178, guid: 633e239309cb5f34e96ecceaa942cdc7,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875978791706121641, guid: 633e239309cb5f34e96ecceaa942cdc7,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RumbleToggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875978792719864279, guid: 633e239309cb5f34e96ecceaa942cdc7,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FullscreenToggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875978792719864279, guid: 633e239309cb5f34e96ecceaa942cdc7,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4967121717496835600, guid: 633e239309cb5f34e96ecceaa942cdc7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 450
       objectReference: {fileID: 0}
+    - target: {fileID: 8738418014436213750, guid: 633e239309cb5f34e96ecceaa942cdc7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7509197887707950557, guid: 633e239309cb5f34e96ecceaa942cdc7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 99894941020702595, guid: 633e239309cb5f34e96ecceaa942cdc7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140774502608815278, guid: 633e239309cb5f34e96ecceaa942cdc7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2875978790903614473, guid: 633e239309cb5f34e96ecceaa942cdc7,
         type: 3}
