@@ -392,6 +392,9 @@ public class SettingsManager {
         audioSpeakerMode = settings.audioSpeakerMode;
 
         // Apply full screen
+
+        // Apply sound changes
+        AudioSettings.speakerMode = audioSpeakerMode;
     }
 
     // TODO: Get settings and translate to analytics
