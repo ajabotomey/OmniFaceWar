@@ -120,6 +120,33 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &10094986 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 371571859, guid: 238c9c12b57ad7b4c95dab29741414c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 529542888}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &10094987 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 371571861, guid: 238c9c12b57ad7b4c95dab29741414c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 529542888}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &10094989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10094986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa895fec5f0475c489ba623f9a08e343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowOffset: {x: 0, y: 0}
+  shadowMaterial: {fileID: 2100000, guid: 303e03ab2c171204386e54f798ad4b5e, type: 2}
+  spriteRenderer: {fileID: 10094987}
 --- !u!1 &29276547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1728,6 +1755,10 @@ PrefabInstance:
     - target: {fileID: 371571861, guid: 238c9c12b57ad7b4c95dab29741414c2, type: 3}
       propertyPath: m_Color.b
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371571861, guid: 238c9c12b57ad7b4c95dab29741414c2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 9000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 238c9c12b57ad7b4c95dab29741414c2, type: 3}
@@ -7148,11 +7179,31 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 207841479}
+    - target: {fileID: 5567816428608361321, guid: e91f16d6dc3d7fd42a8dbb5906431344,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 9001
+      objectReference: {fileID: 0}
     - target: {fileID: 5432346915572930036, guid: e91f16d6dc3d7fd42a8dbb5906431344,
         type: 3}
       propertyPath: uiCamera
       value: 
       objectReference: {fileID: 207841479}
+    - target: {fileID: 2801187630144223811, guid: e91f16d6dc3d7fd42a8dbb5906431344,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801187630144223811, guid: e91f16d6dc3d7fd42a8dbb5906431344,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349058036748643006, guid: e91f16d6dc3d7fd42a8dbb5906431344,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e91f16d6dc3d7fd42a8dbb5906431344, type: 3}
 --- !u!114 &1976648655 stripped
