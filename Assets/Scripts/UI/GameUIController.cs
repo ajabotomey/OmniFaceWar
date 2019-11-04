@@ -29,7 +29,10 @@ public class GameUIController : MonoBehaviour
     [Header("Subtitle System")]
     [SerializeField] private CanvasGroup subtitlePanel;
     [SerializeField] private TMP_Text subtitleText;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource voiceAudioSource;
+
+    [Header("Music Player")]
+    [SerializeField] private AudioSource musicPlayerSource;
 
     [Header("HUD Elements")]
     [SerializeField] private GameObject gameplayHUD;
@@ -158,6 +161,11 @@ public class GameUIController : MonoBehaviour
 
     private void UnpauseGame()
     {
+        // Fix volume settings
+        voiceAudioSource.volume = Mathf.Clamp01(settingsManager.GetVoiceVolume());
+        musicPlayerSource.volume = Mathf.Clamp01(settingsManager.GetMusicVolume());
+
+        // Unpause the game
         paused = false;
         Time.timeScale = settingsManager.CurrentGameSpeed() / 100f;
         Cursor.visible = false;
@@ -235,15 +243,15 @@ public class GameUIController : MonoBehaviour
         }
         yield return new WaitForSeconds(1);
         // This is working
-        audioSource.clip = clip.Audio;
-        audioSource.Play();
+        voiceAudioSource.clip = clip.Audio;
+        voiceAudioSource.Play();
 
         yield return new WaitForEndOfFrame();
     }
 
     private IEnumerator FadeAfterAudio()
     {
-        while (audioSource.isPlaying) {
+        while (voiceAudioSource.isPlaying) {
             yield return new WaitForEndOfFrame();
         }
 

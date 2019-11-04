@@ -29,6 +29,11 @@ MonoBehaviour:
     inputSensitivity: 5
     rumbleEnabled: 1
     rumbleSensitivity: 100
+    inputDelayEnabled: 0
+    soundFXVolume: 10
+    musicVolume: 10
+    voiceVolume: 10
+    audioSpeakerMode: 2
     settings:
       gameSpeed: 100
       autoAimEnabled: 1
@@ -43,3 +48,8 @@ MonoBehaviour:
       inputSensitivity: 5
       rumbleEnabled: 1
       rumbleSensitivity: 100
+      inputDelayEnabled: 0
+      soundFXVolume: 10
+      musicVolume: 10
+      voiceVolume: 10
+      audioSpeakerMode: 2

@@ -42,7 +42,7 @@ public class SettingsManager {
     private List<string> resolutionsSupported;
     private int screenWidth, screenHeight;
 
-    [Header("Input Sensitivity")]
+    [Header("Input Settings")]
     [SerializeField] [Range(1, 10)] private int inputSensitivity = 5;
     private int INPUT_SENSITIVITY_MIN = 1;
     private int INPUT_SENSITIVITY_MAX = 10;
@@ -50,6 +50,15 @@ public class SettingsManager {
     [SerializeField] [Range(1, 100)] private int rumbleSensitivity = 100;
     private int RUMBLE_SENSITIVITY_MIN = 1;
     private int RUMBLE_SENSITIVITY_MAX = 100;
+    [SerializeField] private bool inputDelayEnabled = false;
+
+    [Header("Audio Settings")]
+    [SerializeField] [Range(0, 10)] private int soundFXVolume = 10;
+    [SerializeField] [Range(0, 10)] private int musicVolume = 10;
+    [SerializeField] [Range(0, 10)] private int voiceVolume = 10;
+    private int SOUND_MIN = 0;
+    private int SOUND_MAX = 10;
+    [SerializeField] private AudioSpeakerMode audioSpeakerMode = AudioSpeakerMode.Stereo;
 
     public ModifiedSettings settings;
 
@@ -148,6 +157,26 @@ public class SettingsManager {
         return screenHeight;
     }
 
+    public int GetSoundFXVolume()
+    {
+        return soundFXVolume;
+    }
+
+    public int GetMusicVolume()
+    {
+        return musicVolume;
+    }
+
+    public int GetVoiceVolume()
+    {
+        return voiceVolume;
+    }
+
+    public int GetAudioPlaybackType()
+    {
+        return (int)audioSpeakerMode;
+    }
+
     #endregion
 
     #region Mutator Methods
@@ -236,6 +265,37 @@ public class SettingsManager {
             settings.rumbleSensitivity = value;
     }
 
+    public void InputDelayToggle()
+    {
+        settings.inputDelayEnabled = !settings.inputDelayEnabled;
+    }
+
+    public void SetSoundFXVolume(int value)
+    {
+        if (value >= SOUND_MIN && value <= SOUND_MAX) {
+            settings.soundFXVolume = value;
+        }
+    }
+
+    public void SetMusicVolume(int value)
+    {
+        if (value >= SOUND_MIN && value <= SOUND_MAX) {
+            settings.musicVolume = value;
+        }
+    }
+
+    public void SetVoiceVolume(int value)
+    {
+        if (value >= SOUND_MIN && value <= SOUND_MAX) {
+            settings.voiceVolume = value;
+        }
+    }
+
+    public void SetAudioPlaybackType(int index)
+    {
+        settings.audioSpeakerMode = (AudioSpeakerMode)index;
+    }
+
     #endregion
 
     public void UpdateFont()
@@ -301,6 +361,12 @@ public class SettingsManager {
         settings.inputSensitivity = inputSensitivity;
         settings.rumbleEnabled = rumbleEnabled;
         settings.rumbleSensitivity = rumbleSensitivity;
+        settings.inputDelayEnabled = inputDelayEnabled;
+
+        settings.soundFXVolume = soundFXVolume;
+        settings.musicVolume = musicVolume;
+        settings.voiceVolume = voiceVolume;
+        settings.audioSpeakerMode = audioSpeakerMode;
     }
 
     public void SaveSettings()
@@ -318,6 +384,14 @@ public class SettingsManager {
         inputSensitivity = settings.inputSensitivity;
         rumbleEnabled = settings.rumbleEnabled;
         rumbleSensitivity = settings.rumbleSensitivity;
+        inputDelayEnabled = settings.inputDelayEnabled;
+
+        soundFXVolume = settings.soundFXVolume;
+        musicVolume = settings.musicVolume;
+        voiceVolume = settings.voiceVolume;
+        audioSpeakerMode = settings.audioSpeakerMode;
+
+        // Apply full screen
     }
 
     // TODO: Get settings and translate to analytics
@@ -350,5 +424,12 @@ public class SettingsManager {
         public int inputSensitivity = 5;
         public bool rumbleEnabled = true;
         public int rumbleSensitivity = 100;
+        public bool inputDelayEnabled = false;
+
+        // Sound
+        public int soundFXVolume = 10;
+        public int musicVolume = 10;
+        public int voiceVolume = 10;
+        public AudioSpeakerMode audioSpeakerMode = AudioSpeakerMode.Stereo;
     }
 }

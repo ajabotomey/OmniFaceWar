@@ -27,6 +27,12 @@ public class UIDropdown : UIObject
         currentValue = dropdown.options[change.value].text;
     }
 
+    public void SetValue(int index)
+    {
+        currentValue = dropdown.options[index].text;
+        dropdown.value = index;
+    }
+
     public string GetValue()
     {
         return currentValue;

@@ -48,6 +48,8 @@ public class InputController : IInputController
 
     Vector2 aim;
 
+    private float inputDelay = 0.5f;
+
     public InputController()
     {
         player = ReInput.players.GetPlayer(playerID);

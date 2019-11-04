@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using System;
 
 public class SettingsMenuController : MonoBehaviour
 {
@@ -33,7 +34,10 @@ public class SettingsMenuController : MonoBehaviour
     [SerializeField] private UISlider subtitleOpacitySlider;
 
     [Header("Sound UI Widgets")]
-    [SerializeField] private UISlider audioSoundVolume;
+    [SerializeField] private UISlider soundFXVolumeSlider;
+    [SerializeField] private UISlider musicVolumeSlider;
+    [SerializeField] private UISlider voiceVolumeSlider;
+    [SerializeField] private UIDropdown audioPlaybackTypeDropdown;
 
     [Header("Input UI Widgets")]
     [SerializeField] private UISlider inputSensitivitySlider;
@@ -63,7 +67,15 @@ public class SettingsMenuController : MonoBehaviour
 
     void Start()
     {
+        // General
         var gameSpeed = settingsManager.CurrentGameSpeed();
+        var autoAimEnabled = settingsManager.IsAutoAimEnabled();
+        var autoAimStrength = settingsManager.GetAutoAimStrength();
+        gameSpeedSlider.SetValue((int)gameSpeed);
+        autoAimToggle.SetValue(autoAimEnabled);
+        autoAimStrengthSlider.SetValue(autoAimStrength);
+
+        // Video
         var dyslexicText = settingsManager.IsDyslexicTextEnabled();
         var textSize = settingsManager.CurrentTextSize();
         var supportedResolutions = settingsManager.ResolutionsSupported();
@@ -71,18 +83,6 @@ public class SettingsMenuController : MonoBehaviour
         var subtitlesEnabled = settingsManager.IsSubtitlesEnabled();
         var subtitleTextSize = settingsManager.GetSubtitleTextSize();
         var subtitleOpacity = settingsManager.GetSubtitleOpacity();
-        var autoAimEnabled = settingsManager.IsAutoAimEnabled();
-        var autoAimStrength = settingsManager.GetAutoAimStrength();
-        var inputSensitivity = settingsManager.GetInputSensitivity();
-        var rumbleEnabled = settingsManager.IsRumbleEnabled();
-        var rumbleSensitivity = settingsManager.GetRumbleSensitivity();
-
-        // General
-        gameSpeedSlider.SetValue((int)gameSpeed);
-        autoAimToggle.SetValue(autoAimEnabled);
-        autoAimStrengthSlider.SetValue(autoAimStrength);
-
-        // Video
         dyslexicTextToggle.SetValueWithoutNotify(dyslexicText);
         textSizeSlider.SetValue(textSize);
         resolutionDropdown.SetOptions(supportedResolutions);
@@ -92,8 +92,20 @@ public class SettingsMenuController : MonoBehaviour
         subtitleOpacitySlider.SetValue(subtitleOpacity);
 
         // Sound
+        var soundFXVolume = settingsManager.GetSoundFXVolume();
+        var musicVolume = settingsManager.GetMusicVolume();
+        var voiceVolume = settingsManager.GetVoiceVolume();
+        var audioPlaybackType = settingsManager.GetAudioPlaybackType();
+        soundFXVolumeSlider.SetValue(soundFXVolume);
+        musicVolumeSlider.SetValue(musicVolume);
+        voiceVolumeSlider.SetValue(voiceVolume);
+        PopulateAudioPlaybackDropdown();
+        audioPlaybackTypeDropdown.SetValue(audioPlaybackType);
 
         // Input
+        var inputSensitivity = settingsManager.GetInputSensitivity();
+        var rumbleEnabled = settingsManager.IsRumbleEnabled();
+        var rumbleSensitivity = settingsManager.GetRumbleSensitivity();
         inputSensitivitySlider.SetValue(inputSensitivity);
         rumbleEnabledToggle.SetValue(rumbleEnabled);
         rumbleSensitivitySlider.SetValue(rumbleSensitivity);
@@ -159,6 +171,13 @@ public class SettingsMenuController : MonoBehaviour
 
         applyChangesButton.Select();
         applyChangesButton.OnSelect(null);
+    }
+
+    public void PopulateAudioPlaybackDropdown()
+    {
+        string[] enumNames = Enum.GetNames(typeof(AudioSpeakerMode));
+        List<string> names = new List<string>(enumNames);
+        audioPlaybackTypeDropdown.SetOptions(names);
     }
 
     #region Change Value methods
@@ -269,16 +288,6 @@ public class SettingsMenuController : MonoBehaviour
         settingsManager.SetTextSize((int)value);
     }
 
-    public void SetInputSensitivity(float value)
-    {
-        settingsManager.SetInputSensitivity((int)value);
-    }
-
-    public void SetRumbleSensitivity(float value)
-    {
-        settingsManager.SetRumbleSensitivity((int)value);
-    }
-
     public void SetSubtitleTextSize(float value)
     {
         settingsManager.SetSubtitleTextSize((int)value);
@@ -287,6 +296,37 @@ public class SettingsMenuController : MonoBehaviour
     public void SetSubtitleBackgroundOpacity(float value)
     {
         settingsManager.SetSubtitleBackgroundOpacity((int)value);
+    }
+
+    public void SetSoundFXVolume(float value)
+    {
+        settingsManager.SetSoundFXVolume((int)value);
+    }
+
+    public void SetMusicVolume(float value)
+    {
+        settingsManager.SetMusicVolume((int)value);
+    }
+
+    public void SetVoiceVolume(float value)
+    {
+        settingsManager.SetVoiceVolume((int)value);
+    }
+
+    public void SetAudioPlaybackType(int index)
+    {
+        audioPlaybackTypeDropdown.SetValue(index);
+        settingsManager.SetAudioPlaybackType(index);
+    }
+
+    public void SetInputSensitivity(float value)
+    {
+        settingsManager.SetInputSensitivity((int)value);
+    }
+
+    public void SetRumbleSensitivity(float value)
+    {
+        settingsManager.SetRumbleSensitivity((int)value);
     }
 
     #endregion

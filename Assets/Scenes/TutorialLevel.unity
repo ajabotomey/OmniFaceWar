@@ -7179,31 +7179,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 207841479}
-    - target: {fileID: 5567816428608361321, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 9001
-      objectReference: {fileID: 0}
     - target: {fileID: 5432346915572930036, guid: e91f16d6dc3d7fd42a8dbb5906431344,
         type: 3}
       propertyPath: uiCamera
       value: 
       objectReference: {fileID: 207841479}
-    - target: {fileID: 2801187630144223811, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 42
-      objectReference: {fileID: 0}
-    - target: {fileID: 2801187630144223811, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 42
-      objectReference: {fileID: 0}
-    - target: {fileID: 1349058036748643006, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e91f16d6dc3d7fd42a8dbb5906431344, type: 3}
 --- !u!114 &1976648655 stripped
