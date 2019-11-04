@@ -9,11 +9,13 @@ public class Bullet : MonoBehaviour
     private int damage;
 
     private IInputController _inputController;
+    private SettingsManager _settingsManager;
 
     [Inject]
-    public void Construct(IInputController inputController)
+    public void Construct(IInputController inputController, SettingsManager settings)
     {
         _inputController = inputController;
+        _settingsManager = settings;
     }
 
     public void SetDamage(int damage)
@@ -27,12 +29,16 @@ public class Bullet : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player") {
             //collision.gameObject.GetComponent<EntityHealth>().ApplyDamage(damage);
-            _inputController.SetRumble(1.0f);
+
+            if (_settingsManager.IsRumbleEnabled())
+                _inputController.SetRumble(1.0f);
         }
 
         if (collision.gameObject.tag == "Destructible Object") {
             collision.gameObject.GetComponent<DestructibleObject>().TakeDamage(damage);
-            _inputController.SetRumble(0.2f);
+
+            if (_settingsManager.IsRumbleEnabled())
+                _inputController.SetRumble(0.2f);
         }
 
         Destroy(gameObject);

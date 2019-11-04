@@ -100,7 +100,8 @@ public class GunComponent : MonoBehaviour
 
                     currentWeapon.Fire();
 
-                    _inputController.SetRumble(0.1f);
+                    if (_settingsManager.IsRumbleEnabled())
+                        _inputController.SetRumble(0.1f);
 
                     elapsedTime = 0.0f;
                 } else {
