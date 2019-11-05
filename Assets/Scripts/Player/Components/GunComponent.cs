@@ -85,11 +85,10 @@ public class GunComponent : MonoBehaviour
         if (aim.magnitude > 0.0f) {
             // Check fire rate
             if (elapsedTime >= currentWeapon.GetFireRate()) {
-                // Check if gun has enough energy
-                if (currentWeapon.CanWeaponFire() && !currentWeapon.IsHackTypeGun()) {
+                // Check if gun has enough energy, make sure it is also a Bullet Type Gun as well
+                if (currentWeapon.CanWeaponFire() && currentWeapon is BulletTypeGun) {
                     Bullet firedBullet = _bulletFactory.Create();
 
-                    //firedBullet.SetDamage(currentWeapon.Damage);
                     int damage = ((BulletTypeGun)currentWeapon).Damage;
                     firedBullet.SetDamage(damage);
 
