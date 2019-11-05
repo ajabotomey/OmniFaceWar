@@ -35,7 +35,18 @@ public class Bullet : MonoBehaviour
         }
 
         if (collision.gameObject.tag == "Destructible Object") {
-            collision.gameObject.GetComponent<DestructibleObject>().TakeDamage(damage);
+
+            DestructibleTileMap damageable = collision.gameObject.GetComponent<DestructibleTileMap>();
+            if (!Equals(damageable, null)) {
+                // Retrieve array of contacts first
+                ContactPoint2D[] contacts = new ContactPoint2D[collision.contactCount];
+                collision.GetContacts(contacts);
+
+                // For each contact in collision
+                foreach (var contact in contacts) {
+                    damageable.Damage(contact.point, damage);
+                }
+            }
 
             if (_settingsManager.IsRumbleEnabled())
                 _inputController.SetRumble(0.2f);
