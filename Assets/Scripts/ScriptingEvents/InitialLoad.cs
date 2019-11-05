@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class InitialLoad : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class InitialLoad : MonoBehaviour
     [SerializeField] private SubtitleClip rotationClip;
     [SerializeField] private SubtitleClip shootingClip;
 
+    [Inject] private CameraShake cameraShake;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +30,9 @@ public class InitialLoad : MonoBehaviour
 
     IEnumerator PushNotifications()
     {
+        yield return new WaitForSeconds(3);
+        cameraShake.TriggerShake();
+        yield return new WaitForSeconds(3);
         GameUIController.Instance.PushNotification(movement);
         GameUIController.Instance.ShowSubtitles(movementClip);
         yield return new WaitForSeconds(3);
