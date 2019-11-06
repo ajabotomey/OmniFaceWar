@@ -27,11 +27,16 @@ public class Bullet : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
 
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player") {
-            //collision.gameObject.GetComponent<EntityHealth>().ApplyDamage(damage);
+        //if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player") {
+        //    //collision.gameObject.GetComponent<EntityHealth>().ApplyDamage(damage);
+            
 
-            if (_settingsManager.IsRumbleEnabled())
-                _inputController.SetRumble(1.0f);
+        //    if (_settingsManager.IsRumbleEnabled())
+        //        _inputController.SetRumble(1.0f);
+        //}
+
+        if (collision.gameObject.tag == "Enemy") {
+            collision.gameObject.GetComponent<TestAI>().TakeDamage(damage);
         }
 
         if (collision.gameObject.tag == "Destructible Object") {

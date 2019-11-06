@@ -17,4 +17,19 @@ public class AStarCompiler : MonoBehaviour
     {
         
     }
+
+    // Calculate Euclidean Cost
+    private float CalculateEuclideanCost(AStarNode startNode, AStarNode endNode)
+    {
+        // find vector between positions
+        Vector2 vecCost = new Vector2(startNode.Position.x - endNode.Position.x, startNode.Position.y - endNode.Position.y);
+        // return the magnitude
+        return vecCost.magnitude;
+    }
+
+    // Create A* Path
+
+
+    // Calculate Path
+
 }

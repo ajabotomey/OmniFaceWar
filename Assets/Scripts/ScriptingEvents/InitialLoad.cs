@@ -17,32 +17,41 @@ public class InitialLoad : MonoBehaviour
     [SerializeField] private SubtitleClip rotationClip;
     [SerializeField] private SubtitleClip shootingClip;
 
+    [Header("Objectives")]
+    [SerializeField] private Objective objective;
+    [SerializeField] private ObjectivesPanel panel;
+
     [Inject] private CameraShake cameraShake;
+    [Inject] private ObjectivesManager objectivesManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        objectivesManager.SetCurrentObjective(objective);
+        ((EliminationObjective)objective).ResetObjective();
+        panel.Initialize();
+
         // Reset tutorial notifications
 
         //GameUIController.Instance.PushNotification(firstNotification);
-        StartCoroutine(PushNotifications());
+        //StartCoroutine(PushNotifications());
     }
 
     IEnumerator PushNotifications()
     {
-        yield return new WaitForSeconds(3);
-        cameraShake.TriggerShake();
-        yield return new WaitForSeconds(3);
-        GameUIController.Instance.PushNotification(movement);
-        GameUIController.Instance.ShowSubtitles(movementClip);
-        yield return new WaitForSeconds(3);
-        GameUIController.Instance.PushNotification(rotation);
-        GameUIController.Instance.ShowSubtitles(rotationClip);
-        yield return new WaitForSeconds(3);
-        GameUIController.Instance.PushNotification(shooting);
-        GameUIController.Instance.ShowSubtitles(shootingClip);
-        yield return new WaitForSeconds(2);
-        GameUIController.Instance.HideSubtitles();
+        //yield return new WaitForSeconds(3);
+        //cameraShake.TriggerShake();
+        //yield return new WaitForSeconds(3);
+        //GameUIController.Instance.PushNotification(movement);
+        //GameUIController.Instance.ShowSubtitles(movementClip);
+        //yield return new WaitForSeconds(3);
+        //GameUIController.Instance.PushNotification(rotation);
+        //GameUIController.Instance.ShowSubtitles(rotationClip);
+        //yield return new WaitForSeconds(3);
+        //GameUIController.Instance.PushNotification(shooting);
+        //GameUIController.Instance.ShowSubtitles(shootingClip);
+        //yield return new WaitForSeconds(2);
+        //GameUIController.Instance.HideSubtitles();
 
         yield return null;
     }

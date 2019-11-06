@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Linq;
 
 // Holds all of the notifications
-[CreateAssetMenu(fileName = "Notifications Manager", menuName = "Notification System/Notification Manager")]
+[CreateAssetMenu(fileName = "Notifications Manager", menuName = "Notification System/Create Notification Manager")]
 public class NotificationsManager : ScriptableObject
 {
     [SerializeField] private List<Notification> notifications;

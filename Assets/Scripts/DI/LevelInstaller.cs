@@ -17,6 +17,9 @@ public class LevelInstaller : MonoInstaller
     [Header("Camera Shake")]
     [SerializeField] private CameraShake cameraShake;
 
+    [Header("Objectives Manager")]
+    [SerializeField] private ObjectivesManager objectivesManager;
+
     public override void InstallBindings()
     {
         // Bind Heatmap controller
@@ -27,6 +30,9 @@ public class LevelInstaller : MonoInstaller
 
         // Bind Camera Shake
         Container.Bind<CameraShake>().FromInstance(cameraShake).AsSingle();
+
+        // Bind Objectives manager
+        Container.Bind<ObjectivesManager>().FromInstance(objectivesManager).AsSingle();
 
         // Bind player and gadgets
         Container.Bind<PlayerControl>().FromInstance(playerControl);
