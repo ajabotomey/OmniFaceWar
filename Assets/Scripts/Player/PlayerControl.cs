@@ -47,8 +47,22 @@ public class PlayerControl : MonoBehaviour
         elapsedTime = 0.0f;
     }
 
+    //[Inject]
+    //public void Construct(IInputController inputController)
+    //{
+    //    _inputController = inputController;
+
+    //    Cursor.lockState = CursorLockMode.Locked;
+    //    Cursor.visible = false;
+
+    //    elapsedTime = 0.0f;
+    //}
+
     void Update()
     {
+        if (!health.HasHealthBar())
+            health.SetHealthBar(_gameUI.GetHealthBar());
+
         if (_gameUI.IsInteractingWithUI()) {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -58,7 +72,7 @@ public class PlayerControl : MonoBehaviour
             SetAim();
             MoveCrosshair();
         }
-        
+
         // Update heatmap position
         if (elapsedTime >= refreshRate) {
             _heatmap.AddPosition(transform.position);

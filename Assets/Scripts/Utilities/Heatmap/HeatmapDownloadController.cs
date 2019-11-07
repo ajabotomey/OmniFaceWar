@@ -17,6 +17,7 @@ public class HeatmapDownloadController : MonoBehaviour
         www.Send();
     }
 
+#if UNITY_EDITOR
     private static void EditorUpdate()
     {
         if (!www.isDone)
@@ -36,6 +37,8 @@ public class HeatmapDownloadController : MonoBehaviour
         Request();
         EditorApplication.update += EditorUpdate;
     }
+
+#endif
 
     public string GetData()
     {

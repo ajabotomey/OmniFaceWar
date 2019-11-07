@@ -23,9 +23,9 @@ public class SceneController
         //SceneManager.LoadScene(gameScenes[0]);
         //_levelProcessor.StartCoroutine(LoadLevel(gameScenes[0]));
         //var loadScene = Observable.FromCoroutine(LoadLevel, ));
-        LoadLevel(gameScenes[0]);
+        SceneManager.LoadScene("TutorialLevel");
         
-        currentSceneIndex = 1;
+        //currentSceneIndex = 1;
     }
 
     /*
@@ -36,7 +36,7 @@ public class SceneController
     public void LoadMainMenu()
     {
         //_levelProcessor.StartCoroutine(LoadLevel(mainMenu));
-        LoadLevel(mainMenu);
+        SceneManager.LoadScene("MainMenu");
         currentSceneIndex = 0;
     }
 

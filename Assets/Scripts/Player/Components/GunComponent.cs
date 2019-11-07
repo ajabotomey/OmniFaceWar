@@ -35,6 +35,17 @@ public class GunComponent : MonoBehaviour
         _player = player;
     }
 
+    //[Inject]
+    //public void Construct(IInputController inputController, Bullet.Factory bulletFactory, WeaponController weaponControl, SettingsManager settings, PlayerControl player)
+    //{
+    //    _inputController = inputController;
+    //    _bulletFactory = bulletFactory;
+    //    _weaponControl = weaponControl;
+    //    _settings = settings;
+    //    _player = player;
+    //}
+
+
     // Start is called before the first frame update
     void Start()
     {

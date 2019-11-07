@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement; // TODO: Remove this once heatmap data is collected
+using UnityEngine.UI; // TODO: Remove this once heatmap data is collected
 using Zenject;
 using TMPro;
 
@@ -26,6 +28,9 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private NotificationQueue queue;
     [SerializeField] private NotificationWindow window;
 
+    [Header("Objectives System")]
+    [SerializeField] private ObjectivesPanel panel;
+
     [Header("Subtitle System")]
     [SerializeField] private CanvasGroup subtitlePanel;
     [SerializeField] private TMP_Text subtitleText;
@@ -36,6 +41,9 @@ public class GameUIController : MonoBehaviour
 
     [Header("HUD Elements")]
     [SerializeField] private GameObject gameplayHUD;
+    [SerializeField] private EntityHealthBar playerHealthBar;
+    [SerializeField] private GameObject gameOverPanel; // TODO: Remove this once heatmap data is collected
+    [SerializeField] private Button restartGameButton; // TODO: Remove this once heatmap data is collected
 
     [Inject] private HeatmapUploadController heatmap;
     [Inject] private IInputController inputController;
@@ -53,7 +61,6 @@ public class GameUIController : MonoBehaviour
     {
         pauseMenu.gameObject.SetActive(false);
         settingsMenu.gameObject.SetActive(false);
-        controlMapperWindow.SetActive(false);
 
         elapsedTime = 0.0f;
 
@@ -65,7 +72,7 @@ public class GameUIController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {            
         CheckIfPaused();
         CheckNotificationWindow();
 
@@ -77,6 +84,22 @@ public class GameUIController : MonoBehaviour
         }
 
         elapsedTime += Time.deltaTime;
+    }
+
+    public void SetCamera(Camera camera)
+    {
+        GetComponent<Canvas>().worldCamera = camera;
+    }
+
+    public void SetControlMapper(GameObject mapper)
+    {
+        controlMapperWindow = mapper;
+        controlMapperWindow.SetActive(false);
+    }
+
+    public ObjectivesPanel GetObjectivesPanel()
+    {
+        return panel;
     }
 
     public void StartConversation(Conversation conversation)
@@ -147,6 +170,24 @@ public class GameUIController : MonoBehaviour
         settingsMenu.gameObject.SetActive(true);
     }
 
+    // TODO: Remove once heatmap data is collected
+    public void ShowGameOverPanel()
+    {
+        PauseGame();
+        gameplayHUD.SetActive(false);
+        gameOverPanel.SetActive(true);
+
+        restartGameButton.Select();
+        restartGameButton.OnSelect(null);
+    }
+
+    // TODO: Remove once heatmap data is collected
+    public void RestartGame()
+    {
+        UnpauseGame();
+        SceneManager.LoadScene("TutorialLevel");
+    }
+    
     private void PauseGame()
     {
         // Show the cursor
@@ -211,6 +252,11 @@ public class GameUIController : MonoBehaviour
     {
         if (subtitlePanel.alpha == 1)
             StartCoroutine(FadeAfterAudio());
+    }
+
+    public EntityHealthBar GetHealthBar()
+    {
+        return playerHealthBar;
     }
 
     public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)

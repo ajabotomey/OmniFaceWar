@@ -1,0 +1,17 @@
+{
+    "name": "Rewired_ControlMapper_CSharp_Editor",
+    "references": [
+        "GUID:79de3782f2a93b543a36cb104f75849e",
+        "GUID:7ded139bfe783d84e8e85640bb639aba"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

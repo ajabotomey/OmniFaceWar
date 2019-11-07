@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Notifications Manager Installer
-  m_EditorClassIdentifier: OmniFaceWar::NotificationsManagerInstaller
+  m_Script: {fileID: 11500000, guid: a728086f3ba22a4409692982a22e74fc, type: 3}
+  m_Name: NotificationManagerInstaller
+  m_EditorClassIdentifier: 
   manager: {fileID: 11400000, guid: 45a9380dfc1516944b5de7167fd28758, type: 2}

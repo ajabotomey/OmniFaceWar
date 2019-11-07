@@ -50,4 +50,14 @@ public class EntityHealth : MonoBehaviour
     {
         return health <= 0;
     }
+
+    public bool HasHealthBar()
+    {
+        return healthBar;
+    }
+
+    public void SetHealthBar(EntityHealthBar _healthBar)
+    {
+        healthBar = _healthBar;
+    }
 }

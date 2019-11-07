@@ -450,7 +450,6 @@ public class SettingsMenuController : MonoBehaviour
 
     public void ReturnFromControlMapper()
     {
-        Logger.Debug("Should be swapping back here");
         settingsMenuEvent.Raise();
         SwapToInput();
 

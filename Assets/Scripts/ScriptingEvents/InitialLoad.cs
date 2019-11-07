@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using Cinemachine;
 
 public class InitialLoad : MonoBehaviour
 {
@@ -21,12 +22,20 @@ public class InitialLoad : MonoBehaviour
     [SerializeField] private Objective objective;
     [SerializeField] private ObjectivesPanel panel;
 
+    // DI Objects
     [Inject] private CameraShake cameraShake;
     [Inject] private ObjectivesManager objectivesManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        //// Reset Notifications
+        //ObjectivesManager obj = objManager.GetComponent<ObjectivesManager>();
+        //GameUIController ui = gameUIObj.GetComponent<GameUIController>();
+        //obj.SetCurrentObjective(objective);
+        //((EliminationObjective)objective).ResetObjective();
+        //gameUI.GetObjectivesPanel().Initialize(obj);
+
         objectivesManager.SetCurrentObjective(objective);
         ((EliminationObjective)objective).ResetObjective();
         panel.Initialize();

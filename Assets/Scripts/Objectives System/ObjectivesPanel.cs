@@ -10,11 +10,11 @@ public class ObjectivesPanel : MonoBehaviour
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private TMP_Text objectiveText;
+    [SerializeField] private VoidEvent objectiveComplete; // TODO: Remove this once heatmap data is collected
 
     [Inject] private ObjectivesManager manager;
     private Objective currentObjective;
 
-    // Start is called before the first frame update
     public void Initialize()
     {
         currentObjective = manager.GetCurrentObjective();
@@ -32,6 +32,7 @@ public class ObjectivesPanel : MonoBehaviour
     {
         if (currentObjective.IsComplete()) {
             objectiveText.text = "Objective complete!";
+            objectiveComplete.Raise();
             return;
         }
 

@@ -49,4 +49,9 @@ public class CameraShake : MonoBehaviour
     {
         shakeElapsedTime = shakeDuration;
     }
+
+    public void SetVirtualCamera(CinemachineVirtualCamera _camera)
+    {
+        virtualCamera = _camera;
+    }
 }

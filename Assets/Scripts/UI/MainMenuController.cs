@@ -40,9 +40,6 @@ public class MainMenuController : MonoBehaviour
 
     public void QuitGame()
     {
-#if (UNITY_EDITOR || DEVELOPMENT_BUILD)
-        Logger.Debug(this.name + " : " + this.GetType() + " : " + System.Reflection.MethodBase.GetCurrentMethod().Name);
-#endif
 #if (UNITY_EDITOR)
         UnityEditor.EditorApplication.isPlaying = false;
 #elif (UNITY_STANDALONE)

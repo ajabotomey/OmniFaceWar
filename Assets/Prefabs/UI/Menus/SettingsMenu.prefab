@@ -2299,20 +2299,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8968031409969864964, guid: 6f28e3a884da0f440a7195b5127bbe0a,
         type: 3}
-      propertyPath: fieldName
-      value: Audio Playback Type
-      objectReference: {fileID: 0}
-    - target: {fileID: 8968031409969864964, guid: 6f28e3a884da0f440a7195b5127bbe0a,
-        type: 3}
       propertyPath: tooltipText
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8968031409969864964, guid: 6f28e3a884da0f440a7195b5127bbe0a,
         type: 3}
-      propertyPath: OnValueChanged
+      propertyPath: fieldName
+      value: Audio Playback Type
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695833785558601491, guid: 6f28e3a884da0f440a7195b5127bbe0a,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 11400000, guid: 3946c18706cf15d499c8049cdc3ee889,
-        type: 2}
+      objectReference: {fileID: 8415529385503555151}
     - target: {fileID: 2695833785558601491, guid: 6f28e3a884da0f440a7195b5127bbe0a,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -2333,11 +2332,6 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 2695833785558601491, guid: 6f28e3a884da0f440a7195b5127bbe0a,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8415529385503555151}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f28e3a884da0f440a7195b5127bbe0a, type: 3}
 --- !u!114 &7680968067203156043 stripped
@@ -4960,7 +4954,7 @@ PrefabInstance:
     - target: {fileID: 3469800867636968434, guid: 1fdb6712478e0d24dad1987e2b1da772,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -199.99998
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 3469800867636968434, guid: 1fdb6712478e0d24dad1987e2b1da772,
         type: 3}

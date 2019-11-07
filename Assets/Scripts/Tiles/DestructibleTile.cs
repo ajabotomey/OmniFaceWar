@@ -56,6 +56,7 @@ public class DestructibleTile : Tile
     }
 
     #endregion
+#if UNITY_EDITOR
 
     #region Asset Database
 
@@ -71,4 +72,6 @@ public class DestructibleTile : Tile
     }
 
     #endregion
+
+#endif
 }

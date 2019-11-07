@@ -17,4 +17,4 @@ MonoBehaviour:
   isComplete: 1
   target: {fileID: 0}
   killCountRequired: 5
-  currentKillCount: 5
+  currentKillCount: 0

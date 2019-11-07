@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="New Elimination Objective", menuName="Objectives System/New Elimination Objective")]
 public class EliminationObjective : Objective
 {
-    [SerializeField] private TestAI target;
     [SerializeField] private int killCountRequired = 0;
     [SerializeField] private int currentKillCount = 0;
 
