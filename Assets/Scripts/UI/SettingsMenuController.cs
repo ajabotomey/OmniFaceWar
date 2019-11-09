@@ -38,7 +38,8 @@ public class SettingsMenuController : MonoBehaviour
     [SerializeField] private UISlider soundFXVolumeSlider;
     [SerializeField] private UISlider musicVolumeSlider;
     [SerializeField] private UISlider voiceVolumeSlider;
-    [SerializeField] private UIDropdown audioPlaybackTypeDropdown;
+    //[SerializeField] private UIDropdown audioPlaybackTypeDropdown;
+    [SerializeField] private UIOptionCarousel audioPlaybackCarousel;
 
     [Header("Input UI Widgets")]
     [SerializeField] private UISlider inputSensitivitySlider;
@@ -103,8 +104,9 @@ public class SettingsMenuController : MonoBehaviour
         soundFXVolumeSlider.SetValue(soundFXVolume);
         musicVolumeSlider.SetValue(musicVolume);
         voiceVolumeSlider.SetValue(voiceVolume);
-        PopulateAudioPlaybackDropdown();
-        audioPlaybackTypeDropdown.SetValue(audioPlaybackType);
+        PopulateAudioPlaybackCarousel();
+        //audioPlaybackCarousel.SetValue(audioPlaybackType.ToString());
+        audioPlaybackCarousel.SetCurrentOption(audioPlaybackType);
 
         // Input
         var inputSensitivity = settingsManager.GetInputSensitivity();
@@ -177,11 +179,11 @@ public class SettingsMenuController : MonoBehaviour
         applyChangesButton.OnSelect(null);
     }
 
-    public void PopulateAudioPlaybackDropdown()
+    public void PopulateAudioPlaybackCarousel()
     {
         string[] enumNames = Enum.GetNames(typeof(AudioSpeakerMode));
         List<string> names = new List<string>(enumNames);
-        audioPlaybackTypeDropdown.SetOptions(names);
+        audioPlaybackCarousel.SetOptions(names);
     }
 
     #region Change Value methods
@@ -295,7 +297,7 @@ public class SettingsMenuController : MonoBehaviour
 
     public void SetResolution()
     {
-
+        settingsManager.SetResolution(resolutionOptionCarousel.GetCurrentValue());
     }
 
     public void SetSubtitleTextSize(float value)
@@ -323,10 +325,11 @@ public class SettingsMenuController : MonoBehaviour
         settingsManager.SetVoiceVolume((int)value);
     }
 
-    public void SetAudioPlaybackType(int index)
+    public void SetAudioPlaybackType()
     {
-        audioPlaybackTypeDropdown.SetValue(index);
-        settingsManager.SetAudioPlaybackType(index);
+        //audioPlaybackCarousel.SetCurrentOption(index);
+        //settingsManager.SetAudioPlaybackType(index);
+        settingsManager.SetAudioPlaybackType(audioPlaybackCarousel.GetCurrentIndex());
     }
 
     public void SetInputSensitivity(float value)
@@ -351,11 +354,13 @@ public class SettingsMenuController : MonoBehaviour
         soundPanel.SetActive(false);
         inputPanel.SetActive(false);
 
+        var gameSpeedObj = gameSpeedSlider.GetObject();
+
         // Modify navigation for menu buttons
-        generalNav.selectOnDown = gameSpeedSlider.GetObject();
-        videoNav.selectOnDown = gameSpeedSlider.GetObject();
-        soundNav.selectOnDown = gameSpeedSlider.GetObject();
-        inputNav.selectOnDown = gameSpeedSlider.GetObject();
+        generalNav.selectOnDown = gameSpeedObj;
+        videoNav.selectOnDown = gameSpeedObj;
+        soundNav.selectOnDown = gameSpeedObj;
+        inputNav.selectOnDown = gameSpeedObj;
 
         // Modify Navigation for back and apply buttons
         var autoAimEnabled = settingsManager.IsAutoAimEnabled();
@@ -383,11 +388,13 @@ public class SettingsMenuController : MonoBehaviour
         soundPanel.SetActive(false);
         inputPanel.SetActive(false);
 
+        var dyslexicObj = dyslexicTextToggle.GetObject();
+
         // Modify navigation for menu buttons
-        generalNav.selectOnDown = dyslexicTextToggle.GetObject();
-        videoNav.selectOnDown = dyslexicTextToggle.GetObject();
-        soundNav.selectOnDown = dyslexicTextToggle.GetObject();
-        inputNav.selectOnDown = dyslexicTextToggle.GetObject();
+        generalNav.selectOnDown = dyslexicObj;
+        videoNav.selectOnDown = dyslexicObj;
+        soundNav.selectOnDown = dyslexicObj;
+        inputNav.selectOnDown = dyslexicObj;
 
         // Modify Navigation for back and apply buttons
         backNav.selectOnUp = fullscreenToggle.GetObject();
@@ -409,11 +416,17 @@ public class SettingsMenuController : MonoBehaviour
         soundPanel.SetActive(true);
         inputPanel.SetActive(false);
 
+        var soundFXObj = soundFXVolumeSlider.GetObject();
+
         // Modify navigation for menu buttons
+        generalNav.selectOnDown = soundFXObj;
+        videoNav.selectOnDown = soundFXObj;
+        soundNav.selectOnDown = soundFXObj;
+        inputNav.selectOnDown = soundFXObj;
 
         // Modify Navigation for back and apply buttons
-        backNav.selectOnUp = soundButton;
-        applyNav.selectOnUp = soundButton;
+        backNav.selectOnUp = audioPlaybackCarousel.GetObject();
+        applyNav.selectOnUp = audioPlaybackCarousel.GetObject();
 
         backToMainMenuButton.navigation = backNav;
         applyChangesButton.navigation = applyNav;
@@ -431,11 +444,13 @@ public class SettingsMenuController : MonoBehaviour
         soundPanel.SetActive(false);
         inputPanel.SetActive(true);
 
+        var inputObj = inputSensitivitySlider.GetObject();
+
         // Modify navigation for menu buttons
-        generalNav.selectOnDown = inputSensitivitySlider.GetObject();
-        videoNav.selectOnDown = inputSensitivitySlider.GetObject();
-        soundNav.selectOnDown = inputSensitivitySlider.GetObject();
-        inputNav.selectOnDown = inputSensitivitySlider.GetObject();
+        generalNav.selectOnDown = inputObj;
+        videoNav.selectOnDown = inputObj;
+        soundNav.selectOnDown = inputObj;
+        inputNav.selectOnDown = inputObj;
 
         // Modify Navigation for back and apply buttons
         backNav.selectOnUp = rebindControlsButton;

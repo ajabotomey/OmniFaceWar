@@ -22,6 +22,7 @@ public class UIOptionCarousel : UIObject, ISelectHandler, IDeselectHandler
     private int currentIndex = 0;
     private bool selected = false;
     private bool midSelection = false;
+    private float inputLag = 0.3f;
 
     [Inject] private IInputController input;
 
@@ -79,9 +80,19 @@ public class UIOptionCarousel : UIObject, ISelectHandler, IDeselectHandler
         }
     }
 
+    public void SetCurrentOption(int index)
+    {
+        currentIndex = index;
+    }
+
     public string GetCurrentValue()
     {
         return options[currentIndex];
+    }
+
+    public int GetCurrentIndex()
+    {
+        return currentIndex;
     }
     
     public Selectable GetObject()
@@ -121,7 +132,7 @@ public class UIOptionCarousel : UIObject, ISelectHandler, IDeselectHandler
     {
         midSelection = true;
         LeftClicked();
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitForSecondsRealtime(inputLag);
         midSelection = false;
     }
     
@@ -129,7 +140,7 @@ public class UIOptionCarousel : UIObject, ISelectHandler, IDeselectHandler
     {
         midSelection = true;
         RightClicked();
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitForSecondsRealtime(inputLag);
         midSelection = false;
     }
 }
