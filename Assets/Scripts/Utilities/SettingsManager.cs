@@ -211,7 +211,7 @@ public class SettingsManager {
 
     public void SetResolution(string value)
     {
-        currentResolution = value;
+        settings.currentResolution = value;
     }
 
     public void FullScreenToggle()
@@ -298,6 +298,12 @@ public class SettingsManager {
 
     #endregion
 
+    public void ApplyChanges()
+    {
+        // Resolution and fullscreen
+        ApplyResolution();
+    }
+
     public void UpdateFont()
     {
         var textComponents = Component.FindObjectsOfType<Text>();
@@ -309,7 +315,7 @@ public class SettingsManager {
 
             foreach (var component in tmpTextComponents)
                 component.font = dyslexicTMPFont;
-        } else { // Change back to Arial
+        } else { // Change back to original font
             foreach (var component in textComponents) {
                 if (component.gameObject.name != "DyslexicText")
                     component.font = classicFont;
@@ -346,15 +352,15 @@ public class SettingsManager {
         //}
     }
 
-    public void ApplyResolution(string value)
+    public void ApplyResolution()
     {
-        var resolutionString = value;
+        var resolutionString = settings.currentResolution;
         string[] values = resolutionString.Split(new string[] { " x " }, StringSplitOptions.RemoveEmptyEntries);
 
         settings.screenWidth = Int32.Parse(values[0]);
         settings.screenHeight = Int32.Parse(values[1]);
 
-        //Screen.SetResolution(screenWidth, screenHeight, fullscreenEnabled);
+        Screen.SetResolution(settings.screenWidth, settings.screenHeight, settings.fullscreenEnabled);
     }
 
     public void LoadSettings()
@@ -407,7 +413,7 @@ public class SettingsManager {
         // Apply full screen
 
         // Apply sound changes
-        AudioSettings.speakerMode = audioSpeakerMode;
+        //AudioSettings.speakerMode = audioSpeakerMode;
     }
 
     // TODO: Get settings and translate to analytics

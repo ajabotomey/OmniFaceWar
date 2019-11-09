@@ -58,8 +58,6 @@ public class GameUIController : MonoBehaviour
 
     private bool paused = false;
 
-    public static GameUIController Instance = null;
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -68,7 +66,7 @@ public class GameUIController : MonoBehaviour
 
         elapsedTime = 0.0f;
 
-        Instance = this;
+        settingsManager.UpdateFont();
 
         //PushFirstNotification();
         //PushTestNotification();
@@ -208,7 +206,7 @@ public class GameUIController : MonoBehaviour
 
     private void UnpauseGame()
     {
-        //inputModule.inputActionsPerSecond = 4.5f; // Back to normal
+        settingsManager.UpdateFont();
 
         // Fix volume settings
         voiceAudioSource.volume = Mathf.Clamp01(settingsManager.GetVoiceVolume());

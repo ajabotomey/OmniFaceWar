@@ -1123,7 +1123,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8415529385503555151}
-        m_MethodName: ConfirmChanges
+        m_MethodName: ApplyChanges
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2479,16 +2479,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 386982813810557349, guid: a0b9c5e6e980abe4a998e15d3398821d,
         type: 3}
-      propertyPath: OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 386982813810557349, guid: a0b9c5e6e980abe4a998e15d3398821d,
-        type: 3}
-      propertyPath: OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 386982813810557349, guid: a0b9c5e6e980abe4a998e15d3398821d,
-        type: 3}
       propertyPath: OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8415529385503555151}
@@ -2499,8 +2489,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 386982813810557349, guid: a0b9c5e6e980abe4a998e15d3398821d,
         type: 3}
+      propertyPath: OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 386982813810557349, guid: a0b9c5e6e980abe4a998e15d3398821d,
+        type: 3}
       propertyPath: OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 386982813810557349, guid: a0b9c5e6e980abe4a998e15d3398821d,
+        type: 3}
+      propertyPath: OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0b9c5e6e980abe4a998e15d3398821d, type: 3}

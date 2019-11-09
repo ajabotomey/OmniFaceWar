@@ -25,7 +25,8 @@ public class InitialLoad : MonoBehaviour
     // DI Objects
     [Inject] private CameraShake cameraShake;
     [Inject] private ObjectivesManager objectivesManager;
-
+    [Inject] private GameUIController gameUI;
+     
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +44,7 @@ public class InitialLoad : MonoBehaviour
         // Reset tutorial notifications
 
         //GameUIController.Instance.PushNotification(firstNotification);
-        //StartCoroutine(PushNotifications());
+        StartCoroutine(PushNotifications());
     }
 
     IEnumerator PushNotifications()
@@ -51,7 +52,7 @@ public class InitialLoad : MonoBehaviour
         //yield return new WaitForSeconds(3);
         //cameraShake.TriggerShake();
         //yield return new WaitForSeconds(3);
-        //GameUIController.Instance.PushNotification(movement);
+        gameUI.PushNotification(movement);
         //GameUIController.Instance.ShowSubtitles(movementClip);
         //yield return new WaitForSeconds(3);
         //GameUIController.Instance.PushNotification(rotation);

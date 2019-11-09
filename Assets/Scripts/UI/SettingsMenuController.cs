@@ -157,18 +157,36 @@ public class SettingsMenuController : MonoBehaviour
         }
     }
 
-    public void ConfirmChanges()
-    {
-        UIDialogBox.Instance.ShowPopUp("Would you like to save those changes?", ApplyChanges, HideDialogBox);
-    }
-
     public void ApplyChanges()
     {
-        settingsManager.SaveSettings();
+        // Apply changes
+        settingsManager.ApplyChanges();
 
-        //settingsManager.SetResolution(resolutionDropdown.GetValue());
+        UIDialogBox.Instance.ShowPopUp("Would you like to save those changes?", ConfirmChanges, RevertChanges);
 
+        // Show dialog box asking if you want to keep these changes
+        //UIDialogBox.Instance.ShowPopup("Would you like to keep these changes?", 
+    }
+
+    private void ConfirmChanges()
+    {
         HideDialogBox();
+
+        // Save changes
+        settingsManager.SaveSettings();
+        //settingsManager.SetResolution(resolutionDropdown.GetValue());
+    }
+
+    private void RevertChanges()
+    {
+        HideDialogBox();
+
+
+    }
+
+    private void SaveChanges()
+    {
+        settingsManager.SaveSettings();
     }
 
     public void HideDialogBox()

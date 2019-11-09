@@ -115,6 +115,7 @@ public class UIOptionCarousel : UIObject, ISelectHandler, IDeselectHandler
         }
 
         UpdateLabel();
+        OnValueChanged.Invoke();
     }
 
     public void RightClicked()
@@ -126,6 +127,7 @@ public class UIOptionCarousel : UIObject, ISelectHandler, IDeselectHandler
         }
 
         UpdateLabel();
+        OnValueChanged.Invoke();
     }
 
     private IEnumerator LeftClickedController()

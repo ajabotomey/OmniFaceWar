@@ -6,8 +6,8 @@ using Zenject;
 
 public class PauseMenu : MonoBehaviour
 {
-    [Inject]
-    private SceneController _sceneController;
+    [Inject] private SceneController _sceneController;
+    [Inject] private SettingsManager _settingsManager;
 
     [SerializeField] private Button resumeGameButton;
 
@@ -19,6 +19,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Show()
     {
+        _settingsManager.UpdateFont();
         gameObject.SetActive(true);
     }
 

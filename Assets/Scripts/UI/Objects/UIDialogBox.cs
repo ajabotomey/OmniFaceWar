@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class UIDialogBox : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class UIDialogBox : MonoBehaviour
 
     private Action onClickConfirm;
     private Action onClickCancel;
+
+    [Inject] private SettingsManager settings;
 
     void Awake()
     {
@@ -26,6 +29,8 @@ public class UIDialogBox : MonoBehaviour
 
     public void ShowPopUp(string popupText, Action onConfirm, Action onCancel)
     {
+        settings.UpdateFont();
+
         if (!gameObject.activeSelf) {
             if (onCancel == null) {
                 ConfirmButton.gameObject.SetActive(false);

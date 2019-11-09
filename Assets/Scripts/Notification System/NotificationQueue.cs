@@ -23,6 +23,8 @@ public class NotificationQueue : MonoBehaviour
     private NotificationPopup.Factory _popupFactory;
     private NotificationPopupImage.Factory _imageFactory;
 
+    [Inject] private SettingsManager _settings;
+
     private bool isPushing = false;
 
     [Inject]
@@ -104,6 +106,8 @@ public class NotificationQueue : MonoBehaviour
             notificationList.Add(popup);
             isPushing = true;
         }
+
+        _settings.UpdateFont();
 
         yield return new WaitForEndOfFrame();
     }

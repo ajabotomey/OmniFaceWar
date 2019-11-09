@@ -1707,7 +1707,7 @@ PrefabInstance:
     - target: {fileID: 1349058038735396011, guid: 185a7ac2a04c41e41abae6c3b9c1cc19,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2730842468740629546, guid: 185a7ac2a04c41e41abae6c3b9c1cc19,
         type: 3}
@@ -1903,6 +1903,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 8415529386332091377, guid: 633e239309cb5f34e96ecceaa942cdc7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ApplyChanges
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415529387054305666, guid: 633e239309cb5f34e96ecceaa942cdc7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1076654336}
+    - target: {fileID: 8415529387054305666, guid: 633e239309cb5f34e96ecceaa942cdc7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwapToMainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 8415529385503555148, guid: 633e239309cb5f34e96ecceaa942cdc7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2007,16 +2022,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8415529387054305666, guid: 633e239309cb5f34e96ecceaa942cdc7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1076654336}
-    - target: {fileID: 8415529387054305666, guid: 633e239309cb5f34e96ecceaa942cdc7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwapToMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4967121718132239383, guid: 633e239309cb5f34e96ecceaa942cdc7,
         type: 3}

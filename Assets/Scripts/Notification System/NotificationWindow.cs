@@ -20,19 +20,25 @@ public class NotificationWindow : MonoBehaviour
     private NotificationFull.Factory _factory;
     private NotificationFullImage.Factory _imageFactory;
     private IInputController _inputController;
+    private GameUIController _gameUI;
+
+    [Inject] private SettingsManager _settings;
 
     [Inject]
-    public void Construct(NotificationsManager manager, NotificationFull.Factory factory, NotificationFullImage.Factory imageFactory, IInputController inputController)
+    public void Construct(NotificationsManager manager, NotificationFull.Factory factory, NotificationFullImage.Factory imageFactory, IInputController inputController, GameUIController gameUI)
     {
         _manager = manager;
         _factory = factory;
         _imageFactory = imageFactory;
         _inputController = inputController;
+        _gameUI = gameUI;
     }
 
     // Start is called before the first frame update
     void OnEnable()
     {
+        _settings.UpdateFont();
+
         // Make sure all toggles are off
         toggleGroup.SetAllTogglesOff();
 
@@ -47,7 +53,7 @@ public class NotificationWindow : MonoBehaviour
     {
         // Check if escape or b button is used to exit the window
         if (_inputController.UICancel()) {
-            GameUIController.Instance.HideNotificationWindow();
+            _gameUI.HideNotificationWindow();
         }
 
         // Do checks on toggles separately
