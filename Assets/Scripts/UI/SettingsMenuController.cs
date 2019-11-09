@@ -27,7 +27,8 @@ public class SettingsMenuController : MonoBehaviour
     [Header("Video UI Widgets")]
     [SerializeField] private UIToggle dyslexicTextToggle;
     [SerializeField] private UISlider textSizeSlider;
-    [SerializeField] private UIDropdown resolutionDropdown;
+    [SerializeField] private UIOptionCarousel resolutionOptionCarousel;
+    //[SerializeField] private UIDropdown resolutionDropdown;
     [SerializeField] private UIToggle fullscreenToggle;
     [SerializeField] private UIToggle subtitlesEnabledToggle;
     [SerializeField] private UISlider subtitleTextSizeSlider;
@@ -79,13 +80,16 @@ public class SettingsMenuController : MonoBehaviour
         var dyslexicText = settingsManager.IsDyslexicTextEnabled();
         var textSize = settingsManager.CurrentTextSize();
         var supportedResolutions = settingsManager.ResolutionsSupported();
+        var currentResolution = settingsManager.GetCurrentResolution();
         var fullscreenEnabled = settingsManager.IsFullscreenEnabled();
         var subtitlesEnabled = settingsManager.IsSubtitlesEnabled();
         var subtitleTextSize = settingsManager.GetSubtitleTextSize();
         var subtitleOpacity = settingsManager.GetSubtitleOpacity();
         dyslexicTextToggle.SetValueWithoutNotify(dyslexicText);
         textSizeSlider.SetValue(textSize);
-        resolutionDropdown.SetOptions(supportedResolutions);
+        //resolutionDropdown.SetOptions(supportedResolutions);
+        resolutionOptionCarousel.SetOptions(supportedResolutions);
+        resolutionOptionCarousel.SetCurrentOption(currentResolution);
         fullscreenToggle.SetValue(fullscreenEnabled);
         subtitlesEnabledToggle.SetValue(subtitlesEnabled);
         subtitleTextSizeSlider.SetValue(subtitleTextSize);
@@ -160,7 +164,7 @@ public class SettingsMenuController : MonoBehaviour
     {
         settingsManager.SaveSettings();
 
-        settingsManager.SetResolution(resolutionDropdown.GetValue());
+        //settingsManager.SetResolution(resolutionDropdown.GetValue());
 
         HideDialogBox();
     }
@@ -222,12 +226,13 @@ public class SettingsMenuController : MonoBehaviour
 
         // Get other affected controls
         var textSizeObj = textSizeSlider.GetObject();
-        var dropdownObj = resolutionDropdown.GetObject();
+        //var dropdownObj = resolutionDropdown.GetObject();
+        var carouselObj = resolutionOptionCarousel.GetObject();
 
         // Get the navigation objects to modify
         Navigation toggleNav = subtitleToggle.navigation;
         Navigation textSizeNav = textSizeObj.navigation;
-        Navigation dropdownNav = dropdownObj.navigation;
+        Navigation carouselNav = carouselObj.navigation;
 
         // Now to modify those objects
         if (value) {
@@ -236,19 +241,19 @@ public class SettingsMenuController : MonoBehaviour
 
             toggleNav.selectOnDown = subTextSizeSlider;
             textSizeNav.selectOnRight = subTextSizeSlider;
-            dropdownNav.selectOnRight = backgroundOpacitySlider;
+            carouselNav.selectOnRight = backgroundOpacitySlider;
         } else {
             subTextSizeSlider.gameObject.SetActive(false);
             backgroundOpacitySlider.gameObject.SetActive(false);
 
             toggleNav.selectOnDown = applyChangesButton;
             textSizeNav.selectOnRight = null;
-            dropdownNav.selectOnRight = null;
+            carouselNav.selectOnRight = null;
         }
 
         subtitleToggle.navigation = toggleNav;
         textSizeObj.navigation = textSizeNav;
-        dropdownObj.navigation = dropdownNav;
+        carouselObj.navigation = carouselNav;
 
         settingsManager.SubtitlesToggle();
     }
@@ -286,6 +291,11 @@ public class SettingsMenuController : MonoBehaviour
     public void SetTextSize(float value)
     {
         settingsManager.SetTextSize((int)value);
+    }
+
+    public void SetResolution()
+    {
+
     }
 
     public void SetSubtitleTextSize(float value)

@@ -3,6 +3,11 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum SupportedResolutions
+{
+    
+}
+
 [Serializable]
 public class SettingsManager {
 
@@ -37,6 +42,7 @@ public class SettingsManager {
 
     [Header("Fullscreen")]
     [SerializeField] private bool fullscreenEnabled = false;
+    [SerializeField] private string currentResolution = "800x600";
     private Resolution[] resolutions;
     private int currentResolutionIndex;
     private List<string> resolutionsSupported;
@@ -100,6 +106,11 @@ public class SettingsManager {
         }
 
         return resolutionsSupported;
+    }
+
+    public string GetCurrentResolution()
+    {
+        return currentResolution;
     }
 
     public bool IsAutoAimEnabled()
@@ -200,18 +211,7 @@ public class SettingsManager {
 
     public void SetResolution(string value)
     {
-        var resolutionString = value;
-        string[] values = resolutionString.Split(new string[] { " x " }, StringSplitOptions.RemoveEmptyEntries);
-
-        settings.screenWidth = Int32.Parse(values[0]);
-        settings.screenHeight = Int32.Parse(values[1]);
-
-        Screen.SetResolution(screenWidth, screenHeight, fullscreenEnabled);
-    }
-
-    public void SetResolution(int width, int height)
-    {
-        Screen.SetResolution(width, height, fullscreenEnabled);
+        currentResolution = value;
     }
 
     public void FullScreenToggle()
@@ -346,6 +346,17 @@ public class SettingsManager {
         //}
     }
 
+    public void ApplyResolution(string value)
+    {
+        var resolutionString = value;
+        string[] values = resolutionString.Split(new string[] { " x " }, StringSplitOptions.RemoveEmptyEntries);
+
+        settings.screenWidth = Int32.Parse(values[0]);
+        settings.screenHeight = Int32.Parse(values[1]);
+
+        //Screen.SetResolution(screenWidth, screenHeight, fullscreenEnabled);
+    }
+
     public void LoadSettings()
     {
         settings.gameSpeed = gameSpeed;
@@ -354,6 +365,7 @@ public class SettingsManager {
 
         settings.textSize = textSize;
         settings.fullscreenEnabled = fullscreenEnabled;
+        settings.currentResolution = currentResolution;
         settings.subtitlesEnabled = subtitlesEnabled;
         settings.subtitleTextSize = subtitleTextSize;
         settings.subtitleBackgroundOpacity = subtitleBackgroundOpacity;
@@ -377,6 +389,7 @@ public class SettingsManager {
 
         textSize = settings.textSize;
         fullscreenEnabled = settings.fullscreenEnabled;
+        currentResolution = settings.currentResolution;
         subtitlesEnabled = settings.subtitlesEnabled;
         subtitleTextSize = settings.subtitleTextSize;
         subtitleBackgroundOpacity = settings.subtitleBackgroundOpacity;
@@ -414,9 +427,7 @@ public class SettingsManager {
         // Video
         public int textSize = 28;
         public bool fullscreenEnabled = false;
-        private Resolution[] resolutions;
-        private int currentResolutionIndex;
-        private List<string> resolutionsSupported;
+        public string currentResolution = "800x600";
         public int screenWidth, screenHeight;
 
         public bool subtitlesEnabled = false;

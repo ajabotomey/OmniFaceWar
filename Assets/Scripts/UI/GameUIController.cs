@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement; // TODO: Remove this once heatmap data is col
 using UnityEngine.UI; // TODO: Remove this once heatmap data is collected
 using Zenject;
 using TMPro;
+using Rewired.Integration.UnityUI;
 
 [System.Serializable]
 public class GameUIEvent : UnityEvent<GameUIController> { }
@@ -44,6 +45,9 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private EntityHealthBar playerHealthBar;
     [SerializeField] private GameObject gameOverPanel; // TODO: Remove this once heatmap data is collected
     [SerializeField] private Button restartGameButton; // TODO: Remove this once heatmap data is collected
+
+    [Header("Rewired")]
+    [SerializeField] private RewiredStandaloneInputModule inputModule;
 
     [Inject] private HeatmapUploadController heatmap;
     [Inject] private IInputController inputController;
@@ -194,6 +198,8 @@ public class GameUIController : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
+        //inputModule.inputActionsPerSecond = 1;
+
         // Pause time
         Time.timeScale = 0.0f;
 
@@ -202,6 +208,8 @@ public class GameUIController : MonoBehaviour
 
     private void UnpauseGame()
     {
+        //inputModule.inputActionsPerSecond = 4.5f; // Back to normal
+
         // Fix volume settings
         voiceAudioSource.volume = Mathf.Clamp01(settingsManager.GetVoiceVolume());
         musicPlayerSource.volume = Mathf.Clamp01(settingsManager.GetMusicVolume());

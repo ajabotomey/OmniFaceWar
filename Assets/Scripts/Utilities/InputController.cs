@@ -19,6 +19,7 @@ public interface IInputController
     bool SelectWeapon();
     void SetRumble(float duration);
     void StopRumble();
+    float GetUIHorizontal();
     bool UICancel();
     bool Pause();
     bool TakeScreenshot();
@@ -169,6 +170,11 @@ public class InputController : IInputController
     public void StopRumble()
     {
         joystick.StopVibration();
+    }
+
+    public float GetUIHorizontal()
+    {
+        return player.GetAxis("UIHorizontal");
     }
 
     public bool UICancel()
