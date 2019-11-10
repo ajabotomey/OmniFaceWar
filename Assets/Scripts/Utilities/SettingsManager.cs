@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public enum SupportedResolutions
 {
@@ -67,6 +68,8 @@ public class SettingsManager {
     [SerializeField] private AudioSpeakerMode audioSpeakerMode = AudioSpeakerMode.Stereo;
 
     public ModifiedSettings settings;
+
+    [Inject] private IInputController _input;
 
     #region Accessor Methods
 
@@ -307,12 +310,20 @@ public class SettingsManager {
 
         // Audio Playback
         AudioSettings.speakerMode = settings.audioSpeakerMode;
+
+        // Input Delay
+        _input.SetInputDelay(settings.inputDelayEnabled);
     }
 
     public void RevertChanges()
     {
         // Resolution and fullscreen
         ApplyResolution(ref currentResolution, ref screenWidth, ref screenHeight, ref fullscreenEnabled);
+
+        AudioSettings.speakerMode = audioSpeakerMode;
+
+        // Input Delay
+        _input.SetInputDelay(inputDelayEnabled);
     }
 
     public void UpdateFont()
@@ -425,6 +436,35 @@ public class SettingsManager {
 
         // Apply sound changes
         //AudioSettings.speakerMode = audioSpeakerMode;
+    }
+
+    public bool CheckSettings()
+    {
+        bool speed = gameSpeed == settings.gameSpeed;
+        bool autoAim = autoAimEnabled == settings.autoAimEnabled;
+        bool strength = autoAimStrength == settings.autoAimStrength;
+
+        bool text = textSize == settings.textSize;
+        bool fullscreen = fullscreenEnabled == settings.fullscreenEnabled;
+        bool resolution = currentResolution == settings.currentResolution;
+        bool subtitles = subtitlesEnabled == settings.subtitlesEnabled;
+        bool subTextSize = subtitleTextSize == settings.subtitleTextSize;
+        bool background = subtitleBackgroundOpacity == settings.subtitleBackgroundOpacity;
+
+        bool input = inputSensitivity == settings.inputSensitivity;
+        bool rumble = rumbleEnabled == settings.rumbleEnabled;
+        bool rumbleStr = rumbleSensitivity == settings.rumbleSensitivity;
+        bool inputDelay = inputDelayEnabled == settings.inputDelayEnabled;
+
+        bool sound = soundFXVolume == settings.soundFXVolume;
+        bool music = musicVolume == settings.musicVolume;
+        bool voice = voiceVolume == settings.voiceVolume;
+        bool audio = audioSpeakerMode == settings.audioSpeakerMode;
+
+        if (speed && autoAim && strength && text && fullscreen && resolution && subtitles && subTextSize && background && input && rumble && rumbleStr && inputDelay && sound && music && voice && audio)
+            return true;
+
+        return true;
     }
 
     // TODO: Get settings and translate to analytics

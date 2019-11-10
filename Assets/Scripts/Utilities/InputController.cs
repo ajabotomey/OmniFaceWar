@@ -31,6 +31,7 @@ public interface IInputController
     bool OpenNotificationWindow();
     void SetAim(Vector2 _aim);
     Vector2 GetAim();
+    void SetInputDelay(bool enabled);
 }
 
 public enum DeviceType
@@ -225,6 +226,14 @@ public class InputController : IInputController
     public Vector2 GetAim()
     {
         return aim;
+    }
+
+    public void SetInputDelay(bool enabled)
+    {
+        if (enabled)
+            player.controllers.maps.GetInputBehavior(0).buttonRepeatDelay = inputDelay;
+        else
+            player.controllers.maps.GetInputBehavior(0).buttonRepeatDelay = 0;
     }
 
     public bool OpenNotificationWindow()

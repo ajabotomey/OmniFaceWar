@@ -46,9 +46,6 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel; // TODO: Remove this once heatmap data is collected
     [SerializeField] private Button restartGameButton; // TODO: Remove this once heatmap data is collected
 
-    [Header("Rewired")]
-    [SerializeField] private RewiredStandaloneInputModule inputModule;
-
     [Inject] private HeatmapUploadController heatmap;
     [Inject] private IInputController inputController;
     [Inject] private SettingsManager settingsManager;

@@ -144,16 +144,11 @@ public class SettingsMenuController : MonoBehaviour
     {
         if (inputController.UICancel()) {
             // If settings have changed
-            // Show dialog box asking to save changes
-            // else 
-            // If Main Menu
-            // Go back to main menu
-            // else
-            // Go back to pause menu
-
-            if (sceneController.IsInGame()) {
-
+            if (!settingsManager.CheckSettings()) {
+                // Show dialog box asking to save changes
+                UIDialogBox.Instance.ShowPopUp("You have unsaved changes. Would you like to save those changes?", ConfirmChanges, RevertChangesAndLeave);
             } else {
+                // Back to original menu. If in game, this will go back to the pause menu, otherwise, back to main menu
                 originalMenuEvent.Raise();
             }
         }
@@ -184,6 +179,15 @@ public class SettingsMenuController : MonoBehaviour
         HideDialogBox();
 
         settingsManager.RevertChanges();
+    }
+
+    private void RevertChangesAndLeave()
+    {
+        HideDialogBox();
+
+        settingsManager.RevertChanges();
+
+        originalMenuEvent.Raise();
     }
 
     private void SaveChanges()
