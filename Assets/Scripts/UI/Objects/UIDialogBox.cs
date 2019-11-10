@@ -29,8 +29,6 @@ public class UIDialogBox : MonoBehaviour
 
     public void ShowPopUp(string popupText, Action onConfirm, Action onCancel)
     {
-        settings.UpdateFont();
-
         if (!gameObject.activeSelf) {
             if (onCancel == null) {
                 ConfirmButton.gameObject.SetActive(false);
@@ -52,6 +50,7 @@ public class UIDialogBox : MonoBehaviour
             dialogText.text = popupText;
             onClickConfirm = onConfirm;
             gameObject.SetActive(true);
+            settings.UpdateFont();
         } else {
             Debug.LogWarning("There is already pop up window on scene!\nWith text: " + dialogText.text);
         }

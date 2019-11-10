@@ -19,8 +19,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Show()
     {
-        _settingsManager.UpdateFont();
         gameObject.SetActive(true);
+        _settingsManager.UpdateFont();
     }
 
     public void Hide()

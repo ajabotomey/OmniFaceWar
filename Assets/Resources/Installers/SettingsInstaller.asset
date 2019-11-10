@@ -17,7 +17,7 @@ MonoBehaviour:
     dyslexicFont: {fileID: 12800000, guid: ec11d4c8418df3149936abf57da69f7a, type: 3}
     classicTMPFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     dyslexicTMPFont: {fileID: 11400000, guid: 329869b2777f9594fad09188aea44070, type: 2}
-    dyslexicTextEnabled: 0
+    dyslexicTextEnabled: 1
     textSize: 28
     gameSpeed: 100
     subtitlesEnabled: 0

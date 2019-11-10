@@ -301,7 +301,18 @@ public class SettingsManager {
     public void ApplyChanges()
     {
         // Resolution and fullscreen
-        ApplyResolution();
+        ApplyResolution(ref settings.currentResolution, ref settings.screenWidth, ref settings.screenHeight, ref settings.fullscreenEnabled);
+
+        // Text Size
+
+        // Audio Playback
+        AudioSettings.speakerMode = settings.audioSpeakerMode;
+    }
+
+    public void RevertChanges()
+    {
+        // Resolution and fullscreen
+        ApplyResolution(ref currentResolution, ref screenWidth, ref screenHeight, ref fullscreenEnabled);
     }
 
     public void UpdateFont()
@@ -352,15 +363,15 @@ public class SettingsManager {
         //}
     }
 
-    public void ApplyResolution()
+    public void ApplyResolution(ref string currentResolution, ref int screenWidth, ref int screenHeight, ref bool fullscreen)
     {
-        var resolutionString = settings.currentResolution;
+        var resolutionString = currentResolution;
         string[] values = resolutionString.Split(new string[] { " x " }, StringSplitOptions.RemoveEmptyEntries);
 
-        settings.screenWidth = Int32.Parse(values[0]);
-        settings.screenHeight = Int32.Parse(values[1]);
+        screenWidth = Int32.Parse(values[0]);
+        screenHeight = Int32.Parse(values[1]);
 
-        Screen.SetResolution(settings.screenWidth, settings.screenHeight, settings.fullscreenEnabled);
+        Screen.SetResolution(screenWidth, screenHeight, fullscreenEnabled);
     }
 
     public void LoadSettings()

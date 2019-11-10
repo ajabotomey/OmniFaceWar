@@ -135,6 +135,8 @@ public class SettingsMenuController : MonoBehaviour
         //backToMainMenuButton.OnSelect(null);
         generalButton.Select();
         generalButton.OnSelect(null);
+
+        settingsManager.UpdateFont();
     }
 
     // Update is called once per frame
@@ -181,7 +183,7 @@ public class SettingsMenuController : MonoBehaviour
     {
         HideDialogBox();
 
-
+        settingsManager.RevertChanges();
     }
 
     private void SaveChanges()
