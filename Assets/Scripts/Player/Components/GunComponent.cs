@@ -13,7 +13,8 @@ public class GunComponent : MonoBehaviour
     [SerializeField] private GameObject gunObj;
     [SerializeField] private GameObject crosshair;
 
-    private float elapsedTime;
+    private float fireElapsedTime;
+    private float autoAimElapsedTime;
 
     private IInputController _inputController;
     private Bullet.Factory _bulletFactory;
@@ -23,6 +24,8 @@ public class GunComponent : MonoBehaviour
     private PlayerControl _player;
 
     private float _offset = -90.0f;
+
+    private float autoAimDelay = 2.0f;
 
     [Inject]
     public void Construct(IInputController inputController, Bullet.Factory bulletFactory, GameUIController gameUI, WeaponController weaponControl, SettingsManager settings, PlayerControl player)
@@ -49,7 +52,7 @@ public class GunComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        elapsedTime = 0.0f;
+        fireElapsedTime = 0.0f;
         _weaponControl.SelectPistol();
     }
 
@@ -66,8 +69,10 @@ public class GunComponent : MonoBehaviour
             var target = LookForEnemyWithThickRaycast(bulletSpawnPoint.position, direction, autoAimStrength);
 
             // Snap crosshair to target
-            if (target) {
+            if (target && autoAimElapsedTime > autoAimDelay) {
                 _player.SetAimTarget(target);
+                Logger.Debug("Aimbot targetting enemy");
+                autoAimElapsedTime = 0.0f;
             }
         }
 
@@ -79,7 +84,8 @@ public class GunComponent : MonoBehaviour
 
         _weaponControl.RechargeGuns();
 
-        elapsedTime += Time.fixedDeltaTime;
+        fireElapsedTime += Time.fixedDeltaTime;
+        autoAimElapsedTime += Time.fixedDeltaTime;
     }
 
     void Fire()
@@ -95,7 +101,7 @@ public class GunComponent : MonoBehaviour
         // Make sure we are actually aiming first
         if (aim.magnitude > 0.0f) {
             // Check fire rate
-            if (elapsedTime >= currentWeapon.GetFireRate()) {
+            if (fireElapsedTime >= currentWeapon.GetFireRate()) {
                 // Check if gun has enough energy, make sure it is also a Bullet Type Gun as well
                 if (currentWeapon.CanWeaponFire() && currentWeapon is BulletTypeGun) {
                     Bullet firedBullet = _bulletFactory.Create();
@@ -113,7 +119,7 @@ public class GunComponent : MonoBehaviour
                     if (_settings.IsRumbleEnabled())
                         _inputController.SetRumble(0.1f);
 
-                    elapsedTime = 0.0f;
+                    fireElapsedTime = 0.0f;
                 } else {
                     // Energy Bar outline should flash red briefly
                 }

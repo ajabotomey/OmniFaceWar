@@ -4012,8 +4012,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000076294, y: 322}
-  m_SizeDelta: {x: 470, y: 83.1}
+  m_AnchoredPosition: {x: -0.0000076294, y: 307.1}
+  m_SizeDelta: {x: 470, y: 112.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1324430601
 CanvasRenderer:
@@ -6638,7 +6638,6 @@ MonoBehaviour:
   playerHealthBar: {fileID: 231078360}
   gameOverPanel: {fileID: 2066301623}
   restartGameButton: {fileID: 459084635}
-  inputModule: {fileID: 0}
 --- !u!114 &1742212951
 MonoBehaviour:
   m_ObjectHideFlags: 0

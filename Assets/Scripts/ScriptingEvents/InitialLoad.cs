@@ -30,13 +30,10 @@ public class InitialLoad : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //// Reset Notifications
-        //ObjectivesManager obj = objManager.GetComponent<ObjectivesManager>();
-        //GameUIController ui = gameUIObj.GetComponent<GameUIController>();
-        //obj.SetCurrentObjective(objective);
-        //((EliminationObjective)objective).ResetObjective();
-        //gameUI.GetObjectivesPanel().Initialize(obj);
+        // Reset Notifications
 
+
+        // Setup Objectives
         objectivesManager.SetCurrentObjective(objective);
         ((EliminationObjective)objective).ResetObjective();
         panel.Initialize();
