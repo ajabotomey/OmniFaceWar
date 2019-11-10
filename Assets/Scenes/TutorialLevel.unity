@@ -790,6 +790,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f9d5eae20106d4283239c0bad6405e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &362583323 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 371571860, guid: 238c9c12b57ad7b4c95dab29741414c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1138049554}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &364623473
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,7 +1172,7 @@ GameObject:
   - component: {fileID: 648814193}
   - component: {fileID: 648814192}
   - component: {fileID: 648814195}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Guard4
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1405,7 +1411,7 @@ GameObject:
   - component: {fileID: 706994687}
   - component: {fileID: 706994686}
   - component: {fileID: 706994689}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Guard3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1694,7 +1700,7 @@ GameObject:
   - component: {fileID: 856477570}
   - component: {fileID: 856477569}
   - component: {fileID: 856477572}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Guard1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1801,6 +1807,106 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.15
+--- !u!1 &876689765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 876689766}
+  - component: {fileID: 876689767}
+  - component: {fileID: 876689768}
+  m_Layer: 9
+  m_Name: CrosshairSight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &876689766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876689765}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1661582693}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &876689767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876689765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9de5d976d898124ca81227e92aa1a3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 362583323}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 512
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 2048
+--- !u!212 &876689768
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876689765}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 6792070bdc3c3414a82edc02119d94d0, type: 3}
+  m_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1001 &1138049554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1871,6 +1977,10 @@ PrefabInstance:
     - target: {fileID: 8679208305817274398, guid: 238c9c12b57ad7b4c95dab29741414c2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10094989, guid: 238c9c12b57ad7b4c95dab29741414c2, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3107,7 +3217,7 @@ GameObject:
   - component: {fileID: 1336426664}
   - component: {fileID: 1336426663}
   - component: {fileID: 1336426666}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Guard2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -3447,7 +3557,7 @@ GameObject:
   - component: {fileID: 1544494981}
   - component: {fileID: 1544494980}
   - component: {fileID: 1544494983}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Guard5
   m_TagString: Enemy
   m_Icon: {fileID: 0}
