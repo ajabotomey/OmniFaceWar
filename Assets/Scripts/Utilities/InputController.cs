@@ -32,6 +32,8 @@ public interface IInputController
     void SetAim(Vector2 _aim);
     Vector2 GetAim();
     void SetInputDelay(bool enabled);
+    void SetInputSensitivity(int value);
+    void SetRumbleSensitivity(int value);
 }
 
 public enum DeviceType
@@ -51,6 +53,12 @@ public class InputController : IInputController
     Vector2 aim;
 
     private float inputDelay = 0.5f;
+
+    private const float JOYSTICK_SENSITIVITY = 1;
+    private const float MOUSE_SENSITIVITY = 1;
+    private const float KEYBOARD_SENSITIVITY = 3;
+
+    private float rumbleSensitivity = 100f;
 
     public InputController()
     {
@@ -160,11 +168,10 @@ public class InputController : IInputController
             return;
 
         //var sensitivity = SettingsManager.Instance.GetRumbleSensitivity();
-        var sensitivity = 100f;
 
         if (!joystick.supportsVibration) return;
         for (int i = 0; i < joystick.vibrationMotorCount; i++) {
-            joystick.SetVibration(i, sensitivity, duration);
+            joystick.SetVibration(i, rumbleSensitivity, duration);
         }
     }
 
@@ -251,5 +258,19 @@ public class InputController : IInputController
     {
         player.controllers.Keyboard.enabled = true;
         player.controllers.Mouse.enabled = true;
+    }
+
+    public void SetInputSensitivity(int value)
+    {
+        InputBehavior behavior = player.controllers.maps.GetInputBehavior(0);
+
+        behavior.joystickAxisSensitivity = JOYSTICK_SENSITIVITY * (value / 10);
+        behavior.mouseXYAxisSensitivity = MOUSE_SENSITIVITY * (value / 10);
+        behavior.digitalAxisSensitivity = KEYBOARD_SENSITIVITY * (value / 10);
+    }
+
+    public void SetRumbleSensitivity(int value)
+    {
+        rumbleSensitivity = value * 10;
     }
 }

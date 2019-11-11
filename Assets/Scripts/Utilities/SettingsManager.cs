@@ -313,6 +313,12 @@ public class SettingsManager {
 
         // Input Delay
         _input.SetInputDelay(settings.inputDelayEnabled);
+
+        // Input Sensitivity
+        _input.SetInputSensitivity(settings.inputSensitivity);
+
+        // Rumble Sensitivity
+        _input.SetRumbleSensitivity(settings.rumbleSensitivity);
     }
 
     public void RevertChanges()
@@ -320,10 +326,17 @@ public class SettingsManager {
         // Resolution and fullscreen
         ApplyResolution(ref currentResolution, ref screenWidth, ref screenHeight, ref fullscreenEnabled);
 
+        // Audio Playback
         AudioSettings.speakerMode = audioSpeakerMode;
 
         // Input Delay
         _input.SetInputDelay(inputDelayEnabled);
+
+        // Input Sensitivity
+        _input.SetInputSensitivity(inputSensitivity);
+
+        // Rumble Sensitivity
+        _input.SetRumbleSensitivity(rumbleSensitivity);
     }
 
     public void UpdateFont()
