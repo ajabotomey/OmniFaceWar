@@ -32,11 +32,7 @@ public class NotificationsManager : ScriptableObject
         // Check if title is in notification array and if so, has it been pushed
         foreach (Notification n in notifications) {
             if (n.Title == notification.Title) {
-                if (!n.Pushed) {
-                    return true;
-                }
-
-                break;
+                return true;
             }
         }
 

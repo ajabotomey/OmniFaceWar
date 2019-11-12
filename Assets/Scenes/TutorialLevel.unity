@@ -1889,6 +1889,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 904947094}
+    - target: {fileID: 876689767, guid: 238c9c12b57ad7b4c95dab29741414c2, type: 3}
+      propertyPath: obstacleMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 238c9c12b57ad7b4c95dab29741414c2, type: 3}
 --- !u!1 &1197543544
@@ -1964,7 +1968,7 @@ GameObject:
   - component: {fileID: 1235147292}
   - component: {fileID: 1235147295}
   - component: {fileID: 1235147294}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: Destructible Tiles
   m_TagString: Destructible Object
   m_Icon: {fileID: 0}
@@ -3403,7 +3407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1473469327}
   - component: {fileID: 1473469328}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3963,7 +3967,7 @@ GameObject:
   - component: {fileID: 1884853307}
   - component: {fileID: 1884853306}
   - component: {fileID: 1884853305}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19122,7 +19126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1980242767}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19155,7 +19159,7 @@ GameObject:
   - component: {fileID: 2140462372}
   - component: {fileID: 2140462374}
   - component: {fileID: 2140462373}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

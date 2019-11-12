@@ -166,7 +166,7 @@ public class GunComponent : MonoBehaviour
             float angleOffset = -flareOutAngle * 0.5f + i * flareOutAngle / (numberOfRays - 1);
             Vector2 flaredDirection = direction.Rotate(angleOffset);
 
-            RaycastHit2D hit = Physics2D.Raycast(startPos, flaredDirection, castDistance, targetMask);
+            RaycastHit2D hit = Physics2D.Raycast(startPos, flaredDirection, castDistance, targetMask | obstacleMask);
             Debug.DrawRay(startPos, flaredDirection * castDistance, Color.yellow, Time.deltaTime);
             if (hit) {
                 if (IsInTargetLayer(hit.collider.gameObject.layer)) {

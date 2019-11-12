@@ -38,24 +38,22 @@ public class InitialLoad : MonoBehaviour
         ((EliminationObjective)objective).ResetObjective();
         panel.Initialize();
 
-        // Reset tutorial notifications
-
         //GameUIController.Instance.PushNotification(firstNotification);
-        StartCoroutine(PushNotifications());
+        StartCoroutine(StartLevel());
     }
 
-    IEnumerator PushNotifications()
+    IEnumerator StartLevel()
     {
         //yield return new WaitForSeconds(3);
         //cameraShake.TriggerShake();
         //yield return new WaitForSeconds(3);
         gameUI.PushNotification(movement);
         //GameUIController.Instance.ShowSubtitles(movementClip);
-        //yield return new WaitForSeconds(3);
-        //GameUIController.Instance.PushNotification(rotation);
+        yield return new WaitForSeconds(3);
+        gameUI.PushNotification(rotation);
         //GameUIController.Instance.ShowSubtitles(rotationClip);
-        //yield return new WaitForSeconds(3);
-        //GameUIController.Instance.PushNotification(shooting);
+        yield return new WaitForSeconds(3);
+        gameUI.PushNotification(shooting);
         //GameUIController.Instance.ShowSubtitles(shootingClip);
         //yield return new WaitForSeconds(2);
         //GameUIController.Instance.HideSubtitles();
