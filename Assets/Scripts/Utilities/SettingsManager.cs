@@ -4,11 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public enum SupportedResolutions
-{
-    
-}
-
 [Serializable]
 public class SettingsManager {
 

@@ -378,6 +378,8 @@ public class SettingsMenuController : MonoBehaviour
         soundPanel.SetActive(false);
         inputPanel.SetActive(false);
 
+        settingsManager.UpdateFont();
+
         var gameSpeedObj = gameSpeedSlider.GetObject();
 
         // Modify navigation for menu buttons
@@ -412,6 +414,8 @@ public class SettingsMenuController : MonoBehaviour
         soundPanel.SetActive(false);
         inputPanel.SetActive(false);
 
+        settingsManager.UpdateFont();
+
         var dyslexicObj = dyslexicTextToggle.GetObject();
 
         // Modify navigation for menu buttons
@@ -440,6 +444,8 @@ public class SettingsMenuController : MonoBehaviour
         soundPanel.SetActive(true);
         inputPanel.SetActive(false);
 
+        settingsManager.UpdateFont();
+
         var soundFXObj = soundFXVolumeSlider.GetObject();
 
         // Modify navigation for menu buttons
@@ -467,6 +473,8 @@ public class SettingsMenuController : MonoBehaviour
         videoPanel.SetActive(false);
         soundPanel.SetActive(false);
         inputPanel.SetActive(true);
+
+        settingsManager.UpdateFont();
 
         var inputObj = inputSensitivitySlider.GetObject();
 
