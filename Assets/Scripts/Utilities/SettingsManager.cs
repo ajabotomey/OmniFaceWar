@@ -90,7 +90,7 @@ public class SettingsManager {
 
     public List<string> ResolutionsSupported()
     {
-        if (resolutionsSupported.Count == 0) {
+        if (resolutionsSupported == null) {
             resolutions = Screen.resolutions;
             resolutionsSupported = new List<string>();
 
@@ -99,7 +99,13 @@ public class SettingsManager {
                 var s = resolutions[i].ToString();
                 var delimiter = s.IndexOf(" @");
 
-                resolutionsSupported.Add(s.Substring(0, delimiter));
+                var resolution = s.Substring(0, delimiter);
+
+                if (!resolutionsSupported.Contains(resolution)) {
+                    resolutionsSupported.Add(resolution);
+                }
+
+                //resolutionsSupported.Add(s.Substring(0, delimiter));
             }
         }
 
