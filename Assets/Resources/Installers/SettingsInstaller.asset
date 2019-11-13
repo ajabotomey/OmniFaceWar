@@ -23,7 +23,7 @@ MonoBehaviour:
     subtitlesEnabled: 0
     subtitleTextSize: 42
     subtitleBackgroundOpacity: 10
-    autoAimEnabled: 1
+    autoAimEnabled: 0
     autoAimStrength: 100
     fullscreenEnabled: 0
     currentResolution: 1024 x 768
@@ -37,13 +37,13 @@ MonoBehaviour:
     audioSpeakerMode: 2
     settings:
       gameSpeed: 100
-      autoAimEnabled: 1
+      autoAimEnabled: 0
       autoAimStrength: 100
       textSize: 28
       fullscreenEnabled: 0
       currentResolution: 1024 x 768
-      screenWidth: 1024
-      screenHeight: 768
+      screenWidth: 1176
+      screenHeight: 664
       subtitlesEnabled: 0
       subtitleTextSize: 42
       subtitleBackgroundOpacity: 10
