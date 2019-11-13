@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
-using UnityEngine.Analytics;
+using Cinemachine;
 
 public class InitialLoad : MonoBehaviour
 {
@@ -12,7 +12,6 @@ public class InitialLoad : MonoBehaviour
     [SerializeField] private Notification rotation;
     [SerializeField] private Notification shooting;
     [SerializeField] private Notification window;
-    [SerializeField] private Notification shootDoors;
 
     [Header("Subtitle Clips")]
     [SerializeField] private SubtitleClip movementClip;
@@ -45,8 +44,6 @@ public class InitialLoad : MonoBehaviour
 
     IEnumerator StartLevel()
     {
-        AnalyticsEvent.Custom("level_start");
-
         //yield return new WaitForSeconds(3);
         //cameraShake.TriggerShake();
         //yield return new WaitForSeconds(3);
@@ -57,8 +54,6 @@ public class InitialLoad : MonoBehaviour
         //GameUIController.Instance.ShowSubtitles(rotationClip);
         yield return new WaitForSeconds(3);
         gameUI.PushNotification(shooting);
-        yield return new WaitForSeconds(3);
-        gameUI.PushNotification(shootDoors);
         //GameUIController.Instance.ShowSubtitles(shootingClip);
         //yield return new WaitForSeconds(2);
         //GameUIController.Instance.HideSubtitles();

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using Zenject;
 
 [Serializable]
-[ZenjectAllowDuringValidation]
 public class SettingsManager {
 
     [Header("Text")]
@@ -65,7 +64,7 @@ public class SettingsManager {
 
     public ModifiedSettings settings;
 
-    [Inject] private InputController _input;
+    [Inject] private IInputController _input;
 
     #region Accessor Methods
 
@@ -91,7 +90,7 @@ public class SettingsManager {
 
     public List<string> ResolutionsSupported()
     {
-        if (resolutionsSupported == null || resolutionsSupported.Count == 0) {
+        if (resolutionsSupported == null) {
             resolutions = Screen.resolutions;
             resolutionsSupported = new List<string>();
 
@@ -148,11 +147,6 @@ public class SettingsManager {
         return textSize;
     }
 
-    public bool IsInputDelayEnabled()
-    {
-        return inputDelayEnabled;
-    }
-
     public int GetInputSensitivity()
     {
         return inputSensitivity;
@@ -196,21 +190,6 @@ public class SettingsManager {
     public int GetAudioPlaybackType()
     {
         return (int)audioSpeakerMode;
-    }
-
-    public bool GetNewInputDelayEnabled()
-    {
-        return settings.inputDelayEnabled;
-    }
-    
-    public int GetNewInputSensitivity()
-    {
-        return settings.inputSensitivity;
-    }
-
-    public int GetNewRumbleSensitivity()
-    {
-        return settings.rumbleSensitivity;
     }
 
     #endregion
@@ -332,6 +311,15 @@ public class SettingsManager {
 
         // Audio Playback
         AudioSettings.speakerMode = settings.audioSpeakerMode;
+
+        // Input Delay
+        _input.SetInputDelay(settings.inputDelayEnabled);
+
+        // Input Sensitivity
+        _input.SetInputSensitivity(settings.inputSensitivity);
+
+        // Rumble Sensitivity
+        _input.SetRumbleSensitivity(settings.rumbleSensitivity);
     }
 
     public void RevertChanges()
@@ -341,6 +329,15 @@ public class SettingsManager {
 
         // Audio Playback
         AudioSettings.speakerMode = audioSpeakerMode;
+
+        // Input Delay
+        _input.SetInputDelay(inputDelayEnabled);
+
+        // Input Sensitivity
+        _input.SetInputSensitivity(inputSensitivity);
+
+        // Rumble Sensitivity
+        _input.SetRumbleSensitivity(rumbleSensitivity);
     }
 
     public void UpdateFont()

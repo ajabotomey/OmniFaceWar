@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement; // TODO: Remove this once heatmap data is col
 using UnityEngine.UI; // TODO: Remove this once heatmap data is collected
 using Zenject;
 using TMPro;
-using UnityEngine.Analytics;
+using Rewired.Integration.UnityUI;
 
 [System.Serializable]
 public class GameUIEvent : UnityEvent<GameUIController> { }
@@ -47,14 +47,13 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private Button restartGameButton; // TODO: Remove this once heatmap data is collected
 
     [Inject] private HeatmapUploadController heatmap;
-    [Inject] private IInputController input;
-    [Inject] private SettingsManager settings;
+    [Inject] private IInputController inputController;
+    [Inject] private SettingsManager settingsManager;
 
     private float elapsedTime;
     private float refreshTime = 3.0f;
 
     private bool paused = false;
-    private bool notificationWindowActive = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -64,7 +63,7 @@ public class GameUIController : MonoBehaviour
 
         elapsedTime = 0.0f;
 
-        settings.UpdateFont();
+        settingsManager.UpdateFont();
 
         //PushFirstNotification();
         //PushTestNotification();
@@ -120,7 +119,7 @@ public class GameUIController : MonoBehaviour
 
     private void CheckIfPaused()
     {
-        if (input.Pause()) {
+        if (inputController.Pause()) {
 
             if (!paused) {
                 PauseGame();
@@ -129,10 +128,8 @@ public class GameUIController : MonoBehaviour
                 pauseMenu.Show();
                 gameplayHUD.SetActive(false);
             } else {
-                if (notificationWindowActive)
-                    return;
-
                 StopPause();
+                gameplayHUD.SetActive(true);
             }
         }
     }
@@ -144,9 +141,8 @@ public class GameUIController : MonoBehaviour
 
     public void StopPause()
     {
-        pauseMenu.Hide();
-        gameplayHUD.SetActive(true);
         UnpauseGame();
+        pauseMenu.Hide();
     }
 
     public void SwapToSettingsMenu()
@@ -182,8 +178,6 @@ public class GameUIController : MonoBehaviour
 
         restartGameButton.Select();
         restartGameButton.OnSelect(null);
-
-        AnalyticsEvent.Custom("level_complete");
     }
 
     // TODO: Remove once heatmap data is collected
@@ -209,26 +203,22 @@ public class GameUIController : MonoBehaviour
 
     private void UnpauseGame()
     {
-        settings.UpdateFont();
+        settingsManager.UpdateFont();
 
         // Fix volume settings
-        voiceAudioSource.volume = Mathf.Clamp01(settings.GetVoiceVolume());
-        musicPlayerSource.volume = Mathf.Clamp01(settings.GetMusicVolume());
+        voiceAudioSource.volume = Mathf.Clamp01(settingsManager.GetVoiceVolume());
+        musicPlayerSource.volume = Mathf.Clamp01(settingsManager.GetMusicVolume());
 
         // Unpause the game
         paused = false;
-        Time.timeScale = settings.CurrentGameSpeed() / 100f;
+        Time.timeScale = settingsManager.CurrentGameSpeed() / 100f;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void CheckNotificationWindow()
     {
-        bool open = input.OpenNotificationWindow();
-
-        // Check if already paused
-        if (paused)
-            return;
+        bool open = inputController.OpenNotificationWindow();
 
         // If window is already open, return
         if (window.gameObject.activeSelf)
@@ -236,15 +226,12 @@ public class GameUIController : MonoBehaviour
 
         if (open) {
             PauseGame();
-            notificationWindowActive = true;
             window.gameObject.SetActive(true);
-            gameplayHUD.SetActive(false);
         }
     }
 
     public void HideNotificationWindow()
     {
-        gameplayHUD.SetActive(true);
         window.gameObject.SetActive(false);
         UnpauseGame();
     }

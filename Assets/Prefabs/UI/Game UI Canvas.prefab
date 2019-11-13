@@ -91,8 +91,8 @@ MonoBehaviour:
   action:
     rewiredAction: 20
     pcImage: {fileID: 21300000, guid: c7a2e58d80555ef40b2c6e0d9281f0de, type: 3}
-    xboxImage: {fileID: 21300000, guid: 0f284f7d1a1e6c14bb5b58a5b566a0ae, type: 3}
-    playstationImage: {fileID: 21300000, guid: 0dcdc053c6573e341b254e1dcff40180, type: 3}
+    xboxImage: {fileID: 21300000, guid: 92c1ed94fc4054f458d7104f9ce22ea7, type: 3}
+    playstationImage: {fileID: 21300000, guid: 4cbdf7c03b7752e4aa1359c4333a33b6, type: 3}
   image: {fileID: 15444237}
 --- !u!1 &55920182
 GameObject:
@@ -1602,7 +1602,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548532668}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a36950ac10a62f4b86b6bdb3f2ffc2b, type: 3}
   m_Name: 
@@ -2879,7 +2879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5438,7 +5438,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -448.5, y: 0}
+  m_AnchoredPosition: {x: -448.49994, y: 0}
   m_SizeDelta: {x: -897, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &197760289642772088

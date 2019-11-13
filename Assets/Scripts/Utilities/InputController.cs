@@ -264,9 +264,9 @@ public class InputController : IInputController
     {
         InputBehavior behavior = player.controllers.maps.GetInputBehavior(0);
 
-        behavior.joystickAxisSensitivity = JOYSTICK_SENSITIVITY * (value / 5); // Standard is 5, Maximum is 10
-        behavior.mouseXYAxisSensitivity = MOUSE_SENSITIVITY * (value / 5);
-        behavior.digitalAxisSensitivity = KEYBOARD_SENSITIVITY * (value / 5);
+        behavior.joystickAxisSensitivity = JOYSTICK_SENSITIVITY * (value / 10);
+        behavior.mouseXYAxisSensitivity = MOUSE_SENSITIVITY * (value / 10);
+        behavior.digitalAxisSensitivity = KEYBOARD_SENSITIVITY * (value / 10);
     }
 
     public void SetRumbleSensitivity(int value)

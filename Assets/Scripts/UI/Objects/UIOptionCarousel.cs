@@ -37,10 +37,10 @@ public class UIOptionCarousel : UIObject, ISelectHandler, IDeselectHandler
         if (selected) {
             float horizontal = input.GetUIHorizontal();
 
-            if (horizontal < -0.5 && !midSelection) {
+            if (horizontal < 0 && !midSelection) {
                 //LeftClicked();
                 StartCoroutine(LeftClickedController());
-            } else if (horizontal > 0.5 && !midSelection) {
+            } else if (horizontal > 0 && !midSelection) {
                 //RightClicked();
                 StartCoroutine(RightClickedController());
             }

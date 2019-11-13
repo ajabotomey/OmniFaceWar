@@ -60,8 +60,8 @@ public class HeatmapDrawer : MonoBehaviour
 
     public void ClearHeatmap()
     {
-        for (var i = transform.childCount; i-- > 0;) {
-            DestroyImmediate(transform.GetChild(0).gameObject);
+        foreach (Transform child in transform) {
+            GameObject.DestroyImmediate(child.gameObject);
         }
     }
 }

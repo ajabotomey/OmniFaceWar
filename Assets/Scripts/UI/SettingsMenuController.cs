@@ -137,8 +137,6 @@ public class SettingsMenuController : MonoBehaviour
         generalButton.OnSelect(null);
 
         settingsManager.UpdateFont();
-
-        SwapToGeneral();
     }
 
     // Update is called once per frame
@@ -160,7 +158,6 @@ public class SettingsMenuController : MonoBehaviour
     {
         // Apply changes
         settingsManager.ApplyChanges();
-        ApplyInputSettings();
 
         UIDialogBox.Instance.ShowPopUp("Would you like to save those changes?", ConfirmChanges, RevertChanges);
 
@@ -182,7 +179,6 @@ public class SettingsMenuController : MonoBehaviour
         HideDialogBox();
 
         settingsManager.RevertChanges();
-        RevertInputSettings();
     }
 
     private void RevertChangesAndLeave()
@@ -190,7 +186,6 @@ public class SettingsMenuController : MonoBehaviour
         HideDialogBox();
 
         settingsManager.RevertChanges();
-        RevertInputSettings();
 
         originalMenuEvent.Raise();
     }
@@ -213,30 +208,6 @@ public class SettingsMenuController : MonoBehaviour
         string[] enumNames = Enum.GetNames(typeof(AudioSpeakerMode));
         List<string> names = new List<string>(enumNames);
         audioPlaybackCarousel.SetOptions(names);
-    }
-
-    private void ApplyInputSettings()
-    {
-        // Input Delay
-        inputController.SetInputDelay(settingsManager.GetNewInputDelayEnabled());
-
-        // Input Sensitivity
-        inputController.SetInputSensitivity(settingsManager.GetNewInputSensitivity());
-
-        // Rumble Sensitivity
-        inputController.SetRumbleSensitivity(settingsManager.GetNewRumbleSensitivity());
-    }
-
-    private void RevertInputSettings()
-    {
-        // Input Delay
-        inputController.SetInputDelay(settingsManager.IsInputDelayEnabled());
-
-        // Input Sensitivity
-        inputController.SetInputSensitivity(settingsManager.GetInputSensitivity());
-
-        // Rumble Sensitivity
-        inputController.SetRumbleSensitivity(settingsManager.GetRumbleSensitivity());
     }
 
     #region Change Value methods

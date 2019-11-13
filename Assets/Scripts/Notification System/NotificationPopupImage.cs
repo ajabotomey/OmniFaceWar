@@ -16,7 +16,7 @@ public class NotificationPopupImage : NotificationPopup
         if (notification.RewiredAction == -1) { // No action here
             image.sprite = notification.Image;
         } else { // We have an action
-            image.sprite = notification.Image = rewiredActionManager.GetSpriteFromAction(notification.RewiredAction);
+            image.sprite = rewiredActionManager.GetSpriteFromAction(notification.RewiredAction);
         }
 
         this.notification = notification;

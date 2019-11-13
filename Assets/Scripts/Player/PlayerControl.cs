@@ -74,7 +74,10 @@ public class PlayerControl : MonoBehaviour
         }
 
         // Update heatmap position
-        _heatmap.AddPosition(transform.position);
+        if (elapsedTime >= refreshRate) {
+            _heatmap.AddPosition(transform.position);
+            elapsedTime = 0.0f;
+        }
     }
 
     void FixedUpdate()
