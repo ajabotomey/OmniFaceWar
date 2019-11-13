@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35958f5c0fe9b34bb5e248492c72430, type: 3}
+  m_Name: Shoot the Doors
+  m_EditorClassIdentifier: 
+  title: Shoot Doors
+  image: {fileID: 0}
+  normalText: Shoot the door (both grey squares to escape)
+  abbreviatedText: Shoot the door (both grey squares to escape)
+  type: 0
+  hasBeenPushed: 1
+  rewiredAction: -1
