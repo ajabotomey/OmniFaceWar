@@ -138,7 +138,8 @@ public class SettingsMenuController : MonoBehaviour
 
         settingsManager.UpdateFont();
 
-        SwapToGeneral();
+        if (!generalPanel.activeInHierarchy)
+            SwapToGeneral();
     }
 
     // Update is called once per frame

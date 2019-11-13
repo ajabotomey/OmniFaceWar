@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: SettingsInstaller
   m_EditorClassIdentifier: 
   settingsManager:
-    classicFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    classicFont: {fileID: 12800000, guid: ac098fcd65013964ea1600aa7a1b8130, type: 3}
     dyslexicFont: {fileID: 12800000, guid: ec11d4c8418df3149936abf57da69f7a, type: 3}
-    classicTMPFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    classicTMPFont: {fileID: 11400000, guid: 01f77b3642e6bf446a367d79a07cd750, type: 2}
     dyslexicTMPFont: {fileID: 11400000, guid: 329869b2777f9594fad09188aea44070, type: 2}
-    dyslexicTextEnabled: 1
+    dyslexicTextEnabled: 0
     textSize: 28
     gameSpeed: 100
     subtitlesEnabled: 0
@@ -42,8 +42,8 @@ MonoBehaviour:
       textSize: 28
       fullscreenEnabled: 0
       currentResolution: 1024 x 768
-      screenWidth: 1176
-      screenHeight: 664
+      screenWidth: 1024
+      screenHeight: 768
       subtitlesEnabled: 0
       subtitleTextSize: 42
       subtitleBackgroundOpacity: 10

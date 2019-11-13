@@ -9,10 +9,10 @@ public class MainMenuController : MonoBehaviour
     [Inject] private SettingsManager settingsManager;
     [Inject] private SceneController sceneController;
 
-    [SerializeField] private Button startGameButton;
-    [SerializeField] private Button loadGameButton;
-    [SerializeField] private Button settingsButton;
-    [SerializeField] private Button quitGameButton;
+    [SerializeField] private Selectable startGameButton;
+    [SerializeField] private Selectable loadGameButton;
+    [SerializeField] private Selectable settingsButton;
+    [SerializeField] private Selectable quitGameButton;
 
     [SerializeField] private VoidEvent settingsMenuEvent;
 
@@ -20,7 +20,7 @@ public class MainMenuController : MonoBehaviour
     {
         settingsManager.UpdateFont();
         startGameButton.Select();
-        startGameButton.OnSelect(null);
+        //startGameButton.OnSelect(null);
     }
 
     public void StartGame()
