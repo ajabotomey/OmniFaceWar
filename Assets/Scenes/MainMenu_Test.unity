@@ -2041,6 +2041,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PopUpPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 1349058038735396011, guid: 185a7ac2a04c41e41abae6c3b9c1cc19,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2730842468740629546, guid: 185a7ac2a04c41e41abae6c3b9c1cc19,
         type: 3}
       propertyPath: m_LocalPosition.x

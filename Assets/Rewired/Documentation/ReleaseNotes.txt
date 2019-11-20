@@ -1,3 +1,60 @@
+1.1.29.2:
+
+    Changes:
+      - Improved detection of rapid button taps at lower frame rates.
+
+    Bug Fixes:
+      - Rewired Editor saves prefab before exporting constants so changes made before editor recompiles are not lost. (Unity 2018.3+)
+      - Windows Standalone, XInput, Direct Input: Fixed issue causing fast button taps to be missed at high input thread frequency and low frame rates (increased buffer size).
+
+1.1.29.1:
+
+    Changes:
+      - Android Platforms: Added native workaround to handle keymapped and non-keymapped Sony DualShock 4 controllers (Unity 5+).
+      - Android: Added keymapped and non-keymapped Sony DualShock 4 controller definition variants.
+      - Amazon Fire TV: Added keymapped and non-keymapped Sony DualShock 4 controller definition variants.
+
+1.1.29.0:
+  
+    Changes:
+      - Rewired Standalone Input Module: Added Deselect If Background Clicked inspector option.
+      - Rewired Standalone Input Module: Added Deselect Before Selecting inspector option.
+      - Windows Standalone, XInput: Moved vibration to separate thread from input to eliminate input lag when sending vibration to a problem XInput device.
+        - PlayStation 4: Added Aim Controller support.
+
+    API Changes:
+      - Added RewiredStandaloneInputModule.deselectIfBackgroundClicked property.
+      - Added RewiredStandaloneInputModule.deselectBeforeSelecting property.
+      - Added Rewired.Platforms.PS4.Ps4AimExtension class.
+      - Added Rewired.Platforms.PS4.PS4AimMotorType enum.
+      
+    Controller Definitions:
+      - Added Sony PS4 Aim Controller.
+      
+    Bug Fixes:
+      - ControllerMapWithAxes.GetElementMapsWithAction: Fixed bug causing button maps to not be returned in List<ActionElementMap> results method overloads.
+
+1.1.28.0:
+
+    Changes:
+      - Added Stadia platform plugin support.
+      - Changed editor compilation system to work with "Recompile After Finished Playing" setting in Unity editor preferences.
+      - iOS/tvOS: Controller.deviceInstanceGuid changed to more accurately identify controllers.
+      - Changed callback/event exception logging to log the Exception.InnerException.
+
+    API Changes:
+      - ReInput.ControllerHelper.GetJoysticks now returns an empty array when no Joysticks are found instead of null.
+      - ReInput.ControllerHelper.GetJoystickNames now returns an empty array when no Joysticks are found instead of null.
+      - ReInput.ControllerHelper.GetCustomControllers now returns an empty array when no Custom Controllers are found instead of null.
+      - ReInput.ControllerHelper.GetCustomControllerNames now returns an empty array when no Custom Controllers are found instead of null.
+    
+    Controller Definitions:
+      - Added Stadia Gamepad.
+      
+    Bug Fixes:
+      - Fixed Null Reference Exception in RewiredPointerInputModule.GetPointerData when called with create == false and no pointer data has been created.
+      - Fixed Null Reference Exception in RewiredPointerInputModule when removing a mouse input source from a UI event callback.
+
 1.1.27.3:
     
     - Rebuild due to Windows Standalone IL2CPP issues in Unity 2018 branch.
