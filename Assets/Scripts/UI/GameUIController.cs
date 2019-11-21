@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement; // TODO: Remove this once heatmap data is collected
@@ -183,7 +184,15 @@ public class GameUIController : MonoBehaviour
         restartGameButton.Select();
         restartGameButton.OnSelect(null);
 
-        AnalyticsEvent.Custom("level_complete");
+        Dictionary<string, object> parameters = new Dictionary<string, object>();
+        parameters.Add("level_index", 1);
+
+        AnalyticsResult result = AnalyticsEvent.Custom("level_complete", parameters);
+        if (result == AnalyticsResult.Ok) {
+            Logger.Debug("All is well!");
+        } else {
+            Logger.Error("We have a problem with the Analytics data");
+        }
     }
 
     // TODO: Remove once heatmap data is collected

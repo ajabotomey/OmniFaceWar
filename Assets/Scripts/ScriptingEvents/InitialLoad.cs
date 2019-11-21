@@ -45,7 +45,16 @@ public class InitialLoad : MonoBehaviour
 
     IEnumerator StartLevel()
     {
-        AnalyticsEvent.Custom("level_start");
+        //AnalyticsEvent.Custom("level_start");
+        Dictionary<string, object> parameters = new Dictionary<string, object>();
+        parameters.Add("level_index", 1);
+
+        AnalyticsResult result = AnalyticsEvent.Custom("level_start", parameters);
+        if (result == AnalyticsResult.Ok) {
+            Logger.Debug("All is well!");
+        } else {
+            Logger.Error("We have a problem with the Analytics data");
+        }
 
         //yield return new WaitForSeconds(3);
         //cameraShake.TriggerShake();
