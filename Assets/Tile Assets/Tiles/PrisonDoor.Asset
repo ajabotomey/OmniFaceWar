@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2841818d9d9c8459761bd573c0a000, type: 3}
   m_Name: PrisonDoor
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: d20855dae27e9c94886c72a5c664e12d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9ddfe02cb9947264686492fe1879724d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
