@@ -18,21 +18,32 @@ public class GunComponent : MonoBehaviour
 
     private IInputController _inputController;
     private Bullet.Factory _bulletFactory;
-    private GameUIController _gameUI;
+    //private GameUIController _gameUI;
     private WeaponController _weaponControl;
     private SettingsManager _settings;
-    private PlayerControl _player;
+    private TestPlayerControl _player;
 
     private float _offset = -90.0f;
 
     private float autoAimDelay = 2.0f;
 
+    // Real one
+    //[Inject]
+    //public void Construct(IInputController inputController, Bullet.Factory bulletFactory, GameUIController gameUI, WeaponController weaponControl, SettingsManager settings, PlayerControl player)
+    //{
+    //    _inputController = inputController;
+    //    _bulletFactory = bulletFactory;
+    //    _gameUI = gameUI;
+    //    _weaponControl = weaponControl;
+    //    _settings = settings;
+    //    _player = player;
+    //}
+
     [Inject]
-    public void Construct(IInputController inputController, Bullet.Factory bulletFactory, GameUIController gameUI, WeaponController weaponControl, SettingsManager settings, PlayerControl player)
+    public void Construct(IInputController inputController, Bullet.Factory bulletFactory, WeaponController weaponControl, SettingsManager settings, TestPlayerControl player)
     {
         _inputController = inputController;
         _bulletFactory = bulletFactory;
-        _gameUI = gameUI;
         _weaponControl = weaponControl;
         _settings = settings;
         _player = player;
@@ -76,11 +87,11 @@ public class GunComponent : MonoBehaviour
             }
         }
 
-        if (!_gameUI.IsInteractingWithUI()) {
+        //if (!_gameUI.IsInteractingWithUI()) {
             if (fireBullet) {
                 Fire();
             }
-        }
+        //}
 
         _weaponControl.RechargeGuns();
 
@@ -108,6 +119,10 @@ public class GunComponent : MonoBehaviour
 
                     int damage = ((BulletTypeGun)currentWeapon).Damage;
                     firedBullet.SetDamage(damage);
+
+                    // Incorporate spread into the aim
+                    float spreadFactor = _player.GetSpreadFactor();
+                    aim.x += Random.Range(-spreadFactor, spreadFactor);
 
                     firedBullet.transform.position = bulletSpawnPoint.position;
                     firedBullet.transform.rotation = Quaternion.identity;

@@ -44,4 +44,24 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
         End();
         return this;
     }
+
+    public AIDomainBuilder MoveToPlayer()
+    {
+        Action("Move to player");
+        if (Pointer is IPrimitiveTask task) {
+            //task.SetOperator(new MoveToOperator())
+        }
+
+        return this;
+    }
+
+    public AIDomainBuilder MoveToPatrolPoint()
+    {
+        Action("Move to Patrol Point");
+        if (Pointer is IPrimitiveTask task) {
+            task.SetOperator(new MoveToOperator(AIDestinationTarget.PatrolPoint));
+        }
+
+        return this;
+    }
 }

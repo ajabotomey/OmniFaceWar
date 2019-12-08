@@ -1,58 +1,23 @@
-﻿using System;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-[Serializable]
-public struct NodePosition
-{
-    public float x;
-    public float y;
+public class AStarNode {
+	public bool isSolid;
+	public int posX, posY;
 
-    public NodePosition(float x, float y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-}
+	//gCost is the cost to travel from the starting node to this node
+	//hCost is the heuristic estimating the cost from this node to the goal
+	//In this case, hCost measures Manhattan Distance from this node to the goal
+	public int gCost, hCost;
+	public int fCost {get {return gCost + hCost;}}
 
-public class AStarNode : IComparable
-{
-    public float F { get; set; }
-    public float G { get; set; }
-    public float H { get; set; }
-    public bool IsObstacle { get; set; }
-    public AStarNode Parent { get; set; }
-    public NodePosition Position { get; set; }
+	//parent is used to generate the path back from the goal to the starting node
+	public AStarNode parent;
 
-    public AStarNode()
-    {
-        H = 0.0f;
-        G = 1.0f;
-        F = G + H;
-        IsObstacle = false;
-        Parent = null;
-    }
-
-    public AStarNode(float x, float y)
-    {
-        H = 0.0f;
-        G = 1.0f;
-        F = G + H;
-        IsObstacle = false;
-        Parent = null;
-        Position = new NodePosition(x, y);
-    }
-
-    public int CompareTo(object obj)
-    {
-        AStarNode node = (AStarNode)obj;
-
-        // Negative means object comes before this node in the sorted list
-        if (this.H < node.H)
-            return -1;
-
-        // Positive means node comes before object in the sorted list
-        if (this.H > node.H)
-            return 1;
-
-        return 0;
-    }
+	public AStarNode(bool solid, int x, int y) {
+		isSolid = solid;
+		posX = x;
+		posY = y;
+	}
 }

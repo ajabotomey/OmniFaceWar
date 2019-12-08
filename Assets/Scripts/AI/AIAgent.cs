@@ -6,7 +6,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
 public class AIAgent : MonoBehaviour
 {
     [SerializeField]
@@ -17,11 +16,24 @@ public class AIAgent : MonoBehaviour
     [Tooltip("The sensing capabilities of the agent")]
     private AISenses _senses;
 
+    [SerializeField]
+    private EntityHealth health;
+
+    [SerializeField]
+    private AStarPathfinding aStar;
+
+    [SerializeField]
+    private Transform[] patrolPoints;
+
+    [SerializeField]
+    private Transform fovSensor;
 
     private Planner<AIContext> _planner;
     private Domain<AIContext> _domain;
     private AIContext _context;
     private SensorySystem _sensory;
+
+    private Vector3 destinationPos;
 
     // Start is called before the first frame update
     void Awake()
@@ -33,8 +45,8 @@ public class AIAgent : MonoBehaviour
         }
 
         _planner = new Planner<AIContext>();
-        // Create context here
-        // Create sensory system here
+        _context = new AIContext(this, _senses, health, aStar, patrolPoints, fovSensor);
+        _sensory = new SensorySystem(this);
 
         _domain = _domainDefinition.Create();
     }
@@ -42,10 +54,11 @@ public class AIAgent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_planner == null || _domain == null || _context == null) // Add sensory system here
+        if (_planner == null || _domain == null || _context == null || _sensory == null) // Add sensory system here
             return;
 
-
+        _context.Time = Time.time;
+        _context.DeltaTime = Time.deltaTime;
 
 
         _planner.Tick(_domain, _context);

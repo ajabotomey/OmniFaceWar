@@ -28,6 +28,8 @@ public class PlayerControl : MonoBehaviour
     private float refreshRate = 10.0f;
     private float elapsedTime;
 
+    [SerializeField] private float spreadFactor = 0.1f;
+
     Vector3 aim;
 
     private Transform aimTarget = null;
@@ -84,6 +86,11 @@ public class PlayerControl : MonoBehaviour
 
         RotateCharacter(moveHorizontal, moveVertical);
         HandleMovement(moveHorizontal, moveVertical);      
+    }
+
+    public float GetSpreadFactor()
+    {
+        return spreadFactor;
     }
 
     void RotateCharacter(float horizontal, float vertical)

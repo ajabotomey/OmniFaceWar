@@ -8,6 +8,10 @@ public partial class AIContext
     public AISenses Senses { get; }
     public AICharacter Enemy { get; }
     public EntityHealth Health { get; }
+    public AStarPathfinding AStar { get; }
+    public Transform fovSensor { get; }
+
+    public Transform[] patrolPoints { get; }
 
     public float Time { get; set; }
     public float DeltaTime { get; set; }
@@ -16,7 +20,9 @@ public partial class AIContext
     // TODO: Add accessor and mutator
     private bool recentlyAttacked = false;
 
-    public AICharacter CurrentEnemy { get; set; }
+    public int currentWaypoint = 0;
+
+    public TestPlayerControl CurrentEnemy { get; set; }
 
     /// <summary>
     /// We can use this to prevent sensory updates from causing an unwanted replan.
@@ -29,7 +35,7 @@ public partial class AIContext
     /// </summary>
     public bool CanSense { get; set; }
 
-    public AIContext(AIAgent agent, AISenses senses, EntityHealth health)
+    public AIContext(AIAgent agent, AISenses senses, EntityHealth health, AStarPathfinding aStar, Transform[] waypoints, Transform fov)
     {
         Agent = agent;
         Senses = senses;
@@ -37,6 +43,9 @@ public partial class AIContext
         Enemy.Init(this);
         CanSense = true;
         Health = health;
+        AStar = aStar;
+        patrolPoints = waypoints;
+        fovSensor = fov;
         base.Init();
     }
 

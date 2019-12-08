@@ -8,7 +8,7 @@ public class SensorySystem
 
     public SensorySystem(AIAgent agent)
     {
-        _sensors = agent.transform.GetComponents<ISensor>();
+        _sensors = agent.transform.GetComponentsInChildren<ISensor>();
     }
 
     public void Tick(AIContext context)
