@@ -31,6 +31,8 @@ public class FieldOfViewSensor : MonoBehaviour, ISensor
     [SerializeField] private MeshRenderer viewMeshRenderer;
     private Mesh viewMesh;
 
+    private bool foundPlayer = false;
+
     public bool VisualisationOn {
         get; set;
     }
@@ -41,7 +43,7 @@ public class FieldOfViewSensor : MonoBehaviour, ISensor
             name = "View Mesh"
         };
         viewMeshFilter.mesh = viewMesh;
-        VisualisationOn = true;
+        VisualisationOn = false;
     }
 
     public float ViewRadius {
@@ -59,7 +61,18 @@ public class FieldOfViewSensor : MonoBehaviour, ISensor
         FindVisibleTargets();
 
         if (FOVDetect()) {
-            context.SetState(AIWorldState.EnemyFound, true, EffectType.PlanAndExecute);
+            if (!foundPlayer) {
+                context.SetState(AIWorldState.EnemyFound, true, EffectType.PlanAndExecute);
+                foundPlayer = true;
+            }   
+        } else {
+            if (foundPlayer) {
+                if (context.HasState(AIWorldState.EnemyFound, true)) {
+                    context.SetState(AIWorldState.EnemyFound, false, EffectType.PlanAndExecute);
+                }
+
+                foundPlayer = false;
+            }
         }
     }
 

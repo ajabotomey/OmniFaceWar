@@ -7,9 +7,19 @@ public class TrooperDomainDefinition : AIDomainDefinition
     public override Domain<AIContext> Create()
     {
         return new AIDomainBuilder("Trooper")
+            .Sequence("Engage enemy")
+                .HasState(AIWorldState.EnemyFound)
+                .FireWeapon()
+                .Select("Attack or pursue?")
+                    .FireWeapon()
+                    .Sequence("Pursue Enemy")
+                        .MoveToPlayer()
+                        .FireWeapon()
+                    .End()
+                .End()
+            .End()
             .Select("Move to Patrol Point")
                 .MoveToPatrolPoint()
-            .End()
             .End()
             .Build();
     }

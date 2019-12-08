@@ -14,7 +14,15 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
 
     public AIDomainBuilder HasState(AIWorldState state)
     {
-        //var condition = 
+        var condition = new HasWorldStateCondition(state);
+        Pointer.AddCondition(condition);
+        return this;
+    }
+
+    public AIDomainBuilder HasState(AIWorldState state, byte value)
+    {
+        var condition = new HasWorldStateCondition(state, value);
+        Pointer.AddCondition(condition);
         return this;
     }
 
@@ -42,6 +50,7 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
             task.SetOperator(new TakeDamageOperator());
         }
         End();
+
         return this;
     }
 
@@ -49,8 +58,9 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
     {
         Action("Move to player");
         if (Pointer is IPrimitiveTask task) {
-            //task.SetOperator(new MoveToOperator())
+            task.SetOperator(new MoveToOperator(AIDestinationTarget.Enemy));
         }
+        End();
 
         return this;
     }
@@ -61,6 +71,18 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
         if (Pointer is IPrimitiveTask task) {
             task.SetOperator(new MoveToOperator(AIDestinationTarget.PatrolPoint));
         }
+        End();
+
+        return this;
+    }
+
+    public AIDomainBuilder FireWeapon()
+    {
+        Action("Fire Weapon");
+        if (Pointer is IPrimitiveTask task) {
+            task.SetOperator(new FireWeaponOperator());
+        }
+        End();
 
         return this;
     }

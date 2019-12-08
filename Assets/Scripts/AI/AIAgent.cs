@@ -5,6 +5,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 
 public class AIAgent : MonoBehaviour
 {
@@ -28,6 +29,21 @@ public class AIAgent : MonoBehaviour
     [SerializeField]
     private Transform fovSensor;
 
+    [SerializeField]
+    private Transform gun;
+
+    [SerializeField]
+    private Transform bulletSpawnPoint;
+
+    [SerializeField]
+    private float spreadFactor;
+
+    [SerializeField]
+    private Weapon weapon;
+
+    [Inject]
+    private Bullet.Factory bulletFactory;
+
     private Planner<AIContext> _planner;
     private Domain<AIContext> _domain;
     private AIContext _context;
@@ -45,7 +61,7 @@ public class AIAgent : MonoBehaviour
         }
 
         _planner = new Planner<AIContext>();
-        _context = new AIContext(this, _senses, health, aStar, patrolPoints, fovSensor);
+        _context = new AIContext(this, _senses, health, aStar, patrolPoints, fovSensor, gun, bulletSpawnPoint, spreadFactor, weapon, bulletFactory);
         _sensory = new SensorySystem(this);
 
         _domain = _domainDefinition.Create();
@@ -60,8 +76,23 @@ public class AIAgent : MonoBehaviour
         _context.Time = Time.time;
         _context.DeltaTime = Time.deltaTime;
 
+        if (_context.CanSense) {
+            _sensory.Tick(_context);
+        }
 
         _planner.Tick(_domain, _context);
+
+        if (_context.LogDecomposition) {
+            Debug.Log("---------------------- DECOMP LOG --------------------------");
+            while (_context.DecompositionLog?.Count > 0) {
+                var entry = _context.DecompositionLog.Dequeue();
+                var depth = FluidHTN.Debug.Debug.DepthToString(entry.Depth);
+                //Console.ForegroundColor = entry.Color;
+                Debug.Log(depth + " " + entry.Name + ": " + entry.Description);
+            }
+            //Console.ResetColor();
+            Debug.Log("-------------------------------------------------------------");
+        }
     }
 
     private void OnDrawGizmos()

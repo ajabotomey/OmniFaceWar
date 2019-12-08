@@ -9,9 +9,14 @@ public partial class AIContext
     public AICharacter Enemy { get; }
     public EntityHealth Health { get; }
     public AStarPathfinding AStar { get; }
-    public Transform fovSensor { get; }
-
+    public Transform FOVSensor { get; }
+    public Transform Gun { get; }
+    public Transform BulletSpawnPoint { get; }
+    public Weapon CurrentWeapon { get; }
+    public Bullet.Factory BulletFactory { get; }
     public Transform[] patrolPoints { get; }
+
+    public float SpreadFactor { get; }
 
     public float Time { get; set; }
     public float DeltaTime { get; set; }
@@ -35,7 +40,7 @@ public partial class AIContext
     /// </summary>
     public bool CanSense { get; set; }
 
-    public AIContext(AIAgent agent, AISenses senses, EntityHealth health, AStarPathfinding aStar, Transform[] waypoints, Transform fov)
+    public AIContext(AIAgent agent, AISenses senses, EntityHealth health, AStarPathfinding aStar, Transform[] waypoints, Transform fov, Transform gunObj, Transform bulletSpawn, float spreadFactor, Weapon weapon, Bullet.Factory bulletFactory)
     {
         Agent = agent;
         Senses = senses;
@@ -45,7 +50,15 @@ public partial class AIContext
         Health = health;
         AStar = aStar;
         patrolPoints = waypoints;
-        fovSensor = fov;
+        FOVSensor = fov;
+        Gun = gunObj;
+        BulletSpawnPoint = bulletSpawn;
+        SpreadFactor = spreadFactor;
+        BulletFactory = bulletFactory;
+        CurrentWeapon = weapon;
+
+        CurrentEnemy = GameObject.FindGameObjectWithTag("Player").GetComponent<TestPlayerControl>();
+
         base.Init();
     }
 

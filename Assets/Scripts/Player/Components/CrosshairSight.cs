@@ -8,6 +8,7 @@ public class CrosshairSight : MonoBehaviour
     [SerializeField] private Transform parent;
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obstacleMask;
+    [SerializeField] private SpriteRenderer renderer;
 
     private int maxDistance = 5000; // TODO: Figure out a way to confirm the sprite to the screen
 
@@ -23,12 +24,12 @@ public class CrosshairSight : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(parent.position, aim, maxDistance, targetMask | obstacleMask);
 
             if (hit) {
-                gameObject.SetActive(true);
+                renderer.enabled = true;
                 if (hit.collider) {
                     transform.position = hit.point;
                 }
             } else {
-                gameObject.SetActive(false);
+                renderer.enabled = false;
             }
         }
     }

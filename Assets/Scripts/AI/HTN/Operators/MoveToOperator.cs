@@ -30,30 +30,24 @@ public class MoveToOperator : IOperator
 
             // Move the the next waypoint
             FindNewPath(c, c.patrolPoints[c.currentWaypoint].position);
-        }
 
-        isNavigating = true;
-        return TaskStatus.Continue;
+            isNavigating = true;
+            return TaskStatus.Continue;
+        } else if (DestinationTarget == AIDestinationTarget.Enemy) {
+            if (c.CurrentEnemy == null)
+                return TaskStatus.Failure;
+
+            FindNewPath(c, c.CurrentEnemy.transform.position);
+
+            isNavigating = true;
+            return TaskStatus.Continue;
+        }
+        
+        return TaskStatus.Failure;
     }
 
     public TaskStatus UpdateNavigation(AIContext c)
     {
-        //AIAgent agent = c.Agent;
-
-        //if (Vector2.Distance(agent.transform.position, DestinationPos) < 0.05f) {
-
-        //    if (nodePath.Count == 0) {
-        //        isNavigating = false;
-        //        return TaskStatus.Success;
-        //    }
-                
-
-        //    nodePath.RemoveAt(0); // Remove first node each time
-        //    currentTargetPos = c.AStar.WorldPointFromNode(nodePath[0]);
-        //}
-
-        //agent.transform.position = Vector2.MoveTowards(agent.transform.position, currentTargetPos, Time.deltaTime);
-
         if (DestinationTarget == AIDestinationTarget.PatrolPoint) {
             if (c.patrolPoints == null || c.patrolPoints.Length == 0) {
                 return TaskStatus.Failure;
@@ -69,11 +63,34 @@ public class MoveToOperator : IOperator
 
                     if (c.currentWaypoint == c.patrolPoints.Length - 1)
                         c.currentWaypoint = 0;
-                    else 
+                    else
                         c.currentWaypoint++;
 
-                    // Calculate the path to the next waypoint
-                    FindNewPath(c, c.patrolPoints[c.currentWaypoint].position);
+                    isNavigating = false;
+                    return TaskStatus.Success;
+                }
+
+                currentTargetPos = c.AStar.WorldPointFromNode(nodePath[0]);
+            }
+
+            RotateFOVSensor(c);
+
+            agent.transform.position = Vector2.MoveTowards(agent.transform.position, currentTargetPos, Time.deltaTime);
+
+            return TaskStatus.Continue;
+        } else if (DestinationTarget == AIDestinationTarget.Enemy) {
+            if (c.CurrentEnemy == null)
+                return TaskStatus.Failure;
+
+            AIAgent agent = c.Agent;
+
+            if (Vector2.Distance(agent.transform.position, currentTargetPos) < 5f) { // TODO: Custom stop range for if in range of the player
+
+                nodePath.RemoveAt(0); // Remove first node each time
+
+                if (nodePath.Count == 0) {
+                    isNavigating = false;
+                    return TaskStatus.Success;
                 }
 
                 currentTargetPos = c.AStar.WorldPointFromNode(nodePath[0]);
@@ -126,13 +143,13 @@ public class MoveToOperator : IOperator
         var step = rotateSpeed * Time.deltaTime;
 
         Vector2 targetPos = currentTargetPos;
-        Vector2 sensorPos = c.fovSensor.position;
+        Vector2 sensorPos = c.FOVSensor.position;
         targetPos.x -= sensorPos.x;
         targetPos.y -= sensorPos.y;
 
         float angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
         angle -= 90;
         var newRotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        c.fovSensor.rotation = Quaternion.RotateTowards(c.fovSensor.rotation, newRotation, step);
+        c.FOVSensor.rotation = Quaternion.RotateTowards(c.FOVSensor.rotation, newRotation, step);
     }
 }
