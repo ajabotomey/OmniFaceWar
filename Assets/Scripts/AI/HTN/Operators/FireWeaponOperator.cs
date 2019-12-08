@@ -19,24 +19,34 @@ public class FireWeaponOperator : IOperator
         // TODO: Add fire rate
 
         if (ctx is AIContext c) {
-            RotateTowardsTarget(c.CurrentEnemy.transform, c);
 
-            Bullet firedBullet = c.BulletFactory.Create();
+            if (c.WeaponFireTimer <= 0f) {
+                RotateTowardsTarget(c.CurrentEnemy.transform, c);
 
-            int damage = ((BulletTypeGun)c.CurrentWeapon).Damage;
-            firedBullet.SetDamage(damage);
+                Bullet firedBullet = c.BulletFactory.Create();
 
-            // Incorporate spread into the aim
-            var spreadFactor = c.SpreadFactor;
-            var aim = c.Gun.up;
-            //aim.x += Random.Range(-spreadFactor, spreadFactor);
+                int damage = ((BulletTypeGun)c.CurrentWeapon).Damage;
+                firedBullet.SetDamage(damage);
 
-            firedBullet.transform.position = c.BulletSpawnPoint.position;
-            firedBullet.transform.rotation = Quaternion.identity;
-            firedBullet.GetComponent<Rigidbody2D>().velocity = aim * 50.0f;
-            firedBullet.transform.Rotate(0, 0, Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg);
+                // Incorporate spread into the aim
+                var spreadFactor = c.SpreadFactor;
+                var aim = c.Gun.up;
+                //aim.x += Random.Range(-spreadFactor, spreadFactor);
 
-            c.CurrentWeapon.Fire();
+                firedBullet.transform.position = c.BulletSpawnPoint.position;
+                firedBullet.transform.rotation = Quaternion.identity;
+                firedBullet.GetComponent<Rigidbody2D>().velocity = aim * 50.0f;
+                firedBullet.transform.Rotate(0, 0, Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg);
+
+                c.CurrentWeapon.Fire();
+
+                c.WeaponFireTimer = c.CurrentWeapon.GetFireRate();
+
+                return TaskStatus.Success;
+            }
+
+            c.WeaponFireTimer -= Time.deltaTime;
+            return TaskStatus.Continue;
         }
 
         return TaskStatus.Failure;

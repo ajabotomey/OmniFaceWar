@@ -20,7 +20,9 @@ public partial class AIContext
 
     public float Time { get; set; }
     public float DeltaTime { get; set; }
+    // Timer for animation purposes
     public float GenericTimer { get; set; }
+    public float WeaponFireTimer { get; set; }
 
     // TODO: Add accessor and mutator
     private bool recentlyAttacked = false;
