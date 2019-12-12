@@ -26,10 +26,35 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
         return this;
     }
 
+    public AIDomainBuilder HasStateGreaterThan(AIWorldState state, byte value)
+    {
+        var condition = new HasWorldStateGreaterThanCondition(state, value);
+        Pointer.AddCondition(condition);
+        return this;
+    }
+
     public AIDomainBuilder SetState(AIWorldState state, byte value, EffectType type)
     {
         if (Pointer is IPrimitiveTask task) {
             var effect = new SetWorldStateEffect(state, value, type);
+            task.AddEffect(effect);
+        }
+        return this;
+    }
+
+    public AIDomainBuilder IncrementState(AIWorldState state, EffectType type)
+    {
+        if (Pointer is IPrimitiveTask task) {
+            var effect = new IncrementWorldStateEffect(state, type);
+            task.AddEffect(effect);
+        }
+        return this;
+    }
+
+    public AIDomainBuilder IncrementState(AIWorldState state, byte value, EffectType type)
+    {
+        if (Pointer is IPrimitiveTask task) {
+            var effect = new IncrementWorldStateEffect(state, value, type);
             task.AddEffect(effect);
         }
         return this;
@@ -84,6 +109,39 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
         }
         End();
 
+        return this;
+    }
+
+    public AIDomainBuilder PursuePlayer()
+    {
+        Action("Pursue Player");
+        if (Pointer is IPrimitiveTask task) {
+            task.SetOperator(new MoveToOperator(AIDestinationTarget.Enemy));
+        }
+        IncrementState(AIWorldState.AlertLevel, 3, EffectType.PlanAndExecute);
+        End();
+        return this;
+    }
+
+    public AIDomainBuilder AttackPlayer()
+    {
+        Action("Attack Player");
+        HasStateGreaterThan(AIWorldState.AlertLevel, 25);
+        if (Pointer is IPrimitiveTask task) {
+            task.SetOperator(new AttackPlayerOperator());
+        }
+        IncrementState(AIWorldState.AlertLevel, 3, EffectType.PlanAndExecute);
+        End();
+        return this;
+    }
+
+    public AIDomainBuilder AttackPlayerAndAlertOthers()
+    {
+        Action("Attack Player and Alert others");
+        HasStateGreaterThan(AIWorldState.AlertLevel, 50);
+
+        IncrementState(AIWorldState.AlertLevel, 3, EffectType.PlanAndExecute);
+        End();
         return this;
     }
 }

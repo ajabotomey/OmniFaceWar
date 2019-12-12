@@ -1,8 +1,6 @@
 ﻿using FluidHTN;
 using FluidHTN.Operators;
-using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 public class FireWeaponOperator : IOperator
 {

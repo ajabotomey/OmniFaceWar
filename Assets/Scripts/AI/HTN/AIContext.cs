@@ -68,6 +68,7 @@ public partial class AIContext
     {
         Health.ApplyDamage(damage);
         recentlyAttacked = true;
+        SetState(AIWorldState.AlertLevel, 50, FluidHTN.EffectType.PlanAndExecute);
     }
 
     public bool WasRecentlyAttacked()

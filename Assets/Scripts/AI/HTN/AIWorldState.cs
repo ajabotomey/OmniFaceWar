@@ -1,6 +1,7 @@
 ﻿public enum AIWorldState
 {
-    EnemyFound
+    EnemyFound,
+    AlertLevel
 }
 
 public enum AIDestinationTarget
