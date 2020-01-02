@@ -33,6 +33,13 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
         return this;
     }
 
+    public AIDomainBuilder HasStateLessThan(AIWorldState state, byte value)
+    {
+        var condition = new HasWorldStateLessThanCondition(state, value);
+        Pointer.AddCondition(condition);
+        return this;
+    }
+
     public AIDomainBuilder SetState(AIWorldState state, byte value, EffectType type)
     {
         if (Pointer is IPrimitiveTask task) {
@@ -55,6 +62,15 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
     {
         if (Pointer is IPrimitiveTask task) {
             var effect = new IncrementWorldStateEffect(state, value, type);
+            task.AddEffect(effect);
+        }
+        return this;
+    }
+
+    public AIDomainBuilder DecrementState(AIWorldState state, byte value, EffectType type)
+    {
+        if (Pointer is IPrimitiveTask task) {
+            var effect = new DecrementWorldStateEffect(state, value, type);
             task.AddEffect(effect);
         }
         return this;
@@ -139,8 +155,46 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
     {
         Action("Attack Player and Alert others");
         HasStateGreaterThan(AIWorldState.AlertLevel, 50);
+        if (Pointer is IPrimitiveTask task) {
 
+        }
         IncrementState(AIWorldState.AlertLevel, 3, EffectType.PlanAndExecute);
+        End();
+        return this;
+    }
+
+    public AIDomainBuilder Wait(float waitTime)
+    {
+        Action("Wait");
+        if (Pointer is IPrimitiveTask task) {
+            task.SetOperator(new WaitOperator(waitTime));
+        }
+        End();
+        return this;
+    }
+
+    public AIDomainBuilder PauseForMoment()
+    {
+        Action("Pause");
+        HasStateGreaterThan(AIWorldState.AlertLevel, 25);
+        HasStateLessThan(AIWorldState.AlertLevel, 50);
+        if (Pointer is IPrimitiveTask task) {
+            task.SetOperator(new WaitOperator(5f));
+        }
+        DecrementState(AIWorldState.AlertLevel, 5, EffectType.PlanAndExecute);
+        End();
+        return this;
+    }
+
+    public AIDomainBuilder MoveToLastRecordedPosition()
+    {
+        Action("Move to last recorded position");
+        HasStateGreaterThan(AIWorldState.AlertLevel, 50);
+        HasStateGreaterThan(AIWorldState.AlertLevel, 75);
+        if (Pointer is IPrimitiveTask task) {
+            // Set operator here
+        }
+        DecrementState(AIWorldState.AlertLevel, 3, EffectType.PlanAndExecute);
         End();
         return this;
     }

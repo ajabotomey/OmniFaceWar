@@ -55,9 +55,17 @@ public class MoveToOperator : IOperator
 
             AIAgent agent = c.Agent;
 
+            // collision detection
+            if (Physics2D.Raycast(c.Agent.transform.position, currentTargetPos, 5.0f, c.Agent.Layer)) {
+                // Recreate the path
+                FindNewPath(c, c.patrolPoints[c.currentWaypoint].position);
+            }
+
             if (Vector2.Distance(agent.transform.position, currentTargetPos) < 0.05f) {
 
+                nodePath[0].isSolid = false;
                 nodePath.RemoveAt(0); // Remove first node each time
+                
 
                 if (nodePath.Count == 0) {
 
@@ -70,6 +78,7 @@ public class MoveToOperator : IOperator
                     return TaskStatus.Success;
                 }
 
+                nodePath[0].isSolid = true; // Prevents multiple AI units from selecting the tile that an AI unit is on.
                 currentTargetPos = c.AStar.WorldPointFromNode(nodePath[0]);
             }
 
@@ -86,13 +95,15 @@ public class MoveToOperator : IOperator
 
             if (Vector2.Distance(agent.transform.position, currentTargetPos) < 5f) { // TODO: Custom stop range for if in range of the player
 
+                nodePath[0].isSolid = false;
                 nodePath.RemoveAt(0); // Remove first node each time
-
+                
                 if (nodePath.Count == 0) {
                     isNavigating = false;
                     return TaskStatus.Success;
                 }
 
+                nodePath[0].isSolid = true; // Prevents multiple AI units from selecting the tile that an AI unit is on.
                 currentTargetPos = c.AStar.WorldPointFromNode(nodePath[0]);
             }
 

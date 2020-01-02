@@ -41,6 +41,8 @@ public class AIAgent : MonoBehaviour
     [SerializeField]
     private Weapon weapon;
 
+    public LayerMask Layer { get; set; }
+
     [Inject]
     private Bullet.Factory bulletFactory;
 
@@ -65,6 +67,8 @@ public class AIAgent : MonoBehaviour
         _sensory = new SensorySystem(this);
 
         _domain = _domainDefinition.Create();
+
+        Layer = gameObject.layer;
     }
 
     // Update is called once per frame

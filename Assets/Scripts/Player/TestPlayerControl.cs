@@ -43,18 +43,9 @@ public class TestPlayerControl : MonoBehaviour
         //healthController = new EntityHealth(health);
 
         elapsedTime = 0.0f;
+
+        Debug.Log("Random Range: " + RandomUtils.GaussianRandomRange(0, 10));
     }
-
-    //[Inject]
-    //public void Construct(IInputController inputController)
-    //{
-    //    _inputController = inputController;
-
-    //    Cursor.lockState = CursorLockMode.Locked;
-    //    Cursor.visible = false;
-
-    //    elapsedTime = 0.0f;
-    //}
 
     void Update()
     {

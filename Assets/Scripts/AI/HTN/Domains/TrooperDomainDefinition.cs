@@ -1,5 +1,6 @@
 ﻿using FluidHTN;
 using UnityEngine;
+using System;
 
 [CreateAssetMenu(fileName = "TrooperDomain", menuName = "AI/Domains/Trooper")]
 public class TrooperDomainDefinition : AIDomainDefinition
@@ -9,7 +10,7 @@ public class TrooperDomainDefinition : AIDomainDefinition
         return new AIDomainBuilder("Trooper")
             .Sequence("Engage enemy")
                 .HasState(AIWorldState.EnemyFound)
-                .FireWeapon()
+                //.FireWeapon()
                 .Select("Attack or pursue?")
                     .PursuePlayer()
                     .AttackPlayer()
@@ -20,6 +21,14 @@ public class TrooperDomainDefinition : AIDomainDefinition
                     //    .MoveToPlayer()
                     //    .FireWeapon()
                     //.End()
+                .End()
+            .End()
+            .Sequence("Lost Enemy")
+                .HasState(AIWorldState.EnemyFound, Convert.ToByte(false))
+                .Select("")         
+                    .PauseForMoment() // Pause movement
+                    .MoveToLastRecordedPosition() // Move to last recorded position
+                    // Continue assault on player
                 .End()
             .End()
             .Select("Move to Patrol Point")

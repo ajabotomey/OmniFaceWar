@@ -69,6 +69,7 @@ public class FieldOfViewSensor : MonoBehaviour, ISensor
             if (foundPlayer) {
                 if (context.HasState(AIWorldState.EnemyFound, true)) {
                     context.SetState(AIWorldState.EnemyFound, false, EffectType.PlanAndExecute);
+                    //context.SetState(AIWorldState.AlertLevel, )
                 }
 
                 foundPlayer = false;
