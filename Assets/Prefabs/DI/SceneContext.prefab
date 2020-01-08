@@ -56,23 +56,15 @@ MonoBehaviour:
   OnPreInstall:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnPostInstall:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnPreResolve:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnPostResolve:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   _parentNewObjectsUnderSceneContext: 0
   _contractNames: []
   _parentContractNames: []
@@ -93,13 +85,11 @@ MonoBehaviour:
     type: 3}
   NoisemakerPrefab: {fileID: 3755039382291745955, guid: 78c32ce02fad12d40968057565b356a8,
     type: 3}
-  gameUIController: {fileID: 5567816428608361323, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-    type: 3}
-  heatmap: {fileID: 1618547160704746393, guid: dd2a1deef155a584d9cce838638a2610, type: 3}
-  cameraShake: {fileID: 1949372460826537404, guid: 990d64e1a612f7840aee3415e6401d23,
-    type: 3}
-  objectivesManager: {fileID: 5095627218919482202, guid: ef9452893efdfe340b505eb58d14c77a,
-    type: 3}
+  gameUIController: {fileID: 0}
+  omniFaceAssistant: {fileID: 0}
+  heatmap: {fileID: 0}
+  cameraShake: {fileID: 0}
+  objectivesManager: {fileID: 0}
 --- !u!114 &162501483
 MonoBehaviour:
   m_ObjectHideFlags: 0

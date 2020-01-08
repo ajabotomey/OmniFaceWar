@@ -18,39 +18,29 @@ public class GunComponent : MonoBehaviour
 
     private IInputController _inputController;
     private Bullet.Factory _bulletFactory;
-    //private GameUIController _gameUI;
+    private GameUIController _gameUI;
     private WeaponController _weaponControl;
     private SettingsManager _settings;
-    private TestPlayerControl _player;
+    private PlayerControl _player;
 
     private float _offset = -90.0f;
 
     private float autoAimDelay = 2.0f;
 
     // Real one
-    //[Inject]
-    //public void Construct(IInputController inputController, Bullet.Factory bulletFactory, GameUIController gameUI, WeaponController weaponControl, SettingsManager settings, PlayerControl player)
-    //{
-    //    _inputController = inputController;
-    //    _bulletFactory = bulletFactory;
-    //    _gameUI = gameUI;
-    //    _weaponControl = weaponControl;
-    //    _settings = settings;
-    //    _player = player;
-    //}
-
     [Inject]
-    public void Construct(IInputController inputController, Bullet.Factory bulletFactory, WeaponController weaponControl, SettingsManager settings, TestPlayerControl player)
+    public void Construct(IInputController inputController, Bullet.Factory bulletFactory, GameUIController gameUI, WeaponController weaponControl, SettingsManager settings, PlayerControl player)
     {
         _inputController = inputController;
         _bulletFactory = bulletFactory;
+        _gameUI = gameUI;
         _weaponControl = weaponControl;
         _settings = settings;
         _player = player;
     }
 
     //[Inject]
-    //public void Construct(IInputController inputController, Bullet.Factory bulletFactory, WeaponController weaponControl, SettingsManager settings, PlayerControl player)
+    //public void Construct(IInputController inputController, Bullet.Factory bulletFactory, WeaponController weaponControl, SettingsManager settings, TestPlayerControl player)
     //{
     //    _inputController = inputController;
     //    _bulletFactory = bulletFactory;
@@ -58,7 +48,6 @@ public class GunComponent : MonoBehaviour
     //    _settings = settings;
     //    _player = player;
     //}
-
 
     // Start is called before the first frame update
     void Start()
@@ -87,11 +76,11 @@ public class GunComponent : MonoBehaviour
             }
         }
 
-        //if (!_gameUI.IsInteractingWithUI()) {
+        if (!_gameUI.IsInteractingWithUI()) {
             if (fireBullet) {
                 Fire();
             }
-        //}
+        }
 
         _weaponControl.RechargeGuns();
 
