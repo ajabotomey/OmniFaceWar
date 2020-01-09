@@ -55,6 +55,7 @@ MonoBehaviour:
       xboxOne_primaryInputSource: 0
       ps4_primaryInputSource: 0
       webGL_primaryInputSource: 0
+      stadia_primaryInputSource: 0
       useXInput: 1
       useNativeMouse: 1
       useEnhancedDeviceSupport: 1
@@ -119,6 +120,9 @@ MonoBehaviour:
         disableKeyboard: 0
         ignoreInputWhenAppNotInFocus: 1
       platformVars_webGL:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      platformVars_stadia:
         disableKeyboard: 0
         ignoreInputWhenAppNotInFocus: 1
       maxJoysticksPerPlayer: 1

@@ -156,7 +156,7 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
         Action("Attack Player and Alert others");
         HasStateGreaterThan(AIWorldState.AlertLevel, 50);
         if (Pointer is IPrimitiveTask task) {
-
+            task.SetOperator(new AttackAndAlertOperator());
         }
         IncrementState(AIWorldState.AlertLevel, 3, EffectType.PlanAndExecute);
         End();

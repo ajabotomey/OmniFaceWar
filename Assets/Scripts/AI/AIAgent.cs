@@ -41,6 +41,9 @@ public class AIAgent : MonoBehaviour
     [SerializeField]
     private Weapon weapon;
 
+    [SerializeField]
+    private VoidEvent alertAllEnemiesEvent;
+
     public LayerMask Layer { get; set; }
 
     [Inject]
@@ -97,6 +100,16 @@ public class AIAgent : MonoBehaviour
             //Console.ResetColor();
             Debug.Log("-------------------------------------------------------------");
         }
+    }
+
+    public void AlertAllEnemies()
+    {
+        alertAllEnemiesEvent.Raise();
+    }
+
+    public void SetAgentToFullAlert()
+    {
+        _context.SetState(AIWorldState.AlertLevel, 100, EffectType.PlanAndExecute);
     }
 
     private void OnDrawGizmos()

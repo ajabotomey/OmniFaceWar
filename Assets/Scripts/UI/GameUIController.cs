@@ -106,6 +106,7 @@ public class GameUIController : MonoBehaviour
     public void StartConversation(Conversation conversation)
     {
         conversationController.ChangeConversation(conversation);
+        conversationController.gameObject.SetActive(true);
     }
 
     public bool IsConversationActive()
