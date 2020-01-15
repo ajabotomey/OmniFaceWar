@@ -158,4 +158,14 @@ public class PlayerControl : MonoBehaviour
             aimTarget = target;
         }
     }
+
+    public void InitiateCombat()
+    {
+        _gameUI.FadeOutElementsForCombat();
+    }
+
+    public void CombatEnded()
+    {
+        _gameUI.FadeInElementsAfterCombat();
+    }
 }

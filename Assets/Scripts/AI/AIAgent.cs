@@ -44,6 +44,9 @@ public class AIAgent : MonoBehaviour
     [SerializeField]
     private VoidEvent alertAllEnemiesEvent;
 
+    [SerializeField]
+    private VoidEvent initiateCombat;
+
     public LayerMask Layer { get; set; }
 
     [Inject]
@@ -105,6 +108,11 @@ public class AIAgent : MonoBehaviour
     public void AlertAllEnemies()
     {
         alertAllEnemiesEvent.Raise();
+    }
+
+    public void InitiateCombat()
+    {
+        initiateCombat.Raise();
     }
 
     public void SetAgentToFullAlert()

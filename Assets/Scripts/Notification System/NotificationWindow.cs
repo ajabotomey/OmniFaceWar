@@ -18,18 +18,16 @@ public class NotificationWindow : MonoBehaviour
 
     private NotificationsManager _manager;
     private NotificationFull.Factory _factory;
-    private NotificationFullImage.Factory _imageFactory;
     private IInputController _inputController;
     private GameUIController _gameUI;
 
     [Inject] private SettingsManager _settings;
 
     [Inject]
-    public void Construct(NotificationsManager manager, NotificationFull.Factory factory, NotificationFullImage.Factory imageFactory, IInputController inputController, GameUIController gameUI)
+    public void Construct(NotificationsManager manager, NotificationFull.Factory factory, IInputController inputController, GameUIController gameUI)
     {
         _manager = manager;
         _factory = factory;
-        _imageFactory = imageFactory;
         _inputController = inputController;
         _gameUI = gameUI;
     }
@@ -73,27 +71,19 @@ public class NotificationWindow : MonoBehaviour
 
     private void CreateNotification(Notification n)
     {
-        if (n.Image) {
-            NotificationFullImage notification = _imageFactory.Create();
-            RectTransform rect = notification.GetComponent<RectTransform>();
-            notification.CreateNotification(n.Image, n.NormalText);
-            rect.SetParent(scrollView);
-            rect.localScale = Vector3.one;
-        } else {
-            NotificationFull notification = _factory.Create();
-            RectTransform rect = notification.GetComponent<RectTransform>();
-            notification.CreateNotification(n.NormalText);
-            rect.SetParent(scrollView);
-            rect.localScale = Vector3.one;
+        NotificationFull notification = _factory.Create();
+        RectTransform rect = notification.GetComponent<RectTransform>();
+        //notification.CreateNotification(n.Image, n.NormalText);
+        rect.SetParent(scrollView);
+        rect.localScale = Vector3.one;
+
+            // Check if image
+            // Create image notification
+            // else 
+            // Create normal notification
+
+            // Make sure to parent to scrollview
         }
-
-        // Check if image
-        // Create image notification
-        // else 
-        // Create normal notification
-
-        // Make sure to parent to scrollview
-    }
 
     public void UpdateNotifications()
     {

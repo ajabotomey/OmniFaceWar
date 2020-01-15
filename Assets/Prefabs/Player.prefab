@@ -147,7 +147,7 @@ MonoBehaviour:
     m_Bits: 512
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 256
   renderer: {fileID: 876689768}
 --- !u!212 &876689768
 SpriteRenderer:
@@ -187,7 +187,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9000
   m_Sprite: {fileID: 21300000, guid: 6792070bdc3c3414a82edc02119d94d0, type: 3}
   m_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
   m_FlipX: 0
@@ -376,6 +376,9 @@ GameObject:
   - component: {fileID: 1244018437270414985}
   - component: {fileID: 7100063126590692241}
   - component: {fileID: 865627836}
+  - component: {fileID: 512575838}
+  - component: {fileID: 512575834}
+  - component: {fileID: 512575833}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -513,3 +516,87 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   healthBar: {fileID: 0}
+--- !u!114 &512575838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8679208305817274397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000a182a0e623035d1e99c640d3
+  m_ShapePath:
+  - {x: -0.39343452, y: -0.37212133, z: 0}
+  - {x: -0.034252167, y: -0.50325966, z: 0}
+  - {x: 0.39343452, y: -0.37212133, z: 0}
+  - {x: 0.44529343, y: 0.008255005, z: 0}
+  - {x: 0.3401518, y: 0.42540407, z: 0}
+  - {x: -0.023594856, y: 0.5091133, z: 0}
+  - {x: -0.30818176, y: 0.41474724, z: 0}
+  - {x: -0.4498577, y: 0.018911839, z: 0}
+  m_ShapePathHash: 1284380165
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 32234
+--- !u!114 &512575834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8679208305817274397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a36950ac10a62f4b86b6bdb3f2ffc2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 25006ba04d930e6448f77b0607230066, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5450199256063547291}
+        m_MethodName: InitiateCombat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &512575833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8679208305817274397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a36950ac10a62f4b86b6bdb3f2ffc2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 093066a8f20c14a41a31bb8a70a28405, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5450199256063547291}
+        m_MethodName: CombatEnded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

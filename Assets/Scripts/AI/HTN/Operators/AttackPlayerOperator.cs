@@ -36,6 +36,8 @@ public class AttackPlayerOperator : IOperator
 
         FindNewPath(c, c.CurrentEnemy.transform.position);
 
+        c.Agent.InitiateCombat();
+
         isNavigating = true;
         return TaskStatus.Continue;
     }

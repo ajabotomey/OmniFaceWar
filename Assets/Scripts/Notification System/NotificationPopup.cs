@@ -7,18 +7,24 @@ using Zenject;
 
 public class NotificationPopup : MonoBehaviour
 {
+    [Header("NotificationUI Elements")]
+    [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text text;
     [SerializeField] private float speed;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private float popupUpTime;
     [SerializeField] private RectTransform rect;
+    [SerializeField] private Image image;
 
     [Header("Game Events")]
     [SerializeField] private VoidEvent NotificationPushed;
 
     private Vector2 position = Vector2.zero;
     private float elapsedTime;
-    private bool isFading = false;
+    public bool IsFading { get; set; }
+    private Notification notification;
+
+    [Inject] private RewiredActionManager rewiredActionManager;
 
     void Start()
     {
@@ -39,7 +45,7 @@ public class NotificationPopup : MonoBehaviour
         }
 
         if (elapsedTime > popupUpTime) {
-            if (!isFading) {
+            if (!IsFading) {
                 FadeOut();
             }
         }
@@ -49,14 +55,22 @@ public class NotificationPopup : MonoBehaviour
 
     public void ShowNotification(Notification notification)
     {
+        if (notification.RewiredAction == -1) { // No action here
+            image.sprite = notification.Image;
+        } else { // We have an action
+            image.sprite = notification.Image = rewiredActionManager.GetSpriteFromAction(notification.RewiredAction);
+        }
+
+        titleText.text = notification.Title;
         string parsedText = ParseEmojis.Parse(notification.AbbreviatedText);
         text.text = parsedText;
         notification.Pushed = true;
+        this.notification = notification;
     }
 
     public void Disappear()
     {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     public void SetPosition(Vector2 position)
@@ -67,14 +81,14 @@ public class NotificationPopup : MonoBehaviour
     public void FadeOut()
     {
         StartCoroutine(FadeCanvasGroup(canvasGroup, canvasGroup.alpha, 0));
-        isFading = true;
+        IsFading = true;
     }
 
     public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
     {
         float timeStartedLerping = Time.time;
-        float timeSinceStarted = Time.time - timeStartedLerping;
-        float percentageComplete = timeSinceStarted / lerpTime;
+        float timeSinceStarted;
+        float percentageComplete;
 
         while (true) {
             timeSinceStarted = Time.time - timeStartedLerping;
@@ -89,7 +103,7 @@ public class NotificationPopup : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     public class Factory : PlaceholderFactory<NotificationPopup> { }

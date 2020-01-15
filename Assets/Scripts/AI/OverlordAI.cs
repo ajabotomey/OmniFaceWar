@@ -6,6 +6,7 @@ using UnityEngine;
 public class OverlordAI : MonoBehaviour
 {
     [SerializeField] private List<AIAgent> agents = new List<AIAgent>();
+    [SerializeField] private PlayerControl player;
 
     public List<AIAgent> GetAgents() { 
         return agents; 

@@ -31,7 +31,7 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private NotificationWindow window;
 
     [Header("Objectives System")]
-    [SerializeField] private ObjectivesPanel panel;
+    [SerializeField] private ObjectivesPanel objectivesPanel;
 
     [Header("Subtitle System")]
     [SerializeField] private CanvasGroup subtitlePanel;
@@ -100,7 +100,7 @@ public class GameUIController : MonoBehaviour
 
     public ObjectivesPanel GetObjectivesPanel()
     {
-        return panel;
+        return objectivesPanel;
     }
 
     public void StartConversation(Conversation conversation)
@@ -283,6 +283,28 @@ public class GameUIController : MonoBehaviour
     public EntityHealthBar GetHealthBar()
     {
         return playerHealthBar;
+    }
+
+    public void FadeOutElementsForCombat()
+    {
+        CanvasGroup objectivesCG = objectivesPanel.GetComponent<CanvasGroup>();
+        CanvasGroup notificationsCG = queue.GetComponent<CanvasGroup>();
+
+        if (objectivesCG.alpha != 0 && notificationsCG.alpha != 0) {
+            StartCoroutine(FadeCanvasGroup(objectivesCG, 100, 0));
+            StartCoroutine(FadeCanvasGroup(notificationsCG, 100, 0));
+        }
+    }
+
+    public void FadeInElementsAfterCombat()
+    {
+        CanvasGroup objectivesCG = objectivesPanel.GetComponent<CanvasGroup>();
+        CanvasGroup notificationsCG = queue.GetComponent<CanvasGroup>();
+
+        if (objectivesCG.alpha != 100 && notificationsCG.alpha != 100) {
+            StartCoroutine(FadeCanvasGroup(objectivesCG, 0, 100));
+            StartCoroutine(FadeCanvasGroup(notificationsCG, 0, 100));
+        }
     }
 
     public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
