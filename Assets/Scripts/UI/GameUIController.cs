@@ -7,6 +7,7 @@ using UnityEngine.UI; // TODO: Remove this once heatmap data is collected
 using Zenject;
 using TMPro;
 using UnityEngine.Analytics;
+using Yarn.Unity;
 
 [System.Serializable]
 public class GameUIEvent : UnityEvent<GameUIController> { }
@@ -15,6 +16,7 @@ public class GameUIController : MonoBehaviour
 {
     [Header("Dialogue System")]
     [SerializeField] private ConversationController conversationController;
+    [SerializeField] private DialogueRunner dialogueRunner;
 
     [Header("Upgrade Window")]
     [SerializeField] private GameObject upgradeWindow;
@@ -56,6 +58,7 @@ public class GameUIController : MonoBehaviour
 
     private bool paused = false;
     private bool notificationWindowActive = false;
+    private bool isTalking = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -114,6 +117,32 @@ public class GameUIController : MonoBehaviour
         return conversationController.IsConversationActive();
     }
 
+    public bool IsTalking()
+    {
+        return isTalking;
+    }
+
+    public void StartConversation(string startNode)
+    {
+        // Show the cursor
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        gameplayHUD.SetActive(false);
+        dialogueRunner.StartDialogue(startNode);
+        isTalking = true;
+    }
+
+    public void FinishConversation()
+    {
+        // Hide the cursor
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        isTalking = false;
+        gameplayHUD.SetActive(true);
+    }
+
+    [YarnCommand("ShowUpgradeWindow")]
     public void ShowUpgradeWindow()
     {
         upgradeWindow.SetActive(true);
@@ -141,7 +170,7 @@ public class GameUIController : MonoBehaviour
 
     public bool IsInteractingWithUI()
     {
-        return paused || IsConversationActive();
+        return paused || IsConversationActive() || IsTalking();
     }
 
     public void StopPause()

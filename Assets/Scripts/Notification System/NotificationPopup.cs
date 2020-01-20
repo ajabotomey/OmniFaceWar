@@ -25,6 +25,7 @@ public class NotificationPopup : MonoBehaviour
     private Notification notification;
 
     [Inject] private RewiredActionManager rewiredActionManager;
+    [Inject] private GameUIController gameUI;
 
     void Start()
     {
@@ -35,25 +36,33 @@ public class NotificationPopup : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        if (rect.localPosition.toVector2() != position) {
-            // Move to new position
-            float step = speed * Time.deltaTime;
-            rect.localPosition = Vector2.MoveTowards(rect.localPosition, position, step);
-        } else {
-            // Raise event here
-            NotificationPushed.Raise();
-        }
-
-        if (elapsedTime > popupUpTime) {
-            if (!IsFading) {
-                FadeOut();
+        if (notification.Pushed) {
+            if (rect.localPosition.toVector2() != position) {
+                // Move to new position
+                float step = speed * Time.deltaTime;
+                rect.localPosition = Vector2.MoveTowards(rect.localPosition, position, step);
+            } else {
+                // Raise event here
+                NotificationPushed.Raise();
             }
-        }
 
-        elapsedTime += Time.deltaTime;
+            if (elapsedTime > popupUpTime) {
+                if (!IsFading) {
+                    FadeOut();
+                }
+            }
+
+            if (!gameUI.IsInteractingWithUI())
+                elapsedTime += Time.deltaTime;
+        }
     }
 
-    public void ShowNotification(Notification notification)
+    public void SetNotification(Notification notification)
+    {
+        this.notification = notification;
+    }
+
+    public void ShowNotification()
     {
         if (notification.RewiredAction == -1) { // No action here
             image.sprite = notification.Image;
@@ -65,7 +74,8 @@ public class NotificationPopup : MonoBehaviour
         string parsedText = ParseEmojis.Parse(notification.AbbreviatedText);
         text.text = parsedText;
         notification.Pushed = true;
-        this.notification = notification;
+
+        elapsedTime = 0.0f;
     }
 
     public void Disappear()
@@ -81,7 +91,6 @@ public class NotificationPopup : MonoBehaviour
     public void FadeOut()
     {
         StartCoroutine(FadeCanvasGroup(canvasGroup, canvasGroup.alpha, 0));
-        IsFading = true;
     }
 
     public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
@@ -103,6 +112,7 @@ public class NotificationPopup : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        IsFading = true;
         Destroy(gameObject);
     }
 

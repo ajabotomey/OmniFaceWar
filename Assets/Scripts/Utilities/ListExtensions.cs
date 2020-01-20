@@ -18,4 +18,9 @@ public static class ListExtensions
     {
         list.RemoveAt(0);
     }
+
+    public static bool Empty<T>(this List<T> list)
+    {
+        return list.Count == 0;
+    }
 }

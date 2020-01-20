@@ -19,8 +19,10 @@ public class NotificationQueue : MonoBehaviour
     private NotificationPopup.Factory _popupFactory;
 
     [Inject] private SettingsManager _settings;
+    [Inject] private GameUIController _gameUI;
 
     private bool isPushing = false;
+    private bool notificationActive = false;
 
     [Inject]
     public void Construct(NotificationsManager manager, NotificationPopup.Factory popupFactory)
@@ -36,10 +38,24 @@ public class NotificationQueue : MonoBehaviour
         startPosition = offScreenSpot.localPosition;
     }
 
+    void Start()
+    {
+        StartCoroutine(PushNotifications());
+    }
+
+    void OnEnable()
+    {
+        StartCoroutine(PushNotifications());
+    }
+
     void Update()
     {
+        if (notificationList.Empty())
+            return;
+
         if (notificationList.First().IsFading) {
             notificationList.Pop();
+            notificationActive = false;
         }
     }
 
@@ -53,8 +69,7 @@ public class NotificationQueue : MonoBehaviour
         if (n.Pushed)
             return;
 
-        //PushNotification(n);
-        StartCoroutine(PushNotification(n));
+        AddToQueue(n);
     }
 
     public void Push(Notification n)
@@ -62,47 +77,40 @@ public class NotificationQueue : MonoBehaviour
         bool result = _manager.CheckNotification(n);
 
         if (result)
-            StartCoroutine(PushNotification(n));
+            AddToQueue(n);
     }
 
-    private IEnumerator PushNotification(Notification notification)
+    private void AddToQueue(Notification notification)
     {
-        // Check if a notification is in the middle of pushing
-        while (isPushing) {
-            yield return new WaitForEndOfFrame();
-        }
-
-        // Check the number of notifications
-        while (notificationList.Count > 0) {
-            // OK, we have some work to do before adding anything
-
-            //if (notificationList.Count == 3) {
-            //    // Remove the oldest popup
-            //    notificationList[0].Disappear();
-            //    notificationList.RemoveAt(0);
-            //}
-
-            //// Now move the notifications
-            //if (notificationList.Count == 2) { // If we now have 2 notifications
-            //    notificationList[1].SetPosition(secondPosition);
-            //    notificationList[0].SetPosition(thirdPosition);
-            //} else {
-            //    notificationList[0].SetPosition(secondPosition);
-            //}
-
-            yield return new WaitForEndOfFrame();
-        }
-
         // Now we can add the new notification
         NotificationPopup popup = _popupFactory.Create();
         SetupNotification(popup, notification);
-        popup.ShowNotification(notification);
         notificationList.Add(popup);
-        isPushing = true;
-
         _settings.UpdateFont();
+    }
 
-        yield return new WaitForEndOfFrame();
+    private IEnumerator PushNotifications()
+    {
+        while (true) {
+
+            while (notificationList.Empty())
+                yield return new WaitForEndOfFrame();
+
+            while (isPushing) 
+                yield return new WaitForEndOfFrame();
+
+            while (_gameUI.IsInteractingWithUI())
+                yield return new WaitForEndOfFrame();
+
+            while (notificationActive) // Goes wrong once list if empty. Game still technically works but I'd rather get rid of this error
+                yield return new WaitForEndOfFrame();
+
+            if (!notificationList.Empty()) {
+                notificationList[0].ShowNotification();
+                isPushing = true;
+                notificationActive = true;
+            }
+        }
     }
 
     private void SetupNotification(NotificationPopup n, Notification notification)
@@ -112,6 +120,7 @@ public class NotificationQueue : MonoBehaviour
         popupRect.SetParent(rect);
         popupRect.localScale = Vector3.one;
         popupRect.localPosition = startPosition;
+        n.SetNotification(notification);
         n.SetPosition(firstPosition);
     }
 

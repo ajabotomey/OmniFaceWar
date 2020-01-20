@@ -6,29 +6,27 @@ using Zenject;
 
 public class PlayerControl : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D _rb;
+    [Header("Properties")]
     [SerializeField] private float _speed = 1.0f;
+    [SerializeField] private float interactionRadius = 2.0f;
+    [SerializeField] private float spreadFactor = 0.1f;
+
+    [Header("Components")]
+    [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private EntityHealth health;
-
-    private float _offset = -90.0f;
-
+    [SerializeField] private GameObject crosshair;
+    [SerializeField] private Animator animator;
+    
+    // Injected objects
     private IInputController _inputController;
     private GameUIController _gameUI;
     private HeatmapUploadController _heatmap;
 
+    private float _offset = -90.0f;
     private bool hasGun = false;
-
-    //[SerializeField] private SpriteController spriteController;
-    [SerializeField] private Animator animator;
-
     private bool isInConversation;
-
-    [SerializeField] private GameObject crosshair;
-
     private float refreshRate = 10.0f;
     private float elapsedTime;
-
-    [SerializeField] private float spreadFactor = 0.1f;
 
     Vector3 aim;
 
@@ -85,7 +83,11 @@ public class PlayerControl : MonoBehaviour
         float moveVertical = _inputController.Vertical();
 
         RotateCharacter(moveHorizontal, moveVertical);
-        HandleMovement(moveHorizontal, moveVertical);      
+        HandleMovement(moveHorizontal, moveVertical);
+
+        if (_inputController.TalkToNPC()) {
+            CheckForNearbyNPC();
+        }
     }
 
     public float GetSpreadFactor()
@@ -167,5 +169,19 @@ public class PlayerControl : MonoBehaviour
     public void CombatEnded()
     {
         _gameUI.FadeInElementsAfterCombat();
+    }
+
+    public void CheckForNearbyNPC()
+    {
+        var allParticipants = new List<NPC>(FindObjectsOfType<NPC>());
+        var target = allParticipants.Find(delegate (NPC p) {
+            return string.IsNullOrEmpty(p.talkToNode) == false && // has a conversation node?
+            (p.transform.position - this.transform.position)// is in range?
+            .magnitude <= interactionRadius;
+        });
+        if (target != null) {
+            // Kick off the dialogue at this node.
+            _gameUI.StartConversation(target.talkToNode);
+        }
     }
 }

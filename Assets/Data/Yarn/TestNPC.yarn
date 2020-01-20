@@ -1,0 +1,10 @@
+title: TestNPC
+tags: 
+
+---
+Test NPC: Hello World! #line:0e041d8
+-> Yay! This works! #line:0911610
+    Player: Thank god for that! #line:099bcd1
+-> Oh, this doesn't works. #line:056cb57
+    Player: Oh well, we'll get this fixed soon. #line:0259432
+===
