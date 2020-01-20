@@ -82,4 +82,15 @@ public class NotificationsManager : ScriptableObject
 
         return query;
     }
+
+    public IEnumerable<Notification> GetPushedNewsNotifications()
+    {
+        var query =
+            from n in notifications
+            where n.Pushed == true
+            where n.Type == NotificationType.News
+            select n;
+
+        return query;
+    }
 }

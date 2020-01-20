@@ -15,7 +15,6 @@ public class GameUIEvent : UnityEvent<GameUIController> { }
 public class GameUIController : MonoBehaviour
 {
     [Header("Dialogue System")]
-    [SerializeField] private ConversationController conversationController;
     [SerializeField] private DialogueRunner dialogueRunner;
 
     [Header("Upgrade Window")]
@@ -106,17 +105,6 @@ public class GameUIController : MonoBehaviour
         return objectivesPanel;
     }
 
-    public void StartConversation(Conversation conversation)
-    {
-        conversationController.ChangeConversation(conversation);
-        conversationController.gameObject.SetActive(true);
-    }
-
-    public bool IsConversationActive()
-    {
-        return conversationController.IsConversationActive();
-    }
-
     public bool IsTalking()
     {
         return isTalking;
@@ -146,7 +134,6 @@ public class GameUIController : MonoBehaviour
     public void ShowUpgradeWindow()
     {
         upgradeWindow.SetActive(true);
-        conversationController.EndConversation();
     }
 
     private void CheckIfPaused()
@@ -170,7 +157,7 @@ public class GameUIController : MonoBehaviour
 
     public bool IsInteractingWithUI()
     {
-        return paused || IsConversationActive() || IsTalking();
+        return paused || IsTalking();
     }
 
     public void StopPause()

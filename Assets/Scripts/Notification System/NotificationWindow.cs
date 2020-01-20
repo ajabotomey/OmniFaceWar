@@ -13,6 +13,7 @@ public class NotificationWindow : MonoBehaviour
     [SerializeField] private Toggle tutorialToggle;
     [SerializeField] private Toggle complianceToggle;
     [SerializeField] private Toggle emergencyToggle;
+    [SerializeField] private Toggle newsToggle;
 
     [SerializeField] private RectTransform scrollView;
 
@@ -63,6 +64,9 @@ public class NotificationWindow : MonoBehaviour
             return;
         } else if (emergencyToggle.isOn) {
             FilterEmergency();
+            return;
+        } else if (newsToggle.isOn) {
+            FilterNews();
             return;
         }
 
@@ -130,6 +134,19 @@ public class NotificationWindow : MonoBehaviour
         ClearNotifications();
 
         IEnumerable<Notification> pushedNotifications = _manager.GetPushedEmergencyNotifications();
+        List<Notification> notificationList = pushedNotifications.ToList();
+
+        // Now create the notifications
+        foreach (Notification n in notificationList) {
+            CreateNotification(n);
+        }
+    }
+
+    public void FilterNews()
+    {
+        ClearNotifications();
+
+        IEnumerable<Notification> pushedNotifications = _manager.GetPushedNewsNotifications();
         List<Notification> notificationList = pushedNotifications.ToList();
 
         // Now create the notifications
