@@ -3,7 +3,7 @@ using Rewired;
 
 public enum NotificationType
 {
-    Tutorial, Compliance, Emergency,
+    Tutorial, Compliance, Emergency, News
 }
 
 [CreateAssetMenu(fileName = "New Notification", menuName = "Notification System/New Notification")]
