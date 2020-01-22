@@ -39,9 +39,15 @@ public class Bullet : MonoBehaviour
                 ContactPoint2D[] contacts = new ContactPoint2D[collision.contactCount];
                 collision.GetContacts(contacts);
 
+                Vector3 hitPosition = Vector3.zero;
                 // For each contact in collision
                 foreach (var contact in contacts) {
-                    damageable.Damage(contact.point, damage);
+                    //damageable.Damage(contact.point, damage); // Original Line
+
+                    hitPosition.x = contact.point.x - 0.01f * contact.normal.x;
+                    hitPosition.y = contact.point.y - 0.01f * contact.normal.y;
+
+                    damageable.Damage(hitPosition, damage);
                 }
             }
 
