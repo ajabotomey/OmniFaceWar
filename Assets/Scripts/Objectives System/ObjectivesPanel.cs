@@ -25,6 +25,8 @@ public class ObjectivesPanel : MonoBehaviour
             EliminationObjective objective = (EliminationObjective)currentObjective;
 
             objectiveText.text = "Killed: " + objective.GetKillCount() + " / " + objective.GetKillsRequired();
+        } else {
+            objectiveText.text = "";
         }
     }
 
@@ -39,5 +41,16 @@ public class ObjectivesPanel : MonoBehaviour
         EliminationObjective objective = (EliminationObjective)currentObjective;
 
         objectiveText.text = "Killed: " + objective.GetKillCount() + " / " + objective.GetKillsRequired();
+    }
+
+    public void UpdateNavigationObjective()
+    {
+        if (currentObjective.IsComplete()) {
+            objectiveText.text = "Objective complete!";
+            //objectiveComplete.Raise();
+            return;
+        }
+
+        objectiveText.text = "";
     }
 }

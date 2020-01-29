@@ -1755,6 +1755,7 @@ GameObject:
   - component: {fileID: 548532669}
   - component: {fileID: 548532671}
   - component: {fileID: 548532670}
+  - component: {fileID: 1130355534254407763}
   - component: {fileID: 1606608282}
   m_Layer: 5
   m_Name: Objectives Panel
@@ -1809,7 +1810,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548532668}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a36950ac10a62f4b86b6bdb3f2ffc2b, type: 3}
   m_Name: 
@@ -1820,6 +1821,33 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 548532671}
         m_MethodName: UpdateEliminationObjective
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1130355534254407763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548532668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a36950ac10a62f4b86b6bdb3f2ffc2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: f4cc37ccee97f1a45beef2ba4a3131cc, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 548532671}
+        m_MethodName: UpdateNavigationObjective
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7910,7 +7938,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50288e5be4e90674885ff616a6be5912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conversationController: {fileID: 0}
   dialogueRunner: {fileID: 1104543497}
   upgradeWindow: {fileID: 9198419944181369467}
   pauseMenu: {fileID: 1038412329}

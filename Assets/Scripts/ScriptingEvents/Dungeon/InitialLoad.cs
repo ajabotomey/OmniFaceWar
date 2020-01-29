@@ -36,7 +36,7 @@ public class InitialLoad : MonoBehaviour
 
         // Setup Objectives
         objectivesManager.SetCurrentObjective(objective);
-        ((EliminationObjective)objective).ResetObjective();
+        ((NavigationObjective)objective).ResetObjective();
         panel.Initialize();
 
         //GameUIController.Instance.PushNotification(firstNotification);

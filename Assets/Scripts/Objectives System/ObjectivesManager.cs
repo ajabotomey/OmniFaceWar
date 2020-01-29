@@ -21,6 +21,13 @@ public class ObjectivesManager : MonoBehaviour
         }
     }
 
+    public void UpdateNavigationObjective()
+    {
+        if (currentObjective is NavigationObjective) {
+            ((NavigationObjective)currentObjective).CompleteObjective();
+        }
+    }
+
     public Objective GetCurrentObjective()
     {
         return currentObjective;

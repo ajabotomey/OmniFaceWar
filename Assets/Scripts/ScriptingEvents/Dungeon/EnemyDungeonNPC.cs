@@ -32,8 +32,6 @@ public class EnemyDungeonNPC : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().velocity = direction * 50.0f;
 
             elapsedTime = 0.0f;
-
-            Logger.Debug("Firing bullet");
         }
 
         elapsedTime += Time.deltaTime;
