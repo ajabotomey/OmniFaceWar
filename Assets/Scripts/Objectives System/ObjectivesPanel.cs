@@ -10,10 +10,25 @@ public class ObjectivesPanel : MonoBehaviour
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private TMP_Text objectiveText;
+
+    [Header("Canvas Group")]
+    [SerializeField] private CanvasGroup cg;
+
+    [Header("Game Events")]
     [SerializeField] private VoidEvent objectiveComplete; // TODO: Remove this once heatmap data is collected
+    
 
     [Inject] private ObjectivesManager manager;
     private Objective currentObjective;
+
+    void Start()
+    {
+        if (currentObjective == null) {
+            cg.alpha = 0;
+        } else {
+            cg.alpha = 100;
+        }
+    }
 
     public void Initialize()
     {
@@ -28,6 +43,22 @@ public class ObjectivesPanel : MonoBehaviour
         } else {
             objectiveText.text = "";
         }
+    }
+
+    public void Hide()
+    {
+        if (cg.alpha == 0)
+            return;
+
+        StartCoroutine(FadeCanvasGroup(cg, 100, 0));
+    }
+
+    public void Show()
+    {
+        if (cg.alpha == 100)
+            return;
+
+        StartCoroutine(FadeCanvasGroup(cg, 0, 100));
     }
 
     public void UpdateEliminationObjective()
@@ -52,5 +83,27 @@ public class ObjectivesPanel : MonoBehaviour
         }
 
         objectiveText.text = "";
+    }
+
+    public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
+    {
+        float timeStartedLerping = Time.time;
+        float timeSinceStarted = Time.time - timeStartedLerping;
+        float percentageComplete = timeSinceStarted / lerpTime;
+
+        while (true) {
+            timeSinceStarted = Time.time - timeStartedLerping;
+            percentageComplete = timeSinceStarted / lerpTime;
+
+            float currentValue = Mathf.Lerp(start, end, percentageComplete);
+
+            cg.alpha = currentValue;
+
+            if (percentageComplete >= 1) break;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        //Destroy(this.gameObject);
     }
 }

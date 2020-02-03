@@ -5,8 +5,8 @@ using Yarn.Unity;
 
 public class NPC : MonoBehaviour
 {
+    [Header("Yarn Variables")]
     public string characterName = "";
-
     public string talkToNode = "";
 
     [Header("Optional")]
@@ -18,5 +18,10 @@ public class NPC : MonoBehaviour
             DialogueRunner dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
             dialogueRunner.Add(scriptToLoad);
         }
+    }
+
+    public virtual void StartDialogue()
+    {
+
     }
 }

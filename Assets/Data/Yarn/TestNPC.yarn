@@ -2,9 +2,12 @@ title: TestNPC
 tags: 
 
 ---
-Test NPC: Hello World! #line:0e041d8
--> Yay! This works! #line:0911610
-    Player: Thank god for that! #line:099bcd1
--> Oh, this doesn't works. #line:056cb57
-    Player: Oh well, we'll get this fixed soon. #line:0259432
+Unknown: Thank god, you're alright. We heard OmniFace decided to detain people with 0 social credit score to experiment on them. #line:0cc1918
+Player: Wait, what the hell? #line:00a589d
+Unknown: Yeah, OmniFace wanted to fit you with a humanoid control unit to use you as a mole within the Gamer Alliance. #line:0daff63
+Player: Hang on, you guys are the Gamer Alliance?! #line:06a2822
+Unknown: That's right. I'm Commander ???. I'd love to chat more but we need to get you out of here. Don't try and help. Just run.  #line:08d1767
+<<setdungeonobjective TestNPC>>
+Commander: Make your way out of the dungeon and through the drug lab and find the elevator to get out of here. #line:0939453
+Player: Ok, will do. #line:0915738
 ===

@@ -35,4 +35,14 @@ public class EntityHealthBar : MonoBehaviour
         var width = percent * maxWidth;
         foreground.localScale = new Vector2(width, height);
     }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
 }

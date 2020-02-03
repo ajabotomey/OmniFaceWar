@@ -12,6 +12,8 @@ public class EnemyDungeonNPC : MonoBehaviour
 
     private Bullet.Factory _factory;
 
+    private bool isAllowToFire = true;
+
     [Inject]
     public void Construct(Bullet.Factory bulletFactory) {
         _factory = bulletFactory;
@@ -23,17 +25,29 @@ public class EnemyDungeonNPC : MonoBehaviour
         elapsedTime = 3.0f;
     }
 
+    public void StopFiring()
+    {
+        isAllowToFire = false;
+    }
+
+    public void StartFiring()
+    {
+        isAllowToFire = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (elapsedTime > fireRate) {
-            Bullet bullet = _factory.Create();
-            bullet.transform.position = transform.position;
-            bullet.GetComponent<Rigidbody2D>().velocity = direction * 50.0f;
+        if (isAllowToFire) {
+            if (elapsedTime > fireRate) {
+                Bullet bullet = _factory.Create();
+                bullet.transform.position = transform.position;
+                bullet.GetComponent<Rigidbody2D>().velocity = direction * 50.0f;
 
-            elapsedTime = 0.0f;
+                elapsedTime = 0.0f;
+            }
+
+            elapsedTime += Time.deltaTime;
         }
-
-        elapsedTime += Time.deltaTime;
     }
 }

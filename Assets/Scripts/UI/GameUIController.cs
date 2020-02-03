@@ -28,8 +28,9 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private GameObject controlMapperWindow;
 
     [Header("Notification System")]
-    [SerializeField] private NotificationQueue queue;
-    [SerializeField] private NotificationWindow window;
+    [SerializeField] private NotificationQueue notificationQueue;
+    [SerializeField] private NotificationWindow notificationWindow;
+    [SerializeField] private GameObject notificationLabel;
 
     [Header("Objectives System")]
     [SerializeField] private ObjectivesPanel objectivesPanel;
@@ -43,8 +44,8 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private AudioSource musicPlayerSource;
 
     [Header("HUD Elements")]
-    [SerializeField] private GameObject gameplayHUD;
     [SerializeField] private EntityHealthBar playerHealthBar;
+    [SerializeField] private GameObject playerEnergyBar;
     [SerializeField] private GameObject gameOverPanel; // TODO: Remove this once heatmap data is collected
     [SerializeField] private Button restartGameButton; // TODO: Remove this once heatmap data is collected
 
@@ -116,7 +117,7 @@ public class GameUIController : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        gameplayHUD.SetActive(false);
+        HideHUD();
         dialogueRunner.StartDialogue(startNode);
         isTalking = true;
     }
@@ -127,7 +128,25 @@ public class GameUIController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         isTalking = false;
-        gameplayHUD.SetActive(true);
+        ShowHUD();
+    }
+
+    public void HideHUD()
+    {
+        objectivesPanel.Hide();
+        notificationQueue.gameObject.SetActive(false);
+        notificationLabel.gameObject.SetActive(false);
+        playerHealthBar.Hide();
+        playerEnergyBar.SetActive(false);
+    }
+
+    public void ShowHUD()
+    {
+        objectivesPanel.Show();
+        notificationQueue.gameObject.SetActive(true);
+        notificationLabel.gameObject.SetActive(true);
+        playerHealthBar.Show();
+        playerEnergyBar.SetActive(true);
     }
 
     [YarnCommand("ShowUpgradeWindow")]
@@ -145,7 +164,7 @@ public class GameUIController : MonoBehaviour
 
                 // Open menu
                 pauseMenu.Show();
-                gameplayHUD.SetActive(false);
+                HideHUD();
             } else {
                 if (notificationWindowActive)
                     return;
@@ -163,7 +182,7 @@ public class GameUIController : MonoBehaviour
     public void StopPause()
     {
         pauseMenu.Hide();
-        gameplayHUD.SetActive(true);
+        ShowHUD();
         UnpauseGame();
     }
 
@@ -195,7 +214,7 @@ public class GameUIController : MonoBehaviour
     public void ShowGameOverPanel()
     {
         PauseGame();
-        gameplayHUD.SetActive(false);
+        HideHUD();
         gameOverPanel.SetActive(true);
 
         restartGameButton.Select();
@@ -257,32 +276,32 @@ public class GameUIController : MonoBehaviour
             return;
 
         // If window is already open, return
-        if (window.gameObject.activeSelf)
+        if (notificationWindow.gameObject.activeSelf)
             return;
 
         if (open) {
             PauseGame();
             notificationWindowActive = true;
-            window.gameObject.SetActive(true);
-            gameplayHUD.SetActive(false);
+            notificationWindow.gameObject.SetActive(true);
+            HideHUD();
         }
     }
 
     public void HideNotificationWindow()
     {
-        gameplayHUD.SetActive(true);
-        window.gameObject.SetActive(false);
+        ShowHUD();
+        notificationWindow.gameObject.SetActive(false);
         UnpauseGame();
     }
 
     public void PushTestNotification()
     {
-        queue.Push("Test Notification");
+        notificationQueue.Push("Test Notification");
     }
 
     public void PushNotification(Notification n)
     {
-        queue.Push(n);
+        notificationQueue.Push(n);
     }
 
     public void ShowSubtitles(SubtitleClip clip)
@@ -303,22 +322,22 @@ public class GameUIController : MonoBehaviour
 
     public void FadeOutElementsForCombat()
     {
-        CanvasGroup objectivesCG = objectivesPanel.GetComponent<CanvasGroup>();
-        CanvasGroup notificationsCG = queue.GetComponent<CanvasGroup>();
+        objectivesPanel.Hide();
 
-        if (objectivesCG.alpha != 0 && notificationsCG.alpha != 0) {
-            StartCoroutine(FadeCanvasGroup(objectivesCG, 100, 0));
+        CanvasGroup notificationsCG = notificationQueue.GetComponent<CanvasGroup>();
+
+        if (notificationsCG.alpha != 0) {
             StartCoroutine(FadeCanvasGroup(notificationsCG, 100, 0));
         }
     }
 
     public void FadeInElementsAfterCombat()
     {
-        CanvasGroup objectivesCG = objectivesPanel.GetComponent<CanvasGroup>();
-        CanvasGroup notificationsCG = queue.GetComponent<CanvasGroup>();
+        objectivesPanel.Show();
 
-        if (objectivesCG.alpha != 100 && notificationsCG.alpha != 100) {
-            StartCoroutine(FadeCanvasGroup(objectivesCG, 0, 100));
+        CanvasGroup notificationsCG = notificationQueue.GetComponent<CanvasGroup>();
+
+        if (notificationsCG.alpha != 100) {
             StartCoroutine(FadeCanvasGroup(notificationsCG, 0, 100));
         }
     }
