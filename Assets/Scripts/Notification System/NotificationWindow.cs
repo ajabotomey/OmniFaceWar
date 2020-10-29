@@ -18,14 +18,14 @@ public class NotificationWindow : MonoBehaviour
     [SerializeField] private RectTransform scrollView;
 
     private NotificationsManager _manager;
-    private NotificationFull.Factory _factory;
+    private NotificationFullImage.Factory _factory;
     private IInputController _inputController;
     private GameUIController _gameUI;
 
     [Inject] private SettingsManager _settings;
 
     [Inject]
-    public void Construct(NotificationsManager manager, NotificationFull.Factory factory, IInputController inputController, GameUIController gameUI)
+    public void Construct(NotificationsManager manager, NotificationFullImage.Factory factory, IInputController inputController, GameUIController gameUI)
     {
         _manager = manager;
         _factory = factory;
@@ -75,19 +75,12 @@ public class NotificationWindow : MonoBehaviour
 
     private void CreateNotification(Notification n)
     {
-        NotificationFull notification = _factory.Create();
+        NotificationFullImage notification = _factory.Create();
         RectTransform rect = notification.GetComponent<RectTransform>();
-        //notification.CreateNotification(n.Image, n.NormalText);
+        notification.CreateNotification(n.Image, n.Title, n.NormalText);
         rect.SetParent(scrollView);
         rect.localScale = Vector3.one;
-
-            // Check if image
-            // Create image notification
-            // else 
-            // Create normal notification
-
-            // Make sure to parent to scrollview
-        }
+    }
 
     public void UpdateNotifications()
     {

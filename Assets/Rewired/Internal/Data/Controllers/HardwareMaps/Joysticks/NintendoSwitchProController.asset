@@ -213,7 +213,7 @@ MonoBehaviour:
         sourceAxis: 1
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: 0
         axisMin: -.680000007
@@ -236,7 +236,7 @@ MonoBehaviour:
         sourceAxis: 2
         sourceAxisRange: 0
         invert: 1
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: 0
         axisMin: -.644999981
@@ -259,7 +259,7 @@ MonoBehaviour:
         sourceAxis: 4
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: 0
         axisMin: -.725000024
@@ -282,7 +282,7 @@ MonoBehaviour:
         sourceAxis: 5
         sourceAxisRange: 0
         invert: 1
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: 0
         axisMin: -.689999998
@@ -677,7 +677,7 @@ MonoBehaviour:
         sourceOtherAxis: 0
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: -0
         axisMin: -.680000007
@@ -699,7 +699,7 @@ MonoBehaviour:
         sourceOtherAxis: 0
         sourceAxisRange: 0
         invert: 1
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: 0
         axisMin: -.644999981
@@ -721,7 +721,7 @@ MonoBehaviour:
         sourceOtherAxis: 0
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: 0
         axisMin: -.725000024
@@ -742,8 +742,8 @@ MonoBehaviour:
         sourceAxis: 3
         sourceOtherAxis: 1
         sourceAxisRange: 0
-        invert: 0
-        axisDeadZone: .150000006
+        invert: 1
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: 0
         axisMin: -.689999998
@@ -1108,7 +1108,7 @@ MonoBehaviour:
         sourceAxis: 0
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: 0
         axisMin: -.680000007
@@ -1128,7 +1128,7 @@ MonoBehaviour:
         sourceAxis: 1
         sourceAxisRange: 0
         invert: 1
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: 0
         axisMin: -.75999999
@@ -1148,7 +1148,7 @@ MonoBehaviour:
         sourceAxis: 2
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: 0
         axisMin: -.709999979
@@ -1168,7 +1168,7 @@ MonoBehaviour:
         sourceAxis: 3
         sourceAxisRange: 0
         invert: 1
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: 0
         axisMin: -.800000012
@@ -1495,7 +1495,7 @@ MonoBehaviour:
         sourceAxis: 0
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: 0
         axisMin: -.680000007
@@ -1515,7 +1515,7 @@ MonoBehaviour:
         sourceAxis: 1
         sourceAxisRange: 0
         invert: 1
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: 0
         axisMin: -.644999981
@@ -1535,7 +1535,7 @@ MonoBehaviour:
         sourceAxis: 2
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: 0
         axisMin: -.725000024
@@ -1555,7 +1555,7 @@ MonoBehaviour:
         sourceAxis: 3
         sourceAxisRange: 0
         invert: 1
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         calibrateAxis: 1
         axisZero: 0
         axisMin: -.689999998
@@ -1942,7 +1942,7 @@ MonoBehaviour:
       - elementIdentifier: 0
         sourceType: 1
         sourceAxis: 1
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -1962,7 +1962,7 @@ MonoBehaviour:
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -1982,7 +1982,7 @@ MonoBehaviour:
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 3
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -2002,7 +2002,7 @@ MonoBehaviour:
       - elementIdentifier: 3
         sourceType: 1
         sourceAxis: 4
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -2495,7 +2495,7 @@ MonoBehaviour:
       - elementIdentifier: 0
         sourceType: 1
         sourceAxis: 1
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -2515,7 +2515,7 @@ MonoBehaviour:
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -2535,7 +2535,7 @@ MonoBehaviour:
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 3
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -2555,7 +2555,7 @@ MonoBehaviour:
       - elementIdentifier: 3
         sourceType: 1
         sourceAxis: 4
-        axisDeadZone: .150000006
+        axisDeadZone: .200000003
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}

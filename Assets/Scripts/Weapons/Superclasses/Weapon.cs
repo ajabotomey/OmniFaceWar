@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Weapon : ScriptableObject
 {
@@ -11,6 +12,7 @@ public class Weapon : ScriptableObject
     [SerializeField] private float rechargeRate;
     [SerializeField] private bool isCurrentWeapon;
     [SerializeField] private bool isHackTypeGun;
+    [SerializeField] private AudioClip weaponFireSound;
 
     [Header("Debug")]
     [SerializeField] private float currentEnergy;
@@ -70,5 +72,10 @@ public class Weapon : ScriptableObject
     public bool IsHackTypeGun()
     {
         return isHackTypeGun;
+    }
+
+    public AudioClip GetWeaponFireSound()
+    {
+        return weaponFireSound;
     }
 }

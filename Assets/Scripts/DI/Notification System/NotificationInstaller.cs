@@ -7,11 +7,11 @@ public class NotificationInstaller : MonoInstaller
     [SerializeField] private NotificationPopup popup;
 
     [Header("Full Notifications")]
-    [SerializeField] private NotificationFull fullNotification;
+    [SerializeField] private NotificationFullImage fullNotification;
 
     public override void InstallBindings()
     {
         Container.BindFactory<NotificationPopup, NotificationPopup.Factory>().FromComponentInNewPrefab(popup);
-        Container.BindFactory<NotificationFull, NotificationFull.Factory>().FromComponentInNewPrefab(fullNotification);
+        Container.BindFactory<NotificationFullImage, NotificationFullImage.Factory>().FromComponentInNewPrefab(fullNotification);
     }
 }

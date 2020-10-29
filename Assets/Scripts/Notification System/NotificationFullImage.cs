@@ -8,10 +8,10 @@ public class NotificationFullImage : NotificationFull
 {
     [SerializeField] private Image image;
 
-    public void CreateNotification(Sprite sprite, string text)
+    public void CreateNotification(Sprite sprite, string title, string text)
     {
         image.sprite = sprite;
-        base.CreateNotification(text);
+        base.CreateNotification(title, text);
     }
 
     new public class Factory : PlaceholderFactory<NotificationFullImage> { }

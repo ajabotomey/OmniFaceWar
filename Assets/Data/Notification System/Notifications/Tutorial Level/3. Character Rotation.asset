@@ -17,5 +17,5 @@ MonoBehaviour:
   normalText: to rotate the character
   abbreviatedText: to rotate the character
   type: 0
-  hasBeenPushed: 1
+  hasBeenPushed: 0
   rewiredAction: 4

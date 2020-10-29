@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Shoot the Doors
   m_EditorClassIdentifier: 
   title: Shoot Doors
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 9ddfe02cb9947264686492fe1879724d, type: 3}
   normalText: Shoot the door (both grey squares to escape)
   abbreviatedText: Shoot the door (both grey squares to escape)
   type: 0
-  hasBeenPushed: 1
+  hasBeenPushed: 0
   rewiredAction: -1
