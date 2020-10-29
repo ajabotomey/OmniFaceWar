@@ -93,6 +93,13 @@ public class MoveToOperator : IOperator
 
             AIAgent agent = c.Agent;
 
+            // collision detection
+            if (Physics2D.Raycast(c.Agent.transform.position, currentTargetPos, 5.0f, c.Agent.Layer))
+            {
+                // Recreate the path
+                FindNewPath(c, c.CurrentEnemy.transform.position);
+            }
+
             if (Vector2.Distance(agent.transform.position, currentTargetPos) < 5f) { // TODO: Custom stop range for if in range of the player
 
                 nodePath[0].isSolid = false;

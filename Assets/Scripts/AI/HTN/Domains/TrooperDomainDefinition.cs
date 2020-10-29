@@ -25,7 +25,7 @@ public class TrooperDomainDefinition : AIDomainDefinition
             .End()
             .Sequence("Lost Enemy")
                 .HasState(AIWorldState.EnemyFound, Convert.ToByte(false))
-                .Select("")         
+                .Select("Return to Last Position")         
                     .PauseForMoment() // Pause movement
                     .MoveToLastRecordedPosition() // Move to last recorded position
                     // Continue assault on player

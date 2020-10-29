@@ -192,7 +192,7 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
         HasStateGreaterThan(AIWorldState.AlertLevel, 50);
         HasStateGreaterThan(AIWorldState.AlertLevel, 75);
         if (Pointer is IPrimitiveTask task) {
-            // Set operator here
+            task.SetOperator(new MoveToOperator(AIDestinationTarget.PatrolPoint));
         }
         DecrementState(AIWorldState.AlertLevel, 3, EffectType.PlanAndExecute);
         End();
