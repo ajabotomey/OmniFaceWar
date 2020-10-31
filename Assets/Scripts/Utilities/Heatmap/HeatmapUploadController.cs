@@ -34,6 +34,8 @@ public class HeatmapUploadController : MonoBehaviour
 
         using (FileStream fs = new FileStream(filePath, FileMode.Create)) {
             using (StreamWriter writer = new StreamWriter(fs)) {
+                //writer.WriteLine("1"); // Eventually modify to level specific
+
                 foreach (Vector2 position in positionList) {
                     writer.WriteLine(position.ToString());
                 }
@@ -60,7 +62,7 @@ public class HeatmapUploadController : MonoBehaviour
         yield return req.SendWebRequest();
 
         if (req.isHttpError || req.isNetworkError) {
-            Logger.Error(req.error);
+            Logger.Error("We have a problem: " + req.error);
         } else {
             Logger.Debug("Uploaded successfully");
         }

@@ -14,7 +14,8 @@ public class HeatmapDownloadController : MonoBehaviour
     {
         Logger.Debug("Sending request now!");
         www = UnityWebRequest.Get(downloadURL);
-        www.Send();
+        //www.Send();
+        www.SendWebRequest();
     }
 
 #if UNITY_EDITOR
