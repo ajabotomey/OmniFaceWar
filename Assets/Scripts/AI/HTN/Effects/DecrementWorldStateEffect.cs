@@ -28,7 +28,14 @@ public class DecrementWorldStateEffect : IEffect
     {
         if (ctx is AIContext c) {
             var currentValue = c.GetState(State);
-            c.SetState(State, (byte)(currentValue - Value), Type);
+            if (currentValue - Value > 0)
+            {
+                c.SetState(State, (byte)(currentValue - Value), Type);
+            } else
+            {
+                c.SetState(State, (byte)0, Type);
+            }
+            
             if (ctx.LogDecomposition) ctx.Log(Name, $"IncrementWorldStateEffect.Apply({State}:{currentValue}-{Value}:{Type})", ctx.CurrentDecompositionDepth + 1, this);
             return;
         }

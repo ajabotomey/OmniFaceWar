@@ -43,7 +43,7 @@ public class FieldOfViewSensor : MonoBehaviour, ISensor
             name = "View Mesh"
         };
         viewMeshFilter.mesh = viewMesh;
-        VisualisationOn = false;
+        VisualisationOn = true;
     }
 
     public float ViewRadius {

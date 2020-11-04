@@ -90,6 +90,7 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
         if (Pointer is IPrimitiveTask task) {
             task.SetOperator(new TakeDamageOperator());
         }
+        IncrementState(AIWorldState.AlertLevel, 50, EffectType.PlanAndExecute);
         End();
 
         return this;
@@ -112,6 +113,7 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
         if (Pointer is IPrimitiveTask task) {
             task.SetOperator(new MoveToOperator(AIDestinationTarget.PatrolPoint));
         }
+        DecrementState(AIWorldState.AlertLevel, 5, EffectType.PlanAndExecute); // How to do this every second
         End();
 
         return this;
@@ -128,9 +130,22 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
         return this;
     }
 
+    public AIDomainBuilder WarnPlayer()
+    {
+        Action("Warn Player");
+        if (Pointer is IPrimitiveTask task)
+        {
+            task.SetOperator(new WaitOperator(1f));
+        }
+        IncrementState(AIWorldState.AlertLevel, 3, EffectType.PlanAndExecute);
+        End();
+        return this;
+    }
+
     public AIDomainBuilder PursuePlayer()
     {
         Action("Pursue Player");
+        HasStateGreaterThan(AIWorldState.AlertLevel, 25);
         if (Pointer is IPrimitiveTask task) {
             task.SetOperator(new MoveToOperator(AIDestinationTarget.Enemy));
         }
@@ -142,7 +157,7 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
     public AIDomainBuilder AttackPlayer()
     {
         Action("Attack Player");
-        HasStateGreaterThan(AIWorldState.AlertLevel, 25);
+        HasStateGreaterThan(AIWorldState.AlertLevel, 50);
         if (Pointer is IPrimitiveTask task) {
             task.SetOperator(new AttackPlayerOperator());
         }
@@ -154,7 +169,7 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
     public AIDomainBuilder AttackPlayerAndAlertOthers()
     {
         Action("Attack Player and Alert others");
-        HasStateGreaterThan(AIWorldState.AlertLevel, 50);
+        HasStateGreaterThan(AIWorldState.AlertLevel, 75);
         if (Pointer is IPrimitiveTask task) {
             task.SetOperator(new AttackAndAlertOperator());
         }

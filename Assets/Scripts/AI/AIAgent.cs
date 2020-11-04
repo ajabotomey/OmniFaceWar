@@ -130,10 +130,14 @@ public class AIAgent : MonoBehaviour
 
 #if UNITY_EDITOR
         var task = _planner.GetCurrentTask();
+        var alertLevel = _context.GetState(AIWorldState.AlertLevel);
         if (task != null) {
             // Create a handle
             Handles.Label(transform.position + Vector3.up, task.Name);
         }
+
+        Vector3 awarenessPos = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        Handles.Label(awarenessPos + Vector3.up, alertLevel.ToString());
 #endif
     }
 }
