@@ -29,7 +29,7 @@ public class FireWeaponOperator : IOperator
                 // Incorporate spread into the aim
                 var spreadFactor = c.SpreadFactor;
                 var aim = c.Gun.up;
-                //aim.x += Random.Range(-spreadFactor, spreadFactor);
+                aim.x += Random.Range(-spreadFactor, spreadFactor);
 
                 firedBullet.transform.position = c.BulletSpawnPoint.position;
                 firedBullet.transform.rotation = Quaternion.identity;

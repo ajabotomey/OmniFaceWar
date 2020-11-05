@@ -22,7 +22,8 @@ public class UIButton : Selectable, IPointerClickHandler
         base.OnSelect(eventData);
 
         image.material = glowMaterial;
-        selectButton.Raise();
+        if (selectButton)
+            selectButton.Raise();
     }
 
     public override void OnDeselect(BaseEventData eventData)
