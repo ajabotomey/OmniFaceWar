@@ -299,8 +299,8 @@ public class SettingsMenuController : MonoBehaviour
             textSizeNav.selectOnRight = subTextSizeSlider;
             carouselNav.selectOnRight = backgroundOpacitySlider;
         } else {
-            subTextSizeSlider.gameObject.SetActive(false);
-            backgroundOpacitySlider.gameObject.SetActive(false);
+            subtitleTextSizeSlider.gameObject.SetActive(false);
+            subtitleOpacitySlider.gameObject.SetActive(false);
 
             toggleNav.selectOnDown = applyChangesButton;
             textSizeNav.selectOnRight = null;
