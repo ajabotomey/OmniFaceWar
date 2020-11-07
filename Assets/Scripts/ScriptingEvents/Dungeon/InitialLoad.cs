@@ -19,9 +19,10 @@ public class InitialLoad : MonoBehaviour
     [SerializeField] private SubtitleClip rotationClip;
     [SerializeField] private SubtitleClip shootingClip;
 
-    //[Header("Objectives")]
-    //[SerializeField] private Objective objective;
-    //[SerializeField] private ObjectivesPanel panel;
+    [Header("Objectives")]
+    [SerializeField] private ObjectivesManager objectivesManager;
+    [SerializeField] private Objective objective;
+    [SerializeField] private ObjectivesPanel panel;
 
     // DI Objects
     [Inject] private CameraShake cameraShake;
@@ -34,9 +35,9 @@ public class InitialLoad : MonoBehaviour
 
 
         //// Setup Objectives
-        //objectivesManager.SetCurrentObjective(objective);
-        //((NavigationObjective)objective).ResetObjective();
-        //panel.Initialize();
+        objectivesManager.SetCurrentObjective(objective);
+        ((NavigationObjective)objective).ResetObjective();
+        panel.Initialize();
 
         //GameUIController.Instance.PushNotification(firstNotification);
         StartCoroutine(StartLevel());
