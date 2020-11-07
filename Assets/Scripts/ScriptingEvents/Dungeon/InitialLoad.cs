@@ -58,18 +58,20 @@ public class InitialLoad : MonoBehaviour
         //yield return new WaitForSeconds(3);
         //cameraShake.TriggerShake();
         //yield return new WaitForSeconds(3);
-        gameUI.PushNotification(movement);
-        //GameUIController.Instance.ShowSubtitles(movementClip);
-        yield return new WaitForSeconds(3);
-        gameUI.PushNotification(rotation);
-        //GameUIController.Instance.ShowSubtitles(rotationClip);
-        yield return new WaitForSeconds(3);
-        gameUI.PushNotification(shooting);
-        yield return new WaitForSeconds(3);
-        gameUI.PushNotification(shootDoors);
+        //gameUI.PushNotification(movement);
+        ////GameUIController.Instance.ShowSubtitles(movementClip);
+        //yield return new WaitForSeconds(3);
+        //gameUI.PushNotification(rotation);
+        ////GameUIController.Instance.ShowSubtitles(rotationClip);
+        //yield return new WaitForSeconds(3);
+        //gameUI.PushNotification(shooting);
+        //yield return new WaitForSeconds(3);
+        //gameUI.PushNotification(shootDoors);
         //GameUIController.Instance.ShowSubtitles(shootingClip);
         //yield return new WaitForSeconds(2);
         //GameUIController.Instance.HideSubtitles();
+
+        gameUI.ShowSubtitles(movementClip);
 
         yield return null;
     }

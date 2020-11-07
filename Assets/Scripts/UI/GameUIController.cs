@@ -376,6 +376,7 @@ public class GameUIController : MonoBehaviour
         voiceAudioSource.Play();
 
         yield return new WaitForEndOfFrame();
+        HideSubtitles();
     }
 
     private IEnumerator FadeAfterAudio()
