@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using Zenject;
 
 [Serializable]
@@ -56,6 +57,7 @@ public class SettingsManager {
     [SerializeField] private bool inputDelayEnabled = false;
 
     [Header("Audio Settings")]
+    [SerializeField] private AudioMixer audioMixer;
     [SerializeField] [Range(0, 10)] private int soundFXVolume = 10;
     [SerializeField] [Range(0, 10)] private int musicVolume = 10;
     [SerializeField] [Range(0, 10)] private int voiceVolume = 10;

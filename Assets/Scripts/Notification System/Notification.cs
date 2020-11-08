@@ -57,4 +57,9 @@ public class Notification : ScriptableObject
     {
         return image;
     }
+
+    public bool IsQueued
+    {
+        get; set;
+    }
 }

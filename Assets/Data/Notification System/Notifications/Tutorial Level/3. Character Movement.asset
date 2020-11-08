@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b35958f5c0fe9b34bb5e248492c72430, type: 3}
-  m_Name: 2. Character Movement
+  m_Name: 3. Character Movement
   m_EditorClassIdentifier: 
   title: Movement
   image: {fileID: 21300000, guid: a24971dc2e7120f44a4c5d346c2b976c, type: 3}

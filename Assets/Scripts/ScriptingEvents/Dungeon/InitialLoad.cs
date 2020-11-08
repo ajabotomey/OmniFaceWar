@@ -7,7 +7,8 @@ using UnityEngine.Analytics;
 public class InitialLoad : MonoBehaviour
 {
     [Header("Notifications")]
-    [SerializeField] private Notification firstNotification;
+    [SerializeField] private Notification socialScoreLow;
+    [SerializeField] private Notification remediation;
     [SerializeField] private Notification movement;
     [SerializeField] private Notification rotation;
     [SerializeField] private Notification shooting;
@@ -23,6 +24,9 @@ public class InitialLoad : MonoBehaviour
     [SerializeField] private ObjectivesManager objectivesManager;
     [SerializeField] private Objective objective;
     [SerializeField] private ObjectivesPanel panel;
+
+    [Header("Sound Sources")]
+    [SerializeField] private AudioSource explosionSource;
 
     // DI Objects
     [Inject] private CameraShake cameraShake;
@@ -56,8 +60,13 @@ public class InitialLoad : MonoBehaviour
             Logger.Error("We have a problem with the Analytics data");
         }
 
-        //yield return new WaitForSeconds(3);
-        //cameraShake.TriggerShake();
+        gameUI.PushNotification(socialScoreLow);
+        yield return new WaitForSeconds(3);
+        gameUI.PushNotification(remediation);
+
+        yield return new WaitForSeconds(15);
+        cameraShake.TriggerShake();
+        explosionSource.Play();
         //yield return new WaitForSeconds(3);
         //gameUI.PushNotification(movement);
         ////GameUIController.Instance.ShowSubtitles(movementClip);
@@ -72,7 +81,7 @@ public class InitialLoad : MonoBehaviour
         //yield return new WaitForSeconds(2);
         //GameUIController.Instance.HideSubtitles();
 
-        gameUI.ShowSubtitles(movementClip);
+        //gameUI.ShowSubtitles(movementClip);
 
         yield return null;
     }

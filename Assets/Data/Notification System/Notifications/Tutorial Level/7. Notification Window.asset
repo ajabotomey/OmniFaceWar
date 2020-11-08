@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b35958f5c0fe9b34bb5e248492c72430, type: 3}
-  m_Name: Shoot the Doors
+  m_Name: 7. Notification Window
   m_EditorClassIdentifier: 
-  title: Shoot Doors
-  image: {fileID: 21300000, guid: 9ddfe02cb9947264686492fe1879724d, type: 3}
-  normalText: Shoot the door (both grey squares to escape)
-  abbreviatedText: Shoot the door (both grey squares to escape)
+  title: Notification Window
+  image: {fileID: 21300000, guid: c7a2e58d80555ef40b2c6e0d9281f0de, type: 3}
+  normalText: to bring up the Notification Window to read the full notifications
+  abbreviatedText: to bring up the Notification Window to read the full notifications
   type: 0
   hasBeenPushed: 0
-  rewiredAction: -1
+  rewiredAction: 20

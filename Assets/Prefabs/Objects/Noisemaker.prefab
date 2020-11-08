@@ -45,6 +45,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -137,7 +139,8 @@ AudioSource:
   m_GameObject: {fileID: 3755039382291745955}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7691903108163990583, guid: 5b5f118977a3dcb44bd0c7be9e8c7e39,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: d91bf5cc56d6cec41aad015e2e6eceb9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

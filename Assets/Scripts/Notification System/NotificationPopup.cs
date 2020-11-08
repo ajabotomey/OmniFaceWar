@@ -36,7 +36,7 @@ public class NotificationPopup : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        if (notification.Pushed) {
+        if (!notification.IsQueued) { // TODO: Swap to a possible inQueue boolean
             if (rect.localPosition.toVector2() != position) {
                 // Move to new position
                 float step = speed * Time.deltaTime;
@@ -74,6 +74,7 @@ public class NotificationPopup : MonoBehaviour
         string parsedText = ParseEmojis.Parse(notification.AbbreviatedText);
         text.text = parsedText;
         notification.Pushed = true;
+        notification.IsQueued = false;
 
         elapsedTime = 0.0f;
     }

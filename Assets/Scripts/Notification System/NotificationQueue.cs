@@ -66,8 +66,8 @@ public class NotificationQueue : MonoBehaviour
         if (n == null)
             return;
 
-        if (n.Pushed)
-            return;
+        //if (n.Pushed)
+            //return;
 
         AddToQueue(n);
     }
@@ -85,6 +85,7 @@ public class NotificationQueue : MonoBehaviour
         // Now we can add the new notification
         NotificationPopup popup = _popupFactory.Create();
         SetupNotification(popup, notification);
+        notification.IsQueued = true;
         notificationList.Add(popup);
         _settings.UpdateFont();
     }

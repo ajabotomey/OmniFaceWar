@@ -15,9 +15,9 @@ public class NotificationsManager : ScriptableObject
         // Check if title is in notification array and if so, has it been pushed
         foreach (Notification n in notifications) {
             if (n.Title == title) {
-                if (!n.Pushed) {
+                //if (!n.Pushed) {
                     return n;
-                }
+                //}
 
                 break;
             }
@@ -32,8 +32,8 @@ public class NotificationsManager : ScriptableObject
         // Check if title is in notification array and if so, has it been pushed
         foreach (Notification n in notifications) {
             if (n.Title == notification.Title) {
-                if (!n.Pushed)
-                    return true;
+                //if (!n.Pushed)
+                    return true; // Modify so we can see the notification again but not in the Notification Window
             }
         }
 

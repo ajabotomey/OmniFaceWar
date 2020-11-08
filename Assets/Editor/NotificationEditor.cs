@@ -8,7 +8,7 @@ public class NotificationEditor : Editor
 {
     private Notification notification;
 
-    private const int MAX_ABBR_VALUE = 88;
+    private const int MAX_ABBR_VALUE = 110;
     private const int MAX_NORMAL_VALUE = 280;
 
     SerializedProperty title;
