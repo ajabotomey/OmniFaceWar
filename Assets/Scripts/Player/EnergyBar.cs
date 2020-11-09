@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class EnergyBar : MonoBehaviour
 {
     [SerializeField] private RectTransform image;
+
+    [Inject] private WeaponController weaponControl;
 
     float maxWidth;
     float height;
@@ -27,6 +30,9 @@ public class EnergyBar : MonoBehaviour
 
     public void UpdateWeaponEnergy(float currentEnergy)
     {
+        if (weaponControl.GetCurrentWeapon() == null)
+            return;
+
         float percent = currentEnergy / energyCapacity;
         var width = percent * maxWidth;
         image.localScale = new Vector3(width, height, 1);

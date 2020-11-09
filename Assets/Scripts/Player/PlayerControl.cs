@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour
     private IInputController _inputController;
     private GameUIController _gameUI;
     private HeatmapUploadController _heatmap;
+    private WeaponController _weaponControl;
 
     private float _offset = -90.0f;
     private bool hasGun = false;
@@ -33,11 +34,12 @@ public class PlayerControl : MonoBehaviour
     private Transform aimTarget = null;
 
     [Inject]
-    public void Construct(IInputController inputController, GameUIController gameUI, HeatmapUploadController heatmap)
+    public void Construct(IInputController inputController, GameUIController gameUI, HeatmapUploadController heatmap, WeaponController weaponControl)
     {
         _inputController = inputController;
         _gameUI = gameUI;
         _heatmap = heatmap;
+        _weaponControl = weaponControl;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -144,7 +146,7 @@ public class PlayerControl : MonoBehaviour
             Cursor.visible = false;
         }
 
-        if (aim.magnitude > 0.0f) {
+        if (aim.magnitude > 0.0f && _weaponControl.GetCurrentWeapon() != null) {
             crosshair.transform.localPosition = aim * 2;
             crosshair.SetActive(true);
         } else {

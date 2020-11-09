@@ -54,7 +54,7 @@ public class GunComponent : MonoBehaviour
     void Start()
     {
         fireElapsedTime = 0.0f;
-        _weaponControl.SelectPistol();
+        //_weaponControl.SelectPistol();
     }
 
     // Update is called once per frame

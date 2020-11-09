@@ -29,6 +29,8 @@ public class WeaponController
 
     public void Initialize()
     {
+        currentWeapon = WeaponSelect.NONE;
+
         pistol.Initialize();
         submachineGun.Initialize();
         hackerGun.Initialize();
