@@ -26,4 +26,11 @@ public class SubtitleClip : ScriptableObject
 
         return subtitles;
     }
+
+    public float GetDuration()
+    {
+        string[] subtitleWords = subtitles.Split(' ');
+
+        return subtitleWords.Length * 0.4f;
+    }
 }

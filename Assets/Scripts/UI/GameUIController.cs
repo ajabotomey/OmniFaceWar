@@ -309,10 +309,10 @@ public class GameUIController : MonoBehaviour
         StartCoroutine(FadeInSubtitles(clip));
     }
 
-    public void HideSubtitles()
+    public void HideSubtitles(SubtitleClip clip)
     {
         if (subtitlePanel.alpha == 1)
-            StartCoroutine(FadeAfterAudio());
+            StartCoroutine(FadeAfterAudio(clip));
     }
 
     public EntityHealthBar GetHealthBar()
@@ -376,17 +376,15 @@ public class GameUIController : MonoBehaviour
         voiceAudioSource.Play();
 
         yield return new WaitForEndOfFrame();
-        HideSubtitles();
+        HideSubtitles(clip);
     }
 
-    private IEnumerator FadeAfterAudio()
+    private IEnumerator FadeAfterAudio(SubtitleClip clip)
     {
-        while (voiceAudioSource.isPlaying) {
-            yield return new WaitForEndOfFrame();
-        }
+        yield return new WaitForSeconds(clip.GetDuration()); // Number of words * 0.4 = clip duration
 
         StartCoroutine(FadeCanvasGroup(subtitlePanel, 1, 0));
 
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(1); // Make sure that there is a gap between subtitles
     }
 }

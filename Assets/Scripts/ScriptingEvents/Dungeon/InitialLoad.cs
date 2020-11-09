@@ -60,26 +60,27 @@ public class InitialLoad : MonoBehaviour
             Logger.Error("We have a problem with the Analytics data");
         }
 
+        // Initial moment
         gameUI.PushNotification(socialScoreLow);
         yield return new WaitForSeconds(3);
         gameUI.PushNotification(remediation);
-
         yield return new WaitForSeconds(15);
         cameraShake.TriggerShake();
         explosionSource.Play();
-        //yield return new WaitForSeconds(3);
-        //gameUI.PushNotification(movement);
-        ////GameUIController.Instance.ShowSubtitles(movementClip);
-        //yield return new WaitForSeconds(3);
-        //gameUI.PushNotification(rotation);
-        ////GameUIController.Instance.ShowSubtitles(rotationClip);
-        //yield return new WaitForSeconds(3);
-        //gameUI.PushNotification(shooting);
-        //yield return new WaitForSeconds(3);
-        //gameUI.PushNotification(shootDoors);
-        //GameUIController.Instance.ShowSubtitles(shootingClip);
+        yield return new WaitForSeconds(3);
+
+        // Introduction
+        gameUI.PushNotification(movement);
+        gameUI.PushNotification(rotation);
+        gameUI.PushNotification(shooting);
+        gameUI.PushNotification(shootDoors);
+        
+        gameUI.ShowSubtitles(movementClip);
+        yield return new WaitForSeconds(7);
+        gameUI.ShowSubtitles(rotationClip);
+        yield return new WaitForSeconds(7);
+        gameUI.ShowSubtitles(shootingClip);
         //yield return new WaitForSeconds(2);
-        //GameUIController.Instance.HideSubtitles();
 
         //gameUI.ShowSubtitles(movementClip);
 
