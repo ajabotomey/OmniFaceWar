@@ -4,6 +4,7 @@ using Zenject;
 
 public class ShowControllerButtonUI : MonoBehaviour
 {
+    // TODO: Rewrite to take into account rebinding 
     [SerializeField] private ControllerActionButton action;
     [SerializeField] private Image image;
 
