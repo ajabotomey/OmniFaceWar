@@ -34,6 +34,7 @@ public interface IInputController
     void SetInputDelay(bool enabled);
     void SetInputSensitivity(int value);
     void SetRumbleSensitivity(int value);
+    bool ToggleObjectivesPanel();
 }
 
 public enum DeviceType
@@ -272,5 +273,10 @@ public class InputController : IInputController
     public void SetRumbleSensitivity(int value)
     {
         rumbleSensitivity = value * 10;
+    }
+
+    public bool ToggleObjectivesPanel()
+    {
+        return player.GetButtonDown("ToggleObjectivesPanel");
     }
 }

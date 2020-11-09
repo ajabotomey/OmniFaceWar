@@ -125,6 +125,8 @@ MonoBehaviour:
       platformVars_stadia:
         disableKeyboard: 0
         ignoreInputWhenAppNotInFocus: 1
+        useNativeKeyboard: 1
+        useNativeMouse: 1
       maxJoysticksPerPlayer: 1
       autoAssignJoysticks: 1
       assignJoysticksToPlayingPlayersOnly: 0
@@ -354,6 +356,15 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
+    - _id: 21
+      _name: ToggleObjectivesPanel
+      _type: 1
+      _descriptiveName: Toggle Objectives Panel
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 0
     actionCategories:
     - _name: Default
       _descriptiveName: Default
@@ -368,7 +379,7 @@ MonoBehaviour:
     actionCategoryMap:
       list:
       - categoryId: 0
-        actionIds: 0000000001000000020000000300000004000000080000000700000011000000120000001300000014000000
+        actionIds: 000000000100000002000000030000000400000008000000070000001100000012000000130000001400000015000000
       - categoryId: 1
         actionIds: 0d0000000e0000000f00000010000000
     inputBehaviors:
@@ -526,6 +537,17 @@ MonoBehaviour:
         _actionId: 20
         _elementType: 1
         _elementIdentifierId: 8
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 21
+        _elementType: 1
+        _elementIdentifierId: 7
         _axisRange: 0
         _invert: 0
         _axisContribution: 0
@@ -713,6 +735,17 @@ MonoBehaviour:
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 21
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 9
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
     - id: 1
       categoryId: 1
       layoutId: 0
@@ -832,7 +865,7 @@ MonoBehaviour:
     controllerMapLayoutManagerRuleSets: []
     controllerMapEnablerRuleSets: []
     playerIdCounter: 2
-    actionIdCounter: 21
+    actionIdCounter: 22
     actionCategoryIdCounter: 2
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 2

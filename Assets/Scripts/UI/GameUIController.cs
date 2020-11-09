@@ -79,6 +79,7 @@ public class GameUIController : MonoBehaviour
     {            
         CheckIfPaused();
         CheckNotificationWindow();
+        CheckObjectivesPanel();
 
         if (elapsedTime > refreshTime) {
             elapsedTime = 0.0f;
@@ -292,6 +293,24 @@ public class GameUIController : MonoBehaviour
         ShowHUD();
         notificationWindow.gameObject.SetActive(false);
         UnpauseGame();
+    }
+
+    public void CheckObjectivesPanel()
+    {
+        bool toggled = input.ToggleObjectivesPanel();
+
+        // Check if already paused
+        if (paused)
+            return;
+
+        // If window is already open, return
+        if (notificationWindow.gameObject.activeSelf)
+            return;
+
+        if (toggled)
+        {
+            objectivesPanel.TogglePanel();
+        }
     }
 
     public void PushTestNotification()
