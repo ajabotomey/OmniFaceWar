@@ -35,6 +35,7 @@ public interface IInputController
     void SetInputSensitivity(int value);
     void SetRumbleSensitivity(int value);
     bool ToggleObjectivesPanel();
+    ActionElementMap GetActionElementMap(int actionID);
 }
 
 public enum DeviceType
@@ -278,5 +279,20 @@ public class InputController : IInputController
     public bool ToggleObjectivesPanel()
     {
         return player.GetButtonDown("ToggleObjectivesPanel");
+    }
+
+    public ActionElementMap GetActionElementMap(int actionID)
+    {
+        if (player.controllers.Keyboard.enabled)
+        {
+            ActionElementMap aem = player.controllers.maps.GetFirstElementMapWithAction(player.controllers.Keyboard, actionID, true);
+            return aem;
+        } else if (joystick != null)
+        {
+            ActionElementMap aem = player.controllers.maps.GetFirstElementMapWithAction(joystick, actionID, true);
+            return aem;
+        }
+
+        return null;
     }
 }

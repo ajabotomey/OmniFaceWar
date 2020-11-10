@@ -1,28 +1,35 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Rewired;
 
 public class ShowControllerButtonUI : MonoBehaviour
 {
-    // TODO: Rewrite to take into account rebinding 
     [SerializeField] private ControllerActionButton action;
-    [SerializeField] private Image image;
+    [SerializeField] private Image spriteRenderer;
+
+    [Inject] private ControllerMap controlMap;
+    [Inject] private IInputController input;
 
     // Update is called once per frame
     void Update()
     {
         DeviceType deviceType = DeviceDictionary.GetControllerType();
+        ActionElementMap aem = input.GetActionElementMap(action.rewiredAction);
 
-        switch (deviceType) {
+        switch (deviceType)
+        {
             case DeviceType.PC:
-                image.sprite = action.pcImage;
+                spriteRenderer.sprite = controlMap.GetKeyboardSprite(aem.elementIdentifierId);
                 break;
             case DeviceType.XboxOne:
+                spriteRenderer.sprite = controlMap.GetControllerGlyph(DeviceDictionary.GetGuid(DeviceType.XboxOne), aem.elementIdentifierId, AxisRange.Full);
+                break;
             case DeviceType.Xbox360:
-                image.sprite = action.xboxImage;
+                spriteRenderer.sprite = controlMap.GetControllerGlyph(DeviceDictionary.GetGuid(DeviceType.Xbox360), aem.elementIdentifierId, AxisRange.Full);
                 break;
             case DeviceType.PS4:
-                image.sprite = action.playstationImage;
+                spriteRenderer.sprite = controlMap.GetControllerGlyph(DeviceDictionary.GetGuid(DeviceType.PS4), aem.elementIdentifierId, AxisRange.Full);
                 break;
         }
     }

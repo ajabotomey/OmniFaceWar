@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using System.Linq;
+using Rewired.Platforms.PS4.Internal;
 
 public static class DeviceDictionary
 {
@@ -25,9 +27,7 @@ public static class DeviceDictionary
     {
         Player player = ReInput.players.GetPlayer(0); // Assume 0 always
 
-        Controller controller = player.controllers.GetLastActiveController();
-        if (controller == null)
-            return DeviceType.PC;
+        Controller controller = player.controllers.Joysticks[0];
 
         System.Guid controllerGUID = controller.hardwareTypeGuid;
 
@@ -37,5 +37,10 @@ public static class DeviceDictionary
         }
 
         return DeviceType.PC;
+    }
+
+    public static System.Guid GetGuid(DeviceType device)
+    {
+        return deviceDictionary[device];
     }
 }
