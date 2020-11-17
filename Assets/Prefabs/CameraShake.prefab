@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shakeDuration: 0.3
-  shakeAmplitude: 1.2
-  shakeFrequency: 2
+  shakeAmplitude: 2
+  shakeFrequency: 4
   virtualCamera: {fileID: 0}

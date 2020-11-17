@@ -27,6 +27,9 @@ public static class DeviceDictionary
     {
         Player player = ReInput.players.GetPlayer(0); // Assume 0 always
 
+        if (player.controllers.joystickCount == 0)
+            return DeviceType.PC;
+
         Controller controller = player.controllers.Joysticks[0];
 
         System.Guid controllerGUID = controller.hardwareTypeGuid;

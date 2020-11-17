@@ -15,139 +15,139 @@ MonoBehaviour:
   map:
     keyboard:
       glyphs:
-      - elementIdentifierId: 97
+      - elementIdentifierId: 1
         glyph: {fileID: 21300000, guid: eb5887f5c155ea8419a476afa2ec68a6, type: 3}
         glyphPos: {fileID: 0}
         glyphNeg: {fileID: 0}
-      - elementIdentifierId: 98
+      - elementIdentifierId: 2
         glyph: {fileID: 21300000, guid: f87b82d4f041db74abc7ba4bd3854339, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 3
+        glyph: {fileID: 21300000, guid: 2e23b9d4dcf1bf848a588e3e48be3f24, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 4
+        glyph: {fileID: 21300000, guid: d72d98c011cf01348bf7cad588f2c41c, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 5
+        glyph: {fileID: 21300000, guid: f2ade3f6827f3314094a2ced11cd7f94, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 6
+        glyph: {fileID: 21300000, guid: a59c7fbc16e20354ea0286bd11cff7d7, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 7
+        glyph: {fileID: 21300000, guid: 931bc56d9f3444a418c01c2d20858ec6, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 8
+        glyph: {fileID: 21300000, guid: f24b20f763b0c4d4797e4dbe1221ef39, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 9
+        glyph: {fileID: 21300000, guid: 397371bf20161124a86682b99c83918d, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 10
+        glyph: {fileID: 21300000, guid: 8cded4e9a097b8e49a9947c511fca089, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 11
+        glyph: {fileID: 21300000, guid: d67b9b58a14716543a64fdeccf1adb28, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 12
+        glyph: {fileID: 21300000, guid: a0eaf1c84d6b730458af02a394e5b38e, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 13
+        glyph: {fileID: 21300000, guid: 7be340f114274b14aacf2614ae5c013e, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 14
+        glyph: {fileID: 21300000, guid: e24dfa83a0f3e144a8c2301e82290711, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 15
+        glyph: {fileID: 21300000, guid: 3398748773dbabd4e979fdc8101c72cc, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 16
+        glyph: {fileID: 21300000, guid: fcf9cee1b9b524a439c0a7d1788e0d71, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 17
+        glyph: {fileID: 21300000, guid: 9e2169d333106ba45aa574b657f7e233, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 18
+        glyph: {fileID: 21300000, guid: 04530bbf929262e4c88244248df75b4b, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 19
+        glyph: {fileID: 21300000, guid: 4a3533f6d271d7a4bbc7f3e442fa80a3, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 20
+        glyph: {fileID: 21300000, guid: 9a36c2eb332d7af40b3ef561e4213ecc, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 21
+        glyph: {fileID: 21300000, guid: 01dba9a38fb36d7498b83676f7e02d30, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 22
+        glyph: {fileID: 21300000, guid: 9115ade0103777c45817a856cdb2f401, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 23
+        glyph: {fileID: 21300000, guid: 32fe2ec18aa55f8409d4d7aadfa84ec0, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 24
+        glyph: {fileID: 21300000, guid: 5a70a7477183c7349a4ecd3eff182347, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 25
+        glyph: {fileID: 21300000, guid: 87f8f4f721d0bcd4f8e97974310d6f8a, type: 3}
+        glyphPos: {fileID: 0}
+        glyphNeg: {fileID: 0}
+      - elementIdentifierId: 26
+        glyph: {fileID: 21300000, guid: cf307be17009a934684c641c51f87562, type: 3}
         glyphPos: {fileID: 0}
         glyphNeg: {fileID: 0}
       - elementIdentifierId: 0
         glyph: {fileID: 0}
         glyphPos: {fileID: 0}
         glyphNeg: {fileID: 0}
-      - elementIdentifierId: 99
-        glyph: {fileID: 21300000, guid: 2e23b9d4dcf1bf848a588e3e48be3f24, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 100
-        glyph: {fileID: 21300000, guid: d72d98c011cf01348bf7cad588f2c41c, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 101
-        glyph: {fileID: 21300000, guid: f2ade3f6827f3314094a2ced11cd7f94, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 102
-        glyph: {fileID: 21300000, guid: a59c7fbc16e20354ea0286bd11cff7d7, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 103
-        glyph: {fileID: 21300000, guid: 931bc56d9f3444a418c01c2d20858ec6, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 104
-        glyph: {fileID: 21300000, guid: f24b20f763b0c4d4797e4dbe1221ef39, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 105
-        glyph: {fileID: 21300000, guid: 397371bf20161124a86682b99c83918d, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 106
-        glyph: {fileID: 21300000, guid: 8cded4e9a097b8e49a9947c511fca089, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 107
-        glyph: {fileID: 21300000, guid: d67b9b58a14716543a64fdeccf1adb28, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 108
-        glyph: {fileID: 21300000, guid: a0eaf1c84d6b730458af02a394e5b38e, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 109
-        glyph: {fileID: 21300000, guid: 7be340f114274b14aacf2614ae5c013e, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 110
-        glyph: {fileID: 21300000, guid: e24dfa83a0f3e144a8c2301e82290711, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 111
-        glyph: {fileID: 21300000, guid: 3398748773dbabd4e979fdc8101c72cc, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 112
-        glyph: {fileID: 21300000, guid: fcf9cee1b9b524a439c0a7d1788e0d71, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 113
-        glyph: {fileID: 21300000, guid: 9e2169d333106ba45aa574b657f7e233, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 114
-        glyph: {fileID: 21300000, guid: 04530bbf929262e4c88244248df75b4b, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 115
-        glyph: {fileID: 21300000, guid: 4a3533f6d271d7a4bbc7f3e442fa80a3, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 116
-        glyph: {fileID: 21300000, guid: 9a36c2eb332d7af40b3ef561e4213ecc, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 117
-        glyph: {fileID: 21300000, guid: 01dba9a38fb36d7498b83676f7e02d30, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 118
-        glyph: {fileID: 21300000, guid: 9115ade0103777c45817a856cdb2f401, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 119
-        glyph: {fileID: 21300000, guid: 32fe2ec18aa55f8409d4d7aadfa84ec0, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 120
-        glyph: {fileID: 21300000, guid: 5a70a7477183c7349a4ecd3eff182347, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 121
-        glyph: {fileID: 21300000, guid: 87f8f4f721d0bcd4f8e97974310d6f8a, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 122
-        glyph: {fileID: 21300000, guid: cf307be17009a934684c641c51f87562, type: 3}
-        glyphPos: {fileID: 0}
-        glyphNeg: {fileID: 0}
-      - elementIdentifierId: 13
+      - elementIdentifierId: 58
         glyph: {fileID: 21300000, guid: c7a2e58d80555ef40b2c6e0d9281f0de, type: 3}
         glyphPos: {fileID: 0}
         glyphNeg: {fileID: 0}
-      - elementIdentifierId: 27
+      - elementIdentifierId: 60
         glyph: {fileID: 21300000, guid: fa5f9ce7952f59948aa3ffacdfddf5f6, type: 3}
         glyphPos: {fileID: 0}
         glyphNeg: {fileID: 0}
-      - elementIdentifierId: 9
+      - elementIdentifierId: 56
         glyph: {fileID: 21300000, guid: 711467ccfc9d13e4a8187e87a772e705, type: 3}
         glyphPos: {fileID: 0}
         glyphNeg: {fileID: 0}
-      - elementIdentifierId: 273
+      - elementIdentifierId: 89
         glyph: {fileID: 21300000, guid: f3bd564d4fc84fc40b95fd9764f5f517, type: 3}
         glyphPos: {fileID: 0}
         glyphNeg: {fileID: 0}
-      - elementIdentifierId: 274
+      - elementIdentifierId: 90
         glyph: {fileID: 21300000, guid: 78745769ce871d04faf636728f1f0127, type: 3}
         glyphPos: {fileID: 0}
         glyphNeg: {fileID: 0}
-      - elementIdentifierId: 275
+      - elementIdentifierId: 91
         glyph: {fileID: 21300000, guid: 916efc64156d3d944adef95e6fd5b080, type: 3}
         glyphPos: {fileID: 0}
         glyphNeg: {fileID: 0}
-      - elementIdentifierId: 276
+      - elementIdentifierId: 92
         glyph: {fileID: 21300000, guid: 3a7dc4e5a4aad5f4a89a3a17b986a9af, type: 3}
         glyphPos: {fileID: 0}
         glyphNeg: {fileID: 0}
