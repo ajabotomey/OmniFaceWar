@@ -2354,16 +2354,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1076654332}
     m_Modifications:
-    - target: {fileID: 313366791848099213, guid: 633e239309cb5f34e96ecceaa942cdc7,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3363605363122110112, guid: 633e239309cb5f34e96ecceaa942cdc7,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8415529385503555148, guid: 633e239309cb5f34e96ecceaa942cdc7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2473,26 +2463,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SettingsMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 8415529385503555149, guid: 633e239309cb5f34e96ecceaa942cdc7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8415529386344013362, guid: 633e239309cb5f34e96ecceaa942cdc7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 403317834}
-    - target: {fileID: 8415529386344013362, guid: 633e239309cb5f34e96ecceaa942cdc7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwapToControlMapper
-      objectReference: {fileID: 0}
-    - target: {fileID: 8415529386344013362, guid: 633e239309cb5f34e96ecceaa942cdc7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SettingsMenuController, OmniFaceWar
       objectReference: {fileID: 0}
     - target: {fileID: 8415529387054305666, guid: 633e239309cb5f34e96ecceaa942cdc7,
         type: 3}
