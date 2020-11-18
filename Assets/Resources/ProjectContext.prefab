@@ -47,7 +47,6 @@ MonoBehaviour:
   _scriptableObjectInstallers:
   - {fileID: 11400000, guid: 5685e1773e01b4746a24fd5a0a4237d0, type: 2}
   - {fileID: 11400000, guid: 57672bf64ffc8be4681e36e191b4d745, type: 2}
-  - {fileID: 11400000, guid: 59f7d606c69cde141ba855e94798afd3, type: 2}
   - {fileID: 11400000, guid: f791edc51929b1841a31646652ae197f, type: 2}
   _monoInstallers:
   - {fileID: 7686309534985406846}

@@ -17,8 +17,6 @@ public class Notification : ScriptableObject
     [SerializeField] private bool hasBeenPushed;
     [SerializeField] [ActionIdProperty(typeof(RewiredConsts.Action))] public int rewiredAction;
 
-    private ControllerActionButton actionButton;
-
     public string Title {
         get { return title; }
         set { title = value; }

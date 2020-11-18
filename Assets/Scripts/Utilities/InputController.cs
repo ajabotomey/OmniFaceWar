@@ -250,13 +250,13 @@ public class InputController : IInputController
         return player.GetButtonDown("OpenNotificationWindow");
     }
 
-    private void OnControllerConnected(ControllerStatusChangedEventArgs args)
+    private void OnControllerConnected(ControllerStatusChangedEventArgs args) // Need to plug into this to update the UI
     {
         player.controllers.Keyboard.enabled = false;
         player.controllers.Mouse.enabled = false;
     }
 
-    private void OnControllerDisconnected(ControllerStatusChangedEventArgs args)
+    private void OnControllerDisconnected(ControllerStatusChangedEventArgs args) // Need to plug into this to update the UI
     {
         player.controllers.Keyboard.enabled = true;
         player.controllers.Mouse.enabled = true;

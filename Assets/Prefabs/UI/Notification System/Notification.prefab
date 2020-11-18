@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7758918486479895309}
   - component: {fileID: 7302064029384146084}
   - component: {fileID: 8398168809601255302}
+  - component: {fileID: 4895342128860900246}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -75,6 +76,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4895342128860900246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2436710191624380557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5fe8e312f346ee4fb8b5e6cac6a9ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewiredAction: -1
+  spriteRenderer: {fileID: 8398168809601255302}
 --- !u!1 &3447290815477341131
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +458,7 @@ MonoBehaviour:
   popupUpTime: 7
   rect: {fileID: 7908952182640043629}
   image: {fileID: 8398168809601255302}
+  buttonImage: {fileID: 4895342128860900246}
   NotificationPushed: {fileID: 11400000, guid: 115a4df9bede25a419fd169bb645f211, type: 2}
 --- !u!225 &7811212307322419091
 CanvasGroup:

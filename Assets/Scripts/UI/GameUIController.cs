@@ -8,6 +8,7 @@ using Zenject;
 using TMPro;
 using UnityEngine.Analytics;
 using Yarn.Unity;
+using Rewired;
 
 [System.Serializable]
 public class GameUIEvent : UnityEvent<GameUIController> { }
@@ -69,6 +70,9 @@ public class GameUIController : MonoBehaviour
         elapsedTime = 0.0f;
 
         settings.UpdateFont();
+
+        ReInput.ControllerConnectedEvent += UpdateButtonUI;
+        ReInput.ControllerDisconnectedEvent += UpdateButtonUI;
 
         //PushFirstNotification();
         //PushTestNotification();
@@ -405,5 +409,15 @@ public class GameUIController : MonoBehaviour
         StartCoroutine(FadeCanvasGroup(subtitlePanel, 1, 0));
 
         yield return new WaitForSeconds(1); // Make sure that there is a gap between subtitles
+    }
+
+    private void UpdateButtonUI(ControllerStatusChangedEventArgs args)
+    {
+        ShowControllerButtonUI[] buttonPrompts = GameObject.FindObjectsOfType<ShowControllerButtonUI>();
+
+        foreach (ShowControllerButtonUI buttonPrompt in buttonPrompts)
+        {
+            buttonPrompt.UpdateImage();
+        }
     }
 }

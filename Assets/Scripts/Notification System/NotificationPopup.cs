@@ -15,6 +15,7 @@ public class NotificationPopup : MonoBehaviour
     [SerializeField] private float popupUpTime;
     [SerializeField] private RectTransform rect;
     [SerializeField] private Image image;
+    [SerializeField] private ShowControllerButtonUI buttonImage;
 
     [Header("Game Events")]
     [SerializeField] private VoidEvent NotificationPushed;
@@ -24,7 +25,7 @@ public class NotificationPopup : MonoBehaviour
     public bool IsFading { get; set; }
     private Notification notification;
 
-    [Inject] private RewiredActionManager rewiredActionManager;
+    //[Inject] private RewiredActionManager rewiredActionManager;
     [Inject] private GameUIController gameUI;
 
     void Start()
@@ -64,10 +65,16 @@ public class NotificationPopup : MonoBehaviour
 
     public void ShowNotification()
     {
-        if (notification.RewiredAction == -1) { // No action here
+        //if (notification.RewiredAction == -1) { // No action here
+        //    image.sprite = notification.Image;
+        //} else { // We have an action
+        //    image.sprite = notification.Image = rewiredActionManager.GetSpriteFromAction(notification.RewiredAction);
+        //}
+
+        if (notification.RewiredAction != -1) { // There is an action  
+            buttonImage.SetAction(notification.RewiredAction);
+        } else {
             image.sprite = notification.Image;
-        } else { // We have an action
-            image.sprite = notification.Image = rewiredActionManager.GetSpriteFromAction(notification.RewiredAction);
         }
 
         titleText.text = notification.Title;
