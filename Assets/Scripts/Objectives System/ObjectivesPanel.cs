@@ -86,19 +86,29 @@ public class ObjectivesPanel : MonoBehaviour
 
     public void Hide()
     {
-        if (cg.alpha == 0)
-            return;
-
-        StartCoroutine(FadeCanvasGroup(cg, 100, 0));
+        gameObject.SetActive(false);
     }
 
     public void Show()
     {
-        if (cg.alpha == 100)
-            return;
-
-        StartCoroutine(FadeCanvasGroup(cg, 0, 100));
+        gameObject.SetActive(true);
     }
+
+    //public void Hide()
+    //{
+    //    if (cg.alpha == 0)
+    //        return;
+
+    //    StartCoroutine(FadeCanvasGroup(cg, 100, 0));
+    //}
+
+    //public void Show()
+    //{
+    //    if (cg.alpha == 100)
+    //        return;
+
+    //    StartCoroutine(FadeCanvasGroup(cg, 0, 100));
+    //}
 
     public void UpdateEliminationObjective()
     {
@@ -124,27 +134,27 @@ public class ObjectivesPanel : MonoBehaviour
         objectiveText.text = "";
     }
 
-    public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
-    {
-        float timeStartedLerping = Time.time;
-        float timeSinceStarted = Time.time - timeStartedLerping;
-        float percentageComplete = timeSinceStarted / lerpTime;
+    //public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
+    //{
+    //    float timeStartedLerping = Time.time;
+    //    float timeSinceStarted = Time.time - timeStartedLerping;
+    //    float percentageComplete = timeSinceStarted / lerpTime;
 
-        while (true) {
-            timeSinceStarted = Time.time - timeStartedLerping;
-            percentageComplete = timeSinceStarted / lerpTime;
+    //    while (true) {
+    //        timeSinceStarted = Time.time - timeStartedLerping;
+    //        percentageComplete = timeSinceStarted / lerpTime;
 
-            float currentValue = Mathf.Lerp(start, end, percentageComplete);
+    //        float currentValue = Mathf.Lerp(start, end, percentageComplete);
 
-            cg.alpha = currentValue;
+    //        cg.alpha = currentValue;
 
-            if (percentageComplete >= 1) break;
+    //        if (percentageComplete >= 1) break;
 
-            yield return new WaitForEndOfFrame();
-        }
+    //        yield return new WaitForEndOfFrame();
+    //    }
 
-        //Destroy(this.gameObject);
-    }
+    //    //Destroy(this.gameObject);
+    //}
 
     public void TogglePanel()
     {
