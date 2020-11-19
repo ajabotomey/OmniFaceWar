@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using UnityEngine.Analytics;
+using FMODUnity;
 
 public class DungeonScript : MonoBehaviour
 {
@@ -26,7 +27,8 @@ public class DungeonScript : MonoBehaviour
     [SerializeField] private ObjectivesPanel panel;
 
     [Header("Sound Sources")]
-    [SerializeField] private AudioSource explosionSource;
+    //[SerializeField] private AudioSource explosionSource;
+    //[SerializeField] private StudioEventEmitter explosionSource;
 
     // DI Objects
     [Inject] private CameraShake cameraShake;
@@ -65,10 +67,14 @@ public class DungeonScript : MonoBehaviour
         gameUI.PushNotification(remediation);
         yield return new WaitForSeconds(15);
         cameraShake.TriggerShake();
-        explosionSource.Play();
+        //explosionSource.Play();
+        RuntimeManager.PlayOneShot("event:/SFX/Explosion");
         yield return new WaitForSeconds(3);
 
         // Introduction
+
+        // Load in new music
+
         gameUI.PushNotification(movement);
         gameUI.PushNotification(rotation);
         gameUI.PushNotification(shooting);

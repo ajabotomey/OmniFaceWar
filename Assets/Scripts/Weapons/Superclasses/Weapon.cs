@@ -12,7 +12,8 @@ public class Weapon : ScriptableObject
     [SerializeField] private float rechargeRate;
     [SerializeField] private bool isCurrentWeapon;
     [SerializeField] private bool isHackTypeGun;
-    [SerializeField] private AudioClip weaponFireSound;
+    //[SerializeField] private AudioClip weaponFireSound;
+    [FMODUnity.EventRef] [SerializeField] private string weaponFireSound;
 
     [Header("Debug")]
     [SerializeField] private float currentEnergy;
@@ -35,6 +36,7 @@ public class Weapon : ScriptableObject
     {
         currentEnergy -= energyCost;
         fireEvent.Raise(currentEnergy);
+        FMODUnity.RuntimeManager.PlayOneShot(weaponFireSound);
     }
 
     public void RechargeWeapon()
@@ -74,8 +76,8 @@ public class Weapon : ScriptableObject
         return isHackTypeGun;
     }
 
-    public AudioClip GetWeaponFireSound()
-    {
-        return weaponFireSound;
-    }
+    //public AudioClip GetWeaponFireSound()
+    //{
+    //    return weaponFireSound;
+    //}
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using Zenject;
+using FMODUnity;
 
 [Serializable]
 [ZenjectAllowDuringValidation]
@@ -68,6 +69,11 @@ public class SettingsManager {
     public ModifiedSettings settings;
 
     [Inject] private InputController _input;
+
+    private FMOD.Studio.Bus masterBus; // Path bus:/Master
+    private FMOD.Studio.Bus musicBus; // Path: bus:/Music
+    private FMOD.Studio.Bus sfxBus; // Path: bus:/SFX
+    private FMOD.Studio.Bus voiceBus; // Path: bus:/Voice
 
     #region Accessor Methods
 
@@ -483,7 +489,7 @@ public class SettingsManager {
         if (speed && autoAim && strength && text && fullscreen && resolution && subtitles && subTextSize && background && input && rumble && rumbleStr && inputDelay && sound && music && voice && audio)
             return true;
 
-        return true;
+        return false;
     }
 
     // TODO: Get settings and translate to analytics

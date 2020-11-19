@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8487955129937340027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level 1/PrisonCell
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level 1/PrisonCell
+  guid: 2fb1c4d9b707d44488a29d2cfbbcae7c
+  Banks:
+  - {fileID: -4294751839566543698}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
 --- !u!114 &-7310731956736474989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,7 +38,26 @@ MonoBehaviour:
   Path: ../glitterbombs-design/Music/FMOD/OmniFaceWar/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637413787627308170
+  lastModified: 637413953203306317
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-4294751839566543698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: ../glitterbombs-design/Music/FMOD/OmniFaceWar/Build/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 637413845248247927
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -33,8 +75,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Music/Level 1/PrisonCell
   guid: 2fb1c4d9b707d44488a29d2cfbbcae7c
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-242004777831293766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Explosion
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Explosion
+  guid: a6b647543644e84cb2610d1d9b6450b8
   Banks:
-  - {fileID: -7310731956736474989}
+  - {fileID: 6877251924183245255}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-112463374117868188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level 1/Explosion
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level 1/Explosion
+  guid: a6b647543644e84cb2610d1d9b6450b8
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -57,14 +143,18 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 75653600980755984}
   - {fileID: -7310731956736474989}
+  - {fileID: -4294751839566543698}
+  - {fileID: 6877251924183245255}
   EditorEvents:
-  - {fileID: -3969667377748159346}
+  - {fileID: -8487955129937340027}
+  - {fileID: -242004777831293766}
+  - {fileID: 6361738224809883937}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7310731956736474989}
   StringsBanks:
   - {fileID: 75653600980755984}
-  stringsBankWriteTime: 637413787627358036
+  stringsBankWriteTime: 637413953203336215
   cacheVersion: 6
 --- !u!114 &75653600980755984
 MonoBehaviour:
@@ -81,9 +171,73 @@ MonoBehaviour:
   Path: ../glitterbombs-design/Music/FMOD/OmniFaceWar/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637413787627358036
+  lastModified: 637413953203336215
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 810
+    Value: 1188
+  Exists: 1
+--- !u!114 &3289180749694361283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Explosion
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Explosion
+  guid: a6b647543644e84cb2610d1d9b6450b8
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &6361738224809883937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Fire Pistol
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Fire Pistol
+  guid: dda871a751c2bd46895d0e1333fe623b
+  Banks:
+  - {fileID: 6877251924183245255}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &6877251924183245255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: ../glitterbombs-design/Music/FMOD/OmniFaceWar/Build/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 637413953203964340
+  LoadResult: 0
+  FileSizes: []
   Exists: 1

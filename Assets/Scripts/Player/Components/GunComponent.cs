@@ -111,7 +111,7 @@ public class GunComponent : MonoBehaviour
                     firedBullet.SetDamage(damage);
 
                     // Setup audio clip
-                    audioSource.clip = currentWeapon.GetWeaponFireSound();
+                    //audioSource.clip = currentWeapon.GetWeaponFireSound();
 
                     // Incorporate spread into the aim
                     float spreadFactor = _player.GetSpreadFactor();
@@ -123,7 +123,7 @@ public class GunComponent : MonoBehaviour
                     firedBullet.transform.Rotate(0, 0, Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg);
 
                     currentWeapon.Fire();
-                    audioSource.Play();
+                    //audioSource.Play();
 
                     if (_settings.IsRumbleEnabled())
                         _inputController.SetRumble(0.1f);
