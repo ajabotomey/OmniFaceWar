@@ -70,10 +70,7 @@ public class SettingsManager {
 
     [Inject] private InputController _input;
 
-    private FMOD.Studio.Bus masterBus; // Path bus:/Master
-    private FMOD.Studio.Bus musicBus; // Path: bus:/Music
-    private FMOD.Studio.Bus sfxBus; // Path: bus:/SFX
-    private FMOD.Studio.Bus voiceBus; // Path: bus:/Voice
+
 
     #region Accessor Methods
 

@@ -34,6 +34,7 @@ public class DungeonScript : MonoBehaviour
     [Inject] private CameraShake cameraShake;
     [Inject] private GameUIController gameUI;
     [Inject] private WeaponController weaponControl;
+    [Inject] private MusicPlayer musicPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +61,8 @@ public class DungeonScript : MonoBehaviour
         } else {
             Logger.Error("We have a problem with the Analytics data");
         }
+
+        musicPlayer.Initialize();
 
         // Initial moment
         gameUI.PushNotification(socialScoreLow);

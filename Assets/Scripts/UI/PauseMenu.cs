@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
     [Inject] private SceneController _sceneController;
     [Inject] private SettingsManager _settingsManager;
+    [Inject] private MusicPlayer musicPlayer;
 
     [SerializeField] private Button resumeGameButton;
 
@@ -35,6 +36,8 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        musicPlayer.Destroy();
+
 //#if (UNITY_EDITOR || DEVELOPMENT_BUILD)
 //        Logger.Debug(this.name + " : " + this.GetType() + " : " + System.Reflection.MethodBase.GetCurrentMethod().Name);
 //#endif

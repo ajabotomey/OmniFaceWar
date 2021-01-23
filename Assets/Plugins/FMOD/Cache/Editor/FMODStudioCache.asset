@@ -23,6 +23,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &-7473095403097507372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level 1/DungeonEscape
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level 1/DungeonEscape
+  guid: 75e1977f24fb6a4787dc49e92536f3e3
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 32000
 --- !u!114 &-7310731956736474989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,7 +60,7 @@ MonoBehaviour:
   Path: ../glitterbombs-design/Music/FMOD/OmniFaceWar/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637413953203306317
+  lastModified: 637414095611939914
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -57,7 +79,7 @@ MonoBehaviour:
   Path: ../glitterbombs-design/Music/FMOD/OmniFaceWar/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 637413845248247927
+  lastModified: 637414095612222947
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -83,6 +105,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &-987155672627909783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level 1/Level 1
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level 1/Level 1
+  guid: 75e1977f24fb6a4787dc49e92536f3e3
+  Banks:
+  - {fileID: -4294751839566543698}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 32000
 --- !u!114 &-242004777831293766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,12 +194,13 @@ MonoBehaviour:
   - {fileID: -8487955129937340027}
   - {fileID: -242004777831293766}
   - {fileID: 6361738224809883937}
+  - {fileID: -987155672627909783}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7310731956736474989}
   StringsBanks:
   - {fileID: 75653600980755984}
-  stringsBankWriteTime: 637413953203336215
+  stringsBankWriteTime: 637414095611978966
   cacheVersion: 6
 --- !u!114 &75653600980755984
 MonoBehaviour:
@@ -171,11 +217,11 @@ MonoBehaviour:
   Path: ../glitterbombs-design/Music/FMOD/OmniFaceWar/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637413953203336215
+  lastModified: 637414095611978966
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1188
+    Value: 1182
   Exists: 1
 --- !u!114 &3289180749694361283
 MonoBehaviour:

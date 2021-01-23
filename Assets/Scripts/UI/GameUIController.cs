@@ -53,6 +53,7 @@ public class GameUIController : MonoBehaviour
     [Inject] private HeatmapUploadController heatmap;
     [Inject] private IInputController input;
     [Inject] private SettingsManager settings;
+    [Inject] private MusicPlayer musicPlayer;
 
     private float elapsedTime;
     private float refreshTime = 3.0f;
@@ -251,6 +252,8 @@ public class GameUIController : MonoBehaviour
 
         //inputModule.inputActionsPerSecond = 1;
 
+        musicPlayer.PauseAllAudio();
+
         // Pause time
         Time.timeScale = 0.0f;
 
@@ -264,6 +267,8 @@ public class GameUIController : MonoBehaviour
         // Fix volume settings
         voiceAudioSource.volume = Mathf.Clamp01(settings.GetVoiceVolume());
         musicPlayerSource.volume = Mathf.Clamp01(settings.GetMusicVolume());
+
+        musicPlayer.UnpauseAllAudio();
 
         // Unpause the game
         paused = false;

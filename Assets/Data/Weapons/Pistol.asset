@@ -18,8 +18,8 @@ MonoBehaviour:
   rechargeRate: 3
   isCurrentWeapon: 1
   isHackTypeGun: 0
-  weaponFireSound: {fileID: 8300000, guid: 99a1855000ff9ec4b80368092f3c1394, type: 3}
-  currentEnergy: 47.77951
+  weaponFireSound: event:/SFX/Fire Pistol
+  currentEnergy: 90.31958
   fireEvent: {fileID: 11400000, guid: 36f3e9fabe6ed304faf825b558535f93, type: 2}
   rechargeEvent: {fileID: 11400000, guid: b602e77055ac64641a18c52112931578, type: 2}
   damage: 5
