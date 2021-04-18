@@ -28,4 +28,10 @@ jobs:
         with: 
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
+      #- name: Discord Notifcation
+      #  env: 
+      #    DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      #  uses: Ilshidur/action-discord@master
+      #  with: 
+      #    args: 'The project '
 
