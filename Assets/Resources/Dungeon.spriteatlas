@@ -40,6 +40,7 @@ SpriteAtlas:
       allowAlphaSplitting: 0
       enableRotation: 0
       enableTightPacking: 0
+    secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
     - {fileID: 21300000, guid: 8421e07e139e2204b987b11975185885, type: 3}
@@ -79,5 +80,6 @@ SpriteAtlas:
   - DungeonWallLeft
   - DungeonWallMiddle
   - DungeonFloor
+  m_RenderDataMap: {}
   m_Tag: Dungeon
   m_IsVariant: 0
