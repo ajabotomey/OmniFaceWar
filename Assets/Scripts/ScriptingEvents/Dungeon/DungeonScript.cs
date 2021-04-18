@@ -54,13 +54,13 @@ public class DungeonScript : MonoBehaviour
             { "level_index", 1 }
         };
 
-        // Setup analytics
-        AnalyticsResult result = AnalyticsEvent.Custom("level_start", parameters);
-        if (result == AnalyticsResult.Ok) {
-            Logger.Debug("All is well!");
-        } else {
-            Logger.Error("We have a problem with the Analytics data");
-        }
+        //// Setup analytics
+        //AnalyticsResult result = AnalyticsEvent.Custom("level_start", parameters);
+        //if (result == AnalyticsResult.Ok) {
+        //    Logger.Debug("All is well!");
+        //} else {
+        //    Logger.Error("We have a problem with the Analytics data");
+        //}
 
         musicPlayer.Initialize();
 

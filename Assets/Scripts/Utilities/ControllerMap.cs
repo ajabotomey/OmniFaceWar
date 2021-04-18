@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 using Rewired.Data.Mapping;
-using UnityEditor.U2D;
 using log4net.Util;
 
 [System.Serializable]

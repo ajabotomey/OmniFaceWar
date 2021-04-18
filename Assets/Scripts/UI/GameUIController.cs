@@ -229,12 +229,12 @@ public class GameUIController : MonoBehaviour
         Dictionary<string, object> parameters = new Dictionary<string, object>();
         parameters.Add("level_index", 1);
 
-        AnalyticsResult result = AnalyticsEvent.Custom("level_complete", parameters);
-        if (result == AnalyticsResult.Ok) {
-            Logger.Debug("All is well!");
-        } else {
-            Logger.Error("We have a problem with the Analytics data");
-        }
+        //AnalyticsResult result = AnalyticsEvent.Custom("level_complete", parameters);
+        //if (result == AnalyticsResult.Ok) {
+        //    Logger.Debug("All is well!");
+        //} else {
+        //    Logger.Error("We have a problem with the Analytics data");
+        //}
     }
 
     // TODO: Remove once heatmap data is collected
