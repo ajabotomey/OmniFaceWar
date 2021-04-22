@@ -45,6 +45,7 @@ jobs:
         uses: keithalpichi/slack-action@0.0.6
         with:
           template: steps1
+          steps: ${{ toJSON(steps) }}
 
       # - name: Discord Notifcation
       #   env: 
