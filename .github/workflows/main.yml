@@ -43,7 +43,8 @@ jobs:
           description: 
       - name: Send Slack Notification
         uses: keithalpichi/slack-action@0.0.6
-        template: steps1
+        with:
+          template: steps1
 
       # - name: Discord Notifcation
       #   env: 
