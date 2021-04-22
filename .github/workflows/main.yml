@@ -44,12 +44,15 @@ jobs:
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: ${{ job.status }}
-          description: 
+          description: https://github.com + ${{ github.repository }} + /actions/runs/ + ${{ github.run_id }}
       - name: Send Slack Notification
         uses: keithalpichi/slack-action@0.0.6
         with:
           template: steps1
           steps: ${{ toJson(steps) }}
+          title: Build ${{ job.status }}
+
+          # https://github.com + ${{ github.repository }} + /actions/runs/ + ${{ github.run_id }}
 
       # - name: Discord Notifcation
       #   env: 
