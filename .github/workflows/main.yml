@@ -44,7 +44,7 @@ jobs:
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: ${{ job.status }}
-          description: https://github.com${{ github.repository }}/actions/runs/${{ github.run_id }}
+          description: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
       - name: Send Slack Notification
         uses: keithalpichi/slack-action@0.0.6
         with:
