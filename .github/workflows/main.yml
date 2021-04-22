@@ -1,5 +1,8 @@
 name: Build Project
 on: [push, pull_request, workflow_dispatch]
+env: 
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
 jobs: 
   buildForAllSupportedPlatforms:
     name: Build for ${{ matrix.targetPlatform }}
@@ -10,7 +13,8 @@ jobs:
         targetPlatform:
           - StandaloneWindows64
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout the repository
+        uses: actions/checkout@v2
         with: 
           fetch-depth: 0
           lfs: true
@@ -19,23 +23,27 @@ jobs:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
-      - uses: game-ci/unity-builder@v2
+      - name: Build game using Unity Builder
+        uses: game-ci/unity-builder@v2
         env: 
           UNITY_LICENSE: ${{ secrets.UNITY_LICENCE }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
-      - uses: actions/upload-artifact@v2
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
         with: 
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
-      - uses: sarisia/actions-status-discord@v1
+      - name: Send Discord Notification
+        uses: sarisia/actions-status-discord@v1
         if: always()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: ${{ job.status }}
-
-
-
+          description: 
+      - name: Send Slack Notification
+        uses: keithalpichi/slack-action@0.0.6
+        template: steps1
 
       # - name: Discord Notifcation
       #   env: 
