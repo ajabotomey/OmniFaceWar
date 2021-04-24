@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using UnityEngine.InputSystem;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class PlayerControl : MonoBehaviour
     private bool isInConversation;
     private float refreshRate = 10.0f;
     private float elapsedTime;
+
+    private Vector2 movement;
 
     Vector3 aim;
 
@@ -84,7 +87,9 @@ public class PlayerControl : MonoBehaviour
         float moveVertical = _inputController.Vertical();
 
         RotateCharacter(moveHorizontal, moveVertical);
-        HandleMovement(moveHorizontal, moveVertical);
+        HandleMovement();
+        //HandleMovement(moveHorizontal, moveVertical);
+        //HandleMovement(_inputController.Movement().x, _inputController.Movement().y);
 
         if (_inputController.TalkToNPC()) {
             CheckForNearbyNPC();
@@ -113,6 +118,19 @@ public class PlayerControl : MonoBehaviour
         _rb.MovePosition(new Vector2(posX, posY));
     }
 
+    public void ReadMovement(InputAction.CallbackContext value)
+    {
+        movement = value.ReadValue<Vector2>();
+    }
+
+    void HandleMovement()
+    {
+        float posX = transform.position.x + movement.x * _speed * Time.fixedDeltaTime;
+        float posY = transform.position.y + movement.y * _speed * Time.fixedDeltaTime;
+
+        _rb.MovePosition(new Vector2(posX, posY));
+    }
+
     void SetAim()
     {
         if (aimTarget) {
@@ -126,7 +144,8 @@ public class PlayerControl : MonoBehaviour
             aim.Normalize();
             aim = -aim;
         } else {
-            Vector3 mouseMovement = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
+            //Vector3 mouseMovement = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
+            Vector3 mouseMovement = new Vector3(_inputController.MousePosition().x, _inputController.MousePosition().y, 0.0f);
             aim += mouseMovement;
 
             if (aim.magnitude > 1.0f) {

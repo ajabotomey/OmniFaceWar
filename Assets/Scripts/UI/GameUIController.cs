@@ -8,7 +8,6 @@ using Zenject;
 using TMPro;
 using UnityEngine.Analytics;
 using Yarn.Unity;
-using Rewired;
 
 [System.Serializable]
 public class GameUIEvent : UnityEvent<GameUIController> { }
@@ -72,8 +71,8 @@ public class GameUIController : MonoBehaviour
 
         settings.UpdateFont();
 
-        ReInput.ControllerConnectedEvent += UpdateButtonUI;
-        ReInput.ControllerDisconnectedEvent += UpdateButtonUI;
+        //ReInput.ControllerConnectedEvent += UpdateButtonUI;
+        //ReInput.ControllerDisconnectedEvent += UpdateButtonUI;
 
         //PushFirstNotification();
         //PushTestNotification();
@@ -416,13 +415,13 @@ public class GameUIController : MonoBehaviour
         yield return new WaitForSeconds(1); // Make sure that there is a gap between subtitles
     }
 
-    private void UpdateButtonUI(ControllerStatusChangedEventArgs args)
-    {
-        ShowControllerButtonUI[] buttonPrompts = GameObject.FindObjectsOfType<ShowControllerButtonUI>();
+    //private void UpdateButtonUI(ControllerStatusChangedEventArgs args)
+    //{
+    //    ShowControllerButtonUI[] buttonPrompts = GameObject.FindObjectsOfType<ShowControllerButtonUI>();
 
-        foreach (ShowControllerButtonUI buttonPrompt in buttonPrompts)
-        {
-            buttonPrompt.UpdateImage();
-        }
-    }
+    //    foreach (ShowControllerButtonUI buttonPrompt in buttonPrompts)
+    //    {
+    //        buttonPrompt.UpdateImage();
+    //    }
+    //}
 }

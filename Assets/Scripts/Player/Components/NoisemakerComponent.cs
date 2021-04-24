@@ -36,10 +36,11 @@ public class NoisemakerComponent : MonoBehaviour
     {
         // TODO: Fix once Weapon Control is available
         //bool launchNoise = _inputController.FireWeapon();
-        bool launchNoise = Input.GetKeyDown(KeyCode.E);
+        //bool launchNoise = Input.GetKeyDown(KeyCode.E);
+        bool launchNoise = false;
 
         // Check that we aren't throwing it onto an object. Also make sure we aren't throwing over obstacles as well
-        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var mousePos = Camera.main.ScreenToWorldPoint(_inputController.MousePosition());
         var distance = Vector2.Distance(transform.position, mousePos);
         RaycastHit2D initialHit = Physics2D.Raycast(mousePos, Vector2.zero, maxDistance, obstacleMask);
         RaycastHit2D obstructionHit = Physics2D.Raycast(transform.position, transform.up, distance, obstacleMask);

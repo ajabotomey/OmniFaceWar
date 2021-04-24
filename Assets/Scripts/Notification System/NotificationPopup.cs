@@ -15,7 +15,7 @@ public class NotificationPopup : MonoBehaviour
     [SerializeField] private float popupUpTime;
     [SerializeField] private RectTransform rect;
     [SerializeField] private Image image;
-    [SerializeField] private ShowControllerButtonUI buttonImage;
+    //[SerializeField] private ShowControllerButtonUI buttonImage;
 
     [Header("Game Events")]
     [SerializeField] private VoidEvent NotificationPushed;
@@ -72,7 +72,7 @@ public class NotificationPopup : MonoBehaviour
         //}
 
         if (notification.RewiredAction != -1) { // There is an action  
-            buttonImage.SetAction(notification.RewiredAction);
+            //buttonImage.SetAction(notification.RewiredAction);
         } else {
             image.sprite = notification.Image;
         }

@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Rewired;
-using System;
-
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 public interface IInputController
 {
     bool IsControllerActive();
@@ -11,6 +7,7 @@ public interface IInputController
     Vector3 MouseMovement();
     float Horizontal();
     float Vertical();
+    Vector2 Movement(UnityEngine.InputSystem.InputAction.CallbackContext value);
     Vector2 Rotation();
     Vector3 Rotation3Raw();
     float RotationAtan();
@@ -35,7 +32,7 @@ public interface IInputController
     void SetInputSensitivity(int value);
     void SetRumbleSensitivity(int value);
     bool ToggleObjectivesPanel();
-    ActionElementMap GetActionElementMap(int actionID);
+    //ActionElementMap GetActionElementMap(int actionID);
 }
 
 public enum DeviceType
@@ -46,11 +43,11 @@ public enum DeviceType
 public class InputController : IInputController
 {
     private int playerID = 0;
-    private Player player;
+    //private Player player;
 
     // Controller Maps
-    private Mouse mouse;
-    private Joystick joystick;
+    //private Rewired.Mouse mouse;
+    //private Rewired.Joystick joystick;
 
     Vector2 aim;
 
@@ -64,54 +61,54 @@ public class InputController : IInputController
 
     public InputController()
     {
-        player = ReInput.players.GetPlayer(playerID);
+        //player = ReInput.players.GetPlayer(playerID);
 
-        if (player.controllers.Mouse.isConnected)
-            mouse = ReInput.controllers.Mouse;
+        //if (player.controllers.Mouse.isConnected)
+        //    mouse = ReInput.controllers.Mouse;
 
-        // Check which input should be used.
-        if (player.controllers.Joysticks.Count == 1) {
-            joystick = player.controllers.Joysticks[0]; // Only ever be one joystick
+        //// Check which input should be used.
+        //if (player.controllers.Joysticks.Count == 1) {
+        //    joystick = player.controllers.Joysticks[0]; // Only ever be one joystick
 
-            // By Default, disable the keyboard and mouse if a controller is connected
-            player.controllers.Keyboard.enabled = false;
-            player.controllers.Mouse.enabled = false;
-        } else {
-            joystick = null;
+        //    // By Default, disable the keyboard and mouse if a controller is connected
+        //    player.controllers.Keyboard.enabled = false;
+        //    player.controllers.Mouse.enabled = false;
+        //} else {
+        //    joystick = null;
 
-            // If no controller is connected, then ensure that the keyboard are enabled
-            player.controllers.Keyboard.enabled = true;
-            player.controllers.Mouse.enabled = true;
-        }
+        //    // If no controller is connected, then ensure that the keyboard are enabled
+        //    player.controllers.Keyboard.enabled = true;
+        //    player.controllers.Mouse.enabled = true;
+        //}
 
-        ReInput.ControllerConnectedEvent += OnControllerConnected;
-        ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
+        //ReInput.ControllerConnectedEvent += OnControllerConnected;
+        //ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
     }
 
     public bool IsControllerActive()
     {
-        //return player.controllers.joystickCount == 1;
-        Controller controller = player.controllers.GetLastActiveController();
-        if (controller != null) {
-            switch (controller.type) {
-                case ControllerType.Keyboard:
-                    return false;
-                case ControllerType.Joystick:
-                    return true;
-                case ControllerType.Mouse:
-                    return false;
-                case ControllerType.Custom:
-                    // Do something custom controller
-                    break;
-            }
-        }
+        ////return player.controllers.joystickCount == 1;
+        //Controller controller = player.controllers.GetLastActiveController();
+        //if (controller != null) {
+        //    switch (controller.type) {
+        //        case ControllerType.Keyboard:
+        //            return false;
+        //        case ControllerType.Joystick:
+        //            return true;
+        //        case ControllerType.Mouse:
+        //            return false;
+        //        case ControllerType.Custom:
+        //            // Do something custom controller
+        //            break;
+        //    }
+        //}
 
         return false;
     }
 
     public Vector2 MousePosition()
     {
-        return mouse.screenPosition;
+        return Mouse.current.position.ReadValue();
     }
 
     public Vector3 MouseMovement()
@@ -121,110 +118,132 @@ public class InputController : IInputController
 
     public float Horizontal()
     {
-        return player.GetAxis("Horizontal");
+        //return player.GetAxis("Horizontal");
+        return 0.0f;
     }
 
     public float Vertical()
     {
-        return player.GetAxis("Vertical");
+        //return player.GetAxis("Vertical");
+        return 0.0f;
+    }
+
+    public Vector2 Movement(UnityEngine.InputSystem.InputAction.CallbackContext value)
+    {
+        return value.ReadValue<Vector2>();
     }
 
     public bool FireWeapon()
     {
-        return player.GetButton("UseGadget");
+        //return player.GetButton("UseGadget");
+        return false;
     }
 
     public bool SmokeBomb()
     {
-        return player.GetButton("UseSmokebomb");
+        //return player.GetButton("UseSmokebomb");
+        return false;
     }
 
     public Vector2 Rotation()
     {
-        Vector2 rotateRaw = new Vector2(player.GetAxis("RotateHorizontal"), player.GetAxis("RotateVertical"));
-        rotateRaw.Normalize();
-        return rotateRaw;
+        //Vector2 rotateRaw = new Vector2(player.GetAxis("RotateHorizontal"), player.GetAxis("RotateVertical"));
+        //rotateRaw.Normalize();
+        //return rotateRaw;
+        return Vector2.zero;
     }
 
     public Vector3 Rotation3Raw()
     {
-        Vector3 rotateRaw = new Vector3(player.GetAxis("RotateHorizontal"), player.GetAxis("RotateVertical"), 0.0f);
-        return rotateRaw;
+        //Vector3 rotateRaw = new Vector3(player.GetAxis("RotateHorizontal"), player.GetAxis("RotateVertical"), 0.0f);
+        //return rotateRaw;
+        return Vector3.zero;
     }
 
     public float RotationAtan()
     {
-        Vector2 rotateRaw = new Vector2(player.GetAxis("RotateVertical"), player.GetAxis("RotateHorizontal"));
-        rotateRaw.Normalize();
-        return Mathf.Atan2(rotateRaw.x, rotateRaw.y) * Mathf.Rad2Deg;
+        //Vector2 rotateRaw = new Vector2(player.GetAxis("RotateVertical"), player.GetAxis("RotateHorizontal"));
+        //rotateRaw.Normalize();
+        //return Mathf.Atan2(rotateRaw.x, rotateRaw.y) * Mathf.Rad2Deg;
+        return 0.0f;
     }
 
     public bool SelectWeapon()
     {
-        return player.GetButton("GadgetWheel");
+        //return player.GetButton("GadgetWheel");
+        return false;
     }
 
     public void SetRumble(float duration)
     {
-        if (joystick == null)
-            return;
+        //if (joystick == null)
+        //    return;
 
-        //var sensitivity = SettingsManager.Instance.GetRumbleSensitivity();
+        ////var sensitivity = SettingsManager.Instance.GetRumbleSensitivity();
 
-        if (!joystick.supportsVibration) return;
-        for (int i = 0; i < joystick.vibrationMotorCount; i++) {
-            joystick.SetVibration(i, rumbleSensitivity, duration);
-        }
+        //if (!joystick.supportsVibration) return;
+        //for (int i = 0; i < joystick.vibrationMotorCount; i++) {
+        //    joystick.SetVibration(i, rumbleSensitivity, duration);
+        //}
     }
 
     public void StopRumble()
     {
-        joystick.StopVibration();
+        //joystick.StopVibration();
     }
 
     public float GetUIHorizontal()
     {
-        return player.GetAxis("UIHorizontal");
+        //return player.GetAxis("UIHorizontal");
+        return 0.0f;
     }
 
     public bool UICancel()
     {
-        return player.GetButtonDown("UICancel");
+        //return player.GetButtonDown("UICancel");
+        return false;
     }
 
     public bool Pause()
     {
-        return player.GetButtonDown("Pause");
+        //return player.GetButtonDown("Pause");
+        return false;
     }
 
     public bool TakeScreenshot()
     {
-        return player.GetButtonDown("Screenshot");
+        //return player.GetButtonDown("Screenshot");
+        return false;
     }
 
     public bool SelectGun()
     {
-        return player.GetButtonDown("SelectGun");
+        //return player.GetButtonDown("SelectGun");
+        return false;
     }
 
     public bool SelectNoise()
     {
-        return player.GetButtonDown("SelectNoise");
+        //return player.GetButtonDown("SelectNoise");
+        return false;
     }
 
     public bool SelectMask()
     {
-        return player.GetButtonDown("SelectMask");
+        //return player.GetButtonDown("SelectMask");
+        return false;
     }
 
     public float ScrollWeapons()
     {
-        return player.GetAxis("ScrollWeapons");
+        //return player.GetAxis("ScrollWeapons");
+        return 0.0f;
     }
 
     public bool TalkToNPC()
     {
-        return player.GetButtonDown("TalkToNPC");
+        //return player.GetButtonDown("TalkToNPC");
+        return false;
     }
 
     public void SetAim(Vector2 _aim)
@@ -239,36 +258,37 @@ public class InputController : IInputController
 
     public void SetInputDelay(bool enabled)
     {
-        if (enabled)
-            player.controllers.maps.GetInputBehavior(0).buttonRepeatDelay = inputDelay;
-        else
-            player.controllers.maps.GetInputBehavior(0).buttonRepeatDelay = 0;
+        //if (enabled)
+        //    player.controllers.maps.GetInputBehavior(0).buttonRepeatDelay = inputDelay;
+        //else
+        //    player.controllers.maps.GetInputBehavior(0).buttonRepeatDelay = 0;
     }
 
     public bool OpenNotificationWindow()
     {
-        return player.GetButtonDown("OpenNotificationWindow");
+        //return player.GetButtonDown("OpenNotificationWindow");
+        return false;
     }
 
-    private void OnControllerConnected(ControllerStatusChangedEventArgs args) // Need to plug into this to update the UI
-    {
-        player.controllers.Keyboard.enabled = false;
-        player.controllers.Mouse.enabled = false;
-    }
+    //private void OnControllerConnected(ControllerStatusChangedEventArgs args) // Need to plug into this to update the UI
+    //{
+    //    player.controllers.Keyboard.enabled = false;
+    //    player.controllers.Mouse.enabled = false;
+    //}
 
-    private void OnControllerDisconnected(ControllerStatusChangedEventArgs args) // Need to plug into this to update the UI
-    {
-        player.controllers.Keyboard.enabled = true;
-        player.controllers.Mouse.enabled = true;
-    }
+    //private void OnControllerDisconnected(ControllerStatusChangedEventArgs args) // Need to plug into this to update the UI
+    //{
+    //    player.controllers.Keyboard.enabled = true;
+    //    player.controllers.Mouse.enabled = true;
+    //}
 
     public void SetInputSensitivity(int value)
     {
-        InputBehavior behavior = player.controllers.maps.GetInputBehavior(0);
+        //InputBehavior behavior = player.controllers.maps.GetInputBehavior(0);
 
-        behavior.joystickAxisSensitivity = JOYSTICK_SENSITIVITY * (value / 5); // Standard is 5, Maximum is 10
-        behavior.mouseXYAxisSensitivity = MOUSE_SENSITIVITY * (value / 5);
-        behavior.digitalAxisSensitivity = KEYBOARD_SENSITIVITY * (value / 5);
+        //behavior.joystickAxisSensitivity = JOYSTICK_SENSITIVITY * (value / 5); // Standard is 5, Maximum is 10
+        //behavior.mouseXYAxisSensitivity = MOUSE_SENSITIVITY * (value / 5);
+        //behavior.digitalAxisSensitivity = KEYBOARD_SENSITIVITY * (value / 5);
     }
 
     public void SetRumbleSensitivity(int value)
@@ -278,21 +298,22 @@ public class InputController : IInputController
 
     public bool ToggleObjectivesPanel()
     {
-        return player.GetButtonDown("ToggleObjectivesPanel");
+        //return player.GetButtonDown("ToggleObjectivesPanel");
+        return false;
     }
 
-    public ActionElementMap GetActionElementMap(int actionID)
-    {
-        if (player.controllers.Keyboard.enabled)
-        {
-            ActionElementMap aem = player.controllers.maps.GetFirstElementMapWithAction(player.controllers.Keyboard, actionID, true);
-            return aem;
-        } else if (joystick != null)
-        {
-            ActionElementMap aem = player.controllers.maps.GetFirstElementMapWithAction(joystick, actionID, true);
-            return aem;
-        }
+    //public ActionElementMap GetActionElementMap(int actionID)
+    //{
+    //    if (player.controllers.Keyboard.enabled)
+    //    {
+    //        ActionElementMap aem = player.controllers.maps.GetFirstElementMapWithAction(player.controllers.Keyboard, actionID, true);
+    //        return aem;
+    //    } else if (joystick != null)
+    //    {
+    //        ActionElementMap aem = player.controllers.maps.GetFirstElementMapWithAction(joystick, actionID, true);
+    //        return aem;
+    //    }
 
-        return null;
-    }
+    //    return null;
+    //}
 }
