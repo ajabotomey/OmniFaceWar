@@ -17,22 +17,6 @@ public class GlobalUnitTests : ZenjectUnitTestFixture
         SceneInstaller.InstallFromResource(sceneSettingsPath, Container);
     }
 
-    [Test]
-    public void WillSceneControllerResolve()
-    {
-        SceneController sceneControl = Container.Resolve<SceneController>();
-
-        Assert.NotNull(sceneControl);
-    }
-
-    [Test]
-    public void WillSettingsManagerResolve()
-    {
-        SettingsManager settings = Container.Resolve<SettingsManager>();
-
-        Assert.NotNull(settings);
-    }
-
     [TearDown]
     public void TearDown()
     {

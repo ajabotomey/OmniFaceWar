@@ -44,14 +44,14 @@ jobs:
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: ${{ job.status }}
-          description: OmniFace War has finished a build with ${{job.status}} You can find details about the build right here - https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          description: OmniFace War has finished a build with ${{job.status}}. You can find details about the build right here - https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
       - name: Send Slack Notification
         uses: keithalpichi/slack-action@0.0.6
         with:
           template: steps1
           steps: ${{ toJson(steps) }}
           title: Build ${{ job.status }}
-          description: OmniFace War has finished a build with ${{job.status}} 
+          description: OmniFace War has finished a build with ${{job.status}}.
 
           # https://github.com + ${{ github.repository }} + /actions/runs/ + ${{ github.run_id }}
 
