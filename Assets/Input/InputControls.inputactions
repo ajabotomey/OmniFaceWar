@@ -14,9 +14,17 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Fire Weapon / Use Gadget",
+                    "type": "Button",
+                    "id": "ff25dd66-2166-4ab8-985a-3a2cce611c5c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Rotation",
                     "type": "Value",
-                    "id": "9123dd41-5809-45b8-874c-50a92bb3130e",
+                    "id": "2a189d5b-751c-4acc-8952-618e93b6851c",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
@@ -91,8 +99,30 @@
                 },
                 {
                     "name": "",
-                    "id": "5928584d-6773-48e0-be17-415bb333c3ed",
-                    "path": "<Mouse>/delta",
+                    "id": "d3bcfabd-b7b2-405e-b9d5-e98204c0d73c",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Fire Weapon / Use Gadget",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "33110470-1b69-4fc5-af0b-bd76eb450780",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Fire Weapon / Use Gadget",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "87b53672-e655-4d54-ad6e-3e6e4503a654",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
@@ -102,7 +132,7 @@
                 },
                 {
                     "name": "",
-                    "id": "768d74a0-0933-4ca2-86d7-8dc4b4e7be9b",
+                    "id": "66fc025f-e9c3-41be-8111-5d9882474f45",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",

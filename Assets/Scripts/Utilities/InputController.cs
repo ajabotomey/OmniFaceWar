@@ -113,7 +113,8 @@ public class InputController : IInputController
 
     public Vector3 MouseMovement()
     {
-        return new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
+        Vector2 pos = Mouse.current.position.ReadValue();
+        return new Vector3(pos.x, pos.y, 0.0f);
     }
 
     public float Horizontal()

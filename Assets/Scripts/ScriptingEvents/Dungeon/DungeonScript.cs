@@ -63,6 +63,7 @@ public class DungeonScript : MonoBehaviour
         //}
 
         musicPlayer.Initialize();
+        weaponControl.SelectPistol();
 
         // Initial moment
         gameUI.PushNotification(socialScoreLow);
@@ -87,7 +88,7 @@ public class DungeonScript : MonoBehaviour
         yield return new WaitForSeconds(7);
         gameUI.ShowSubtitles(rotationClip);
         yield return new WaitForSeconds(7);
-        weaponControl.SelectPistol();
+        
         gameUI.ShowSubtitles(shootingClip);
 
         yield return null;

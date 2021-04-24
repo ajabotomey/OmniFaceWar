@@ -30,8 +30,11 @@ public class PlayerControl : MonoBehaviour
     private float elapsedTime;
 
     private Vector2 movement;
+    private Vector2 rotation;
 
-    Vector3 aim;
+    public Vector3 Aim {
+        get; set;
+    }
 
     private Transform aimTarget = null;
 
@@ -83,10 +86,10 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        float moveHorizontal = _inputController.Horizontal();
-        float moveVertical = _inputController.Vertical();
+        //float moveHorizontal = _inputController.Horizontal();
+        //float moveVertical = _inputController.Vertical();
 
-        RotateCharacter(moveHorizontal, moveVertical);
+        RotateCharacter();
         HandleMovement();
         //HandleMovement(moveHorizontal, moveVertical);
         //HandleMovement(_inputController.Movement().x, _inputController.Movement().y);
@@ -110,6 +113,14 @@ public class PlayerControl : MonoBehaviour
         animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
+    void RotateCharacter()
+    {
+        animator.SetFloat("Horizontal", rotation.x);
+        animator.SetFloat("Vertical", rotation.y);
+
+        animator.SetFloat("Speed", movement.sqrMagnitude);
+    }
+
     void HandleMovement(float horizontal, float vertical)
     {
         float posX = transform.position.x + horizontal * _speed * Time.fixedDeltaTime;
@@ -123,6 +134,11 @@ public class PlayerControl : MonoBehaviour
         movement = value.ReadValue<Vector2>();
     }
 
+    public void ReadRotation(InputAction.CallbackContext value)
+    {
+        rotation = value.ReadValue<Vector2>();
+    }
+
     void HandleMovement()
     {
         float posX = transform.position.x + movement.x * _speed * Time.fixedDeltaTime;
@@ -133,27 +149,45 @@ public class PlayerControl : MonoBehaviour
 
     void SetAim()
     {
+        //if (aimTarget) {
+        //    // TODO: Might add a timer for the auto aim so it only snaps every few seconds perhaps
+
+        //    var temp = aimTarget.position - transform.position;
+        //    temp.Normalize();
+        //    aim = temp;
+        //} else if (_inputController.IsControllerActive()) {
+        //    aim = _inputController.Rotation3Raw();
+        //    aim.Normalize();
+        //    aim = -aim;
+        //} else {
+        //    //Vector3 mouseMovement = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
+        //    Vector3 mouseMovement = new Vector3(_inputController.MousePosition().x, _inputController.MousePosition().y, 0.0f);
+        //    aim += mouseMovement;
+
+        //    if (aim.magnitude > 1.0f) {
+        //        aim.Normalize();
+        //    }
+        //}
+
         if (aimTarget) {
             // TODO: Might add a timer for the auto aim so it only snaps every few seconds perhaps
 
+
             var temp = aimTarget.position - transform.position;
             temp.Normalize();
-            aim = temp;
-        } else if (_inputController.IsControllerActive()) {
-            aim = _inputController.Rotation3Raw();
-            aim.Normalize();
-            aim = -aim;
+            Aim = temp;
+        } else if (Gamepad.current != null) {
+            Aim = rotation;
+            if (Aim.magnitude > 1.0f)
+                Aim.Normalize();
         } else {
-            //Vector3 mouseMovement = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
-            Vector3 mouseMovement = new Vector3(_inputController.MousePosition().x, _inputController.MousePosition().y, 0.0f);
-            aim += mouseMovement;
-
-            if (aim.magnitude > 1.0f) {
-                aim.Normalize();
-            }
+            var mousePos = Mouse.current.position.ReadValue();
+            Aim += new Vector3(mousePos.x, mousePos.y, 0.0f);
+            if (Aim.magnitude > 1.0f)
+                Aim.Normalize();
         }
 
-        _inputController.SetAim(aim);
+        //_inputController.SetAim(Aim);
         aimTarget = null;
     }
 
@@ -164,8 +198,8 @@ public class PlayerControl : MonoBehaviour
             Cursor.visible = false;
         }
 
-        if (aim.magnitude > 0.0f && _weaponControl.GetCurrentWeapon() != null) {
-            crosshair.transform.localPosition = aim * 2;
+        if (Aim.magnitude > 0.0f && _weaponControl.GetCurrentWeapon() != null) {
+            crosshair.transform.localPosition = Aim * 2;
             crosshair.SetActive(true);
         } else {
             crosshair.SetActive(false);

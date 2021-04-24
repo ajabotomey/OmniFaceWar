@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Zenject;
+using UnityEngine.InputSystem;
 
 public class GunComponent : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class GunComponent : MonoBehaviour
     private float _offset = -90.0f;
 
     private float autoAimDelay = 2.0f;
+    private float fireBullet;
 
     // Real one
     [Inject]
@@ -55,12 +57,18 @@ public class GunComponent : MonoBehaviour
     {
         fireElapsedTime = 0.0f;
         //_weaponControl.SelectPistol();
+        fireBullet = 0.0f;
+    }
+
+    public void FireBullet(InputAction.CallbackContext value)
+    {
+        fireBullet = value.ReadValue<float>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        bool fireBullet = _inputController.FireWeapon();
+        //bool fireBullet = _inputController.FireWeapon();
 
         RotateComponent();
 
@@ -72,13 +80,13 @@ public class GunComponent : MonoBehaviour
             // Snap crosshair to target
             if (target && autoAimElapsedTime > autoAimDelay) {
                 _player.SetAimTarget(target);
-                Logger.Debug("Aimbot targetting enemy");
+                Debug.Log("Aimbot targetting enemy");
                 autoAimElapsedTime = 0.0f;
             }
         }
 
         if (!_gameUI.IsInteractingWithUI()) {
-            if (fireBullet) {
+            if (fireBullet > 0.0f) {
                 Fire();
             }
         }
@@ -92,7 +100,7 @@ public class GunComponent : MonoBehaviour
     void Fire()
     {
         //Get Direction
-        Vector2 aim = _inputController.GetAim();
+        Vector2 aim = _player.Aim;
 
         // Retrieve current weapon
         Weapon currentWeapon = _weaponControl.GetCurrentWeapon();
