@@ -50,10 +50,10 @@ public class NotificationWindow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Check if escape or b button is used to exit the window
-        if (_inputController.UICancel()) {
-            _gameUI.HideNotificationWindow();
-        }
+        //// Check if escape or b button is used to exit the window
+        //if (_inputController.UICancel()) {
+        //    _gameUI.HideNotificationWindow();
+        //}
 
         // Do checks on toggles separately
         if (tutorialToggle.isOn) {

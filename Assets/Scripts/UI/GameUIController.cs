@@ -8,6 +8,7 @@ using Zenject;
 using TMPro;
 using UnityEngine.Analytics;
 using Yarn.Unity;
+using UnityEngine.InputSystem;
 
 [System.Serializable]
 public class GameUIEvent : UnityEvent<GameUIController> { }
@@ -61,6 +62,8 @@ public class GameUIController : MonoBehaviour
     private bool notificationWindowActive = false;
     private bool isTalking = false;
 
+    private bool objectivesPanelToggled = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -81,9 +84,8 @@ public class GameUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {            
-        CheckIfPaused();
-        CheckNotificationWindow();
-        CheckObjectivesPanel();
+        //CheckIfPaused();
+        //CheckNotificationWindow();
 
         if (elapsedTime > refreshTime) {
             elapsedTime = 0.0f;
@@ -160,9 +162,9 @@ public class GameUIController : MonoBehaviour
         upgradeWindow.SetActive(true);
     }
 
-    private void CheckIfPaused()
+    public void CheckIfPaused(InputAction.CallbackContext value)
     {
-        if (input.Pause()) {
+        if (value.started) {
 
             if (!paused) {
                 PauseGame();
@@ -276,10 +278,8 @@ public class GameUIController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void CheckNotificationWindow()
+    public void CheckNotificationWindow(InputAction.CallbackContext value)
     {
-        bool open = input.OpenNotificationWindow();
-
         // Check if already paused
         if (paused)
             return;
@@ -288,11 +288,13 @@ public class GameUIController : MonoBehaviour
         if (notificationWindow.gameObject.activeSelf)
             return;
 
-        if (open) {
+        if (value.started) {
             PauseGame();
             notificationWindowActive = true;
             notificationWindow.gameObject.SetActive(true);
             HideHUD();
+        } else {
+            HideNotificationWindow();
         }
     }
 
@@ -303,22 +305,24 @@ public class GameUIController : MonoBehaviour
         UnpauseGame();
     }
 
-    public void CheckObjectivesPanel()
+    public void ToggleObjectivesPanel(InputAction.CallbackContext value)
     {
-        bool toggled = input.ToggleObjectivesPanel();
+        if (value.started) {
+            // Check if already paused
+            if (paused)
+                return;
 
-        // Check if already paused
-        if (paused)
-            return;
+            // If window is already open, return
+            if (notificationWindow.gameObject.activeSelf)
+                return;
 
-        // If window is already open, return
-        if (notificationWindow.gameObject.activeSelf)
-            return;
-
-        if (toggled)
-        {
             objectivesPanel.TogglePanel();
         }
+    }
+
+    public void CheckObjectivesPanel()
+    {
+
     }
 
     public void PushTestNotification()

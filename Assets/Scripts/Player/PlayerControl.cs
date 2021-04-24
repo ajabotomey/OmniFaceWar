@@ -88,13 +88,9 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        //float moveHorizontal = _inputController.Horizontal();
-        //float moveVertical = _inputController.Vertical();
 
         RotateCharacter();
         HandleMovement();
-        //HandleMovement(moveHorizontal, moveVertical);
-        //HandleMovement(_inputController.Movement().x, _inputController.Movement().y);
 
         if (_inputController.TalkToNPC()) {
             CheckForNearbyNPC();
@@ -106,22 +102,7 @@ public class PlayerControl : MonoBehaviour
         return spreadFactor;
     }
 
-    void RotateCharacter(float horizontal, float vertical)
-    {
-        animator.SetFloat("Horizontal", horizontal);
-        animator.SetFloat("Vertical", vertical);
-
-        Vector2 movement = new Vector2(horizontal, vertical);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
-    }
-
-    void HandleMovement(float horizontal, float vertical)
-    {
-        float posX = transform.position.x + horizontal * _speed * Time.fixedDeltaTime;
-        float posY = transform.position.y + vertical * _speed * Time.fixedDeltaTime;
-
-        _rb.MovePosition(new Vector2(posX, posY));
-    }
+    #region Unity Input System Callbacks
 
     public void ReadMovement(InputAction.CallbackContext value)
     {
@@ -132,6 +113,8 @@ public class PlayerControl : MonoBehaviour
     {
         rotation = value.ReadValue<Vector2>();
     }
+
+    #endregion
 
     void RotateCharacter()
     {
@@ -151,26 +134,6 @@ public class PlayerControl : MonoBehaviour
 
     void SetAim()
     {
-        //if (aimTarget) {
-        //    // TODO: Might add a timer for the auto aim so it only snaps every few seconds perhaps
-
-        //    var temp = aimTarget.position - transform.position;
-        //    temp.Normalize();
-        //    aim = temp;
-        //} else if (_inputController.IsControllerActive()) {
-        //    aim = _inputController.Rotation3Raw();
-        //    aim.Normalize();
-        //    aim = -aim;
-        //} else {
-        //    //Vector3 mouseMovement = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
-        //    Vector3 mouseMovement = new Vector3(_inputController.MousePosition().x, _inputController.MousePosition().y, 0.0f);
-        //    aim += mouseMovement;
-
-        //    if (aim.magnitude > 1.0f) {
-        //        aim.Normalize();
-        //    }
-        //}
-
         if (aimTarget) {
             // TODO: Might add a timer for the auto aim so it only snaps every few seconds perhaps
 
@@ -183,14 +146,10 @@ public class PlayerControl : MonoBehaviour
             if (aim.magnitude > 1.0f)
                 aim.Normalize();
         } else {
-            var mousePosX = rotation.x;
-            var mousePosY = rotation.y;
-            Debug.Log("Mouse Delta is: (" + mousePosX + ", " + mousePosY + ")");
-            aim += new Vector3(mousePosX, mousePosY,  0.0f);
+            aim += new Vector3(rotation.x, rotation.y,  0.0f);
             Debug.Log("Aim is: " + aim);
             if (aim.magnitude > 1.0f) {
                 aim.Normalize();
-                Debug.Log("Normalized Aim is: " + Aim);
             }
         }
 
