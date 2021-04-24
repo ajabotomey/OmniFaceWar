@@ -12,7 +12,8 @@ public class CrosshairSight : MonoBehaviour
 
     private int maxDistance = 5000; // TODO: Figure out a way to confirm the sprite to the screen
 
-    [Inject] private IInputController input;
+    //[Inject] private IInputController input;
+    [Inject] private PlayerControl player;
     [Inject] private WeaponController weaponControl;
 
     // Update is called once per frame
@@ -24,7 +25,7 @@ public class CrosshairSight : MonoBehaviour
             return;
         }
 
-        Vector2 aim = input.GetAim();
+        Vector2 aim = player.Aim;
         //var direction = Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg;
 
         if (aim.magnitude > 0) {

@@ -31,9 +31,11 @@ public class PlayerControl : MonoBehaviour
 
     private Vector2 movement;
     private Vector2 rotation;
+    private Vector3 aim;
 
     public Vector3 Aim {
-        get; set;
+        get { return aim; }
+        set { aim = value; }
     }
 
     private Transform aimTarget = null;
@@ -113,14 +115,6 @@ public class PlayerControl : MonoBehaviour
         animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
-    void RotateCharacter()
-    {
-        animator.SetFloat("Horizontal", rotation.x);
-        animator.SetFloat("Vertical", rotation.y);
-
-        animator.SetFloat("Speed", movement.sqrMagnitude);
-    }
-
     void HandleMovement(float horizontal, float vertical)
     {
         float posX = transform.position.x + horizontal * _speed * Time.fixedDeltaTime;
@@ -137,6 +131,14 @@ public class PlayerControl : MonoBehaviour
     public void ReadRotation(InputAction.CallbackContext value)
     {
         rotation = value.ReadValue<Vector2>();
+    }
+
+    void RotateCharacter()
+    {
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+
+        animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
     void HandleMovement()
@@ -175,16 +177,21 @@ public class PlayerControl : MonoBehaviour
 
             var temp = aimTarget.position - transform.position;
             temp.Normalize();
-            Aim = temp;
+            aim = temp;
         } else if (Gamepad.current != null) {
-            Aim = rotation;
-            if (Aim.magnitude > 1.0f)
-                Aim.Normalize();
+            aim = rotation;
+            if (aim.magnitude > 1.0f)
+                aim.Normalize();
         } else {
-            var mousePos = Mouse.current.position.ReadValue();
-            Aim += new Vector3(mousePos.x, mousePos.y, 0.0f);
-            if (Aim.magnitude > 1.0f)
-                Aim.Normalize();
+            var mousePosX = rotation.x;
+            var mousePosY = rotation.y;
+            Debug.Log("Mouse Delta is: (" + mousePosX + ", " + mousePosY + ")");
+            aim += new Vector3(mousePosX, mousePosY,  0.0f);
+            Debug.Log("Aim is: " + aim);
+            if (aim.magnitude > 1.0f) {
+                aim.Normalize();
+                Debug.Log("Normalized Aim is: " + Aim);
+            }
         }
 
         //_inputController.SetAim(Aim);
@@ -198,8 +205,8 @@ public class PlayerControl : MonoBehaviour
             Cursor.visible = false;
         }
 
-        if (Aim.magnitude > 0.0f && _weaponControl.GetCurrentWeapon() != null) {
-            crosshair.transform.localPosition = Aim * 2;
+        if (aim.magnitude > 0.0f && _weaponControl.GetCurrentWeapon() != null) {
+            crosshair.transform.localPosition = aim * 2;
             crosshair.SetActive(true);
         } else {
             crosshair.SetActive(false);
