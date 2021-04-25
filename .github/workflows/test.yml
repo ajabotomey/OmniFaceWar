@@ -26,7 +26,7 @@ jobs:
       - uses: game-ci/unity-test-runner@v2
         id: tests
         env:
-          UNITY_LICENCE: ${{ secrets.UNITY_LICENCE }}}
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENCE }}}
         with: 
           testMode: ${{ matrix.testMode }}
           artifactsPath: ${{ matrix.testMode }}-artifacts
