@@ -42,7 +42,7 @@ jobs:
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: ${{ job.status }}
-          description: OmniFace War has finished a test run with ${{job.status}}.! You can find details about the test results right here - https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          description: OmniFace War has finished a ${{matrix.testMode}} test run with ${{job.status}}.! You can find details about the test results right here - https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
       - name: Send Slack Notification
         uses: keithalpichi/slack-action@0.0.6
         if: always()
@@ -50,4 +50,4 @@ jobs:
           template: steps1
           steps: ${{ toJson(steps) }}
           title: Build ${{ job.status }}
-          description: OmniFace War has finished a test run with ${{job.status}}.
+          description: OmniFace War has finished a ${{matrix.testMode}} test run with ${{job.status}}.
