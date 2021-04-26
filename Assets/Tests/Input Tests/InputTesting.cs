@@ -4,6 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Utilities;
 using UnityEngine.SceneManagement;
@@ -29,38 +30,40 @@ public class InputTesting : InputTestFixture
     //    //yield return new WaitForSeconds(10);
     //}
 
-    [Test]
-    public void InputTesting_KeyboardMovement()
-    {
-        var keyboard = InputSystem.AddDevice<Keyboard>();
 
-        var movement = new InputAction("Movement", InputActionType.Value);
-        movement.AddCompositeBinding("2DVector")
-            .With("Up", "<Keyboard>/w")
-            .With("Down", "<Keyboard/s")
-            .With("Left", "<Keyboard/a")
-            .With("Right", "<Keyboard/d");
 
-        movement.Enable();
+    //[Test]
+    //public void InputTesting_MouseRotation()
+    //{
+    //    var mouse = InputSystem.AddDevice<Mouse>();
 
-        // Test W Key
-        Press(keyboard.wKey);
-        Assert.That(movement.ReadValue<Vector2>(), Is.EqualTo(new Vector2(0, 1)));
-        Release(keyboard.wKey);
+    //    var rotation = new InputAction("Rotation", InputActionType.Value);
+    //    rotation.AddBinding("<Mouse>/delta");
 
-        // Test S Key
-        Press(keyboard.sKey);
-        Assert.That(movement.ReadValue<Vector2>(), Is.EqualTo(new Vector2(0, -1)));
-        Release(keyboard.sKey);
+    //    rotation.Enable();
 
-        // Test A Key
-        Press(keyboard.aKey);
-        Assert.That(movement.ReadValue<Vector2>(), Is.EqualTo(new Vector2(-1, 0)));
-        Release(keyboard.aKey);
+    //    // Move directly right
+    //    Move(mouse.position, new Vector2(1, 0));
+    //    Assert.That(rotation.ReadValue<Vector2>(), Is.EqualTo(new Vector2(1, 0)));
+    //    InputSystem.Update();
 
-        // Test D Key
-        Press(keyboard.dKey);
-        Assert.That(movement.ReadValue<Vector2>(), Is.EqualTo(new Vector2(1, 0)));
-        Release(keyboard.dKey);
-    }
+    //    // Move directly left
+    //    Move(mouse.position, new Vector2(-1, 0));
+    //    Assert.That(rotation.ReadValue<Vector2>(), Is.EqualTo(new Vector2(0, 0)));
+    //    //Move(mouse.position, new Vector2(1, 0));
+
+    //    //// Move directly up
+    //    //Move(mouse.position, new Vector2(0, 1));
+    //    //Assert.That(rotation.ReadValue<Vector2>(), Is.EqualTo(new Vector2(0, 1)));
+    //    //Move(mouse.position, new Vector2(0, -1));
+
+    //    //// Move directly down
+    //    //Move(mouse.position, new Vector2(0, -1));
+    //    //Assert.That(rotation.ReadValue<Vector2>(), Is.EqualTo(new Vector2(0, -1)));
+    //    //Move(mouse.position, new Vector2(0, 1));
+    //}
+
+
+
+
 }
