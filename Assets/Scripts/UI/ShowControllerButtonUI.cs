@@ -1,55 +1,28 @@
-﻿//using UnityEngine;
-//using UnityEngine.UI;
-//using Zenject;
-//using Rewired;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
-//public class ShowControllerButtonUI : MonoBehaviour
-//{
-//    [ActionIdProperty(typeof(RewiredConsts.Action))]
-//    public int rewiredAction;
-//    [SerializeField] private Image spriteRenderer;
+public class ShowControllerButtonUI : MonoBehaviour
+{
+    [SerializeField] private DeviceDisplayConfigurator deviceDisplay;
+    [SerializeField] private Image spriteRenderer;
+    [SerializeField] private string inputBinding;
 
-//    [Inject] private ControllerMap controlMap;
-//    [Inject] private IInputController input;
+    private PlayerInput playerInput;
 
-//    private void Start()
-//    {
-//        UpdateImage();
-//    }
+    private void Start()
+    {
+        playerInput = GameObject.FindObjectOfType<PlayerInput>();
 
-//    // Update is called once per frame
-//    //void Update()
-//    //{
+        if (playerInput == null) return;
+        
+        UpdateImage();
+    }
 
-//    //}
+    public void UpdateImage()
+    {
+        if (playerInput == null) return;
 
-//    public void SetAction(int actionID)
-//    {
-//        rewiredAction = actionID;
-//    }
-
-//    public void UpdateImage()
-//    {
-//        if (rewiredAction == -1)
-//            return;
-
-//        DeviceType deviceType = DeviceDictionary.GetControllerType();
-//        ActionElementMap aem = input.GetActionElementMap(rewiredAction);
-
-//        switch (deviceType)
-//        {
-//            case DeviceType.PC:
-//                spriteRenderer.sprite = controlMap.GetKeyboardSprite(aem.elementIdentifierId);
-//                break;
-//            case DeviceType.XboxOne:
-//                spriteRenderer.sprite = controlMap.GetControllerGlyph(DeviceDictionary.GetGuid(DeviceType.XboxOne), aem.elementIdentifierId, AxisRange.Full);
-//                break;
-//            case DeviceType.Xbox360:
-//                spriteRenderer.sprite = controlMap.GetControllerGlyph(DeviceDictionary.GetGuid(DeviceType.Xbox360), aem.elementIdentifierId, AxisRange.Full);
-//                break;
-//            case DeviceType.PS4:
-//                spriteRenderer.sprite = controlMap.GetControllerGlyph(DeviceDictionary.GetGuid(DeviceType.PS4), aem.elementIdentifierId, AxisRange.Full);
-//                break;
-//        }
-//    }
-//}
+        spriteRenderer.sprite = deviceDisplay.GetDeviceBindingIcon(playerInput, inputBinding);
+    }
+}

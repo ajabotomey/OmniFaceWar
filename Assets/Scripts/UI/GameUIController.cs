@@ -15,6 +15,9 @@ public class GameUIEvent : UnityEvent<GameUIController> { }
 
 public class GameUIController : MonoBehaviour
 {
+    [Header("Device Display")]
+    [SerializeField] private DeviceDisplayConfigurator deviceDisplay;
+
     [Header("Dialogue System")]
     [SerializeField] private DialogueRunner dialogueRunner;
 
@@ -418,14 +421,4 @@ public class GameUIController : MonoBehaviour
 
         yield return new WaitForSeconds(1); // Make sure that there is a gap between subtitles
     }
-
-    //private void UpdateButtonUI(ControllerStatusChangedEventArgs args)
-    //{
-    //    ShowControllerButtonUI[] buttonPrompts = GameObject.FindObjectsOfType<ShowControllerButtonUI>();
-
-    //    foreach (ShowControllerButtonUI buttonPrompt in buttonPrompts)
-    //    {
-    //        buttonPrompt.UpdateImage();
-    //    }
-    //}
 }

@@ -159,7 +159,7 @@
                     "id": "0201fd31-d088-4f5e-9589-29ca192cc045",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "ScaleVector2(x=0.05,y=0.05)",
+                    "processors": "ScaleVector2(x=0.025,y=0.025)",
                     "groups": "Keyboard and Mouse",
                     "action": "Rotation",
                     "isComposite": false,

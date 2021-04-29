@@ -63,7 +63,14 @@ public class InputTesting : InputTestFixture
     //    //Move(mouse.position, new Vector2(0, 1));
     //}
 
+    //[Test]
+    //public void ControllerImageInput()
+    //{
+    //    var gameObject = new GameObject();
+    //    var spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+    //    var deviceDisplay = (DeviceDisplayConfigurator)AssetDatabase.LoadAssetAtPath("", typeof(DeviceDisplayConfigurator));
 
+    //}
 
 
 }

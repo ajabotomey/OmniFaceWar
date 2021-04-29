@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5469bab40d750264f9cd203f7bad82b5, type: 3}
+  m_Name: Device Display Configurator
+  m_EditorClassIdentifier: 
+  listDeviceSets:
+  - deviceRawPath: Keyboard:/Keyboard
+    deviceDisplaySettings: {fileID: 11400000, guid: 6a28f2c702845f74194e77e6ce38dac3,
+      type: 2}
+  - deviceRawPath: Mouse:/Mouse
+    deviceDisplaySettings: {fileID: 11400000, guid: 8dce92cb33a161144b7c2a6809bfd14a,
+      type: 2}
+  - deviceRawPath: XInputControllerWindows:/XInputControllerWindows
+    deviceDisplaySettings: {fileID: 11400000, guid: 6dc32cd301c3a2746be24f4076f41453,
+      type: 2}
+  disconnectedDeviceSettings:
+    disconnectedDisplayName: Disconnected!
+    disconnectedDisplayColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}

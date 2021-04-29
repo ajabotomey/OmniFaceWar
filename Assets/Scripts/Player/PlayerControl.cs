@@ -16,6 +16,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private EntityHealth health;
     [SerializeField] private GameObject crosshair;
     [SerializeField] private Animator animator;
+    [SerializeField] private PlayerInput playerInput;
     
     // Injected objects
     private IInputController _inputController;
@@ -28,6 +29,9 @@ public class PlayerControl : MonoBehaviour
     private bool isInConversation;
     private float refreshRate = 10.0f;
     private float elapsedTime;
+
+    //Current Control Scheme
+    private string currentControlScheme;
 
     private Vector2 movement;
     private Vector2 rotation;
@@ -53,7 +57,23 @@ public class PlayerControl : MonoBehaviour
 
         //healthController = new EntityHealth(health);
 
+        currentControlScheme = playerInput.currentControlScheme;
+
         elapsedTime = 0.0f;
+    }
+
+    public void OnControlsChanged()
+    {
+        if (playerInput.currentControlScheme != currentControlScheme) {
+            currentControlScheme = playerInput.currentControlScheme;
+            Debug.Log("Player Control Scheme has changed!");
+
+            ShowControllerButtonUI[] buttonPrompts = GameObject.FindObjectsOfType<ShowControllerButtonUI>();
+
+            foreach (ShowControllerButtonUI buttonPrompt in buttonPrompts) {
+                buttonPrompt.UpdateImage();
+            }
+        }
     }
 
     //[Inject]
@@ -95,6 +115,8 @@ public class PlayerControl : MonoBehaviour
         if (_inputController.TalkToNPC()) {
             CheckForNearbyNPC();
         }
+
+        //Debug.Log(PlayerInput.devices[0]);
     }
 
     public float GetSpreadFactor()
@@ -141,13 +163,12 @@ public class PlayerControl : MonoBehaviour
             var temp = aimTarget.position - transform.position;
             temp.Normalize();
             aim = temp;
-        } else if (Gamepad.current != null) {
+        } else if (playerInput.currentControlScheme == "Gamepad") { // Fix this in case the gamepad is connected but I still want to use the mouse
             aim = rotation;
             if (aim.magnitude > 1.0f)
                 aim.Normalize();
         } else {
             aim += new Vector3(rotation.x, rotation.y,  0.0f);
-            Debug.Log("Aim is: " + aim);
             if (aim.magnitude > 1.0f) {
                 aim.Normalize();
             }
@@ -204,4 +225,6 @@ public class PlayerControl : MonoBehaviour
             _gameUI.StartConversation(target.talkToNode);
         }
     }
+
+
 }
