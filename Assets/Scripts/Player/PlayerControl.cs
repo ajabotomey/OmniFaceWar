@@ -112,10 +112,6 @@ public class PlayerControl : MonoBehaviour
         RotateCharacter();
         HandleMovement();
 
-        if (_inputController.TalkToNPC()) {
-            CheckForNearbyNPC();
-        }
-
         //Debug.Log(PlayerInput.devices[0]);
     }
 
@@ -135,6 +131,21 @@ public class PlayerControl : MonoBehaviour
     {
         rotation = value.ReadValue<Vector2>();
     }
+
+    public void CheckForNearbyNPC(InputAction.CallbackContext value)
+    {
+        var allParticipants = new List<NPC>(FindObjectsOfType<NPC>());
+        var target = allParticipants.Find(delegate (NPC p) {
+            return string.IsNullOrEmpty(p.talkToNode) == false && // has a conversation node?
+            (p.transform.position - this.transform.position)// is in range?
+            .magnitude <= interactionRadius;
+        });
+        if (target != null) {
+            // Kick off the dialogue at this node.
+            _gameUI.StartConversation(target.talkToNode);
+        }
+    }
+
 
     #endregion
 
@@ -212,19 +223,6 @@ public class PlayerControl : MonoBehaviour
         _gameUI.FadeInElementsAfterCombat();
     }
 
-    public void CheckForNearbyNPC()
-    {
-        var allParticipants = new List<NPC>(FindObjectsOfType<NPC>());
-        var target = allParticipants.Find(delegate (NPC p) {
-            return string.IsNullOrEmpty(p.talkToNode) == false && // has a conversation node?
-            (p.transform.position - this.transform.position)// is in range?
-            .magnitude <= interactionRadius;
-        });
-        if (target != null) {
-            // Kick off the dialogue at this node.
-            _gameUI.StartConversation(target.talkToNode);
-        }
-    }
 
 
 }
