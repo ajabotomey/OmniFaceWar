@@ -112,6 +112,16 @@ public class PlayerControl : MonoBehaviour
         HandleMovement();
     }
 
+    public string GetCurrentControlScheme()
+    {
+        return playerInput.currentControlScheme;
+    }
+
+    public PlayerInput GetPlayerInput()
+    {
+        return playerInput;
+    }
+
     public float GetSpreadFactor()
     {
         return spreadFactor;
