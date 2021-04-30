@@ -186,6 +186,9 @@ namespace Yarn.Unity {
                 i++;
             }
 
+            optionButtons[0].Select();
+            optionButtons[0].OnSelect(null);
+
             onOptionsStart?.Invoke();
 
             // Wait until the chooser has been used and then removed 

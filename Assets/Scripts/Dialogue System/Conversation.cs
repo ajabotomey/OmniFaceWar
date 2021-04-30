@@ -20,8 +20,6 @@ public class Conversation : ScriptableObject
     [SerializeField] private Question question;
     [SerializeField] private Conversation nextConversation;
 
-
-
     public Line GetLine(int index)
     {
         return lines[index];

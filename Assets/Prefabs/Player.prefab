@@ -653,12 +653,12 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+        m_TargetAssemblyTypeName: GameUIController, OmniFaceWar
+        m_MethodName: CheckIfPaused
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -698,6 +698,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 78edb42d-1535-45da-aae0-5202f5d829e0
     m_ActionName: Player Controls/Open Notifications Window[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5450199256063547291}
+        m_TargetAssemblyTypeName: PlayerControl, OmniFaceWar
+        m_MethodName: Interact
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 60fcab81-dae7-4bc5-a11a-6ff0788b97e9
+    m_ActionName: Player Controls/Interact[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player Controls
@@ -827,7 +843,7 @@ MonoBehaviour:
   - {x: -0.4498577, y: 0.018911839, z: 0}
   m_ShapePathHash: 1284380165
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1322
+  m_InstanceId: -14378
 --- !u!114 &512575834
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -301,7 +301,7 @@
                 },
                 {
                     "name": "Cancel",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "914c30b9-f222-4603-9303-f1eb21a0c26f",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -309,11 +309,11 @@
                 },
                 {
                     "name": "Toggle Pause",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "576ad6fb-4f1d-40b0-b0a5-31352cede034",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
