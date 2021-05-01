@@ -75,23 +75,25 @@ public class DeviceDisplayConfigurator : ScriptableObject
 
     public Sprite GetDeviceBindingIcon(PlayerInput playerInput, string playerInputDeviceInputBinding)
     {
-
-        string currentDeviceRawPath = playerInput.devices[0].ToString();
-
         Sprite displaySpriteIcon = null;
 
-        for(int i = 0; i < listDeviceSets.Count; i++)
-        {
-            if(listDeviceSets[i].deviceRawPath == currentDeviceRawPath)
-            {
-                if(listDeviceSets[i].deviceDisplaySettings.deviceHasContextIcons != null)
-                {
-                    displaySpriteIcon = FilterForDeviceInputBinding(listDeviceSets[i], playerInputDeviceInputBinding);
+        foreach (var device in playerInput.devices) {
+            string currentDeviceRawPath = device.ToString(); // Issue for Keyboard Mouse Config
+
+            for (int i = 0; i < listDeviceSets.Count; i++) {
+                if (listDeviceSets[i].deviceRawPath == currentDeviceRawPath) {
+                    if (listDeviceSets[i].deviceDisplaySettings.deviceHasContextIcons != null) {
+                        displaySpriteIcon = FilterForDeviceInputBinding(listDeviceSets[i], playerInputDeviceInputBinding);
+
+                        if (displaySpriteIcon != null)
+                            goto LoopEnd;
+                    }
                 }
             }
         }
 
-        return displaySpriteIcon;
+        LoopEnd:
+            return displaySpriteIcon;
     }
 
     Sprite FilterForDeviceInputBinding(DeviceSet targetDeviceSet, string inputBinding)

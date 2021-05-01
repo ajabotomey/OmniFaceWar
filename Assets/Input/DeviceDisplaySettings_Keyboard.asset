@@ -33,3 +33,6 @@ MonoBehaviour:
   - customInputContextString: Open Notification Window
     customInputContextIcon: {fileID: 21300000, guid: c7a2e58d80555ef40b2c6e0d9281f0de,
       type: 3}
+  - customInputContextString: Interact
+    customInputContextIcon: {fileID: 21300000, guid: 19b989f8fa36cda4c8765e1da7b31d3d,
+      type: 3}

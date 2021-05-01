@@ -19,6 +19,12 @@ public class ShowControllerButtonUI : MonoBehaviour
         UpdateImage();
     }
 
+    public void SetInputBinding(string binding)
+    {
+        inputBinding = binding;
+        UpdateImage();
+    }
+
     public void UpdateImage()
     {
         if (playerInput == null) return;

@@ -83,12 +83,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2436710191624380557}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5fe8e312f346ee4fb8b5e6cac6a9ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deviceDisplay: {fileID: 0}
+  deviceDisplay: {fileID: 11400000, guid: d96e2ccf37ced3f498f6cdf2a0236d74, type: 2}
   spriteRenderer: {fileID: 8398168809601255302}
   inputBinding: 
 --- !u!1 &3447290815477341131
@@ -459,6 +459,7 @@ MonoBehaviour:
   popupUpTime: 7
   rect: {fileID: 7908952182640043629}
   image: {fileID: 8398168809601255302}
+  buttonImage: {fileID: 4895342128860900246}
   NotificationPushed: {fileID: 11400000, guid: 115a4df9bede25a419fd169bb645f211, type: 2}
 --- !u!225 &7811212307322419091
 CanvasGroup:

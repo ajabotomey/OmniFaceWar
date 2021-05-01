@@ -18,4 +18,4 @@ MonoBehaviour:
   abbreviatedText: to rotate the character
   type: 0
   hasBeenPushed: 1
-  rewiredAction: 4
+  inputBinding: Rotation

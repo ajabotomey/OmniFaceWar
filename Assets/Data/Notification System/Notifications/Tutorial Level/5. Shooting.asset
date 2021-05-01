@@ -17,5 +17,5 @@ MonoBehaviour:
   normalText: to shoot the current weapon
   abbreviatedText: to shoot the current weapon
   type: 0
-  hasBeenPushed: 0
-  rewiredAction: 2
+  hasBeenPushed: 1
+  inputBinding: Fire Weapon

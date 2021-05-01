@@ -24,9 +24,9 @@ MonoBehaviour:
   triggerLeftFrontIcon: {fileID: 0}
   triggerLeftBackIcon: {fileID: 0}
   customContextIcons:
-  - customInputContextString: Left Click
-    customInputContextIcon: {fileID: 21300000, guid: cabad5acac8712144958d5b1297253bf,
+  - customInputContextString: Rotation
+    customInputContextIcon: {fileID: 21300000, guid: c50588c60c3f8954aa165522b07b04d6,
       type: 3}
-  - customInputContextString: Right Click
-    customInputContextIcon: {fileID: 21300000, guid: 920bbaec1c1278240b331a4781cfba46,
+  - customInputContextString: Fire Weapon
+    customInputContextIcon: {fileID: 21300000, guid: cabad5acac8712144958d5b1297253bf,
       type: 3}

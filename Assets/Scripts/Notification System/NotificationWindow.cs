@@ -19,17 +19,15 @@ public class NotificationWindow : MonoBehaviour
 
     private NotificationsManager _manager;
     private NotificationFullImage.Factory _factory;
-    private IInputController _inputController;
     private GameUIController _gameUI;
 
     [Inject] private SettingsManager _settings;
 
     [Inject]
-    public void Construct(NotificationsManager manager, NotificationFullImage.Factory factory, IInputController inputController, GameUIController gameUI)
+    public void Construct(NotificationsManager manager, NotificationFullImage.Factory factory, GameUIController gameUI)
     {
         _manager = manager;
         _factory = factory;
-        _inputController = inputController;
         _gameUI = gameUI;
     }
 
@@ -41,37 +39,17 @@ public class NotificationWindow : MonoBehaviour
         // Make sure all toggles are off
         toggleGroup.SetAllTogglesOff();
 
-        UpdateNotifications();
+        FilterNotifications();
 
         tutorialToggle.Select();
         tutorialToggle.OnSelect(null);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        //// Check if escape or b button is used to exit the window
-        //if (_inputController.UICancel()) {
-        //    _gameUI.HideNotificationWindow();
-        //}
-
-        // Do checks on toggles separately
-        if (tutorialToggle.isOn) {
-            FilterTutorial();
-            return;
-        } else if (complianceToggle.isOn) {
-            FilterCompliance();
-            return;
-        } else if (emergencyToggle.isOn) {
-            FilterEmergency();
-            return;
-        } else if (newsToggle.isOn) {
-            FilterNews();
-            return;
-        }
-
-        UpdateNotifications();
-    }
+    //void Update()
+    //{
+    //    FilterNotifications();
+    //}
 
     private void CreateNotification(Notification n)
     {
@@ -82,76 +60,69 @@ public class NotificationWindow : MonoBehaviour
         rect.localScale = Vector3.one;
     }
 
-    public void UpdateNotifications()
-    {
-        ClearNotifications();
-
-        // Find out if there are any pushed notifications
-        IEnumerable<Notification> pushedNotifications = _manager.GetPushedNotifications();
-        List<Notification> notificationList = pushedNotifications.ToList();
-
-        // Now create the notifications
-        foreach (Notification n in notificationList) {
-            CreateNotification(n);
-        }
-    }
-
-    public void FilterTutorial()
-    {
-        ClearNotifications();
-
-        IEnumerable<Notification> pushedNotifications = _manager.GetPushedTutorialNotifications();
-        List<Notification> notificationList = pushedNotifications.ToList();
-
-        // Now create the notifications
-        foreach (Notification n in notificationList) {
-            CreateNotification(n);
-        }
-    }
-
-    public void FilterCompliance()
-    {
-        ClearNotifications();
-
-        IEnumerable<Notification> pushedNotifications = _manager.GetPushedComplianceNotifications();
-        List<Notification> notificationList = pushedNotifications.ToList();
-
-        // Now create the notifications
-        foreach (Notification n in notificationList) {
-            CreateNotification(n);
-        }
-    }
-
-    public void FilterEmergency()
-    {
-        ClearNotifications();
-
-        IEnumerable<Notification> pushedNotifications = _manager.GetPushedEmergencyNotifications();
-        List<Notification> notificationList = pushedNotifications.ToList();
-
-        // Now create the notifications
-        foreach (Notification n in notificationList) {
-            CreateNotification(n);
-        }
-    }
-
-    public void FilterNews()
-    {
-        ClearNotifications();
-
-        IEnumerable<Notification> pushedNotifications = _manager.GetPushedNewsNotifications();
-        List<Notification> notificationList = pushedNotifications.ToList();
-
-        // Now create the notifications
-        foreach (Notification n in notificationList) {
-            CreateNotification(n);
-        }
-    }
-
     private void ClearNotifications()
     {
         foreach (Transform child in scrollView) {
             GameObject.Destroy(child.gameObject);
         }
+    }
+
+    public void FilterNotifications()
+    {
+        ClearNotifications();
+
+        IEnumerable<Notification> pushedNotifications = Enumerable.Empty<Notification>();
+        
+        if (tutorialToggle.isOn) {
+            pushedNotifications = _manager.GetPushedTutorialNotifications();
+        }
+
+        if (complianceToggle.isOn) {
+            var result = _manager.GetPushedComplianceNotifications();
+
+            if (pushedNotifications == Enumerable.Empty<Notification>()) {
+                pushedNotifications = result;
+            }
+            else {
+                var union = pushedNotifications.Union(result);
+                pushedNotifications = union;
+            }
+        }
+
+        if (emergencyToggle.isOn) {
+            var result = _manager.GetPushedEmergencyNotifications();
+
+            if (pushedNotifications == Enumerable.Empty<Notification>()) {
+                pushedNotifications = result;
+            } else {
+                var union = pushedNotifications.Union(result);
+                pushedNotifications = union;
+            }
+        }
+
+        if (newsToggle.isOn) {
+            var result = _manager.GetPushedNewsNotifications();
+
+            if (pushedNotifications == Enumerable.Empty<Notification>()) {
+                pushedNotifications = result;
+            } else {
+                var union = pushedNotifications.Union(result);
+                pushedNotifications = union;
+            }
+        }
+
+        // If still empty, display all notifications
+        if (pushedNotifications == Enumerable.Empty<Notification>()) {
+            pushedNotifications = _manager.GetPushedNotifications();
+        }
+
+        List<Notification> notificationList = pushedNotifications.ToList();
+        
+
+        // Now create the notifications
+        foreach (Notification n in notificationList) {
+            CreateNotification(n);
+        }
+
     }
 }

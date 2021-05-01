@@ -18,4 +18,4 @@ MonoBehaviour:
   abbreviatedText: to move the character
   type: 0
   hasBeenPushed: 1
-  rewiredAction: 0
+  inputBinding: Movement

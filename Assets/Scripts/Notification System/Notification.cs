@@ -15,6 +15,7 @@ public class Notification : ScriptableObject
     [SerializeField] private NotificationType type;
     [SerializeField] private bool hasBeenPushed;
     //[SerializeField] [ActionIdProperty(typeof(RewiredConsts.Action))] public int rewiredAction;
+    [SerializeField] private string inputBinding;
 
     public string Title {
         get { return title; }
@@ -44,6 +45,11 @@ public class Notification : ScriptableObject
     public bool Pushed {
         get { return hasBeenPushed; }
         set { hasBeenPushed = value; }
+    }
+
+    public string InputBinding
+    {
+        get { return inputBinding; }
     }
 
     public int RewiredAction {

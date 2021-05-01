@@ -28,18 +28,21 @@ MonoBehaviour:
   triggerLeftBackIcon: {fileID: 21300000, guid: c3cca6cfc2839534881ff94e3135e3ad,
     type: 3}
   customContextIcons:
-  - customInputContextString: Right Thumbstick
-    customInputContextIcon: {fileID: 21300000, guid: 6ab7ae1882ceece45b789da8f191a6cb,
-      type: 3}
-  - customInputContextString: Left Thumbstick
-    customInputContextIcon: {fileID: 21300000, guid: cf24eceecb857f64fb6261f314d7c775,
-      type: 3}
-  - customInputContextString: Select
-    customInputContextIcon: {fileID: 21300000, guid: 0c7418a6f01c2554a8ac25c8d8033867,
-      type: 3}
   - customInputContextString: Toggle Objectives Panel
     customInputContextIcon: {fileID: 21300000, guid: 514d342162bce62459181eccadea375d,
       type: 3}
   - customInputContextString: Open Notification Window
     customInputContextIcon: {fileID: 21300000, guid: 0f284f7d1a1e6c14bb5b58a5b566a0ae,
+      type: 3}
+  - customInputContextString: Movement
+    customInputContextIcon: {fileID: 21300000, guid: cf24eceecb857f64fb6261f314d7c775,
+      type: 3}
+  - customInputContextString: Rotation
+    customInputContextIcon: {fileID: 21300000, guid: 6ab7ae1882ceece45b789da8f191a6cb,
+      type: 3}
+  - customInputContextString: Fire Weapon
+    customInputContextIcon: {fileID: 21300000, guid: 337ba9e30e6c9b844ab0dd82dae012f4,
+      type: 3}
+  - customInputContextString: Interact
+    customInputContextIcon: {fileID: 21300000, guid: 7b5e0c41a60d2fb4190e0f894510d393,
       type: 3}
