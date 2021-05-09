@@ -34,8 +34,6 @@ public class NotificationWindow : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        _settings.UpdateFont();
-
         // Make sure all toggles are off
         toggleGroup.SetAllTogglesOff();
 
@@ -124,5 +122,6 @@ public class NotificationWindow : MonoBehaviour
             CreateNotification(n);
         }
 
+        _settings.UpdateFont();
     }
 }

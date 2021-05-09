@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 202, y: 0}
+  m_AnchoredPosition: {x: 139, y: 0}
   m_SizeDelta: {x: 85.92, y: 85.92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &15444238
@@ -337,7 +337,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -463,7 +463,19 @@ MonoBehaviour:
   m_Group: {fileID: 759312910}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1601520493}
+        m_TargetAssemblyTypeName: NotificationWindow, OmniFaceWar
+        m_MethodName: FilterNotifications
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &193075980
 GameObject:
@@ -1197,7 +1209,19 @@ MonoBehaviour:
   m_Group: {fileID: 759312910}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1601520493}
+        m_TargetAssemblyTypeName: NotificationWindow, OmniFaceWar
+        m_MethodName: FilterNotifications
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &372143640
 GameObject:
@@ -2687,9 +2711,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &737823648
 CanvasRenderer:
@@ -3140,8 +3164,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 640.3, y: 389.68253}
-  m_SizeDelta: {x: 511.3, y: 100}
+  m_AnchoredPosition: {x: 701, y: 393.5}
+  m_SizeDelta: {x: 385.99, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &801083520
 CanvasRenderer:
@@ -6465,7 +6489,19 @@ MonoBehaviour:
   m_Group: {fileID: 759312910}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1601520493}
+        m_TargetAssemblyTypeName: NotificationWindow, OmniFaceWar
+        m_MethodName: FilterNotifications
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1747198197
 GameObject:
@@ -7960,8 +7996,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -46, y: 0.00000023842}
-  m_SizeDelta: {x: 384.1, y: 61.6}
+  m_AnchoredPosition: {x: -48, y: -0.0000000072326}
+  m_SizeDelta: {x: 243.82, y: 61.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4721609799227962135
 CanvasRenderer:
@@ -8497,7 +8533,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 174386747}
-    m_SelectOnDown: {fileID: 55920184}
+    m_SelectOnDown: {fileID: 7162456137975033096}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 528256222}
   m_Transition: 1
@@ -8527,7 +8563,19 @@ MonoBehaviour:
   m_Group: {fileID: 759312910}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1601520493}
+        m_TargetAssemblyTypeName: NotificationWindow, OmniFaceWar
+        m_MethodName: FilterNotifications
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &6402395943819657249
 GameObject:
