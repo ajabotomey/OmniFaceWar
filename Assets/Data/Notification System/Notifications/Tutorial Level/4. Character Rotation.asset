@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4. Character Rotation
   m_EditorClassIdentifier: 
   title: Rotation
-  image: {fileID: 21300000, guid: 5e8bf70df80f1634a86ce0d6ea5aaa65, type: 3}
+  image: {fileID: 21300000, guid: c50588c60c3f8954aa165522b07b04d6, type: 3}
   normalText: to rotate the character
   abbreviatedText: to rotate the character
   type: 0

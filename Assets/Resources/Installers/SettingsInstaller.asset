@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SettingsInstaller
   m_EditorClassIdentifier: 
   settingsManager:
-    classicFont: {fileID: 12800000, guid: ac098fcd65013964ea1600aa7a1b8130, type: 3}
+    classicFont: {fileID: 12800000, guid: 0777f42e55685e54cb2a41c7ff43959b, type: 3}
     dyslexicFont: {fileID: 12800000, guid: ec11d4c8418df3149936abf57da69f7a, type: 3}
-    classicTMPFont: {fileID: 11400000, guid: 01f77b3642e6bf446a367d79a07cd750, type: 2}
+    classicTMPFont: {fileID: 11400000, guid: 2a2d673aaf7c6ce4bbdf2efef8b9b151, type: 2}
     dyslexicTMPFont: {fileID: 11400000, guid: 329869b2777f9594fad09188aea44070, type: 2}
     dyslexicTextEnabled: 0
     textSize: 28
@@ -31,6 +31,7 @@ MonoBehaviour:
     rumbleEnabled: 1
     rumbleSensitivity: 100
     inputDelayEnabled: 0
+    audioMixer: {fileID: 0}
     soundFXVolume: 10
     musicVolume: 10
     voiceVolume: 10

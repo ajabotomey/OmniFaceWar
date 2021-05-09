@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 83, y: 0}
-  m_SizeDelta: {x: 141.6, y: 141.6}
+  m_AnchoredPosition: {x: 114.3374, y: 1.4146}
+  m_SizeDelta: {x: 105.6073, y: 112.9937}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7302064029384146084
 CanvasRenderer:
@@ -125,8 +125,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 430, y: -34}
-  m_SizeDelta: {x: 530, y: 50}
+  m_AnchoredPosition: {x: 458.1053, y: -58}
+  m_SizeDelta: {x: 554.4958, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &261950777409245540
 CanvasRenderer:
@@ -259,8 +259,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 430, y: -108.14}
-  m_SizeDelta: {x: 530, y: 94.678894}
+  m_AnchoredPosition: {x: 462.62192, y: -127.68}
+  m_SizeDelta: {x: 571.5367, y: 89.3537}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &886961611176667989
 CanvasRenderer:
@@ -290,10 +290,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 'Citizen, your Social Media score is very low, and you are of negative
+    utility to your fellow citizens. '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 01f77b3642e6bf446a367d79a07cd750, type: 2}
-  m_sharedMaterial: {fileID: 6529310539679348173, guid: 01f77b3642e6bf446a367d79a07cd750,
+  m_fontAsset: {fileID: 11400000, guid: 2a2d673aaf7c6ce4bbdf2efef8b9b151, type: 2}
+  m_sharedMaterial: {fileID: -9065298930120864544, guid: 2a2d673aaf7c6ce4bbdf2efef8b9b151,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -318,8 +319,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
-  m_fontSizeBase: 26
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -400,7 +401,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 700, y: 160}
+  m_SizeDelta: {x: 800, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9067131930416992059
 CanvasRenderer:
@@ -423,14 +424,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a807e00cdde5dd3468e63e5895f550ac, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
