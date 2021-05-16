@@ -50,7 +50,7 @@ public class GameUIController : MonoBehaviour
 
     [Header("HUD Elements")]
     [SerializeField] private EntityHealthBar playerHealthBar;
-    [SerializeField] private GameObject playerEnergyBar;
+    [SerializeField] private GameObject playerPlateObj;
     [SerializeField] private GameObject gameOverPanel; // TODO: Remove this once heatmap data is collected
     [SerializeField] private Button restartGameButton; // TODO: Remove this once heatmap data is collected
 
@@ -132,6 +132,7 @@ public class GameUIController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
 
         HideHUD();
+        settings.UpdateFont();
         dialogueRunner.StartDialogue(startNode);
         isTalking = true;
     }
@@ -158,8 +159,8 @@ public class GameUIController : MonoBehaviour
         objectivesPanel.Hide();
         notificationQueue.gameObject.SetActive(false);
         notificationLabel.gameObject.SetActive(false);
-        playerHealthBar.Hide();
-        playerEnergyBar.SetActive(false);
+        //playerHealthBar.Hide();
+        playerPlateObj.SetActive(false);
     }
 
     public void ShowHUD()
@@ -167,8 +168,8 @@ public class GameUIController : MonoBehaviour
         objectivesPanel.Show();
         notificationQueue.gameObject.SetActive(true);
         notificationLabel.gameObject.SetActive(true);
-        playerHealthBar.Show();
-        playerEnergyBar.SetActive(true);
+        //playerHealthBar.Show();
+        playerPlateObj.SetActive(true);
     }
 
     [YarnCommand("ShowUpgradeWindow")]
