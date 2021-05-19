@@ -13,7 +13,6 @@ public class GunComponent : MonoBehaviour
 
     [SerializeField] private GameObject gunObj;
     [SerializeField] private GameObject crosshair;
-    [SerializeField] private AudioSource audioSource;
 
     private float fireElapsedTime;
     private float autoAimElapsedTime;
@@ -118,9 +117,6 @@ public class GunComponent : MonoBehaviour
                     int damage = ((BulletTypeGun)currentWeapon).Damage;
                     firedBullet.SetDamage(damage);
 
-                    // Setup audio clip
-                    //audioSource.clip = currentWeapon.GetWeaponFireSound();
-
                     // Incorporate spread into the aim
                     float spreadFactor = _player.GetSpreadFactor();
                     aim.x += Random.Range(-spreadFactor, spreadFactor);
@@ -131,7 +127,6 @@ public class GunComponent : MonoBehaviour
                     firedBullet.transform.Rotate(0, 0, Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg);
 
                     currentWeapon.Fire();
-                    //audioSource.Play();
 
                     if (_settings.IsRumbleEnabled())
                         _inputController.SetRumble(0.1f);
