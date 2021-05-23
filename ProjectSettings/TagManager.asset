@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Destructible Object
   - Enemy
+  - Pass Through Tile
   layers:
   - Default
   - TransparentFX

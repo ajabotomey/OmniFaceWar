@@ -36,3 +36,4 @@ MonoBehaviour:
   m_ColliderType: 1
   life: 5
   brokenSprite: {fileID: 0}
+  tileDestroyedSound: 

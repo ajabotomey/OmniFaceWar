@@ -1,18 +1,19 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using FMODUnity;
 
 public class DestructibleTile : Tile
 {
     #region Properties
 
-    [Space(20)]
     [Header("Destructible Tile")]
     [SerializeField] private float life;
-    private float startLife;
-
     [SerializeField] private Sprite brokenSprite;
+    [FMODUnity.EventRef] [SerializeField] private string tileDestroyedSound;
 
+
+    private float startLife;
     private ITilemap tileMap;
     private Vector3Int tilePosition;
 
@@ -51,8 +52,11 @@ public class DestructibleTile : Tile
 
         // TODO: Add in broken sprite later once we actually have some to use
 
-        if (life <= 0)
+        if (life <= 0) {
+            if (tileDestroyedSound != "") // At least for now
+                FMODUnity.RuntimeManager.PlayOneShot(tileDestroyedSound);
             base.sprite = null;
+        }
     }
 
     #endregion
@@ -63,7 +67,7 @@ public class DestructibleTile : Tile
     [MenuItem("Assets/Custom Tiles/Destructible Tile")]
     public static void CreateDestructibleTile()
     {
-        string path = EditorUtility.SaveFilePanelInProject("Save Destructible Tile", "DestructibleTile_", "Asset", "SaveDestructible Tile", "Assets");
+        string path = EditorUtility.SaveFilePanelInProject("Save Destructible Tile", "DestructibleTile_", "Asset", "Save Destructible Tile", "Assets");
 
         if (path == "")
             return;
