@@ -66,6 +66,10 @@ public class SettingsManager {
     private int SOUND_MAX = 10;
     [SerializeField] private AudioSpeakerMode audioSpeakerMode = AudioSpeakerMode.Stereo;
 
+    [Header("Accessibility Controls")]
+    [SerializeField] private bool invincibilityMode = false;
+
+
     public ModifiedSettings settings;
 
     [Inject] private InputController _input;
@@ -218,6 +222,11 @@ public class SettingsManager {
         return settings.rumbleSensitivity;
     }
 
+    public bool IsInvincible()
+    {
+        return settings.invincibilityMode;
+    }
+
     #endregion
 
     #region Mutator Methods
@@ -326,6 +335,11 @@ public class SettingsManager {
         settings.audioSpeakerMode = (AudioSpeakerMode)index;
     }
 
+    public void InvincibilityToggle()
+    {
+        settings.invincibilityMode = !settings.invincibilityMode;
+    }
+
     #endregion
 
     public void ApplyChanges()
@@ -429,6 +443,8 @@ public class SettingsManager {
         settings.musicVolume = musicVolume;
         settings.voiceVolume = voiceVolume;
         settings.audioSpeakerMode = audioSpeakerMode;
+
+        settings.invincibilityMode = invincibilityMode;
     }
 
     public void SaveSettings()
@@ -453,6 +469,8 @@ public class SettingsManager {
         musicVolume = settings.musicVolume;
         voiceVolume = settings.voiceVolume;
         audioSpeakerMode = settings.audioSpeakerMode;
+
+        invincibilityMode = settings.invincibilityMode;
 
         // Apply full screen
 
@@ -483,7 +501,11 @@ public class SettingsManager {
         bool voice = voiceVolume == settings.voiceVolume;
         bool audio = audioSpeakerMode == settings.audioSpeakerMode;
 
-        if (speed && autoAim && strength && text && fullscreen && resolution && subtitles && subTextSize && background && input && rumble && rumbleStr && inputDelay && sound && music && voice && audio)
+        bool invincibility = invincibilityMode == settings.invincibilityMode;
+
+        if (speed && autoAim && strength && text && fullscreen && resolution && subtitles 
+            && subTextSize && background && input && rumble && rumbleStr && inputDelay 
+            && sound && music && voice && audio && invincibility)
             return true;
 
         return false;
@@ -524,5 +546,9 @@ public class SettingsManager {
         public int musicVolume = 10;
         public int voiceVolume = 10;
         public AudioSpeakerMode audioSpeakerMode = AudioSpeakerMode.Stereo;
+
+        //Accessibilty
+        public bool invincibilityMode = false;
+
     }
 }

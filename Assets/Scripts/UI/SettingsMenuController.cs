@@ -23,6 +23,7 @@ public class SettingsMenuController : MonoBehaviour
     [SerializeField] private UISlider gameSpeedSlider;
     [SerializeField] private UIToggle autoAimToggle;
     [SerializeField] private UISlider autoAimStrengthSlider;
+    [SerializeField] private UIToggle invincibilityModeToggle;
 
     [Header("Video UI Widgets")]
     [SerializeField] private UIToggle dyslexicTextToggle;
@@ -115,6 +116,10 @@ public class SettingsMenuController : MonoBehaviour
         inputSensitivitySlider.SetValue(inputSensitivity);
         rumbleEnabledToggle.SetValue(rumbleEnabled);
         rumbleSensitivitySlider.SetValue(rumbleSensitivity);
+
+        // Accessibility
+        var invincible = settingsManager.IsInvincible();
+        invincibilityModeToggle.SetValue(invincible);
 
         // Setup navigation for menu buttons
         backNav = backToMainMenuButton.navigation;
@@ -330,8 +335,11 @@ public class SettingsMenuController : MonoBehaviour
             toggle.navigation = nav;
         }
 
-
         settingsManager.RumbleToggle();
+    }
+
+    public void InvincibilityToggle() {
+        settingsManager.InvincibilityToggle();
     }
 
     public void SetGameSpeed(float value)
