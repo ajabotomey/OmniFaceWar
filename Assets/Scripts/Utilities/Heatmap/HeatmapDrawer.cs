@@ -47,12 +47,12 @@ public class HeatmapDrawer : MonoBehaviour
         Color color;
 
         if (intensity > 256) {
-            color = heatTexture.GetPixel(0, 255);
+            color = heatTexture.GetPixel(255, 0);
             color.a = 256;
             return color;
         }
 
-        color = heatTexture.GetPixel(0, intensity);
+        color = heatTexture.GetPixel(intensity, 0);
         color.a = 256;
         return color;
 
