@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEditor;
 
 [ExecuteInEditMode]
 public class HeatmapDownloadController : MonoBehaviour
 {
-    private static string downloadURL = "https://killerbyteworkshop.com/heatmapdownload.php";
     private static UnityWebRequest www;
 
     private static void Request()
     {
+        var downloadURL = "http://localhost:3000/" + SceneManager.GetActiveScene().name.ToLower() + "/download/";
         Logger.Debug("Sending request now!");
         www = UnityWebRequest.Get(downloadURL);
         //www.Send();
@@ -24,7 +25,7 @@ public class HeatmapDownloadController : MonoBehaviour
         if (!www.isDone)
             return;
 
-        if (www.isNetworkError || www.isHttpError)
+        if (www.result == UnityWebRequest.Result.ProtocolError || www.result == UnityWebRequest.Result.ConnectionError) 
             Logger.Error(www.error);
         else {
             Logger.Debug(www.downloadHandler.text);
@@ -48,7 +49,7 @@ public class HeatmapDownloadController : MonoBehaviour
             return "";
         }
 
-        if (www.isNetworkError || www.isHttpError)
+        if (www.result == UnityWebRequest.Result.ProtocolError || www.result == UnityWebRequest.Result.ConnectionError) 
             return "";
 
         return www.downloadHandler.text;

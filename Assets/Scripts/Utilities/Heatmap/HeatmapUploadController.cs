@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System;
 using System.IO;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
+using LitJson;
 
 public class HeatmapUploadController : MonoBehaviour
 {
     private List<Vector2> positionList = new List<Vector2>();
 
     private string filePath = "";
-    private string uploadURL = "https://killerbyteworkshop.com/heatmapupload.php";
+    private string uploadURL = "";
     
     private string fileName = "";
 
@@ -22,52 +25,66 @@ public class HeatmapUploadController : MonoBehaviour
     public void SaveLocationsToFile()
     {
         // Take list and write to file
-        WriteListToFile();
+        //WriteListToFile();
 
-        StartCoroutine(SendFileToServer());
+        StartCoroutine(SendJsonToServer());
     }
 
-    private void WriteListToFile()
+    private string WriteJson()
     {
-        fileName = DateTime.UtcNow.ToString("yyyyMMdd_hhmmss") + ".txt";
-        filePath = Application.dataPath + "/" + fileName;
+        StringBuilder sb = new StringBuilder();
+        JsonWriter writer = new JsonWriter(sb);
 
-        using (FileStream fs = new FileStream(filePath, FileMode.Create)) {
-            using (StreamWriter writer = new StreamWriter(fs)) {
-                //writer.WriteLine("1"); // Eventually modify to level specific
+        writer.WriteObjectStart();
 
-                foreach (Vector2 position in positionList) {
-                    writer.WriteLine(position.ToString());
-                }
+        writer.WritePropertyName("positions");
+        writer.WriteArrayStart();
 
-                writer.Close();
-            }
+        foreach (Vector2 position in positionList) {
+            writer.WriteObjectStart();
 
-            fs.Close();
+            writer.WritePropertyName("x");
+            writer.Write(position.x);
+
+            writer.WritePropertyName("y");
+            writer.Write(position.y);
+
+            writer.WriteObjectEnd();   
         }
 
+        writer.WriteArrayEnd();
+        writer.WriteObjectEnd();
+
         positionList.Clear();
+
+        return sb.ToString();
     }
 
-    IEnumerator SendFileToServer()
+    IEnumerator SendJsonToServer()
     {
         Logger.Debug("Uploading to server now");
 
-        byte[] txtFile = File.ReadAllBytes(filePath);
+        fileName = DateTime.UtcNow.ToString("yyyyMMdd_hhmmss") + ".json";
+        uploadURL = "http://localhost:3000/" + SceneManager.GetActiveScene().name.ToLower() + "/upload/";
+        Debug.Log(uploadURL);
 
-        WWWForm form = new WWWForm();
-        form.AddBinaryData("userFile", txtFile, fileName);
+        string json = WriteJson();
 
-        UnityWebRequest req = UnityWebRequest.Post(uploadURL, form);
+        UnityWebRequest req = new UnityWebRequest(uploadURL);
+        req.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(json));
+        req.downloadHandler = new DownloadHandlerBuffer();
+        req.method = UnityWebRequest.kHttpVerbPOST;
+        req.SetRequestHeader("Content-Type", "application/json");
+
         yield return req.SendWebRequest();
 
-        if (req.isHttpError || req.isNetworkError) {
+        Debug.Log("Response Code: " + req.responseCode);
+        Debug.Log("Response: " + req.downloadHandler.text);
+
+        if (req.result == UnityWebRequest.Result.ProtocolError || req.result == UnityWebRequest.Result.ConnectionError) {
             Logger.Error("We have a problem: " + req.error);
         } else {
             Logger.Debug("Uploaded successfully");
         }
-
-        // Now delete the file afterwards
-        File.Delete(filePath);
     }
 }

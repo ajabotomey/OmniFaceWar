@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LitJson;
 
 public class HeatmapData
 {
@@ -25,20 +26,75 @@ public class HeatmapDataProcessor : MonoBehaviour
     private Dictionary<Vector2, int> positionList; // Position, intensity
     private HeatmapData heatmapData;
 
+    //public void ProcessData()
+    //{
+    //    positionList = new Dictionary<Vector2, int>();
+    //    string data = download.GetData();
+
+    //    string[] vectorArray = data.Split(newlineSeparator);
+
+    //    for (int i = 0; i < vectorArray.Length - 1; i++) {
+    //        Vector2 pos = GetVector2FromLine(vectorArray[i]);
+            
+    //        if (positionList.ContainsKey(pos)) {
+    //            positionList[pos] += 1;
+    //        } else {
+    //            positionList.Add(pos, 1);
+    //        }
+    //    }
+    //}
+
     public void ProcessData()
     {
-        positionList = new Dictionary<Vector2, int>();
+        if (positionList == null)
+            positionList = new Dictionary<Vector2, int>();
+        else
+            positionList.Clear();
+
         string data = download.GetData();
 
-        string[] vectorArray = data.Split(newlineSeparator);
+        if (string.IsNullOrEmpty(data)) {
+            Logger.Debug("JSON String is null or empty");
+        }
 
-        for (int i = 0; i < vectorArray.Length - 1; i++) {
-            Vector2 pos = GetVector2FromLine(vectorArray[i]);
-            
-            if (positionList.ContainsKey(pos)) {
-                positionList[pos] += 1;
-            } else {
-                positionList.Add(pos, 1);
+        var positionData = JsonMapper.ToObject<JsonData>(data);
+
+        if (JsonDataContainsKey(positionData, "positions")) {
+            if (!positionData["positions"].IsArray) {
+                Logger.Error("There are no positions");
+                return;
+            }
+
+            JsonData positions = positionData["positions"];
+            foreach (JsonData position in positions) {
+                Vector2 pos = new Vector2();
+                int count = 0;
+                // Parsing X
+                if (JsonDataContainsKey(position, "x"))
+                    pos.x = float.Parse(position["x"].ToString());
+                else {
+                    Debug.Log("<color=red>Failed parsing the x coordinate</color>");
+                    break;
+                }
+
+                // Parsing Y
+                if (JsonDataContainsKey(position, "y"))
+                    pos.y = float.Parse(position["y"].ToString());
+                else {
+                    Debug.Log("<color=red>Failed parsing the y coordinate</color>");
+                    break;
+                }
+
+                // Parsing the count
+                if (JsonDataContainsKey(position, "count"))
+                    count = int.Parse(position["count"].ToString());
+                else {
+                    Debug.Log("<color=red>Failed parsing the count coordinate</color>");
+                    break;
+                }
+
+                positionList.Add(pos, count);
+                Debug.Log("Position: " + pos.ToString() + " was counted " + count + " times");
             }
         }
     }
@@ -70,10 +126,26 @@ public class HeatmapDataProcessor : MonoBehaviour
         int i = 0;
         foreach (KeyValuePair<Vector2, int> entry in positionList) {
             heatmapData.positions[i] = entry.Key;
-            heatmapData.intensities[i] = entry.Value;
+            heatmapData.intensities[i] = entry.Value; // TODO: Process separately later to accurately display color
             i++;
         }
 
         return heatmapData;
+    }
+
+    static public bool JsonDataContainsKey(JsonData data, string key)
+    {
+        bool result = false;
+        if (data == null)
+            return result;
+        if (!data.IsObject)
+            return result;
+        IDictionary tdictionary = data as IDictionary;
+        if (tdictionary == null)
+            return result;
+        if (tdictionary.Contains(key) && tdictionary[key] != null)
+            result = true;
+
+        return result;
     }
 }

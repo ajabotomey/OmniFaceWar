@@ -89,6 +89,8 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(transform.position.ToString());
+
         if (!health.HasHealthBar())
             health.SetHealthBar(_gameUI.GetHealthBar());
 
