@@ -26,6 +26,8 @@ public class HeatmapDataProcessor : MonoBehaviour
     private Dictionary<Vector2, int> positionList; // Position, intensity
     private HeatmapData heatmapData;
 
+    private int highestCount = 0;
+
     //public void ProcessData()
     //{
     //    positionList = new Dictionary<Vector2, int>();
@@ -86,8 +88,12 @@ public class HeatmapDataProcessor : MonoBehaviour
                 }
 
                 // Parsing the count
-                if (JsonDataContainsKey(position, "count"))
+                if (JsonDataContainsKey(position, "count")){
                     count = int.Parse(position["count"].ToString());
+
+                    if (count > highestCount)
+                        highestCount = count;
+                }
                 else {
                     Debug.Log("<color=red>Failed parsing the count coordinate</color>");
                     break;
@@ -126,7 +132,7 @@ public class HeatmapDataProcessor : MonoBehaviour
         int i = 0;
         foreach (KeyValuePair<Vector2, int> entry in positionList) {
             heatmapData.positions[i] = entry.Key;
-            heatmapData.intensities[i] = entry.Value; // TODO: Process separately later to accurately display color
+            heatmapData.intensities[i] = entry.Value * GetIntensityScale(); // TODO: Process separately later to accurately display color
             i++;
         }
 
@@ -147,5 +153,14 @@ public class HeatmapDataProcessor : MonoBehaviour
             result = true;
 
         return result;
+    }
+
+    private int GetIntensityScale()
+    {
+        int highestIntensity = 255;
+        while (highestCount > highestIntensity)
+            highestIntensity *= 2;
+
+        return 255 / highestIntensity;
     }
 }
