@@ -1,1 +1,125 @@
-{"upgradeTree":[{"upgradeID":0,"upgradeName":"Pistol","upgradeDependencies":[],"unlocked":true,"cost":0,"upgradeDescription":"Hello World!"},{"upgradeID":1,"upgradeName":"","upgradeDependencies":[0],"unlocked":false,"cost":0,"upgradeDescription":""}]}
+{
+    "upgradeTree":[
+        {
+            "upgradeID":0,
+            "upgradeName":"Pistol",
+            "upgradeDependencies":[
+
+            ],
+            "unlocked":true,
+            "cost":0,
+            "upgradeDescription":"Hello World!"
+        },
+        {
+            "upgradeID":1,
+            "upgradeName":"",
+            "upgradeDependencies":[0],
+            "unlocked":false,
+            "cost":0,
+            "upgradeDescription":""
+        },
+        {
+            "upgradeID":2,
+            "upgradeName":"Internet Gun",
+            "upgradeDependencies":[],
+            "unlocked":true,
+            "cost":0,"upgradeDescription":""
+        },
+        {
+            "upgradeID":3,
+            "upgradeName":"Charge Capacity",
+            "upgradeDependencies":[2],
+            "unlocked":false,
+            "cost":0,
+            "upgradeDescription":"Increase the charge of the Internet Gun by 20%"
+        },
+        {
+            "upgradeID":4,
+            "upgradeName":"Distraction Duration",
+            "upgradeDependencies":[2],
+            "unlocked":false,
+            "cost":0,
+            "upgradeDescription":"Increase the time the target is distracted by 20%"
+        },
+        {
+            "upgradeID":5,
+            "upgradeName":"Recharge Rate",
+            "upgradeDependencies":[2],
+            "unlocked":false,
+            "cost":0,
+            "upgradeDescription":"Increase the recharge rate of the Internet Gun by 20%"
+        },
+        {
+            "upgradeID":6,
+            "upgradeName":"Cat pictures",
+            "upgradeDependencies":[2],
+            "unlocked":false,
+            "cost":0,
+            "upgradeDescription":"Occasionally spams the target with cat pictures instead of ads"
+            },
+        {
+            "upgradeID":7,
+            "upgradeName":"MLM Posts",
+            "upgradeDependencies":[6],
+            "unlocked":false,
+            "cost":0,
+            "upgradeDescription":"Occasionally spams the target with MLM Posts instead of ads"
+        },
+        {
+            "upgradeID":8,
+            "upgradeName":"Hacker Gun",
+            "upgradeDependencies":[],
+            "unlocked":true,
+            "cost":0,
+            "upgradeDescription":""
+        },
+        {
+            "upgradeID":9,
+            "upgradeName":"Hack Duration",
+            "upgradeDependencies":[8],
+            "unlocked":false,
+            "cost":0,
+            "upgradeDescription":""
+        },
+        {
+            "upgradeID":10,
+            "upgradeName":"Hack Success",
+            "upgradeDependencies":[8],
+            "unlocked":false,
+            "cost":0,
+            "upgradeDescription":""
+        },
+        {
+            "upgradeID":11,
+            "upgradeName":"Charge Capacity",
+            "upgradeDependencies":[8],
+            "unlocked":false,
+            "cost":0,
+            "upgradeDescription":""
+        },
+        {
+            "upgradeID":12,
+            "upgradeName":"Charge Cost",
+            "upgradeDependencies":[8],
+            "unlocked":false,
+            "cost":0,
+            "upgradeDescription":""
+        },
+        {
+            "upgradeID":13,
+            "upgradeName":"Become Temporary Ally",
+            "upgradeDependencies":[8],
+            "unlocked":false,
+            "cost":0,
+            "upgradeDescription":""
+        },
+        {
+            "upgradeID":14,
+            "upgradeName":"Go Beserk",
+            "upgradeDependencies":[8],
+            "unlocked":false,
+            "cost":0,
+            "upgradeDescription":""
+        }
+    ]
+}

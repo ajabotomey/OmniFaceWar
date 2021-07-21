@@ -455,9 +455,11 @@ public class NodeBasedEditor : EditorWindow
                     for (int j = 0; j < nodes[i].upgrade.upgradeDependencies.Length; ++j) {
                         if (upgradeDictionary.TryGetValue(nodes[i].upgrade.upgradeDependencies[j], out outUpgrade)) {
                             for (int k = 0; k < nodes.Count; ++k) {
-                                outNode = nodes[k];
-                                OnClickOutPoint(outNode.outPoint);
-                                break;
+                                if (nodes[k].upgrade.upgradeID == outUpgrade.upgradeID) {
+                                    outNode = nodes[k];
+                                    OnClickOutPoint(outNode.outPoint);
+                                    break;
+                                }
                             }
                             OnClickInPoint(nodes[i].inPoint);
                         }
