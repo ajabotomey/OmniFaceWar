@@ -1,1 +1,1 @@
-{"upgradeTree":[{"upgradeID":0,"upgradeName":"Hello","upgradeDependencies":[],"unlocked":false,"cost":0,"upgradeDescription":""},{"upgradeID":1,"upgradeName":"","upgradeDependencies":[0],"unlocked":false,"cost":0,"upgradeDescription":""}]}
+{"upgradeTree":[{"upgradeID":0,"upgradeName":"Pistol","upgradeDependencies":[],"unlocked":true,"cost":0,"upgradeDescription":"Hello World!"},{"upgradeID":1,"upgradeName":"","upgradeDependencies":[0],"unlocked":false,"cost":0,"upgradeDescription":""}]}

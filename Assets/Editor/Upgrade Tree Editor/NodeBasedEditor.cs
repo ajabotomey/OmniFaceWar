@@ -33,6 +33,8 @@ public class NodeBasedEditor : EditorWindow
     // Dictionary with the skills in our skilltree
     private Dictionary<int, Upgrade> upgradeDictionary;
 
+    private EditorZoomer zoomer = new EditorZoomer();
+
     [MenuItem("Window/Upgrade Tree Editor")]
     private static void OpenWindow()
     {
@@ -73,6 +75,8 @@ public class NodeBasedEditor : EditorWindow
 
     private void OnGUI()
     {
+        //zoomer.Begin();
+
         DrawGrid(20, 0.2f, Color.gray);
         DrawGrid(100, 0.4f, Color.gray);
 
@@ -88,6 +92,8 @@ public class NodeBasedEditor : EditorWindow
         ProcessEvents(Event.current);
 
         if (GUI.changed) Repaint();
+
+        //zoomer.End();
     }
 
     private void DrawGrid(float gridSpacing, float gridOpacity, Color gridColor)
@@ -137,7 +143,7 @@ public class NodeBasedEditor : EditorWindow
         if (GUI.Button(rectButtonClear, "Clear"))
             ClearNodes();
         if (GUI.Button(rectButtonSave, "Save"))
-            SaveSkillTree();
+           SaveSkillTree();
         if (GUI.Button(rectButtonLoad, "Load"))
             LoadNodes();
     }
@@ -156,7 +162,7 @@ public class NodeBasedEditor : EditorWindow
                 }
                 break;
             case EventType.MouseDrag:
-                if (e.button == 0) {
+                if (e.button == 0 || e.button == 2) {
                     OnDrag(e.delta);
                 }
                 break;
@@ -352,6 +358,7 @@ public class NodeBasedEditor : EditorWindow
             }
 
             string json = JsonUtility.ToJson(upgradeTree);
+            Debug.Log(json);
             string path = null;
 
             path = "Assets/Data/upgradeTree.json";
@@ -468,7 +475,7 @@ public class NodeBasedEditor : EditorWindow
             nodes = new List<Node>();
         }
 
-        nodes.Add(new Node(position, 300, 200, nodeStyle, selectedNodeStyle, inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode, skill.upgradeID, skill.unlocked, skill.cost, skill.upgradeDependencies));
+        nodes.Add(new Node(position, 300, 200, nodeStyle, selectedNodeStyle, inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode, skill.upgradeID, skill.upgradeName, skill.upgradeDescription, skill.unlocked, skill.cost, skill.upgradeDependencies));
         ++nodeCount;
     }
 }

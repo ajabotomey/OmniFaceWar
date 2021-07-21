@@ -112,6 +112,41 @@ public class Node
         nodeTitle.Append(id);
     }
 
+    public Node(Vector2 position, float width, float height, GUIStyle nodeStyle, GUIStyle selectedStyle, GUIStyle inPointStyle, GUIStyle outPointStyle, Action<ConnectionPoint> OnClickInPoint, Action<ConnectionPoint> OnClickOutPoint, Action<Node> OnClickRemoveNode, int id, string name, string description, bool unlocked, int cost, int[] dependencies)
+    {
+        rect = new Rect(position.x, position.y, width, height);
+        style = nodeStyle;
+
+        inPoint = new ConnectionPoint(this, ConnectionPointType.In, inPointStyle, OnClickInPoint);
+        outPoint = new ConnectionPoint(this, ConnectionPointType.Out, outPointStyle, OnClickOutPoint);
+
+        defaultNodeStyle = nodeStyle;
+        selectedNodeStyle = selectedStyle;
+        OnRemoveNode = OnClickRemoveNode;
+
+        // Create new Rect and GUIStyle for our title and custom fields
+        SetUpNodeRect(position, width, height);
+
+        this.unlocked = unlocked;
+
+        // We create the skill with the current node info
+        upgrade = new Upgrade();
+        upgrade.upgradeID = id;
+        upgrade.upgradeName = name;
+        upgrade.upgradeDescription = description;
+        upgrade.unlocked = unlocked;
+        upgrade.cost = cost;
+        upgrade.upgradeDependencies = dependencies;
+
+        // Create string with ID info
+        nodeTitle = new StringBuilder();
+        nodeTitle.Append("ID: ");
+        nodeTitle.Append(id);
+
+        
+    }
+
+
     private void SetUpNodeRect(Vector2 position, float width, float height)
     {
         // Row Height Breakdown: 
