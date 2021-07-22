@@ -53,6 +53,11 @@ public class WeaponController
         initializeEvent.Raise(pistol.GetEnergyCapacity());
     }
 
+    public WeaponSelect GetCurrentWeaponSelect()
+    {
+        return currentWeapon;
+    }
+
     public Weapon GetCurrentWeapon()
     {
         switch(currentWeapon) {
@@ -67,6 +72,15 @@ public class WeaponController
         }
 
         return null;
+    }
+
+    public void SetCurrentWeapon()
+    {
+        switch(currentWeapon) {
+            case WeaponSelect.PISTOL:
+                SelectPistol();
+                break;
+        }
     }
 
     public WeaponSelect GetCurrentWeaponType()

@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System;
 using UnityEngine;
+using Zenject;
 
 public class LoadSaveManager : MonoBehaviour
 {
     public static LoadSaveManager instance;
+
+    [Inject] private WeaponController weaponControl;
     
     private PlayerData playerData;
 
@@ -31,6 +35,7 @@ public class LoadSaveManager : MonoBehaviour
             playerData.Position = new Vector2(x, y);
 
             playerData.CurrentLevel = reader.ReadString();
+            playerData.CurrentWeapon = (WeaponSelect)reader.ReadInt32();
         }
     }
 
@@ -38,14 +43,18 @@ public class LoadSaveManager : MonoBehaviour
     {
         string filePath = Application.persistentDataPath + "/" + saveName + ".kws";
 
-        // Retrieve player data
+        playerData.CurrentWeapon = weaponControl.GetCurrentWeaponSelect();
+        
+        DateTime currentDateTime = DateTime.Now;
 
         // Use BinaryWriter
         using (BinaryWriter writer = new BinaryWriter(File.Open(filePath, FileMode.Create))) {
             // Have to separate the position data as BinaryWriter only supports primitive types
+            writer.Write(currentDateTime.ToShortDateString() + " " + currentDateTime.ToShortTimeString());
             writer.Write(playerData.Position.x);
             writer.Write(playerData.Position.y);
             writer.Write(playerData.CurrentLevel);
+            writer.Write((int)playerData.CurrentWeapon);
         }
     }
 
@@ -58,6 +67,11 @@ public class LoadSaveManager : MonoBehaviour
     {
         playerData.CurrentLevel = level;
     }
+
+    public void SetCurrentWeapon(WeaponSelect weapon)
+    {
+        playerData.CurrentWeapon = weapon;
+    }
 }
 
 
@@ -66,16 +80,19 @@ public class PlayerData
 {
     public Vector2 Position {get; set;}
     public string CurrentLevel {get; set;}
+    public WeaponSelect CurrentWeapon {get; set;}
 
     public PlayerData()
     {
         Position = Vector2.zero;
         CurrentLevel = "";
+        CurrentWeapon = WeaponSelect.PISTOL;
     }
 
-    public PlayerData(Vector2 position, string currentLevel)
+    public PlayerData(Vector2 position, string currentLevel, WeaponSelect currentWeapon)
     {
         this.Position = position;
         this.CurrentLevel = currentLevel;
+        this.CurrentWeapon = currentWeapon;
     }
 }

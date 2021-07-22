@@ -358,7 +358,6 @@ public class NodeBasedEditor : EditorWindow
             }
 
             string json = JsonUtility.ToJson(upgradeTree);
-            Debug.Log(json);
             string path = null;
 
             path = "Assets/Data/upgradeTree.json";
