@@ -30,12 +30,14 @@ public class LoadSaveManager : MonoBehaviour
         // Load the player data
         using (BinaryReader reader = new BinaryReader(File.Open(filePath, FileMode.Open))) 
         {
+            playerData.LastSaved = DateTime.Parse(reader.ReadString());
             float x = reader.ReadSingle();
             float y = reader.ReadSingle();
             playerData.Position = new Vector2(x, y);
 
             playerData.CurrentLevel = reader.ReadString();
             playerData.CurrentWeapon = (WeaponSelect)reader.ReadInt32();
+            playerData.TimePlayed = DateTime.Parse(reader.ReadString());
         }
     }
 
@@ -45,16 +47,21 @@ public class LoadSaveManager : MonoBehaviour
 
         playerData.CurrentWeapon = weaponControl.GetCurrentWeaponSelect();
         
-        DateTime currentDateTime = DateTime.Now;
+        playerData.LastSaved = DateTime.Now;
+
+        float seconds = Time.timeSinceLevelLoad;
+        playerData.TimePlayed += TimeSpan.FromSeconds(seconds);
 
         // Use BinaryWriter
         using (BinaryWriter writer = new BinaryWriter(File.Open(filePath, FileMode.Create))) {
             // Have to separate the position data as BinaryWriter only supports primitive types
-            writer.Write(currentDateTime.ToShortDateString() + " " + currentDateTime.ToShortTimeString());
+            //writer.Write(playerData.LastSaved.ToShortDateString() + " " + playerData.LastSaved.ToShortTimeString());
+            writer.Write(playerData.LastSaved.ToString());
             writer.Write(playerData.Position.x);
             writer.Write(playerData.Position.y);
             writer.Write(playerData.CurrentLevel);
             writer.Write((int)playerData.CurrentWeapon);
+            writer.Write(playerData.TimePlayed.ToString());
         }
     }
 
@@ -81,6 +88,8 @@ public class PlayerData
     public Vector2 Position {get; set;}
     public string CurrentLevel {get; set;}
     public WeaponSelect CurrentWeapon {get; set;}
+    public DateTime LastSaved {get; set;}
+    public DateTime TimePlayed {get; set;}
 
     public PlayerData()
     {
