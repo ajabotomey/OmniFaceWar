@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+//using Microsoft.Xbox;
 using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using Zenject;
 
@@ -18,12 +18,17 @@ public class LoadSaveManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
+
+        playerData = new PlayerData();
+
+        DontDestroyOnLoad(gameObject);
     }
 
-    public void Load(string saveName)
+#region Standalone PC Functions
+
+    public void StandalonePCLoad(string saveName)
     {
         // Use BinaryReader
-        playerData = new PlayerData();
 
         string filePath = Application.persistentDataPath + "/" + saveName + ".kws";
 
@@ -41,21 +46,15 @@ public class LoadSaveManager : MonoBehaviour
         }
     }
 
-    public void Save(string saveName)
+    public void StandalonePCSave(string saveName)
     {
         string filePath = Application.persistentDataPath + "/" + saveName + ".kws";
 
-        playerData.CurrentWeapon = weaponControl.GetCurrentWeaponSelect();
-        
-        playerData.LastSaved = DateTime.Now;
-
-        float seconds = Time.timeSinceLevelLoad;
-        playerData.TimePlayed += TimeSpan.FromSeconds(seconds);
+        SaveCurrentData();
 
         // Use BinaryWriter
         using (BinaryWriter writer = new BinaryWriter(File.Open(filePath, FileMode.Create))) {
             // Have to separate the position data as BinaryWriter only supports primitive types
-            //writer.Write(playerData.LastSaved.ToShortDateString() + " " + playerData.LastSaved.ToShortTimeString());
             writer.Write(playerData.LastSaved.ToString());
             writer.Write(playerData.Position.x);
             writer.Write(playerData.Position.y);
@@ -64,6 +63,52 @@ public class LoadSaveManager : MonoBehaviour
             writer.Write(playerData.TimePlayed.ToString());
         }
     }
+
+#endregion
+
+#region Steam PC Functions
+
+#endregion
+
+#region Xbox Functions
+
+    public void XboxLoad()
+    {
+        //Gdk.Helpers.OnGameSaveLoaded += OnGameSaveLoaded;
+        //Gdk.Helpers.LoadSaveData();
+    }
+
+    /*private void OnGameSaveLoaded(object sender, GameSaveLoadedArgs saveData)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        using (MemoryStream memoryStream = new MemoryStream(saveData.data))
+        {
+            object playerSaveDataObj = formatter.Deserialize(memoryStream);
+            playerData = playerSaveDataObj as PlayerData;
+        }
+    }*/
+
+    public void XboxSave()
+    {
+        SaveCurrentData();
+
+        BinaryFormatter formatter = new BinaryFormatter();
+        using (MemoryStream memoryStream = new MemoryStream())
+        {
+            formatter.Serialize(memoryStream, playerData);
+            //Gdk.Helpers.Save(memoryStream.ToArray());
+        }
+    }
+
+#endregion
+
+#region PlayStation Functions
+
+#endregion
+
+#region Nintendo Functions
+
+#endregion
 
     public void SetCurrentPosition(Vector2 position)
     {
@@ -78,6 +123,16 @@ public class LoadSaveManager : MonoBehaviour
     public void SetCurrentWeapon(WeaponSelect weapon)
     {
         playerData.CurrentWeapon = weapon;
+    }
+
+    public void SaveCurrentData()
+    {
+        playerData.CurrentWeapon = weaponControl.GetCurrentWeaponSelect();
+        
+        playerData.LastSaved = DateTime.Now;
+
+        float seconds = Time.timeSinceLevelLoad;
+        playerData.TimePlayed += TimeSpan.FromSeconds(seconds);
     }
 }
 
