@@ -10,7 +10,6 @@ public class KeyRebindController : MonoBehaviour
     private InputActionAsset actionAsset;
     private PlayerInput playerInput;
     private InputAction inputAction;
-    private InputActionRebindingExtensions.RebindingOperation rebindingOperation;
 
     // Save any overrides to eventually save to save file
     public static Dictionary<string, string> OverridesDictionary = new Dictionary<string, string>();
