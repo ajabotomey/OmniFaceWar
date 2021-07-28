@@ -12,7 +12,7 @@ public class HeatmapDownloadController : MonoBehaviour
 
     private static void Request()
     {
-        var downloadURL = "http://localhost:3000/" + SceneManager.GetActiveScene().name.ToLower() + "/download/";
+        var downloadURL = "https://gentle-cove-10236.herokuapp.com/" + SceneManager.GetActiveScene().name.ToLower() + "/download/";
         Logger.Debug("Sending request now!");
         www = UnityWebRequest.Get(downloadURL);
         //www.Send();

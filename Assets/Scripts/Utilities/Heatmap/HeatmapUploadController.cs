@@ -65,7 +65,7 @@ public class HeatmapUploadController : MonoBehaviour
         Logger.Debug("Uploading to server now");
 
         fileName = DateTime.UtcNow.ToString("yyyyMMdd_hhmmss") + ".json";
-        uploadURL = "http://localhost:3000/" + SceneManager.GetActiveScene().name.ToLower() + "/upload/";
+        uploadURL = "https://gentle-cove-10236.herokuapp.com/" + SceneManager.GetActiveScene().name.ToLower() + "/upload/";
         Debug.Log(uploadURL);
 
         string json = WriteJson();
