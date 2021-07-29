@@ -3283,6 +3283,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key Rebind Window
       objectReference: {fileID: 0}
+    - target: {fileID: 4962481281605145922, guid: 3845d78d84ce38a48b1a1635885aba95,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8128631402676396885, guid: 3845d78d84ce38a48b1a1635885aba95,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

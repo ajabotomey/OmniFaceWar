@@ -50,6 +50,7 @@ public class GameUIController : MonoBehaviour
     [Header("HUD Elements")]
     [SerializeField] private EntityHealthBar playerHealthBar;
     [SerializeField] private GameObject playerPlateObj;
+    [SerializeField] private WeaponWheelController weaponWheel;
     [SerializeField] private GameObject gameOverPanel; // TODO: Remove this once heatmap data is collected
     [SerializeField] private Button restartGameButton; // TODO: Remove this once heatmap data is collected
 
@@ -76,20 +77,11 @@ public class GameUIController : MonoBehaviour
         elapsedTime = 0.0f;
 
         settings.UpdateFont();
-
-        //ReInput.ControllerConnectedEvent += UpdateButtonUI;
-        //ReInput.ControllerDisconnectedEvent += UpdateButtonUI;
-
-        //PushFirstNotification();
-        //PushTestNotification();
     }
 
     // Update is called once per frame
     void Update()
     {            
-        //CheckIfPaused();
-        //CheckNotificationWindow();
-
         if (elapsedTime > refreshTime) {
             elapsedTime = 0.0f;
 
@@ -315,6 +307,30 @@ public class GameUIController : MonoBehaviour
 
             objectivesPanel.TogglePanel();
         }
+    }
+
+    public void HandleWeaponWheel(InputAction.CallbackContext value)
+    {
+        if (value.started) {
+
+            bool isActive = weaponWheel.isActiveAndEnabled;
+            if (isActive) {
+                weaponWheel.HandleWeaponWheel(false);
+                UnpauseGame();
+            } else {
+                PauseGame();
+                weaponWheel.gameObject.SetActive(true);
+                weaponWheel.HandleWeaponWheel(true);
+            }
+        }
+    }
+
+    public void HandleWeaponWheelControllerInput(InputAction.CallbackContext value)
+    {
+        var input = value.ReadValue<Vector2>();
+        input.x = Mathf.Round(input.x);
+        input.y = Mathf.Round(input.y);
+        weaponWheel.ControllerSelect(input);
     }
 
     public void CancelPauseAndSettings(InputAction.CallbackContext value)

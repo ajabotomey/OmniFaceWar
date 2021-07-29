@@ -239,7 +239,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6567568753398912202}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7691903108163990583, guid: 5b5f118977a3dcb44bd0c7be9e8c7e39,
     type: 2}
@@ -643,11 +643,35 @@ MonoBehaviour:
     m_ActionId: 7019026e-2d3d-4b93-8fdf-aa509ead5683
     m_ActionName: UI Controls/Point[/Mouse/position]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameUIController, OmniFaceWar
+        m_MethodName: ContinueConversation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: ea3b0849-001f-4673-a80d-43c240a2429c
     m_ActionName: UI Controls/Submit[/Keyboard/enter]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameUIController, OmniFaceWar
+        m_MethodName: CancelPauseAndSettings
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 914c30b9-f222-4603-9303-f1eb21a0c26f
     m_ActionName: UI Controls/Cancel[/Keyboard/backspace]
   - m_PersistentCalls:
@@ -714,6 +738,42 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 60fcab81-dae7-4bc5-a11a-6ff0788b97e9
     m_ActionName: Player Controls/Interact[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameUIController, OmniFaceWar
+        m_MethodName: HandleWeaponWheel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3749f912-f38c-4d08-896c-ecdf1b5e1e63
+    m_ActionName: Player Controls/Toggle Weapon Wheel[/Keyboard/tab,/XInputControllerWindows/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameUIController, OmniFaceWar
+        m_MethodName: HandleWeaponWheelControllerInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fb0549d7-b87a-4a61-9ad9-cd63040e01a6
+    m_ActionName: Player Controls/Navigate Weapon Wheel[/XInputControllerWindows/rightStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4a2b3d8a-6d8f-419b-acf7-6195a2d00d3f
+    m_ActionName: Player Controls/Select Weapon[/Mouse/leftButton,/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player Controls
@@ -779,7 +839,6 @@ MonoBehaviour:
     m_Bits: 512
   gunObj: {fileID: 8679208305552068837}
   crosshair: {fileID: 371571859}
-  audioSource: {fileID: 4072407224039850734}
 --- !u!114 &7100063126590692241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -843,7 +902,7 @@ MonoBehaviour:
   - {x: -0.4498577, y: 0.018911839, z: 0}
   m_ShapePathHash: 1284380165
   m_Mesh: {fileID: 0}
-  m_InstanceId: -14378
+  m_InstanceId: -1304
 --- !u!114 &512575834
 MonoBehaviour:
   m_ObjectHideFlags: 0
