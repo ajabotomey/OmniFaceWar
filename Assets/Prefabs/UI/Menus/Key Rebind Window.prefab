@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8206258189374830378}
   - component: {fileID: 1765573212294551023}
   - component: {fileID: 1957197634232967435}
+  - component: {fileID: 7608105774961451875}
   m_Layer: 5
   m_Name: Key Rebind Window
   m_TagString: Untagged
@@ -79,6 +80,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7608105774961451875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4962481281605145922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83522f735c2bbe64196b45c021260177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applyChangesButton: {fileID: 8128631404210728426}
+  resetChangesButton: {fileID: 8128631402750120661}
+  backButton: {fileID: 8128631402676396885}
+  rebindControls:
+  - {fileID: 3493516505899675067}
 --- !u!1 &8128631402676396887
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +217,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8128631402676396906}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SettingsMenuController, OmniFaceWar
+        m_MethodName: ReturnFromKeyRebind
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8128631402750120663
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +350,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8128631402750120682}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7608105774961451875}
+        m_TargetAssemblyTypeName: KeyRebindController, OmniFaceWar
+        m_MethodName: ResetChanges
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8128631402946327184
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,7 +885,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8128631404210728427}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7608105774961451875}
+        m_TargetAssemblyTypeName: KeyRebindController, OmniFaceWar
+        m_MethodName: ApplyChanges
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &4040057254741377893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -854,7 +908,7 @@ PrefabInstance:
     - target: {fileID: 818377753452751810, guid: 5f21c5562c3e5f3469953e3566f1e9c5,
         type: 3}
       propertyPath: m_Name
-      value: Rebind Prefab
+      value: Movement Bind
       objectReference: {fileID: 0}
     - target: {fileID: 6857608690168854301, guid: 5f21c5562c3e5f3469953e3566f1e9c5,
         type: 3}
@@ -969,3 +1023,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4040057254741377893}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3493516505899675067 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 606398717318442718, guid: 5f21c5562c3e5f3469953e3566f1e9c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 4040057254741377893}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aed83b7bb46279c41a8091b5533abd97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -30,7 +30,6 @@ public class GameUIController : MonoBehaviour
 
     [Header("Settings Menu")]
     [SerializeField] private SettingsMenuController settingsMenu;
-    [SerializeField] private GameObject controlMapperWindow;
 
     [Header("Notification System")]
     [SerializeField] private NotificationQueue notificationQueue;
@@ -104,12 +103,6 @@ public class GameUIController : MonoBehaviour
     public void SetCamera(Camera camera)
     {
         GetComponent<Canvas>().worldCamera = camera;
-    }
-
-    public void SetControlMapper(GameObject mapper)
-    {
-        controlMapperWindow = mapper;
-        controlMapperWindow.SetActive(false);
     }
 
     public ObjectivesPanel GetObjectivesPanel()
@@ -219,18 +212,6 @@ public class GameUIController : MonoBehaviour
     {
         settingsMenu.gameObject.SetActive(false);
         pauseMenu.Show();
-    }
-
-    public void ShowControlMapper()
-    {
-        settingsMenu.gameObject.SetActive(false);
-        controlMapperWindow.SetActive(true);
-    }
-
-    public void HideControlMapper()
-    {
-        controlMapperWindow.SetActive(false);
-        settingsMenu.gameObject.SetActive(true);
     }
 
     // TODO: Remove once heatmap data is collected

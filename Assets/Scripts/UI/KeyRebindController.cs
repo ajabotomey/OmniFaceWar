@@ -7,22 +7,29 @@ using UnityEngine.UI;
 
 public class KeyRebindController : MonoBehaviour
 {
-    private InputActionAsset actionAsset;
-    private PlayerInput playerInput;
-    private InputAction inputAction;
+    [Header("UI - Buttons")]
+    [SerializeField] private Button applyChangesButton;
+    [SerializeField] private Button resetChangesButton;
+    [SerializeField] private Button backButton;
 
-    // Save any overrides to eventually save to save file
-    public static Dictionary<string, string> OverridesDictionary = new Dictionary<string, string>();
+    [Header("UI - Rebind Controls")]
+    [SerializeField] private UIRebindControl[] rebindControls;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        foreach (UIRebindControl control in rebindControls)
+        {
+            control.UpdateBehaviour();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ApplyChanges()
     {
-        
+        // Save the changes into a dictionary to put into the save file later on
+    }
+
+    public void ResetChanges()
+    {
+        // Reset all of the changes that have been made to the default control configuration
     }
 }

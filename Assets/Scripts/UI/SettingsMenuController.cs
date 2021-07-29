@@ -7,6 +7,9 @@ using System;
 
 public class SettingsMenuController : MonoBehaviour
 {
+    [Header("Key Rebind Window")]
+    [SerializeField] private KeyRebindController keyRebindWindow;
+
     [Header("UI Panels")]
     [SerializeField] private GameObject generalPanel;
     [SerializeField] private GameObject videoPanel;
@@ -54,7 +57,6 @@ public class SettingsMenuController : MonoBehaviour
 
     [Header("Game Events")]
     [SerializeField] private VoidEvent originalMenuEvent;
-    [SerializeField] private VoidEvent controlMapperEvent;
     [SerializeField] private VoidEvent settingsMenuEvent;
 
     private Navigation backNav;
@@ -537,15 +539,14 @@ public class SettingsMenuController : MonoBehaviour
     #endregion
 
     #region Menu Swapping
-    public void SwapToControlMapper()
+    public void SwapToKeyRebind()
     {
-        //menuController.SwapToControlMapper();
-        controlMapperEvent.Raise();
+        keyRebindWindow.gameObject.SetActive(true);
     }
 
-    public void ReturnFromControlMapper()
+    public void ReturnFromKeyRebind()
     {
-        settingsMenuEvent.Raise();
+        keyRebindWindow.gameObject.SetActive(false);
         SwapToInput();
 
         inputButton.Select();
