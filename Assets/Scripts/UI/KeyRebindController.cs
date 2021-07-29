@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class KeyRebindController : MonoBehaviour
 {
+    [Header("Input Action Asset")]
+    [SerializeField] private InputActionAsset inputActions;
+
     [Header("UI - Buttons")]
     [SerializeField] private Button applyChangesButton;
     [SerializeField] private Button resetChangesButton;
@@ -14,6 +17,8 @@ public class KeyRebindController : MonoBehaviour
 
     [Header("UI - Rebind Controls")]
     [SerializeField] private UIRebindControl[] rebindControls;
+
+    private string savedInputOverrides = "";
 
     void Awake()
     {
@@ -26,10 +31,16 @@ public class KeyRebindController : MonoBehaviour
     public void ApplyChanges()
     {
         // Save the changes into a dictionary to put into the save file later on
+        savedInputOverrides = inputActions.ToJson();
+        Debug.Log(savedInputOverrides);
     }
 
     public void ResetChanges()
     {
         // Reset all of the changes that have been made to the default control configuration
+        foreach (UIRebindControl control in rebindControls)
+        {
+            control.ResetBinding();
+        }
     }
 }

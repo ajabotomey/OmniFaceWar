@@ -92,6 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83522f735c2bbe64196b45c021260177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputActions: {fileID: -944628639613478452, guid: 7a85fe99bb6fbd54484f69bc36b238d5,
+    type: 3}
   applyChangesButton: {fileID: 8128631404210728426}
   resetChangesButton: {fileID: 8128631402750120661}
   backButton: {fileID: 8128631402676396885}

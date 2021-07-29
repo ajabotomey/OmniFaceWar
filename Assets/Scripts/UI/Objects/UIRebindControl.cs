@@ -134,9 +134,11 @@ public class UIRebindControl : MonoBehaviour
         UpdateBindingDisplayUI();
     }
 
-    void ResetBinding()
+    public void ResetBinding()
     {
         InputActionRebindingExtensions.RemoveAllBindingOverrides(action);
+
+        UpdateBehaviour();
     }
 
     void UpdateActionDisplayUI()
