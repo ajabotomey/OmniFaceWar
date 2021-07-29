@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using Zenject;
 
 public class UITooltip : MonoBehaviour
@@ -30,7 +31,8 @@ public class UITooltip : MonoBehaviour
         if (!inputController.IsControllerActive()) {
             Vector2 localPoint;
             RectTransform parentTransform = transform.parent.GetComponent<RectTransform>();
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(parentTransform, Input.mousePosition, uiCamera, out localPoint);
+
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(parentTransform, Mouse.current.position.ReadValue(), uiCamera, out localPoint);
             transform.localPosition = localPoint;
         }
     }

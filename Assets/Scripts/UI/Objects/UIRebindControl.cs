@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
@@ -31,12 +32,12 @@ public class UIRebindControl : MonoBehaviour
     private InputActionRebindingExtensions.RebindingOperation rebindOperation;
     private InputAction action;
 
-    public string BindingId
+    public InputBinding.DisplayStringOptions DisplayStringOptions
     {
-        get => bindingID;
+        get => displayStringOptions;
         set
         {
-            bindingID = value;
+            displayStringOptions = value;
             UpdateBindingDisplayUI();
         }
     }
@@ -119,6 +120,8 @@ public class UIRebindControl : MonoBehaviour
                 }
             );
 
+        
+
         rebindOperation.Start();
 
     }
@@ -192,15 +195,5 @@ public class UIRebindControl : MonoBehaviour
         }
 
         return displayString;
-    }
-
-    public InputBinding.DisplayStringOptions DisplayStringOptions
-    {
-        get => displayStringOptions;
-        set
-        {
-            displayStringOptions = value;
-            UpdateBindingDisplayUI();
-        }
     }
 }

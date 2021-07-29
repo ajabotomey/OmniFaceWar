@@ -4632,6 +4632,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4176395535540653238, guid: e91f16d6dc3d7fd42a8dbb5906431344,
         type: 3}
+      propertyPath: bindingID
+      value: d556d5ae-2991-4b70-b06d-b0abf6458aa8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4176395535540653238, guid: e91f16d6dc3d7fd42a8dbb5906431344,
+        type: 3}
       propertyPath: playerInput
       value: 
       objectReference: {fileID: 1191230656}

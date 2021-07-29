@@ -9,6 +9,8 @@ public class UIRebindControlEditor : Editor
 {
     private SerializedProperty m_ActionProperty;
     private SerializedProperty m_BindingIdProperty;
+    private SerializedProperty m_DisplayStringOptions;
+
     private SerializedProperty m_DeviceDisplaySettings;
     private SerializedProperty m_ActionLabel;
     private SerializedProperty m_InputButton;
@@ -17,6 +19,7 @@ public class UIRebindControlEditor : Editor
     private SerializedProperty m_ResetButton;
 
     private GUIContent m_BindingLabel = new GUIContent("Binding");
+    private GUIContent m_DisplayOptionsLabel = new GUIContent("Display Options");
 
     private GUIContent[] m_BindingOptions;
     private string[] m_BindingOptionValues;
@@ -27,6 +30,7 @@ public class UIRebindControlEditor : Editor
     {
         m_ActionProperty = serializedObject.FindProperty("actionReference");
         m_BindingIdProperty = serializedObject.FindProperty("bindingID");
+        m_DisplayStringOptions = serializedObject.FindProperty("displayStringOptions");
         m_DeviceDisplaySettings = serializedObject.FindProperty("deviceDisplaySettings");
         m_ActionLabel = serializedObject.FindProperty("actionLabel");
         m_InputButton = serializedObject.FindProperty("inputButton");
@@ -41,8 +45,6 @@ public class UIRebindControlEditor : Editor
     {
         EditorGUI.BeginChangeCheck();
 
-        //base.OnInspectorGUI();
-
         // Binding section
         EditorGUILayout.LabelField(m_BindingLabel, Styles.boldLabel);
 
@@ -55,6 +57,12 @@ public class UIRebindControlEditor : Editor
             m_BindingIdProperty.stringValue = bindingId;
             m_SelectedBindingOption = newSelectedBinding;
         }
+
+        var optionsOld = (InputBinding.DisplayStringOptions)m_DisplayStringOptions.intValue;
+        //var optionsOld = InputBinding.DisplayStringOptions.DontIncludeInteractions;
+        var optionsNew = (InputBinding.DisplayStringOptions)EditorGUILayout.EnumFlagsField(m_DisplayOptionsLabel, optionsOld);
+        if (optionsOld != optionsNew)
+            m_DisplayStringOptions.intValue = (int)optionsNew;
 
         EditorGUILayout.Space();
 
@@ -81,7 +89,6 @@ public class UIRebindControlEditor : Editor
             RefreshBindingOptions();
         }
     }
-
     
     protected void RefreshBindingOptions()
     {
