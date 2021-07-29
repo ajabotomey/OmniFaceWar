@@ -305,7 +305,7 @@
                     "id": "914c30b9-f222-4603-9303-f1eb21a0c26f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Tap(duration=0.4)"
                 },
                 {
                     "name": "Toggle Pause",

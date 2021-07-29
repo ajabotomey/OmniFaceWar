@@ -317,6 +317,17 @@ public class GameUIController : MonoBehaviour
         }
     }
 
+    public void CancelPauseAndSettings(InputAction.CallbackContext value)
+    {
+        // TODO: Add in the keybind window
+        if (paused && settingsMenu.gameObject.activeInHierarchy == false && settingsMenu.IsInKeyRebind() == false && value.performed)
+            StopPause();
+        else if (paused && settingsMenu.gameObject.activeInHierarchy == true && settingsMenu.IsInKeyRebind() == false && value.performed)
+            ReturnToPauseMenu();
+        else if (paused && settingsMenu.gameObject.activeInHierarchy == true && settingsMenu.IsInKeyRebind() == true && value.performed)
+            settingsMenu.ReturnFromKeyRebind();
+    }
+
     public void ContinueConversation(InputAction.CallbackContext value)
     {
         if (isTalking)

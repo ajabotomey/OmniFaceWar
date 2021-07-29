@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Zenject;
 using System;
@@ -69,6 +70,8 @@ public class SettingsMenuController : MonoBehaviour
     [Inject] private SettingsManager settingsManager;
     [Inject] private IInputController inputController;
     [Inject] private SceneController sceneController;
+
+    private bool inKeyRebindWindow = false;
 
     void Start()
     {
@@ -245,6 +248,11 @@ public class SettingsMenuController : MonoBehaviour
 
         // Rumble Sensitivity
         inputController.SetRumbleSensitivity(settingsManager.GetRumbleSensitivity());
+    }
+
+    public bool IsInKeyRebind()
+    {
+        return inKeyRebindWindow;
     }
 
     #region Change Value methods
@@ -541,11 +549,13 @@ public class SettingsMenuController : MonoBehaviour
     #region Menu Swapping
     public void SwapToKeyRebind()
     {
+        inKeyRebindWindow = true;
         keyRebindWindow.gameObject.SetActive(true);
     }
 
     public void ReturnFromKeyRebind()
     {
+        inKeyRebindWindow = false;
         keyRebindWindow.gameObject.SetActive(false);
         SwapToInput();
 
