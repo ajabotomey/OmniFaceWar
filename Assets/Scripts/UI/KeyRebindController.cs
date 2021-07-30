@@ -27,6 +27,13 @@ public class KeyRebindController : MonoBehaviour
 
     void Awake()
     {
+        // Check if there are overrides to perform
+        string json = LoadSaveManager.instance.GetBindingsJson();
+        if (!string.IsNullOrEmpty(json))
+        {
+            LoadChanges(json);
+        }
+
         foreach (UIRebindControl control in rebindControls)
         {
             control.UpdateBehaviour();

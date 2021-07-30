@@ -13,8 +13,6 @@ public class LoadSaveManager : MonoBehaviour
     
     private PlayerData playerData;
 
-    private string bindingsJson = "";
-
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +43,7 @@ public class LoadSaveManager : MonoBehaviour
             playerData.CurrentLevel = reader.ReadString();
             playerData.CurrentWeapon = (WeaponSelect)reader.ReadInt32();
             playerData.TimePlayed = DateTime.Parse(reader.ReadString());
+            playerData.BindingsJson = reader.ReadString();
         }
     }
 
@@ -63,6 +62,7 @@ public class LoadSaveManager : MonoBehaviour
             writer.Write(playerData.CurrentLevel);
             writer.Write((int)playerData.CurrentWeapon);
             writer.Write(playerData.TimePlayed.ToString());
+            writer.Write(playerData.BindingsJson);
         }
     }
 
@@ -139,7 +139,12 @@ public class LoadSaveManager : MonoBehaviour
 
     public void SetBindingsJson(string json)
     {
-        bindingsJson = json;
+        playerData.BindingsJson = json;
+    }
+
+    public string GetBindingsJson()
+    {
+        return playerData.BindingsJson;
     }
 }
 
@@ -152,6 +157,7 @@ public class PlayerData
     public WeaponSelect CurrentWeapon {get; set;}
     public DateTime LastSaved {get; set;}
     public DateTime TimePlayed {get; set;}
+    public string BindingsJson {get; set;}
 
     public PlayerData()
     {
