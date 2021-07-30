@@ -38,6 +38,7 @@ public class KeyRebindController : MonoBehaviour
         // Save the changes into a dictionary to put into the save file later on
         WriteJson();
         Debug.Log(savedInputOverrides);
+        LoadSaveManager.instance.SetBindingsJson(savedInputOverrides);
     }
 
     public void LoadChanges(string data)

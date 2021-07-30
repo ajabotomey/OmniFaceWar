@@ -13,6 +13,8 @@ public class LoadSaveManager : MonoBehaviour
     
     private PlayerData playerData;
 
+    private string bindingsJson = "";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -133,6 +135,11 @@ public class LoadSaveManager : MonoBehaviour
 
         float seconds = Time.timeSinceLevelLoad;
         playerData.TimePlayed += TimeSpan.FromSeconds(seconds);
+    }
+
+    public void SetBindingsJson(string json)
+    {
+        bindingsJson = json;
     }
 }
 
