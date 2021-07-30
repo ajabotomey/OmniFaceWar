@@ -116,11 +116,10 @@ public class UIRebindControl : MonoBehaviour
             .OnComplete(
                 operation => {
                     action.Enable();
+                    KeyRebindController.AddOverrideToDictionary(action.id, action.bindings[bindingIndex].effectivePath, bindingIndex);
                     RebindCompleted();
                 }
             );
-
-        
 
         rebindOperation.Start();
 
