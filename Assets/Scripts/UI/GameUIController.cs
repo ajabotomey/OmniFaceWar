@@ -316,9 +316,11 @@ public class GameUIController : MonoBehaviour
             bool isActive = weaponWheel.isActiveAndEnabled;
             if (isActive) {
                 weaponWheel.HandleWeaponWheel(false);
+                ShowHUD();
                 UnpauseGame();
             } else {
                 PauseGame();
+                HideHUD();
                 weaponWheel.gameObject.SetActive(true);
                 weaponWheel.HandleWeaponWheel(true);
             }
