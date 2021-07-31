@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using Zenject;
 
 public class WeaponWheelController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class WeaponWheelController : MonoBehaviour
     [SerializeField] private Sprite noImage;
     [SerializeField] private GameObject defaultSelectedButton;
     public static int weaponID = 0;
+
+    [Inject] private WeaponController _weaponControl;
 
     public void HandleWeaponWheel(bool weaponWheelSelected)
     {
@@ -42,32 +45,30 @@ public class WeaponWheelController : MonoBehaviour
                 selectedItem.sprite = noImage;
                 break;
             case 1:
-                Debug.Log("Pistol");
+                _weaponControl.SelectPistol();
                 break;
             case 2:
-                Debug.Log("Taser");
+                _weaponControl.SelectMachineGun();
                 break;
             case 3:
-                Debug.Log("Assault Rifle");
+                _weaponControl.SelectNoisemaker();
                 break;
             case 4:
-                Debug.Log("Shotgun");
+                _weaponControl.SelectInternetGun();
                 break;
             case 5:
-                Debug.Log("Molotov");
+                _weaponControl.SelectHackerGun();
                 break;
             case 6:
-                Debug.Log("Fists");
+                _weaponControl.SelectViralBomb();
                 break;
             case 7:
-                Debug.Log("Baseball Bat");
+                _weaponControl.SelectSmokebomb();
                 break;
             case 8:
-                Debug.Log("Garrote Wire");
+                _weaponControl.SelectSmartFaceMask();
                 break;
         }
-
-        anim.SetBool("OpenWeaponWheel", false);
     }
 
     public void SelectButton()

@@ -55,10 +55,75 @@ public class WeaponController
 
     public void SelectPistol()
     {
+        DeselectWeaponGadgets();
         currentWeapon = WeaponSelect.PISTOL;
-        pistol.MakeCurrentWeapon(true);
+        pistol.Select();
         // TODO: Make other weapons false
         initializeEvent.Raise(pistol.GetEnergyCapacity());
+    }
+
+    public void SelectMachineGun()
+    {
+        DeselectWeaponGadgets();
+        currentWeapon = WeaponSelect.SUBMACHINEGUN;
+        submachineGun.Select();
+        initializeEvent.Raise(submachineGun.GetEnergyCapacity());
+    }
+
+    public void SelectHackerGun()
+    {
+        DeselectWeaponGadgets();
+        currentWeapon = WeaponSelect.HACKERGUN;
+        hackerGun.Select();
+        initializeEvent.Raise(hackerGun.GetEnergyCapacity());
+    }
+
+    public void SelectInternetGun()
+    {
+        DeselectWeaponGadgets();
+        currentWeapon = WeaponSelect.INTERNETGUN;
+        internetGun.Select();
+        initializeEvent.Raise(internetGun.GetEnergyCapacity());
+    }
+
+    public void SelectNoisemaker()
+    {
+        DeselectWeaponGadgets();
+        currentWeapon = WeaponSelect.NOISEMAKER;
+        noisemaker.Select();
+    }
+
+    public void SelectSmokebomb()
+    {
+        DeselectWeaponGadgets();
+        currentWeapon = WeaponSelect.SMOKEBOMB;
+        smokebomb.Select();
+    }
+
+    public void SelectViralBomb()
+    {
+        DeselectWeaponGadgets();
+        currentWeapon = WeaponSelect.VIRALBOMB;
+        viralBomb.Select();
+    }
+
+    public void SelectSmartFaceMask()
+    {
+        DeselectWeaponGadgets();
+        currentWeapon = WeaponSelect.SMARTFACEMASK;
+        smartFaceMask.Select();
+    }
+
+    private void DeselectWeaponGadgets()
+    {
+        pistol.Deselect();
+        submachineGun.Deselect();
+        hackerGun.Deselect();
+        internetGun.Deselect();
+        noisemaker.Deselect();
+        smokebomb.Deselect();
+        viralBomb.Deselect();
+        smartFaceMask.Deselect();
     }
 
     public WeaponSelect GetCurrentWeaponSelect()
@@ -95,15 +160,6 @@ public class WeaponController
                 return smartFaceMask;
             default:
                 return null;
-        }
-    }
-
-    public void SetCurrentWeapon()
-    {
-        switch(currentWeapon) {
-            case WeaponSelect.PISTOL:
-                SelectPistol();
-                break;
         }
     }
 

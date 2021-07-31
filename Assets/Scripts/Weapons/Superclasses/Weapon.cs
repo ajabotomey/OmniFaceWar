@@ -8,7 +8,6 @@ public class Weapon : WeaponGadget
     [Header("Weapon Attributes")]
     [SerializeField] private float energyCapacity;
     [SerializeField] private float energyCost;
-    [SerializeField] private bool isCurrentWeapon;
     [SerializeField] private bool isHackTypeGun;
     //[SerializeField] private AudioClip weaponFireSound;
 
@@ -39,7 +38,7 @@ public class Weapon : WeaponGadget
             currentEnergy = energyCapacity;
 
         // Check if current weapon
-        if (isCurrentWeapon)
+        if (IsCurrentlySelected)
             rechargeEvent.Raise(currentEnergy);
     }
 
@@ -56,11 +55,6 @@ public class Weapon : WeaponGadget
     public bool CanWeaponFire()
     {
         return currentEnergy > energyCost;
-    }
-
-    public void MakeCurrentWeapon(bool value)
-    {
-        isCurrentWeapon = value;
     }
 
     public bool IsHackTypeGun()
