@@ -17,4 +17,8 @@ MonoBehaviour:
     submachineGun: {fileID: 11400000, guid: 7f53f03867f6bec499aadcd9e8274c3f, type: 2}
     hackerGun: {fileID: 11400000, guid: 903d2fffbe1dfa54eafe66978f33869a, type: 2}
     internetGun: {fileID: 11400000, guid: cf6764c8c1fe31646855af1a2f089fc5, type: 2}
+    noisemaker: {fileID: 11400000, guid: 170f3b3d03e942541b6dd416f483de7d, type: 2}
+    smokebomb: {fileID: 11400000, guid: 13a4789b70e4676459d28305623e646a, type: 2}
+    viralBomb: {fileID: 11400000, guid: 6e671fb543a7b7646ba039a630fe4a9b, type: 2}
+    smartFaceMask: {fileID: 11400000, guid: 46d35035294e36047b7826824548870b, type: 2}
     initializeEvent: {fileID: 11400000, guid: 47782b4e6c42e5246a7fcc36a8d1ace6, type: 2}

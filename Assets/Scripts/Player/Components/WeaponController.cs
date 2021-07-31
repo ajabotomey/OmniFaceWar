@@ -10,7 +10,11 @@ public enum WeaponSelect
     PISTOL,
     SUBMACHINEGUN,
     HACKERGUN,
-    INTERNETGUN
+    INTERNETGUN,
+    NOISEMAKER,
+    SMOKEBOMB,
+    VIRALBOMB,
+    SMARTFACEMASK
 }
 
 [System.Serializable]
@@ -21,6 +25,10 @@ public class WeaponController
     [SerializeField] private SubmachineGun submachineGun;
     [SerializeField] private HackerGun hackerGun;
     [SerializeField] private InternetGun internetGun;
+    [SerializeField] private Noisemaker noisemaker;
+    [SerializeField] private Smokebomb smokebomb;
+    [SerializeField] private ViralBomb viralBomb;
+    [SerializeField] private SmartFaceMask smartFaceMask;
 
     [Header("Events")]
     [SerializeField] private FloatEvent initializeEvent;
@@ -69,9 +77,25 @@ public class WeaponController
                 return hackerGun;
             case WeaponSelect.INTERNETGUN:
                 return internetGun;
+            default:
+                return null;
         }
+    }
 
-        return null;
+    public Gadget GetCurrentGadget()
+    {
+        switch(currentWeapon) {
+            case WeaponSelect.NOISEMAKER:
+                return noisemaker;
+            case WeaponSelect.SMOKEBOMB:
+                return smokebomb;
+            case WeaponSelect.VIRALBOMB:
+                return viralBomb;
+            case WeaponSelect.SMARTFACEMASK:
+                return smartFaceMask;
+            default:
+                return null;
+        }
     }
 
     public void SetCurrentWeapon()

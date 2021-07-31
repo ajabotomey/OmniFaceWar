@@ -11,4 +11,7 @@ public class WeaponGadget : ScriptableObject {
     public float FireRate { get {return fireRate;} set {fireRate = value;} }
     public float RechargeRate { get {return rechargeRate;} set {rechargeRate = value;} }
     public string WeaponFireSound { get {return weaponFireSound;} set {weaponFireSound = value;} }
+
+    public virtual bool isWeapon() { return false; }
+    public virtual bool isGadget() { return false;}
 }

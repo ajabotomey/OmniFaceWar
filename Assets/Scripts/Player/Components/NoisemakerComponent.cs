@@ -16,12 +16,14 @@ public class NoisemakerComponent : MonoBehaviour
 
     private IInputController _inputController;
     private NoisemakerObject.Factory _noisemakerFactory;
+    private WeaponController _weaponControl;
 
     [Inject]
-    public void Construct(IInputController inputController, NoisemakerObject.Factory noisemakerFactory)
+    public void Construct(IInputController inputController, NoisemakerObject.Factory noisemakerFactory, WeaponController weaponControl)
     {
         _inputController = inputController;
         _noisemakerFactory = noisemakerFactory;
+        _weaponControl = weaponControl;
     }
 
     // Start is called before the first frame update
@@ -34,6 +36,10 @@ public class NoisemakerComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check if the noisemaker is selected first
+        if (_weaponControl.GetCurrentGadget() == null || _weaponControl.GetCurrentGadget().GetType() != typeof(Noisemaker))
+            return;
+
         // TODO: Fix once Weapon Control is available
         //bool launchNoise = _inputController.FireWeapon();
         //bool launchNoise = Input.GetKeyDown(KeyCode.E);

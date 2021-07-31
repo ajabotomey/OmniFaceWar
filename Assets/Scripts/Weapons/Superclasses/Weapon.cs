@@ -68,6 +68,11 @@ public class Weapon : WeaponGadget
         return isHackTypeGun;
     }
 
+    public override bool isWeapon()
+    {
+        return true;
+    }
+
     //public AudioClip GetWeaponFireSound()
     //{
     //    return weaponFireSound;

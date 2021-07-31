@@ -6,4 +6,9 @@ public class Gadget : WeaponGadget
     [SerializeField] private float radius;
 
     public float Radius { get { return radius; } set { radius = value;} }
+
+    public override bool isGadget()
+    {
+        return true;
+    }
 }

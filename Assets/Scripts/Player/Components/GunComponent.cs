@@ -69,6 +69,10 @@ public class GunComponent : MonoBehaviour
     {
         //bool fireBullet = _inputController.FireWeapon();
 
+        // Check if a weapon is actually equipped
+        if (!_weaponControl.GetCurrentWeapon().isWeapon())
+            return;
+
         RotateComponent();
 
         if (_settings.IsAutoAimEnabled()) {
