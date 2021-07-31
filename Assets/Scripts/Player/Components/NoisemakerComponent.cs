@@ -15,10 +15,10 @@ public class NoisemakerComponent : MonoBehaviour
     private float maxDistance = 5000;
 
     private IInputController _inputController;
-    private Noisemaker.Factory _noisemakerFactory;
+    private NoisemakerObject.Factory _noisemakerFactory;
 
     [Inject]
-    public void Construct(IInputController inputController, Noisemaker.Factory noisemakerFactory)
+    public void Construct(IInputController inputController, NoisemakerObject.Factory noisemakerFactory)
     {
         _inputController = inputController;
         _noisemakerFactory = noisemakerFactory;
@@ -62,7 +62,7 @@ public class NoisemakerComponent : MonoBehaviour
         //    noise.Landed();
         //} else {
         //Noisemaker noise = Instantiate(noisemaker, bulletSpawnPoint.position, Quaternion.identity).GetComponent<Noisemaker>();
-        Noisemaker noise = _noisemakerFactory.Create();
+        NoisemakerObject noise = _noisemakerFactory.Create();
         noise.transform.position = bulletSpawnPoint.position;
         noise.transform.rotation = Quaternion.identity;
         noise.Init(distance, mousePos);

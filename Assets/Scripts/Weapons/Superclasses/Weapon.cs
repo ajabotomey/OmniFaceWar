@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class Weapon : ScriptableObject
+public class Weapon : WeaponGadget
 {
-    [Header("Base Attributes")]
-    [SerializeField] private float fireRate;
+    [Header("Weapon Attributes")]
     [SerializeField] private float energyCapacity;
     [SerializeField] private float energyCost;
-    [SerializeField] private float rechargeRate;
     [SerializeField] private bool isCurrentWeapon;
     [SerializeField] private bool isHackTypeGun;
     //[SerializeField] private AudioClip weaponFireSound;
-    [FMODUnity.EventRef] [SerializeField] private string weaponFireSound;
 
     [Header("Debug")]
     [SerializeField] private float currentEnergy;
@@ -27,21 +24,16 @@ public class Weapon : ScriptableObject
         currentEnergy = energyCapacity;
     }
 
-    public float GetFireRate()
-    {
-        return fireRate;
-    }
-
     public void Fire()
     {
         currentEnergy -= energyCost;
         fireEvent.Raise(currentEnergy);
-        FMODUnity.RuntimeManager.PlayOneShot(weaponFireSound);
+        FMODUnity.RuntimeManager.PlayOneShot(WeaponFireSound);
     }
 
     public void RechargeWeapon()
     {
-        currentEnergy += rechargeRate * Time.fixedDeltaTime;
+        currentEnergy += RechargeRate * Time.fixedDeltaTime;
 
         if (currentEnergy > energyCapacity)
             currentEnergy = energyCapacity;

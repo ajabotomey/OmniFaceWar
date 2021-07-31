@@ -11,6 +11,6 @@ public class TestLevelInstaller : MonoInstaller
     {
         Container.Bind<PlayerControl>().FromInstance(player).AsSingle();
         Container.BindFactory<Bullet, Bullet.Factory>().FromComponentInNewPrefab(BulletPrefab);
-        Container.BindFactory<Noisemaker, Noisemaker.Factory>().FromComponentInNewPrefab(NoisemakerPrefab);
+        Container.BindFactory<NoisemakerObject, NoisemakerObject.Factory>().FromComponentInNewPrefab(NoisemakerPrefab);
     }
 }

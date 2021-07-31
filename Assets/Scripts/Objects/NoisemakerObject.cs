@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Noisemaker : MonoBehaviour
+public class NoisemakerObject : MonoBehaviour
 {
     [SerializeField] private AudioSource source;
     [SerializeField] private float soundRadius;
@@ -75,5 +75,5 @@ public class Noisemaker : MonoBehaviour
         }
     }
 
-    public class Factory : PlaceholderFactory<Noisemaker> { }
+    public class Factory : PlaceholderFactory<NoisemakerObject> { }
 }

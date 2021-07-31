@@ -89,7 +89,7 @@ public class AttackAndAlertOperator : IOperator
 
             c.CurrentWeapon.Fire();
 
-            c.WeaponFireTimer = c.CurrentWeapon.GetFireRate();
+            c.WeaponFireTimer = c.CurrentWeapon.FireRate;
 
             return TaskStatus.Success;
         }

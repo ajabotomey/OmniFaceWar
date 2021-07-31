@@ -109,7 +109,7 @@ public class GunComponent : MonoBehaviour
         // Make sure we are actually aiming first
         if (aim.magnitude > 0.0f) {
             // Check fire rate
-            if (fireElapsedTime >= currentWeapon.GetFireRate()) {
+            if (fireElapsedTime >= currentWeapon.FireRate) {
                 // Check if gun has enough energy, make sure it is also a Bullet Type Gun as well
                 if (currentWeapon.CanWeaponFire() && currentWeapon is BulletTypeGun) {
                     Bullet firedBullet = _bulletFactory.Create();

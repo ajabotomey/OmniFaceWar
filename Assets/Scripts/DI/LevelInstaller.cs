@@ -37,6 +37,6 @@ public class LevelInstaller : MonoInstaller
         // Bind player and gadgets
         Container.Bind<PlayerControl>().FromInstance(playerControl).AsSingle();
         Container.BindFactory<Bullet, Bullet.Factory>().FromComponentInNewPrefab(BulletPrefab);
-        Container.BindFactory<Noisemaker, Noisemaker.Factory>().FromComponentInNewPrefab(NoisemakerPrefab);
+        Container.BindFactory<NoisemakerObject, NoisemakerObject.Factory>().FromComponentInNewPrefab(NoisemakerPrefab);
     }
 }

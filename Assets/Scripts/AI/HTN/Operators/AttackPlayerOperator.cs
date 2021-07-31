@@ -90,7 +90,7 @@ public class AttackPlayerOperator : IOperator
 
             c.CurrentWeapon.Fire();
 
-            c.WeaponFireTimer = c.CurrentWeapon.GetFireRate();
+            c.WeaponFireTimer = c.CurrentWeapon.FireRate;
 
             return TaskStatus.Success;
         }
