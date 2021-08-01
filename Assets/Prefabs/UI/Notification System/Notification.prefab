@@ -294,7 +294,7 @@ MonoBehaviour:
     utility to your fellow citizens. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2a2d673aaf7c6ce4bbdf2efef8b9b151, type: 2}
-  m_sharedMaterial: {fileID: -9065298930120864544, guid: 2a2d673aaf7c6ce4bbdf2efef8b9b151,
+  m_sharedMaterial: {fileID: 3752735229386563318, guid: 2a2d673aaf7c6ce4bbdf2efef8b9b151,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

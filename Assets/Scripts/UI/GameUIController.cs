@@ -28,6 +28,9 @@ public class GameUIController : MonoBehaviour
     [Header("Pause Menu")]
     [SerializeField] private PauseMenu pauseMenu;
 
+    [Header("Save Menu")]
+    [SerializeField] private GameObject saveMenu;
+
     [Header("Settings Menu")]
     [SerializeField] private SettingsMenuController settingsMenu;
 
@@ -192,6 +195,16 @@ public class GameUIController : MonoBehaviour
         pauseMenu.Hide();
         ShowHUD();
         UnpauseGame();
+    }
+
+    public void SaveGame()
+    {
+        saveMenu.SetActive(true);
+    }
+
+    public void ReturnFromSaveGame()
+    {
+        saveMenu.SetActive(false);
     }
 
     public void SwapToSettingsMenu()

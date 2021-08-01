@@ -42,7 +42,6 @@ public class LoadSaveManager : MonoBehaviour
             float y = reader.ReadSingle();
             playerData.Position = new Vector2(x, y);
 
-            playerData.CurrentLevel = reader.ReadString();
             playerData.CurrentWeapon = (WeaponSelect)reader.ReadInt32();
             playerData.TimePlayed = DateTime.Parse(reader.ReadString());
             playerData.BindingsJson = reader.ReadString();
@@ -61,11 +60,12 @@ public class LoadSaveManager : MonoBehaviour
             writer.Write(playerData.LastSaved.ToString());
             writer.Write(playerData.Position.x);
             writer.Write(playerData.Position.y);
-            writer.Write(playerData.CurrentLevel);
             writer.Write((int)playerData.CurrentWeapon);
             writer.Write(playerData.TimePlayed.ToString());
             writer.Write(playerData.BindingsJson);
         }
+
+        Debug.Log("Save successful!");
     }
 
 #endregion
@@ -119,11 +119,6 @@ public class LoadSaveManager : MonoBehaviour
         playerData.Position = position;
     }
 
-    public void SetCurrentLevel(string level)
-    {
-        playerData.CurrentLevel = level;
-    }
-
     public void SetCurrentWeapon(WeaponSelect weapon)
     {
         playerData.CurrentWeapon = weapon;
@@ -137,6 +132,9 @@ public class LoadSaveManager : MonoBehaviour
 
         float seconds = Time.timeSinceLevelLoad;
         playerData.TimePlayed += TimeSpan.FromSeconds(seconds);
+
+        if (string.IsNullOrEmpty(playerData.BindingsJson))
+            playerData.BindingsJson = "";
     }
 
     public void SetBindingsJson(string json)
@@ -148,6 +146,11 @@ public class LoadSaveManager : MonoBehaviour
     {
         return playerData.BindingsJson;
     }
+
+    public void CompletedLevel(int index)
+    {
+
+    }
 }
 
 
@@ -155,23 +158,28 @@ public class LoadSaveManager : MonoBehaviour
 public class PlayerData 
 {
     public Vector2 Position {get; set;}
-    public string CurrentLevel {get; set;}
     public WeaponSelect CurrentWeapon {get; set;}
     public DateTime LastSaved {get; set;}
     public DateTime TimePlayed {get; set;}
     public string BindingsJson {get; set;}
+    public LevelData[] levelData;
 
     public PlayerData()
     {
         Position = Vector2.zero;
-        CurrentLevel = "";
         CurrentWeapon = WeaponSelect.PISTOL;
     }
 
-    public PlayerData(Vector2 position, string currentLevel, WeaponSelect currentWeapon)
+    public PlayerData(Vector2 position, WeaponSelect currentWeapon)
     {
         this.Position = position;
-        this.CurrentLevel = currentLevel;
         this.CurrentWeapon = currentWeapon;
     }
+}
+
+[System.Serializable]
+public class LevelData
+{
+    public string LevelName {get; set;}
+    public bool LevelCompleted {get; set;}
 }

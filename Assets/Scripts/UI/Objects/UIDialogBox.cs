@@ -1,12 +1,13 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Zenject;
 
 public class UIDialogBox : MonoBehaviour
 {
     public static UIDialogBox Instance = null;
-    [SerializeField] private Text dialogText;
+    [SerializeField] private TextMeshProUGUI dialogText;
     [SerializeField] private Button ConfirmButton;
     [SerializeField] private Button CancelButton;
     [SerializeField] private Button OkButton;
