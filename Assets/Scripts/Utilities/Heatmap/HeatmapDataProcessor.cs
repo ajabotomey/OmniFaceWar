@@ -161,6 +161,8 @@ public class HeatmapDataProcessor : MonoBehaviour
         while (highestCount > highestIntensity)
             highestIntensity *= 2;
 
+        Debug.Log(highestIntensity);
+
         return 255 / highestIntensity;
     }
 }

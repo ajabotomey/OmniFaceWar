@@ -26,6 +26,8 @@ public class LoadSaveManager : MonoBehaviour
 
 #region Standalone PC Functions
 
+    // Standalone PC has 3 save slots
+
     public void StandalonePCLoad(string saveName)
     {
         // Use BinaryReader

@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff032b52c4d2f14f9ee3a819f7a452d, type: 3}
   m_Name: Submachine Gun
   m_EditorClassIdentifier: 
+  duration: 0
   fireRate: 0.2
-  energyCapacity: 0
-  energyCost: 0
   rechargeRate: 0
-  isCurrentWeapon: 0
+  isCurrentlySelected: 1
+  weaponFireSound: event:/SFX/Fire Pistol
+  energyCapacity: 300
+  energyCost: 10
   isHackTypeGun: 0
-  currentEnergy: 0
+  currentEnergy: 210
   fireEvent: {fileID: 11400000, guid: 36f3e9fabe6ed304faf825b558535f93, type: 2}
   rechargeEvent: {fileID: 11400000, guid: b602e77055ac64641a18c52112931578, type: 2}
   damage: 2
