@@ -197,15 +197,37 @@ public class GameUIController : MonoBehaviour
         UnpauseGame();
     }
 
+    #region Saving the game
+
     public void SaveGame()
     {
-        saveMenu.SetActive(true);
+        //saveMenu.SetActive(true);
     }
 
     public void ReturnFromSaveGame()
     {
-        saveMenu.SetActive(false);
+        //saveMenu.SetActive(false);
     }
+
+    public void OnClick()
+    {
+        UIDialogBox.Instance.ShowPopUp("Would you like to save to this save slot?", ConfirmSave, CancelSave);
+    }
+
+    private void ConfirmSave()
+    {
+        #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+        LoadSaveManager.instance.StandalonePCSave("Save 1");
+        #endif
+        UIDialogBox.Instance.HidePopUp();
+    }
+
+    private void CancelSave()
+    {
+        UIDialogBox.Instance.HidePopUp();
+    }
+
+    #endregion
 
     public void SwapToSettingsMenu()
     {
