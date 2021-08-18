@@ -288,7 +288,7 @@
                 {
                     "name": "",
                     "id": "fb3a28d7-56c1-417c-a63e-e8554ac39d0d",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -456,6 +456,14 @@
                     "name": "Toggle Pause",
                     "type": "Button",
                     "id": "576ad6fb-4f1d-40b0-b0a5-31352cede034",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Continue Conversation",
+                    "type": "Button",
+                    "id": "a4de0401-e874-4db5-b572-b10c38d4c631",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -778,6 +786,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Toggle Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "911652e7-8575-4614-b367-02528bbad3e8",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Continue Conversation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5b37bc2b-4064-49f7-861e-bca84cee96ce",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Continue Conversation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

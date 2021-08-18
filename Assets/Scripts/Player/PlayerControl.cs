@@ -143,7 +143,8 @@ public class PlayerControl : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext value)
     {
-        CheckForNearbyNPC();
+        if (value.started)
+            CheckForNearbyNPC();
     }
 
     #endregion

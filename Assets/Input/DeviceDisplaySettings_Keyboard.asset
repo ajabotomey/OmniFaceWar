@@ -28,11 +28,14 @@ MonoBehaviour:
     customInputContextIcon: {fileID: 21300000, guid: a24971dc2e7120f44a4c5d346c2b976c,
       type: 3}
   - customInputContextString: Toggle Objectives Panel
-    customInputContextIcon: {fileID: 21300000, guid: 711467ccfc9d13e4a8187e87a772e705,
+    customInputContextIcon: {fileID: 21300000, guid: 1ebcd4b0e3ce1be4d9b6a1b4dd4be68f,
       type: 3}
   - customInputContextString: Open Notification Window
     customInputContextIcon: {fileID: 21300000, guid: c7a2e58d80555ef40b2c6e0d9281f0de,
       type: 3}
   - customInputContextString: Interact
     customInputContextIcon: {fileID: 21300000, guid: 19b989f8fa36cda4c8765e1da7b31d3d,
+      type: 3}
+  - customInputContextString: Toggle Weapon Wheel
+    customInputContextIcon: {fileID: 21300000, guid: 711467ccfc9d13e4a8187e87a772e705,
       type: 3}

@@ -46,3 +46,6 @@ MonoBehaviour:
   - customInputContextString: Interact
     customInputContextIcon: {fileID: 21300000, guid: 7b5e0c41a60d2fb4190e0f894510d393,
       type: 3}
+  - customInputContextString: Toggle Weapon Wheel
+    customInputContextIcon: {fileID: 21300000, guid: b2876daa89267aa47b064ccffb225ada,
+      type: 3}

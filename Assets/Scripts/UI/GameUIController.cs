@@ -19,8 +19,8 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private DeviceDisplayConfigurator deviceDisplay;
 
     [Header("Dialogue System")]
+    [SerializeField] private GameObject dialogueSystem;
     [SerializeField] private DialogueRunner dialogueRunner;
-    [SerializeField] private DialogueUI dialogueUI;
 
     [Header("Upgrade Window")]
     [SerializeField] private GameObject upgradeWindow;
@@ -121,6 +121,7 @@ public class GameUIController : MonoBehaviour
 
         HideHUD();
         settings.UpdateFont();
+        dialogueSystem.SetActive(true);
         dialogueRunner.StartDialogue(startNode);
         isTalking = true;
     }
@@ -131,6 +132,7 @@ public class GameUIController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         isTalking = false;
+        dialogueSystem.SetActive(false);
         ShowHUD();
     }
 
@@ -379,12 +381,6 @@ public class GameUIController : MonoBehaviour
             ReturnToPauseMenu();
         else if (paused && settingsMenu.gameObject.activeInHierarchy == true && settingsMenu.IsInKeyRebind() == true && value.performed)
             settingsMenu.ReturnFromKeyRebind();
-    }
-
-    public void ContinueConversation(InputAction.CallbackContext value)
-    {
-        if (isTalking)
-            dialogueUI.MarkLineComplete();
     }
 
     public void CheckObjectivesPanel()
