@@ -23,9 +23,4 @@ public class CommanderDungeon : NPC
         ((NavigationObjective)objective).ResetObjective();
         panel.Initialize();
     }
-
-    public override void StartDialogue()
-    {
-
-    }
 }

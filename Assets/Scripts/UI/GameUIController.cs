@@ -19,7 +19,7 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private DeviceDisplayConfigurator deviceDisplay;
 
     [Header("Dialogue System")]
-    [SerializeField] private GameObject dialogueSystem;
+    [SerializeField] private GameObject authorPanel;
     [SerializeField] private DialogueRunner dialogueRunner;
 
     [Header("Upgrade Window")]
@@ -83,12 +83,12 @@ public class GameUIController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() // Need to refactor this
     {            
         if (elapsedTime > refreshTime) {
             elapsedTime = 0.0f;
 
-            if (heatmap.gameObject.activeInHierarchy)
+            if (heatmap.gameObject.activeInHierarchy && !isTalking)
                 heatmap.SaveLocationsToFile();
         }
 
@@ -121,7 +121,7 @@ public class GameUIController : MonoBehaviour
 
         HideHUD();
         settings.UpdateFont();
-        dialogueSystem.SetActive(true);
+        authorPanel.SetActive(true);
         dialogueRunner.StartDialogue(startNode);
         isTalking = true;
     }
@@ -132,7 +132,7 @@ public class GameUIController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         isTalking = false;
-        dialogueSystem.SetActive(false);
+        authorPanel.SetActive(false);
         ShowHUD();
     }
 

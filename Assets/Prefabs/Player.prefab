@@ -774,6 +774,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4a2b3d8a-6d8f-419b-acf7-6195a2d00d3f
     m_ActionName: Player Controls/Select Weapon[/Mouse/leftButton,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a4de0401-e874-4db5-b572-b10c38d4c631
+    m_ActionName: UI Controls/Continue Conversation[/Keyboard/space,/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player Controls
@@ -902,7 +906,7 @@ MonoBehaviour:
   - {x: -0.4498577, y: 0.018911839, z: 0}
   m_ShapePathHash: 1284380165
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1304
+  m_InstanceId: -6320
 --- !u!114 &512575834
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -267,7 +267,7 @@
                     "name": "",
                     "id": "3c5ea8bf-7e71-46b6-bfae-9e91042ed256",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Interact",

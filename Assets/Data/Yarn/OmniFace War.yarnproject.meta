@@ -12,6 +12,6 @@ ScriptedImporter:
   - {fileID: 6391573757903218779, guid: 6c78e6b9f46cd6942bb635191d8cffcb, type: 3}
   compileError: 
   serializedDeclarations: []
-  defaultLanguage: en-AU
+  defaultLanguage: en
   languagesToSourceAssets: []
   useAddressableAssets: 0
