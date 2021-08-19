@@ -4366,10 +4366,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 572262116, guid: e91f16d6dc3d7fd42a8dbb5906431344, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1004591544, guid: e91f16d6dc3d7fd42a8dbb5906431344, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4392,10 +4388,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1004591544, guid: e91f16d6dc3d7fd42a8dbb5906431344, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2115370513, guid: e91f16d6dc3d7fd42a8dbb5906431344, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4176395535540653238, guid: e91f16d6dc3d7fd42a8dbb5906431344,
@@ -4513,11 +4505,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 207841479}
-    - target: {fileID: 5567816428608361323, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-        type: 3}
-      propertyPath: authorPanel
-      value: 
-      objectReference: {fileID: 1890250084}
     - target: {fileID: 5567816428608361324, guid: e91f16d6dc3d7fd42a8dbb5906431344,
         type: 3}
       propertyPath: m_Name
@@ -16230,12 +16217,6 @@ MonoBehaviour:
   m_ShapePathHash: 0
   m_Mesh: {fileID: 1895673595}
   m_InstanceId: 32302
---- !u!1 &1890250084 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2115370513, guid: e91f16d6dc3d7fd42a8dbb5906431344,
-    type: 3}
-  m_PrefabInstance: {fileID: 1606608274}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1895673595
 Mesh:
   m_ObjectHideFlags: 0
