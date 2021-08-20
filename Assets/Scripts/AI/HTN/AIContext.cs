@@ -29,7 +29,7 @@ public partial class AIContext
 
     public int currentWaypoint = 0;
 
-    public TestPlayerControl CurrentEnemy { get; set; }
+    public PlayerControl CurrentEnemy { get; set; }
 
     /// <summary>
     /// We can use this to prevent sensory updates from causing an unwanted replan.
@@ -59,7 +59,7 @@ public partial class AIContext
         BulletFactory = bulletFactory;
         CurrentWeapon = weapon;
 
-        CurrentEnemy = GameObject.FindGameObjectWithTag("Player").GetComponent<TestPlayerControl>();
+        CurrentEnemy = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
 
         base.Init();
     }

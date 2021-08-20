@@ -133,6 +133,7 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
     public AIDomainBuilder WarnPlayer()
     {
         Action("Warn Player");
+        HasStateLessThan(AIWorldState.AlertLevel, 25);
         if (Pointer is IPrimitiveTask task)
         {
             task.SetOperator(new WaitOperator(1f));
@@ -146,6 +147,7 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
     {
         Action("Pursue Player");
         HasStateGreaterThan(AIWorldState.AlertLevel, 25);
+        HasStateLessThan(AIWorldState.AlertLevel, 50);
         if (Pointer is IPrimitiveTask task) {
             task.SetOperator(new MoveToOperator(AIDestinationTarget.Enemy));
         }
@@ -158,6 +160,7 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
     {
         Action("Attack Player");
         HasStateGreaterThan(AIWorldState.AlertLevel, 50);
+        HasStateLessThan(AIWorldState.AlertLevel, 75);
         if (Pointer is IPrimitiveTask task) {
             task.SetOperator(new AttackPlayerOperator());
         }
@@ -205,7 +208,7 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
     {
         Action("Move to last recorded position");
         HasStateGreaterThan(AIWorldState.AlertLevel, 50);
-        HasStateGreaterThan(AIWorldState.AlertLevel, 75);
+        HasStateLessThan(AIWorldState.AlertLevel, 75);
         if (Pointer is IPrimitiveTask task) {
             task.SetOperator(new MoveToOperator(AIDestinationTarget.PatrolPoint));
         }
