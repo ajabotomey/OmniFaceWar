@@ -6,7 +6,6 @@ using UnityEngine;
 public class OverlordAI : MonoBehaviour
 {
     [SerializeField] private List<AIAgent> agents = new List<AIAgent>();
-    [SerializeField] private PlayerControl player;
 
     public List<AIAgent> GetAgents() { 
         return agents; 
@@ -15,7 +14,7 @@ public class OverlordAI : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         AIAgent agent = other.GetComponent<AIAgent>();
-        if (!agents.Contains(agent)) { 
+        if (!agents.Contains(agent) && agent != null) { 
             agents.Add(agent);
         }
     }
@@ -28,7 +27,7 @@ public class OverlordAI : MonoBehaviour
     public void AlertAllAgents()
     {
         foreach (AIAgent agent in agents) {
-            agent.SetAgentToFullAlert();
+            agent.SetAgentToFullAlert(); // Occasionally errors here
         }
     }
 }

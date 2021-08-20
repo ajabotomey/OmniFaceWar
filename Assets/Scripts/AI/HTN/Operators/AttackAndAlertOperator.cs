@@ -52,6 +52,11 @@ public class AttackAndAlertOperator : IOperator
 
         if (Vector2.Distance(agent.transform.position, currentTargetPos) < 5f) { // TODO: Custom stop range for if in range of the player
 
+            if (nodePath.Count == 0) { // To cover a particular edge case where the enemy is attacking and constantly updating the path
+                isNavigating = false;
+                return TaskStatus.Success;
+            }
+
             nodePath.RemoveAt(0); // Remove first node each time
 
             if (nodePath.Count == 0) {
