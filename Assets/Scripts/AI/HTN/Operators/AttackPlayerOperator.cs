@@ -9,9 +9,12 @@ public class AttackPlayerOperator : IOperator
     private List<AStarNode> nodePath;
 
     private Vector3 currentTargetPos;
+
     public void Stop(IContext ctx)
     {
-        throw new System.NotImplementedException();
+        if (ctx is AIContext c) {
+            isNavigating = false;
+        }
     }
 
     public TaskStatus Update(IContext ctx)

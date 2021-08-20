@@ -13,6 +13,9 @@ public class TakeDamageOperator : IOperator
             }
 
             c.GenericTimer = -1f;
+
+            c.SetState(AIWorldState.EnemyFound, true, EffectType.PlanAndExecute); // Now it's on!
+
             return TaskStatus.Success;
         }
 

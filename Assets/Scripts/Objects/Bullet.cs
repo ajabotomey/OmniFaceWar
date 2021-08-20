@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
         rb.velocity = Vector2.zero;
 
         if (collision.gameObject.tag == "Enemy") {
-            collision.gameObject.GetComponent<TestAI>().TakeDamage(damage);
+            collision.gameObject.GetComponent<AICharacter>().TakeDamage(damage);
         }
 
         if (collision.gameObject.tag == "Destructible Object") {

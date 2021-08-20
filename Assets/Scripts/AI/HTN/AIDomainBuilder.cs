@@ -90,7 +90,7 @@ public class AIDomainBuilder : BaseDomainBuilder<AIDomainBuilder, AIContext>
         if (Pointer is IPrimitiveTask task) {
             task.SetOperator(new TakeDamageOperator());
         }
-        IncrementState(AIWorldState.AlertLevel, 50, EffectType.PlanAndExecute);
+        SetState(AIWorldState.AlertLevel, 76, EffectType.PlanAndExecute);
         End();
 
         return this;
