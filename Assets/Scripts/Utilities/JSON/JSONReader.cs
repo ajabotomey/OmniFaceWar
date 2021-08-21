@@ -78,7 +78,7 @@ public class JSONReader : MonoBehaviour
                 TweetData tweetDataObject = new TweetData();
 
                 // If this comes up null, then we know it's a reply and we can skip this
-                if (!JsonDataContainsKey(tweet, "author_id")) // TODO: Redo this part to account for retweets and quote tweets. No replies however
+                if (JsonDataContainsKey(tweet, "referenced_tweets")) // TODO: Redo this part to account for retweets and quote tweets. No replies however
                 {
                     continue;
                 }
