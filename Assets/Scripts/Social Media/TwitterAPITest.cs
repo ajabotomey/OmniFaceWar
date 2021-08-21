@@ -6,7 +6,10 @@ using UnityEngine.Networking;
 public class TwitterAPITest : MonoBehaviour
 {
     private string uploadURL;
-    private const string BearerToken = "AAAAAAAAAAAAAAAAAAAAAESDAwEAAAAAFxFdjry5EjqsilyLXq754wdMyJI%3DHQAkhBkp0hbvpXDmma1CXYSjS94VJ1aVOW4uFmlvp9icmgVWfY";
+    [SerializeField] private string bearerToken = "";
+
+    [Header("Tweet Prefab")]
+    [SerializeField] private GameObject tweetPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -18,13 +21,13 @@ public class TwitterAPITest : MonoBehaviour
     {
         Logger.Debug("Uploading to server now");
 
-        uploadURL = "https://api.twitter.com/2/users/1161459229766500354/tweets";
+        uploadURL = "https://api.twitter.com/2/users/1161459229766500354/tweets?max_results=5&expansions=author_id,referenced_tweets.id";
         Debug.Log(uploadURL);
 
         UnityWebRequest req = new UnityWebRequest(uploadURL);
         req.method = UnityWebRequest.kHttpVerbGET;
         req.downloadHandler = new DownloadHandlerBuffer();
-        req.SetRequestHeader("Authorization", "Bearer " + BearerToken);
+        req.SetRequestHeader("Authorization", "Bearer " + bearerToken);
 
         yield return req.SendWebRequest();
 

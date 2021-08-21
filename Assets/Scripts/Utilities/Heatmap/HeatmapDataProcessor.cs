@@ -55,54 +55,7 @@ public class HeatmapDataProcessor : MonoBehaviour
 
         string data = download.GetData();
 
-        if (string.IsNullOrEmpty(data)) {
-            Logger.Debug("JSON String is null or empty");
-        }
-
-        var positionData = JsonMapper.ToObject<JsonData>(data);
-
-        if (JsonDataContainsKey(positionData, "positions")) {
-            if (!positionData["positions"].IsArray) {
-                Logger.Error("There are no positions");
-                return;
-            }
-
-            JsonData positions = positionData["positions"];
-            foreach (JsonData position in positions) {
-                Vector2 pos = new Vector2();
-                int count = 0;
-                // Parsing X
-                if (JsonDataContainsKey(position, "x"))
-                    pos.x = float.Parse(position["x"].ToString());
-                else {
-                    Debug.Log("<color=red>Failed parsing the x coordinate</color>");
-                    break;
-                }
-
-                // Parsing Y
-                if (JsonDataContainsKey(position, "y"))
-                    pos.y = float.Parse(position["y"].ToString());
-                else {
-                    Debug.Log("<color=red>Failed parsing the y coordinate</color>");
-                    break;
-                }
-
-                // Parsing the count
-                if (JsonDataContainsKey(position, "count")){
-                    count = int.Parse(position["count"].ToString());
-
-                    if (count > highestCount)
-                        highestCount = count;
-                }
-                else {
-                    Debug.Log("<color=red>Failed parsing the count coordinate</color>");
-                    break;
-                }
-
-                positionList.Add(pos, count);
-                Debug.Log("Position: " + pos.ToString() + " was counted " + count + " times");
-            }
-        }
+        JSONReader.ReadPositionList(ref positionList, ref data, ref highestCount);
     }
 
     private Vector2 GetVector2FromLine(string positionString)
