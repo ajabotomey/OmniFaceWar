@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-using LitJson;
+using TMPro;
 
 public class TweetList : MonoBehaviour
 {
@@ -16,6 +16,9 @@ public class TweetList : MonoBehaviour
     [Header("Scroll")]
     [SerializeField] private RectTransform scrollRect;
     [SerializeField] private Scrollbar scrollbar;
+
+    [Header("Text")]
+    [SerializeField] private TextMeshProUGUI internetText;
 
     private string data = "";
     private List<TweetData> tweets;
@@ -43,6 +46,7 @@ public class TweetList : MonoBehaviour
         
         if (req.result == UnityWebRequest.Result.ProtocolError || req.result == UnityWebRequest.Result.ConnectionError) {
             Logger.Error("We have a problem: " + req.error);
+            internetText.gameObject.SetActive(true);
         } else {
             Logger.Debug("Twitter API Requested Successfully");
             ProcessTweetData();
