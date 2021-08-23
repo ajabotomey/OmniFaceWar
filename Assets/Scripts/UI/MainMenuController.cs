@@ -6,6 +6,8 @@ public class MainMenuController : MonoBehaviour
 {
     //private ISceneController _sceneController;
 
+    public static MainMenuController Instance;
+
     [Inject] private SettingsManager settingsManager;
     [Inject] private SceneController sceneController;
 
@@ -20,6 +22,11 @@ public class MainMenuController : MonoBehaviour
 
     [Header("Events")]
     [SerializeField] private VoidEvent settingsMenuEvent;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void OnEnable()
     {
@@ -81,5 +88,10 @@ public class MainMenuController : MonoBehaviour
         loadGameButton.navigation = loadGameNav;
         settingsButton.navigation = settingsNav;
         quitGameButton.navigation = quitGameNav;
+    }
+
+    public Selectable GetStartGameButton()
+    {
+        return startGameButton;
     }
 }

@@ -36,11 +36,6 @@ public class TweetList : MonoBehaviour
         StartCoroutine(GetTweetsFromTwitterAPI());
     }
 
-    void Update()
-    {
-        Debug.Log(EventSystem.current.currentSelectedGameObject);
-    }
-
     IEnumerator GetTweetsFromTwitterAPI()
     {
         Logger.Debug("Retreving Tweets from the Twitter API now");
@@ -80,13 +75,20 @@ public class TweetList : MonoBehaviour
         foreach (TweetData tweet in tweets) {
             GameObject newTweet = Instantiate(tweetPrefab.gameObject);
             RectTransform rect = newTweet.GetComponent<RectTransform>();
-            newTweet.GetComponent<Tweet>().SetTweet(tweet.id, tweet.text);
+
+            Tweet tweetObj = newTweet.GetComponent<Tweet>();
+
+            tweetObj.SetTweet(tweet.id, tweet.text);
             rect.SetParent(scrollRect);
             rect.localScale = Vector3.one;
 
             if (tweet == tweets[0]) {
                 CurrentlySelectedTweet = newTweet;
             }
+
+            Navigation tweetNav = tweetObj.navigation;
+            tweetNav.selectOnLeft = MainMenuController.Instance.GetStartGameButton();
+            tweetObj.navigation = tweetNav;
         }
 
         TweetsActive = true;
