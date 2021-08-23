@@ -48,4 +48,10 @@ public class MainMenuController : MonoBehaviour
         Application.OpenURL("about:blank");
 #endif
     }
+
+    public void SelectPlayButton()
+    {
+        startGameButton.Select();
+        startGameButton.OnSelect(null);
+    }
 }
