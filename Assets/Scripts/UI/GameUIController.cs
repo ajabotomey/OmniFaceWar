@@ -374,6 +374,10 @@ public class GameUIController : MonoBehaviour
 
     public void CancelPauseAndSettings(InputAction.CallbackContext value)
     {
+        if (notificationWindowActive && value.performed) {
+            HideNotificationWindow();
+        }
+
         // TODO: Add in the keybind window
         if (paused && settingsMenu.gameObject.activeInHierarchy == false && settingsMenu.IsInKeyRebind() == false && value.performed)
             StopPause();
