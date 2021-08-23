@@ -805,10 +805,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361494619}
+    m_SelectOnDown: {fileID: 1321945485}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -954,10 +954,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1321945485}
+    m_SelectOnDown: {fileID: 1361494619}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -1571,10 +1571,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 784840553}
+    m_SelectOnDown: {fileID: 842820809}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -1705,11 +1705,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bearerToken: AAAAAAAAAAAAAAAAAAAAAESDAwEAAAAAFxFdjry5EjqsilyLXq754wdMyJI%3DHQAkhBkp0hbvpXDmma1CXYSjS94VJ1aVOW4uFmlvp9icmgVWfY
-  tweetPrefab: {fileID: 4352070772273420105, guid: d565733df7b2f8f4abb80d3c2d3ef2bf,
+  tweetPrefab: {fileID: 8010148641020887118, guid: d565733df7b2f8f4abb80d3c2d3ef2bf,
     type: 3}
   scrollRect: {fileID: 1593562976}
   scrollbar: {fileID: 59622351}
   internetText: {fileID: 1899702586}
+  tweetsUpdated: {fileID: 11400000, guid: a61cadffacce59f4f924667f6296da74, type: 2}
 --- !u!1 &1361494617
 GameObject:
   m_ObjectHideFlags: 0
@@ -1762,10 +1763,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 842820809}
+    m_SelectOnDown: {fileID: 784840553}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -2710,6 +2711,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2069267580}
   - component: {fileID: 2069267581}
+  - component: {fileID: 2069267582}
+  - component: {fileID: 2069267583}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -2754,10 +2757,79 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startGameButton: {fileID: 784840553}
-  loadGameButton: {fileID: 0}
+  loadGameButton: {fileID: 1321945485}
   settingsButton: {fileID: 842820809}
   quitGameButton: {fileID: 1361494619}
+  tweetList: {fileID: 1327562592}
   settingsMenuEvent: {fileID: 11400000, guid: 9421ca7889013f74495d8925fd1f733c, type: 2}
+--- !u!114 &2069267582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069267579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a36950ac10a62f4b86b6bdb3f2ffc2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 6e71eb32303b8c64bade7045a33111a4, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1327562592}
+        m_TargetAssemblyTypeName: TweetList, OmniFaceWar
+        m_MethodName: OnTweetSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2069267581}
+        m_TargetAssemblyTypeName: MainMenuController, OmniFaceWar
+        m_MethodName: UpdateNavigation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2069267583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069267579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a36950ac10a62f4b86b6bdb3f2ffc2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: a61cadffacce59f4f924667f6296da74, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2069267581}
+        m_TargetAssemblyTypeName: MainMenuController, OmniFaceWar
+        m_MethodName: UpdateNavigation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2113789139
 GameObject:
   m_ObjectHideFlags: 0

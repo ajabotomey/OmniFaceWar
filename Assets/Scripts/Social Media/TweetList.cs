@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using TMPro;
@@ -11,7 +12,8 @@ public class TweetList : MonoBehaviour
     [SerializeField] private string bearerToken = "";
 
     [Header("Tweet Prefab")]
-    [SerializeField] private GameObject tweetPrefab;
+    [SerializeField] private Tweet tweetPrefab;
+    public GameObject CurrentlySelectedTweet { get; private set; }
 
     [Header("Scroll")]
     [SerializeField] private RectTransform scrollRect;
@@ -20,13 +22,23 @@ public class TweetList : MonoBehaviour
     [Header("Text")]
     [SerializeField] private TextMeshProUGUI internetText;
 
+    [Header("Event")]
+    [SerializeField] private VoidEvent tweetsUpdated;
+
     private string data = "";
     private List<TweetData> tweets;
+
+    public bool TweetsActive { get; private set;} = false;
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(GetTweetsFromTwitterAPI());
+    }
+
+    void Update()
+    {
+        Debug.Log(EventSystem.current.currentSelectedGameObject);
     }
 
     IEnumerator GetTweetsFromTwitterAPI()
@@ -47,6 +59,7 @@ public class TweetList : MonoBehaviour
         if (req.result == UnityWebRequest.Result.ProtocolError || req.result == UnityWebRequest.Result.ConnectionError) {
             Logger.Error("We have a problem: " + req.error);
             internetText.gameObject.SetActive(true);
+            TweetsActive = false;
         } else {
             Logger.Debug("Twitter API Requested Successfully");
             ProcessTweetData();
@@ -65,12 +78,24 @@ public class TweetList : MonoBehaviour
     private void PopulateTweetList()
     {
         foreach (TweetData tweet in tweets) {
-            GameObject newTweet = Instantiate(tweetPrefab);
+            GameObject newTweet = Instantiate(tweetPrefab.gameObject);
             RectTransform rect = newTweet.GetComponent<RectTransform>();
             newTweet.GetComponent<Tweet>().SetTweet(tweet.id, tweet.text);
             rect.SetParent(scrollRect);
             rect.localScale = Vector3.one;
+
+            if (tweet == tweets[0]) {
+                CurrentlySelectedTweet = newTweet;
+            }
         }
+
+        TweetsActive = true;
+        tweetsUpdated.Raise();
+    }
+
+    public void OnTweetSelected()
+    {
+        CurrentlySelectedTweet = EventSystem.current.currentSelectedGameObject;
     }
 }
 

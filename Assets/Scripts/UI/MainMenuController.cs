@@ -9,11 +9,16 @@ public class MainMenuController : MonoBehaviour
     [Inject] private SettingsManager settingsManager;
     [Inject] private SceneController sceneController;
 
+    [Header("Buttons")]
     [SerializeField] private Selectable startGameButton;
     [SerializeField] private Selectable loadGameButton;
     [SerializeField] private Selectable settingsButton;
     [SerializeField] private Selectable quitGameButton;
 
+    [Header("Tweet List")]
+    [SerializeField] private TweetList tweetList;
+
+    [Header("Events")]
     [SerializeField] private VoidEvent settingsMenuEvent;
 
     void OnEnable()
@@ -21,6 +26,8 @@ public class MainMenuController : MonoBehaviour
         settingsManager.UpdateFont();
         startGameButton.Select();
         //startGameButton.OnSelect(null);
+
+        //UpdateNavigation();
     }
 
     public void StartGame()
@@ -53,5 +60,26 @@ public class MainMenuController : MonoBehaviour
     {
         startGameButton.Select();
         startGameButton.OnSelect(null);
+    }
+
+    public void UpdateNavigation()
+    {
+        // Update the navigation to the currently selected tweet
+        // First tweet in the list should be the default
+
+        Navigation startGameNav = startGameButton.navigation;
+        Navigation loadGameNav = loadGameButton.navigation;
+        Navigation settingsNav = settingsButton.navigation;
+        Navigation quitGameNav = quitGameButton.navigation;
+
+        startGameNav.selectOnRight = tweetList.CurrentlySelectedTweet.GetComponent<Tweet>();
+        loadGameNav.selectOnRight = tweetList.CurrentlySelectedTweet.GetComponent<Tweet>();
+        settingsNav.selectOnRight = tweetList.CurrentlySelectedTweet.GetComponent<Tweet>();
+        quitGameNav.selectOnRight = tweetList.CurrentlySelectedTweet.GetComponent<Tweet>();
+
+        startGameButton.navigation = startGameNav;
+        loadGameButton.navigation = loadGameNav;
+        settingsButton.navigation = settingsNav;
+        quitGameButton.navigation = quitGameNav;
     }
 }
