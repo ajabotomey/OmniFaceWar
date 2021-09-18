@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EntityHealth : MonoBehaviour
 {
+    [Header("Health Attributes")]
     [SerializeField] private int health;
     [SerializeField] private EntityHealthBar healthBar;
+
+    [Header("Death Event")]
+    [SerializeField] private UnityEvent deathEvent;
+
     private int maxHealth;
 
     void Awake()
@@ -19,8 +25,10 @@ public class EntityHealth : MonoBehaviour
 
     public void ApplyDamage(int damage)
     {
-        if (IsDead())
+        if (IsDead()) {
+            deathEvent.Invoke();
             return;
+        }
 
         health -= damage;
 

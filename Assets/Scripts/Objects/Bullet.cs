@@ -55,6 +55,10 @@ public class Bullet : MonoBehaviour
                 _inputController.SetRumble(0.2f);
         }
 
+        if (collision.gameObject.tag == "Dummy") {
+            collision.gameObject.GetComponent<TargetDummy>().TakeDamage(damage);
+        }
+
         Destroy(gameObject);
     }
 
